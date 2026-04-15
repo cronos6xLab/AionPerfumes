@@ -29,7 +29,6 @@
     min-height: 100vh;
   }
 
-  /* BARRA DE ANUNCIOS (MARQUEE) */
   .announcement-bar {
     background: var(--dark);
     color: #ffffff;
@@ -56,7 +55,6 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* HEADER */
   .header {
     background: var(--bg-main);
     padding: 20px 24px;
@@ -165,7 +163,6 @@
     margin: 24px 20px;
   }
 
-  /* OPCIONES Y EXTRAS */
   .option-section { padding: 0 20px; }
   .product-select {
     width: 100%;
@@ -186,7 +183,6 @@
   }
   .product-select:focus { border-color: var(--dark); background-color: var(--bg-main); }
 
-  /* PROMO BUTTONS REDISEÑADOS */
   .promo-section { padding: 0 20px; }
   .promo-instruction {
     font-size: 0.75rem;
@@ -219,9 +215,8 @@
     transition: all 0.2s;
     text-align: center;
     line-height: 1.4;
-    opacity: 0.5; /* Apagados por defecto */
+    opacity: 0.5;
   }
-  /* Solo se activa si coincide con el volumen seleccionado */
   .promo-btn.active-vol {
     opacity: 1;
     background: var(--bg-main);
@@ -241,9 +236,9 @@
     opacity: 0.8;
     margin-top: 4px;
     font-weight: 400;
-    min-height: 12px; /* Mantiene el espacio aunque no haya precio */
+    min-height: 12px;
   }
-  
+
   .promo-status {
     margin-top: 16px;
     background: var(--bg-secondary);
@@ -272,7 +267,7 @@
     font-size: 1rem;
     line-height: 1;
   }
-  
+
   .btn-finish-promo, .btn-clear-cart {
     background: var(--dark);
     color: white;
@@ -288,7 +283,7 @@
     transition: background 0.2s;
   }
   .btn-finish-promo:hover { background: #333; }
-  
+
   .btn-clear-cart {
     background: transparent;
     color: var(--dark);
@@ -297,7 +292,6 @@
   }
   .btn-clear-cart:hover { background: var(--bg-secondary); }
 
-  /* BÚSQUEDA Y SELECCIÓN */
   .search-section { padding: 0 20px; }
   .search-wrap { position: relative; }
   .search-wrap input {
@@ -312,8 +306,8 @@
     outline: none;
     transition: border-color 0.2s, background 0.2s;
   }
-  .search-wrap input:focus { 
-    border-color: var(--dark); 
+  .search-wrap input:focus {
+    border-color: var(--dark);
     background: var(--bg-main);
   }
   .search-icon {
@@ -324,7 +318,7 @@
     color: var(--muted);
     font-size: 1rem;
   }
-  
+
   .search-results {
     background: var(--bg-main);
     border: 1px solid var(--border);
@@ -392,11 +386,10 @@
     font-size: 1.2rem;
   }
 
-  /* FEROMONAS */
   .addon-section { padding: 0 20px; }
-  .addon-option { 
-    display: flex; 
-    align-items: center; 
+  .addon-option {
+    display: flex;
+    align-items: center;
     cursor: pointer;
     padding: 16px;
     border: 1px solid var(--border);
@@ -416,16 +409,15 @@
     color: white;
     transition: all 0.2s;
   }
-  .addon-option.checked .checkbox-box { 
-    background: var(--dark); 
-    border-color: var(--dark); 
+  .addon-option.checked .checkbox-box {
+    background: var(--dark);
+    border-color: var(--dark);
   }
   .addon-text { flex: 1; }
   .addon-label { display: block; font-size: 0.9rem; font-weight: 500; }
-  .addon-desc { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px;}
+  .addon-desc { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
   .addon-price { font-weight: 500; font-size: 0.9rem; }
 
-  /* CANTIDAD */
   .quantity-section {
     padding: 0 20px;
     display: flex;
@@ -450,7 +442,89 @@
     font-weight: 500; font-size: 0.9rem;
   }
 
-  /* CARRITO */
+  /* ── SECCIÓN CÓDIGO PROMOCIONAL ── */
+  .coupon-section { padding: 0 20px; }
+
+  .coupon-wrap {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .coupon-wrap input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .coupon-wrap input:focus {
+    border-color: var(--dark);
+    background: var(--bg-main);
+  }
+  .coupon-wrap input::placeholder {
+    text-transform: none;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+  }
+  .btn-apply-coupon {
+    padding: 14px 18px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .btn-apply-coupon:hover { background: #333; }
+
+  .coupon-feedback {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.4;
+  }
+  .coupon-feedback.success {
+    display: flex;
+    background: #f0faf4;
+    border: 1px solid #a8dfc0;
+    color: #1a6638;
+  }
+  .coupon-feedback.error {
+    display: flex;
+    background: #fff5f5;
+    border: 1px solid #f5c0c0;
+    color: #a33;
+  }
+  .coupon-feedback-icon { font-size: 1rem; }
+  .coupon-feedback-text { flex: 1; }
+  .btn-remove-coupon {
+    background: none;
+    border: none;
+    color: #1a6638;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0 4px;
+    line-height: 1;
+  }
+  /* ── FIN SECCIÓN CÓDIGO PROMOCIONAL ── */
+
   .cart-summary {
     display: none;
     margin: 20px 20px 0;
@@ -507,7 +581,17 @@
     font-size: 1rem;
   }
   .cart-item-remove:hover, .promo-remove:hover { color: var(--dark); }
-  
+
+  /* Fila de descuento en el resumen */
+  .cart-discount-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #1a6638;
+    padding: 10px 0 0;
+    font-weight: 500;
+  }
+
   .cart-total {
     display: flex;
     justify-content: space-between;
@@ -515,9 +599,9 @@
     font-weight: 500;
     margin-top: 16px;
     padding-top: 16px;
+    border-top: 1px solid var(--border);
   }
 
-  /* BOTONES DE ACCIÓN FIJOS */
   .action-buttons {
     position: fixed;
     bottom: 0;
@@ -554,7 +638,6 @@
   .btn-wa:hover { background: var(--green-wa-dark); }
   .btn-add:active, .btn-wa:active { transform: scale(0.98); }
 
-  /* TOAST */
   .toast {
     position: fixed;
     top: 100px;
@@ -606,19 +689,16 @@
 
   <div class="option-section">
     <div class="section-label"><span class="step-number">1</span> Presentación y Concentración</div>
-    <select class="product-select" id="product-option-select" onchange="updateSelectedOption()">
-      </select>
+    <select class="product-select" id="product-option-select" onchange="updateSelectedOption()"></select>
   </div>
 
   <div class="divider"></div>
 
   <div class="promo-section">
     <div class="section-label"><span class="step-number">2</span> Paquetes Especiales (Opcional)</div>
-    
     <p class="promo-instruction">
       ⚠️ <strong>Importante:</strong> Todos los aromas de tu paquete tendrán la misma presentación. Elige tu concentración arriba para que se habilite el paquete correspondiente.
     </p>
-
     <div class="promo-buttons">
       <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">
         4 × 3 <br>100ml <small id="promo-100-price"></small>
@@ -682,9 +762,33 @@
     </div>
   </div>
 
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════
+       PASO 5 · CÓDIGO PROMOCIONAL
+       Para agregar/editar códigos ve al JS:
+       busca el objeto PROMO_CODES
+  ════════════════════════════════════════ -->
+  <div class="coupon-section">
+    <div class="section-label"><span class="step-number">5</span> Código Promocional (Opcional)</div>
+    <div class="coupon-wrap">
+      <input type="text" id="coupon-input" placeholder="Ingresa tu código aquí" maxlength="20">
+      <button class="btn-apply-coupon" onclick="applyCoupon()">Aplicar</button>
+    </div>
+    <div class="coupon-feedback" id="coupon-feedback">
+      <span class="coupon-feedback-icon" id="coupon-icon"></span>
+      <span class="coupon-feedback-text" id="coupon-text"></span>
+      <button class="btn-remove-coupon" id="btn-remove-coupon" onclick="removeCoupon()" style="display:none;">✕</button>
+    </div>
+  </div>
+
   <div class="cart-summary" id="cart-summary">
     <div class="cart-summary-title">Resumen de Compra</div>
     <div id="cart-items-list"></div>
+    <div class="cart-discount-row" id="cart-discount-row" style="display:none;">
+      <span id="cart-discount-label">Descuento</span>
+      <span id="cart-discount-amount"></span>
+    </div>
     <div class="cart-total">
       <span>Total Estimado</span>
       <span id="cart-total-price">$0.00</span>
@@ -706,29 +810,43 @@
 <script>
   const WA_NUMBER = "528138917727";
 
+  // ════════════════════════════════════════════════════
+  // CONFIGURACIÓN DE CÓDIGOS PROMOCIONALES
+  // Agrega, edita o elimina códigos aquí.
+  // type: "percent" → descuento en %
+  // type: "fixed"   → descuento en pesos fijos
+  // ════════════════════════════════════════════════════
+  const PROMO_CODES = {
+    "AION10":    { discount: 10, type: "percent", description: "10% de descuento" },
+    "AION15":    { discount: 15, type: "percent", description: "15% de descuento" },
+    "LAUNCH20":  { discount: 20, type: "percent", description: "20% lanzamiento" },
+    "VERANO50":  { discount: 50, type: "fixed",   description: "$50 MXN de descuento" },
+  };
+  // ════════════════════════════════════════════════════
+
   const PRODUCT_OPTIONS = [
-    { volume: '30ml', concentration: 'Sensación Aura (Extrait 33%)', price: 169 },
-    { volume: '30ml', concentration: 'Impacto Radiante (Elixir 42%)', price: 209 },
-    { volume: '30ml', concentration: 'Aura Intensa (Elixir 50%)', price: 249 },
-    { volume: '60ml', concentration: 'Sensación Aura (Extrait 33%)', price: 289 },
-    { volume: '60ml', concentration: 'Impacto Radiante (Elixir 42%)', price: 379 },
-    { volume: '60ml', concentration: 'Aura Intensa (Elixir 50%)', price: 439 },
-    { volume: '100ml', concentration: 'Sensación Aura (Extrait 33%)', price: 389 },
-    { volume: '100ml', concentration: 'Impacto Radiante (Elixir 42%)', price: 499 },
-    { volume: '100ml', concentration: 'Aura Intensa (Elixir 50%)', price: 589 },
-    { volume: '50ml', concentration: 'Bálsamo Artesanal (Aura Cálida 6%)', price: 179 }
+    { volume: '30ml',  concentration: 'Sensación Aura (Extrait 33%)',          price: 169 },
+    { volume: '30ml',  concentration: 'Impacto Radiante (Elixir 42%)',          price: 209 },
+    { volume: '30ml',  concentration: 'Aura Intensa (Elixir 50%)',              price: 249 },
+    { volume: '60ml',  concentration: 'Sensación Aura (Extrait 33%)',           price: 289 },
+    { volume: '60ml',  concentration: 'Impacto Radiante (Elixir 42%)',          price: 379 },
+    { volume: '60ml',  concentration: 'Aura Intensa (Elixir 50%)',              price: 439 },
+    { volume: '100ml', concentration: 'Sensación Aura (Extrait 33%)',           price: 389 },
+    { volume: '100ml', concentration: 'Impacto Radiante (Elixir 42%)',          price: 499 },
+    { volume: '100ml', concentration: 'Aura Intensa (Elixir 50%)',              price: 589 },
+    { volume: '50ml',  concentration: 'Bálsamo Artesanal (Aura Cálida 6%)',     price: 179 }
   ];
 
   const AROMAS = [
-    { "code": "D0001", "name": "D212", "brand": "CAROLINA HERRERA", "occasion": "", "family": "Almizcle Floral Amaderado" },
-    { "code": "C0265", "name": "VALENTINO UOMO BORN IN ROMA IVORY", "brand": "VALENTINO", "occasion": "", "family": "Amaderada" },
-    { "code": "C0174", "name": "VALENTINO UOMO", "brand": "VALENTINO", "occasion": "", "family": "Cuero" },
-    { "code": "C0175", "name": "VERSACE MAN EAU DE FRAICHE", "brand": "VERSACE", "occasion": "", "family": "Amaderada Acuática" },
-    { "code": "C0176", "name": "VERSACE POUR HOMME", "brand": "VERSACE", "occasion": "", "family": "Aromática Fougère" },
-    { "code": "C0177", "name": "VETIVER", "brand": "GUERLAIN", "occasion": "", "family": "Amaderada Aromática" },
-    { "code": "C0178", "name": "Y EAU DE PARFUM INTENSE", "brand": "YVES SAINT LAURENT", "occasion": "", "family": "Aromática Fougère" },
-    { "code": "C0229", "name": "Y ELIXIR", "brand": "YVES SAINT LAURENT", "occasion": "", "family": "Aromática Fougère" },
-    { "code": "C0179", "name": "YVES SAINT LAURENT Y", "brand": "YVES SAINT LAURENT", "occasion": "", "family": "Amaderada Aromática" }
+    { "code": "D0001", "name": "D212",                               "brand": "CAROLINA HERRERA", "occasion": "", "family": "Almizcle Floral Amaderado" },
+    { "code": "C0265", "name": "VALENTINO UOMO BORN IN ROMA IVORY", "brand": "VALENTINO",         "occasion": "", "family": "Amaderada" },
+    { "code": "C0174", "name": "VALENTINO UOMO",                    "brand": "VALENTINO",         "occasion": "", "family": "Cuero" },
+    { "code": "C0175", "name": "VERSACE MAN EAU DE FRAICHE",        "brand": "VERSACE",           "occasion": "", "family": "Amaderada Acuática" },
+    { "code": "C0176", "name": "VERSACE POUR HOMME",                "brand": "VERSACE",           "occasion": "", "family": "Aromática Fougère" },
+    { "code": "C0177", "name": "VETIVER",                           "brand": "GUERLAIN",          "occasion": "", "family": "Amaderada Aromática" },
+    { "code": "C0178", "name": "Y EAU DE PARFUM INTENSE",          "brand": "YVES SAINT LAURENT","occasion": "", "family": "Aromática Fougère" },
+    { "code": "C0229", "name": "Y ELIXIR",                         "brand": "YVES SAINT LAURENT","occasion": "", "family": "Aromática Fougère" },
+    { "code": "C0179", "name": "YVES SAINT LAURENT Y",             "brand": "YVES SAINT LAURENT","occasion": "", "family": "Amaderada Aromática" }
   ];
 
   let state = {
@@ -736,7 +854,8 @@
     selectedAroma: null,
     withFeromonas: false,
     quantity: 1,
-    cartItems: []
+    cartItems: [],
+    appliedCoupon: null   // { code, discount, type, description }
   };
 
   let promoState = {
@@ -749,42 +868,105 @@
     selectedAromas: []
   };
 
+  // ── CÓDIGO PROMOCIONAL ──────────────────────────────
+
+  function applyCoupon() {
+    const input = document.getElementById('coupon-input').value.trim().toUpperCase();
+    const feedback = document.getElementById('coupon-feedback');
+    const icon     = document.getElementById('coupon-icon');
+    const text     = document.getElementById('coupon-text');
+    const removeBtn = document.getElementById('btn-remove-coupon');
+
+    if (!input) {
+      showCouponFeedback('error', '⚠️', 'Ingresa un código antes de aplicar.');
+      return;
+    }
+
+    if (state.appliedCoupon) {
+      showCouponFeedback('error', '⚠️', 'Ya tienes un código aplicado. Elimínalo primero.');
+      return;
+    }
+
+    const promo = PROMO_CODES[input];
+    if (!promo) {
+      showCouponFeedback('error', '✕', `El código "${input}" no es válido.`);
+      return;
+    }
+
+    state.appliedCoupon = { code: input, ...promo };
+    document.getElementById('coupon-input').value = '';
+    document.getElementById('coupon-input').disabled = true;
+
+    const label = promo.type === 'percent'
+      ? `Código <strong>${input}</strong> aplicado — ${promo.description}`
+      : `Código <strong>${input}</strong> aplicado — ${promo.description}`;
+
+    showCouponFeedback('success', '✓', label, true);
+    updateCartSummary();
+    showToast(`¡Código ${input} aplicado!`);
+  }
+
+  function removeCoupon() {
+    state.appliedCoupon = null;
+    document.getElementById('coupon-input').disabled = false;
+    document.getElementById('coupon-input').value = '';
+    const feedback = document.getElementById('coupon-feedback');
+    feedback.className = 'coupon-feedback';
+    feedback.style.display = 'none';
+    updateCartSummary();
+    showToast('Código eliminado');
+  }
+
+  function showCouponFeedback(type, iconChar, message, showRemove = false) {
+    const feedback  = document.getElementById('coupon-feedback');
+    const icon      = document.getElementById('coupon-icon');
+    const text      = document.getElementById('coupon-text');
+    const removeBtn = document.getElementById('btn-remove-coupon');
+
+    feedback.className = `coupon-feedback ${type}`;
+    icon.textContent   = iconChar;
+    text.innerHTML     = message;
+    removeBtn.style.display = showRemove ? 'inline-block' : 'none';
+  }
+
+  function calculateDiscount(subtotal) {
+    if (!state.appliedCoupon) return 0;
+    const { discount, type } = state.appliedCoupon;
+    if (type === 'percent') return subtotal * (discount / 100);
+    if (type === 'fixed')   return Math.min(discount, subtotal);
+    return 0;
+  }
+
+  // ── FIN CÓDIGO PROMOCIONAL ──────────────────────────
+
   function populateSelect() {
     const select = document.getElementById('product-option-select');
-    select.innerHTML = PRODUCT_OPTIONS.map((opt, i) => 
+    select.innerHTML = PRODUCT_OPTIONS.map((opt, i) =>
       `<option value="${i}" ${i === 0 ? 'selected' : ''}>${opt.volume} · ${opt.concentration} — $${opt.price}</option>`
     ).join('');
-    updatePromoPrices(); // Llamar al inicio para configurar los botones correctamente
+    updatePromoPrices();
   }
 
   function updateSelectedOption() {
     const idx = document.getElementById('product-option-select').value;
     state.selectedOption = PRODUCT_OPTIONS[idx];
     updatePromoPrices();
-    
-    // Si hay una promoción activa y cambiamos la presentación, se cancela para evitar errores
     if (promoState.active) {
       cancelPromo();
       showToast('Promoción cancelada al cambiar la presentación');
     }
   }
 
-  // Lógica principal de los botones de promoción
   function updatePromoPrices() {
     const opt = state.selectedOption;
     const vol = opt.volume;
-    
-    // 1. Limpiamos todos los precios
-    document.getElementById('promo-100-price').textContent = '';
-    document.getElementById('promo-60-price').textContent = '';
-    document.getElementById('promo-30-price').textContent = '';
-    
-    // 2. Apagamos todos los botones
-    document.querySelectorAll('.promo-btn').forEach(b => {
-      b.classList.remove('active-vol');
-    });
 
-    // 3. Encendemos SOLO el que corresponde al volumen seleccionado
+    document.getElementById('promo-100-price').textContent = '';
+    document.getElementById('promo-60-price').textContent  = '';
+    document.getElementById('promo-30-price').textContent  = '';
+
+    document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active-vol'));
+
     if (vol === '100ml') {
       document.getElementById('promo-100-price').textContent = `$${(opt.price * 3).toFixed(0)}`;
       document.getElementById('promo-100-btn').classList.add('active-vol');
@@ -797,20 +979,20 @@
     }
   }
 
-  const searchInput = document.getElementById('search-input');
+  const searchInput   = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
 
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.toLowerCase().trim();
     if (!q) { searchResults.classList.remove('visible'); return; }
-    
-    const matches = AROMAS.filter(a => 
-      a.code.toLowerCase().includes(q) ||
-      a.name.toLowerCase().includes(q) ||
-      a.brand.toLowerCase().includes(q) ||
+
+    const matches = AROMAS.filter(a =>
+      a.code.toLowerCase().includes(q)   ||
+      a.name.toLowerCase().includes(q)   ||
+      a.brand.toLowerCase().includes(q)  ||
       a.family.toLowerCase().includes(q)
     );
-    
+
     searchResults.innerHTML = matches.length === 0
       ? `<div class="search-result-item"><span class="aroma-name" style="color:var(--muted)">Sin resultados para "${q}"</span></div>`
       : matches.map(a => {
@@ -823,12 +1005,12 @@
             </div>
           </div>`;
         }).join('');
-    
+
     searchResults.classList.add('visible');
   });
 
-  document.addEventListener('click', e => { 
-    if (!e.target.closest('.search-wrap')) searchResults.classList.remove('visible'); 
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrap')) searchResults.classList.remove('visible');
   });
 
   function handleAromaSelection(idx) {
@@ -877,44 +1059,37 @@
       showToast(`⚠️ Por favor, selecciona la opción de ${volume} en el menú de arriba primero`);
       return;
     }
-    
     promoState = {
       active: true,
-      volume: volume,
+      volume,
       required: volume === '100ml' ? 4 : (volume === '60ml' ? 5 : 6),
       basePrice: currentOpt.price,
       concentration: currentOpt.concentration,
       withFeromonas: false,
       selectedAromas: []
     };
-    
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(`promo-${volume.replace('ml','')}-btn`).classList.add('active');
     document.getElementById('promo-status').classList.add('visible');
     updatePromoUI();
-    
     state.selectedAroma = null;
     document.getElementById('selected-aroma-tag').classList.remove('visible');
-    
     showToast(`Paquete de ${volume} activado. Ahora selecciona los aromas.`);
   }
 
   function updatePromoUI() {
-    const count = promoState.selectedAromas.length;
+    const count    = promoState.selectedAromas.length;
     const required = promoState.required;
-    document.getElementById('promo-status-text').innerHTML = `<strong>Aromas seleccionados (${count}/${required})</strong><br><small>${promoState.concentration}</small>`;
-    
+    document.getElementById('promo-status-text').innerHTML =
+      `<strong>Aromas seleccionados (${count}/${required})</strong><br><small>${promoState.concentration}</small>`;
+
     const listDiv = document.getElementById('promo-selected-list');
-    if (count === 0) {
-      listDiv.innerHTML = '';
-    } else {
-      listDiv.innerHTML = promoState.selectedAromas.map((a, i) => 
-        `<span class="promo-selected-item">${a.code} ${a.name} <span onclick="removePromoAroma(${i})">×</span></span>`
-      ).join('');
-    }
-    
+    listDiv.innerHTML = count === 0 ? '' : promoState.selectedAromas.map((a, i) =>
+      `<span class="promo-selected-item">${a.code} ${a.name} <span onclick="removePromoAroma(${i})">×</span></span>`
+    ).join('');
+
     document.getElementById('btn-finish-promo').style.display = (count === required) ? 'block' : 'none';
-    
+
     const addonDiv = document.getElementById('addon-feromonas');
     const checkbox = document.getElementById('checkbox-feromonas');
     if (promoState.withFeromonas) {
@@ -928,16 +1103,13 @@
 
   function addToPromoSelection(aroma) {
     if (promoState.selectedAromas.length >= promoState.required) {
-      showToast(`Ya has seleccionado ${promoState.required} aromas`);
-      return;
+      showToast(`Ya has seleccionado ${promoState.required} aromas`); return;
     }
     if (promoState.selectedAromas.some(a => a.code === aroma.code)) {
-      showToast(`El aroma ${aroma.code} ya está en la lista`);
-      return;
+      showToast(`El aroma ${aroma.code} ya está en la lista`); return;
     }
     promoState.selectedAromas.push(aroma);
     updatePromoUI();
-    
     if (promoState.selectedAromas.length === promoState.required) {
       showToast(`¡Listo! Presiona "Añadir paquete al carrito"`);
     } else {
@@ -952,27 +1124,20 @@
 
   function finishPromo() {
     if (promoState.selectedAromas.length !== promoState.required) {
-      showToast(`Debes seleccionar ${promoState.required} aromas`);
-      return;
+      showToast(`Debes seleccionar ${promoState.required} aromas`); return;
     }
-    
-    const unitPrice = promoState.basePrice;
-    const feromonasCost = promoState.withFeromonas ? 60 * promoState.required : 0;
-    const payCount = promoState.required - 1;
-    const totalPromoPrice = (unitPrice * payCount) + feromonasCost;
-    
-    const promoPack = {
+    const feromonasCost  = promoState.withFeromonas ? 60 * promoState.required : 0;
+    const totalPromoPrice = (promoState.basePrice * (promoState.required - 1)) + feromonasCost;
+    state.cartItems.push({
       type: 'promo',
       volume: promoState.volume,
       concentration: promoState.concentration,
       required: promoState.required,
-      payFor: payCount,
+      payFor: promoState.required - 1,
       aromas: [...promoState.selectedAromas],
       withFeromonas: promoState.withFeromonas,
       total: totalPromoPrice
-    };
-    
-    state.cartItems.push(promoPack);
+    });
     updateCartSummary();
     cancelPromo();
     showToast(`Paquete añadido al carrito`);
@@ -983,26 +1148,19 @@
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('promo-status').classList.remove('visible');
     document.getElementById('btn-finish-promo').style.display = 'none';
-    
     const addonDiv = document.getElementById('addon-feromonas');
     const checkbox = document.getElementById('checkbox-feromonas');
     if (state.withFeromonas) {
-      addonDiv.classList.add('checked');
-      checkbox.textContent = '✓';
+      addonDiv.classList.add('checked'); checkbox.textContent = '✓';
     } else {
-      addonDiv.classList.remove('checked');
-      checkbox.textContent = '';
+      addonDiv.classList.remove('checked'); checkbox.textContent = '';
     }
   }
 
   function addToCart() {
-    if (promoState.active) {
-      showToast('Por favor, añade o cancela el paquete actual primero');
-      return;
-    }
+    if (promoState.active) { showToast('Por favor, añade o cancela el paquete actual primero'); return; }
     if (!state.selectedAroma) { showToast('Elige un aroma primero (Paso 3)'); return; }
-    
-    const opt = state.selectedOption;
+    const opt       = state.selectedOption;
     const unitPrice = opt.price + (state.withFeromonas ? 60 : 0);
     state.cartItems.push({
       type: 'single',
@@ -1025,24 +1183,23 @@
     showToast('Artículo eliminado');
   }
 
-  function clearCart() { 
-    state.cartItems = []; 
-    updateCartSummary(); 
-    showToast('Carrito vacío'); 
+  function clearCart() {
+    state.cartItems = [];
+    updateCartSummary();
+    showToast('Carrito vacío');
   }
 
   function updateCartSummary() {
-    if (state.cartItems.length === 0) { 
-      document.getElementById('cart-summary').classList.remove('visible'); 
-      return; 
+    if (state.cartItems.length === 0) {
+      document.getElementById('cart-summary').classList.remove('visible'); return;
     }
-    
-    let html = '';
-    let total = 0;
-    
+
+    let html     = '';
+    let subtotal = 0;
+
     state.cartItems.forEach((item, i) => {
       if (item.type === 'single') {
-        total += item.total;
+        subtotal += item.total;
         html += `<div class="cart-item">
           <div>
             <strong>${item.aromaCode} ${item.aromaName}</strong><br>
@@ -1054,7 +1211,7 @@
           </div>
         </div>`;
       } else {
-        total += item.total;
+        subtotal += item.total;
         const promoId = `promo-${i}`;
         html += `<div class="promo-item">
           <div class="promo-header" onclick="togglePromoDetails('${promoId}')">
@@ -1073,8 +1230,26 @@
         </div>`;
       }
     });
-    
+
     document.getElementById('cart-items-list').innerHTML = html;
+
+    // Calcular descuento
+    const discountAmt    = calculateDiscount(subtotal);
+    const total          = subtotal - discountAmt;
+    const discountRow    = document.getElementById('cart-discount-row');
+    const discountLabel  = document.getElementById('cart-discount-label');
+    const discountAmount = document.getElementById('cart-discount-amount');
+
+    if (state.appliedCoupon && discountAmt > 0) {
+      const c = state.appliedCoupon;
+      const label = c.type === 'percent' ? `Descuento ${c.code} (−${c.discount}%)` : `Descuento ${c.code}`;
+      discountLabel.textContent  = label;
+      discountAmount.textContent = `−$${discountAmt.toFixed(2)}`;
+      discountRow.style.display  = 'flex';
+    } else {
+      discountRow.style.display = 'none';
+    }
+
     document.getElementById('cart-total-price').textContent = `$${total.toFixed(2)} MXN`;
     document.getElementById('cart-summary').classList.add('visible');
   }
@@ -1085,29 +1260,37 @@
 
   function sendToWhatsApp() {
     if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
-    
-    const total = state.cartItems.reduce((s, i) => s + i.total, 0);
+
+    const subtotal       = state.cartItems.reduce((s, i) => s + i.total, 0);
+    const discountAmt    = calculateDiscount(subtotal);
+    const total          = subtotal - discountAmt;
     const hasFreeShipping = total > 999 || state.cartItems.some(i => i.type === 'promo');
-    
+
     const fecha = new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'2-digit', year:'numeric' });
     const hora  = new Date().toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
-    let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
-    
+    let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\\n📅 ${fecha} a las ${hora}\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n`;
+
     state.cartItems.forEach((item, i) => {
       if (item.type === 'single') {
-        msg += `*${i+1}. ${item.aromaCode} — ${item.aromaName}*\n   📦 ${item.volume} ${item.concentration}${item.feromonas ? ' + Feromonas' : ''} ×${item.quantity}\n   💵 $${item.total.toFixed(2)}\n\n`;
+        msg += `*${i+1}. ${item.aromaCode} — ${item.aromaName}*\\n   📦 ${item.volume} ${item.concentration}${item.feromonas ? ' + Feromonas' : ''} ×${item.quantity}\\n   💵 $${item.total.toFixed(2)}\\n\\n`;
       } else {
-        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})*\n   Concentración: ${item.concentration}${item.withFeromonas ? ' + Feromonas' : ''}\n`;
-        item.aromas.forEach(a => msg += `   • ${a.code} ${a.name}\n`);
-        msg += `   💵 Total paquete: $${item.total.toFixed(2)}\n\n`;
+        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})*\\n   Concentración: ${item.concentration}${item.withFeromonas ? ' + Feromonas' : ''}\\n`;
+        item.aromas.forEach(a => msg += `   • ${a.code} ${a.name}\\n`);
+        msg += `   💵 Total paquete: $${item.total.toFixed(2)}\\n\\n`;
       }
     });
-    
-    msg += `━━━━━━━━━━━━━━━━━━━━━\n💰 *TOTAL: $${total.toFixed(2)} MXN*\n`;
-    if(hasFreeShipping) msg += `🚚 *ENVÍO GRATIS APLICADO*\n`;
-    msg += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
-    msg += `📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\n\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
-    
+
+    msg += `━━━━━━━━━━━━━━━━━━━━━\\n`;
+    if (state.appliedCoupon && discountAmt > 0) {
+      const c = state.appliedCoupon;
+      const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` : `$${c.discount} MXN de descuento`;
+      msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)}\\n`;
+    }
+    msg += `💰 *TOTAL: $${total.toFixed(2)} MXN*\\n`;
+    if (hasFreeShipping) msg += `🚚 *ENVÍO GRATIS APLICADO*\\n`;
+    msg += `━━━━━━━━━━━━━━━━━━━━━\\n\\n`;
+    msg += `📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\\n\\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
+
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     showToast('Abriendo WhatsApp...');
     setTimeout(() => window.open(url, '_blank'), 600);
@@ -1121,22 +1304,23 @@
     t._timer = setTimeout(() => t.classList.remove('show'), 2800);
   }
 
-  // Inicializar todo correctamente al cargar la página
   window.onload = populateSelect;
 
-  window.updateSelectedOption = updateSelectedOption;
-  window.handleAromaSelection = handleAromaSelection;
-  window.clearAroma = clearAroma;
-  window.toggleAddon = toggleAddon;
-  window.changeQty = changeQty;
-  window.startPromo = startPromo;
-  window.finishPromo = finishPromo;
-  window.cancelPromo = cancelPromo;
-  window.removePromoAroma = removePromoAroma;
-  window.addToCart = addToCart;
-  window.removeCartItem = removeCartItem;
-  window.clearCart = clearCart;
-  window.sendToWhatsApp = sendToWhatsApp;
+  window.updateSelectedOption  = updateSelectedOption;
+  window.handleAromaSelection  = handleAromaSelection;
+  window.clearAroma            = clearAroma;
+  window.toggleAddon           = toggleAddon;
+  window.changeQty             = changeQty;
+  window.startPromo            = startPromo;
+  window.finishPromo           = finishPromo;
+  window.cancelPromo           = cancelPromo;
+  window.removePromoAroma      = removePromoAroma;
+  window.addToCart             = addToCart;
+  window.removeCartItem        = removeCartItem;
+  window.clearCart             = clearCart;
+  window.sendToWhatsApp        = sendToWhatsApp;
+  window.applyCoupon           = applyCoupon;
+  window.removeCoupon          = removeCoupon;
 </script>
 </body>
 </html>
