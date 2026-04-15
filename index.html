@@ -817,8 +817,8 @@
   // type: "fixed"   → descuento en pesos fijos
   // ════════════════════════════════════════════════════
   const PROMO_CODES = {
-    "AION10":    { discount: 10, type: "percent", description: "10% de descuento" },
-    "AION15":    { discount: 15, type: "percent", description: "15% de descuento" },
+    "A10N":    { discount: 10, type: "percent", description: "10% de descuento" },
+    "RC64":    { discount: 10, type: "percent", description: "10% de descuento" },
     "LAUNCH20":  { discount: 20, type: "percent", description: "20% lanzamiento" },
     "VERANO50":  { discount: 50, type: "fixed",   description: "$50 MXN de descuento" },
   };
@@ -1101,21 +1101,21 @@
     }
   }
 
-  function addToPromoSelection(aroma) {
-    if (promoState.selectedAromas.length >= promoState.required) {
-      showToast(`Ya has seleccionado ${promoState.required} aromas`); return;
-    }
-    if (promoState.selectedAromas.some(a => a.code === aroma.code)) {
-      showToast(`El aroma ${aroma.code} ya está en la lista`); return;
-    }
-    promoState.selectedAromas.push(aroma);
-    updatePromoUI();
-    if (promoState.selectedAromas.length === promoState.required) {
-      showToast(`¡Listo! Presiona "Añadir paquete al carrito"`);
-    } else {
-      showToast(`Añadido (${promoState.selectedAromas.length}/${promoState.required})`);
-    }
+function addToPromoSelection(aroma) {
+  if (promoState.selectedAromas.length >= promoState.required) {
+    showToast(`Ya has seleccionado ${promoState.required} aromas`);
+    return;
   }
+  // ← bloque de duplicados eliminado, ya pueden repetirse
+  promoState.selectedAromas.push(aroma);
+  updatePromoUI();
+
+  if (promoState.selectedAromas.length === promoState.required) {
+    showToast(`¡Listo! Presiona "Añadir paquete al carrito"`);
+  } else {
+    showToast(`Añadido (${promoState.selectedAromas.length}/${promoState.required})`);
+  }
+}
 
   function removePromoAroma(index) {
     promoState.selectedAromas.splice(index, 1);
