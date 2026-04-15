@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Paleta moderna y minimalista */
     --bg-main: #ffffff;
     --bg-secondary: #f8f8f8;
     --dark: #111111;
@@ -17,8 +16,6 @@
     --gold-light: #d4b483;
     --green-wa: #25d366;
     --green-wa-dark: #128c4e;
-    
-    /* Bordes sutiles para look premium */
     --radius-sm: 4px;
     --radius-md: 8px;
   }
@@ -59,7 +56,7 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* HEADER MINIMALISTA */
+  /* HEADER */
   .header {
     background: var(--bg-main);
     padding: 20px 24px;
@@ -89,7 +86,7 @@
   .product-image-wrap {
     position: relative;
     width: 100%;
-    height: 380px; /* Un poco más alto para lucir la imagen */
+    height: 380px;
     overflow: hidden;
     background: var(--bg-secondary);
   }
@@ -146,6 +143,20 @@
     color: var(--dark);
     margin-bottom: 16px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-number {
+    background: var(--dark);
+    color: white;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.6rem;
   }
 
   .divider {
@@ -154,8 +165,40 @@
     margin: 24px 20px;
   }
 
+  /* OPCIONES Y EXTRAS */
+  .option-section { padding: 0 20px; }
+  .product-select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .product-select:focus { border-color: var(--dark); background-color: var(--bg-main); }
+
   /* PROMO BUTTONS REDISEÑADOS */
   .promo-section { padding: 0 20px; }
+  .promo-instruction {
+    font-size: 0.75rem;
+    color: var(--dark);
+    background: #fffdf5;
+    border: 1px solid #e8dfc3;
+    border-left: 3px solid var(--gold);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
   .promo-buttons {
     display: flex;
     gap: 12px;
@@ -164,31 +207,41 @@
   .promo-btn {
     flex: 1;
     min-width: 100px;
-    background: var(--bg-main);
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 14px 8px;
     font-family: 'Jost', sans-serif;
     font-size: 0.8rem;
     font-weight: 500;
-    color: var(--dark);
+    color: var(--muted);
     cursor: pointer;
     transition: all 0.2s;
     text-align: center;
     line-height: 1.4;
+    opacity: 0.5; /* Apagados por defecto */
   }
-  .promo-btn:hover { border-color: var(--dark); }
+  /* Solo se activa si coincide con el volumen seleccionado */
+  .promo-btn.active-vol {
+    opacity: 1;
+    background: var(--bg-main);
+    color: var(--dark);
+    border-color: var(--border);
+  }
+  .promo-btn.active-vol:hover { border-color: var(--dark); }
   .promo-btn.active {
     background: var(--dark);
     color: white;
     border-color: var(--dark);
+    opacity: 1;
   }
   .promo-btn small {
     display: block;
     font-size: 0.7rem;
-    opacity: 0.7;
+    opacity: 0.8;
     margin-top: 4px;
     font-weight: 400;
+    min-height: 12px; /* Mantiene el espacio aunque no haya precio */
   }
   
   .promo-status {
@@ -339,26 +392,7 @@
     font-size: 1.2rem;
   }
 
-  /* OPCIONES Y EXTRAS */
-  .option-section { padding: 0 20px; }
-  .product-select {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.9rem;
-    color: var(--dark);
-    outline: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    background-size: 16px;
-  }
-  .product-select:focus { border-color: var(--dark); background-color: var(--bg-main); }
-
+  /* FEROMONAS */
   .addon-section { padding: 0 20px; }
   .addon-option { 
     display: flex; 
@@ -570,31 +604,44 @@
 
   <div class="divider"></div>
 
+  <div class="option-section">
+    <div class="section-label"><span class="step-number">1</span> Presentación y Concentración</div>
+    <select class="product-select" id="product-option-select" onchange="updateSelectedOption()">
+      </select>
+  </div>
+
+  <div class="divider"></div>
+
   <div class="promo-section">
-    <div class="section-label">Paquetes Especiales</div>
+    <div class="section-label"><span class="step-number">2</span> Paquetes Especiales (Opcional)</div>
+    
+    <p class="promo-instruction">
+      ⚠️ <strong>Importante:</strong> Todos los aromas de tu paquete tendrán la misma presentación. Elige tu concentración arriba para que se habilite el paquete correspondiente.
+    </p>
+
     <div class="promo-buttons">
       <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">
-        4 × 3 <br>100ml <small id="promo-100-price">$2,097</small>
+        4 × 3 <br>100ml <small id="promo-100-price"></small>
       </button>
       <button class="promo-btn promo-60" id="promo-60-btn" onclick="startPromo('60ml')">
-        5 × 4 <br>60ml <small id="promo-60-price">$2,028</small>
+        5 × 4 <br>60ml <small id="promo-60-price"></small>
       </button>
       <button class="promo-btn promo-30" id="promo-30-btn" onclick="startPromo('30ml')">
-        6 × 5 <br>30ml <small id="promo-30-price">$940</small>
+        6 × 5 <br>30ml <small id="promo-30-price"></small>
       </button>
     </div>
     <div class="promo-status" id="promo-status">
       <div id="promo-status-text"></div>
       <div class="promo-selected-list" id="promo-selected-list"></div>
       <button class="btn-finish-promo" id="btn-finish-promo" onclick="finishPromo()" style="display:none;">Añadir paquete al carrito</button>
-      <button class="btn-clear-cart" onclick="cancelPromo()">Cancelar</button>
+      <button class="btn-clear-cart" onclick="cancelPromo()">Cancelar paquete</button>
     </div>
   </div>
 
   <div class="divider"></div>
 
   <div class="search-section">
-    <div class="section-label">Selección de Aroma</div>
+    <div class="section-label"><span class="step-number">3</span> Selección de Aroma</div>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
       <input type="text" id="search-input" placeholder="Buscar familia olfativa, casa, código...">
@@ -612,15 +659,8 @@
 
   <div class="divider"></div>
 
-  <div class="option-section">
-    <div class="section-label">Presentación y Concentración</div>
-    <select class="product-select" id="product-option-select" onchange="updateSelectedOption()">
-      </select>
-  </div>
-
-  <div class="divider"></div>
-
   <div class="addon-section">
+    <div class="section-label"><span class="step-number">4</span> Extras (Opcional)</div>
     <div class="addon-option" id="addon-feromonas" onclick="toggleAddon()">
       <div class="checkbox-box" id="checkbox-feromonas"></div>
       <div class="addon-text">
@@ -634,7 +674,7 @@
   <div class="divider"></div>
 
   <div class="quantity-section">
-    <span class="section-label" style="margin:0;">Cantidad</span>
+    <span class="section-label" style="margin:0;">Cantidad (Unidad)</span>
     <div class="qty-control">
       <button class="qty-btn" onclick="changeQty(-1)">−</button>
       <div class="qty-display" id="qty-display">1</div>
@@ -664,7 +704,6 @@
 </div>
 
 <script>
-  // Mantengo la lógica JS intacta para asegurar la funcionalidad.
   const WA_NUMBER = "528138917727";
 
   const PRODUCT_OPTIONS = [
@@ -715,22 +754,48 @@
     select.innerHTML = PRODUCT_OPTIONS.map((opt, i) => 
       `<option value="${i}" ${i === 0 ? 'selected' : ''}>${opt.volume} · ${opt.concentration} — $${opt.price}</option>`
     ).join('');
+    updatePromoPrices(); // Llamar al inicio para configurar los botones correctamente
   }
-  populateSelect();
 
   function updateSelectedOption() {
     const idx = document.getElementById('product-option-select').value;
     state.selectedOption = PRODUCT_OPTIONS[idx];
     updatePromoPrices();
+    
+    // Si hay una promoción activa y cambiamos la presentación, se cancela para evitar errores
+    if (promoState.active) {
+      cancelPromo();
+      showToast('Promoción cancelada al cambiar la presentación');
+    }
   }
 
+  // Lógica principal de los botones de promoción
   function updatePromoPrices() {
-    const unit = state.selectedOption.price;
-    document.getElementById('promo-100-price').textContent = `$${(unit * 3).toFixed(0)}`;
-    document.getElementById('promo-60-price').textContent = `$${(unit * 4).toFixed(0)}`;
-    document.getElementById('promo-30-price').textContent = `$${(unit * 5).toFixed(0)}`;
+    const opt = state.selectedOption;
+    const vol = opt.volume;
+    
+    // 1. Limpiamos todos los precios
+    document.getElementById('promo-100-price').textContent = '';
+    document.getElementById('promo-60-price').textContent = '';
+    document.getElementById('promo-30-price').textContent = '';
+    
+    // 2. Apagamos todos los botones
+    document.querySelectorAll('.promo-btn').forEach(b => {
+      b.classList.remove('active-vol');
+    });
+
+    // 3. Encendemos SOLO el que corresponde al volumen seleccionado
+    if (vol === '100ml') {
+      document.getElementById('promo-100-price').textContent = `$${(opt.price * 3).toFixed(0)}`;
+      document.getElementById('promo-100-btn').classList.add('active-vol');
+    } else if (vol === '60ml') {
+      document.getElementById('promo-60-price').textContent = `$${(opt.price * 4).toFixed(0)}`;
+      document.getElementById('promo-60-btn').classList.add('active-vol');
+    } else if (vol === '30ml') {
+      document.getElementById('promo-30-price').textContent = `$${(opt.price * 5).toFixed(0)}`;
+      document.getElementById('promo-30-btn').classList.add('active-vol');
+    }
   }
-  updatePromoPrices();
 
   const searchInput = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
@@ -809,7 +874,7 @@
   function startPromo(volume) {
     const currentOpt = state.selectedOption;
     if (currentOpt.volume !== volume) {
-      showToast(`Selecciona la presentación de ${volume} en las opciones de abajo`);
+      showToast(`⚠️ Por favor, selecciona la opción de ${volume} en el menú de arriba primero`);
       return;
     }
     
@@ -831,7 +896,7 @@
     state.selectedAroma = null;
     document.getElementById('selected-aroma-tag').classList.remove('visible');
     
-    showToast(`Paquete de ${volume} activado`);
+    showToast(`Paquete de ${volume} activado. Ahora selecciona los aromas.`);
   }
 
   function updatePromoUI() {
@@ -932,10 +997,10 @@
 
   function addToCart() {
     if (promoState.active) {
-      showToast('Por favor, finaliza o cancela el paquete actual');
+      showToast('Por favor, añade o cancela el paquete actual primero');
       return;
     }
-    if (!state.selectedAroma) { showToast('Elige un aroma primero'); return; }
+    if (!state.selectedAroma) { showToast('Elige un aroma primero (Paso 3)'); return; }
     
     const opt = state.selectedOption;
     const unitPrice = opt.price + (state.withFeromonas ? 60 : 0);
@@ -1055,6 +1120,9 @@
     clearTimeout(t._timer);
     t._timer = setTimeout(() => t.classList.remove('show'), 2800);
   }
+
+  // Inicializar todo correctamente al cargar la página
+  window.onload = populateSelect;
 
   window.updateSelectedOption = updateSelectedOption;
   window.handleAromaSelection = handleAromaSelection;
