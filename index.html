@@ -1258,43 +1258,49 @@
     document.getElementById(id).classList.toggle('expanded');
   };
 
-  function sendToWhatsApp() {
-    if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
+function sendToWhatsApp() {
+  if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
 
-    const subtotal       = state.cartItems.reduce((s, i) => s + i.total, 0);
-    const discountAmt    = calculateDiscount(subtotal);
-    const total          = subtotal - discountAmt;
-    const hasFreeShipping = total > 999 || state.cartItems.some(i => i.type === 'promo');
+  const subtotal        = state.cartItems.reduce((s, i) => s + i.total, 0);
+  const discountAmt     = calculateDiscount(subtotal);
+  const total           = subtotal - discountAmt;
+  const hasFreeShipping = total > 999 || state.cartItems.some(i => i.type === 'promo');
 
-    const fecha = new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'2-digit', year:'numeric' });
-    const hora  = new Date().toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
-    let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\\n📅 ${fecha} a las ${hora}\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n`;
+  const fecha = new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const hora  = new Date().toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
 
-    state.cartItems.forEach((item, i) => {
-      if (item.type === 'single') {
-        msg += `*${i+1}. ${item.aromaCode} — ${item.aromaName}*\\n   📦 ${item.volume} ${item.concentration}${item.feromonas ? ' + Feromonas' : ''} ×${item.quantity}\\n   💵 $${item.total.toFixed(2)}\\n\\n`;
-      } else {
-        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})*\\n   Concentración: ${item.concentration}${item.withFeromonas ? ' + Feromonas' : ''}\\n`;
-        item.aromas.forEach(a => msg += `   • ${a.code} ${a.name}\\n`);
-        msg += `   💵 Total paquete: $${item.total.toFixed(2)}\\n\\n`;
-      }
-    });
+  let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
 
-    msg += `━━━━━━━━━━━━━━━━━━━━━\\n`;
-    if (state.appliedCoupon && discountAmt > 0) {
-      const c = state.appliedCoupon;
-      const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` : `$${c.discount} MXN de descuento`;
-      msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)}\\n`;
+  state.cartItems.forEach((item, i) => {
+    if (item.type === 'single') {
+      msg += `*${i+1}. ${item.aromaCode} — ${item.aromaName}*\n`;
+      msg += `   📦 ${item.volume} · ${item.concentration}${item.feromonas ? ' + Feromonas' : ''} ×${item.quantity}\n`;
+      msg += `   💵 $${item.total.toFixed(2)}\n\n`;
+    } else {
+      msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})*\n`;
+      msg += `   Concentración: ${item.concentration}${item.withFeromonas ? ' + Feromonas' : ''}\n`;
+      item.aromas.forEach(a => { msg += `   • ${a.code} ${a.name}\n`; });
+      msg += `   💵 Total paquete: $${item.total.toFixed(2)}\n\n`;
     }
-    msg += `💰 *TOTAL: $${total.toFixed(2)} MXN*\\n`;
-    if (hasFreeShipping) msg += `🚚 *ENVÍO GRATIS APLICADO*\\n`;
-    msg += `━━━━━━━━━━━━━━━━━━━━━\\n\\n`;
-    msg += `📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\\n\\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
+  });
 
-    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-    showToast('Abriendo WhatsApp...');
-    setTimeout(() => window.open(url, '_blank'), 600);
+  msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
+
+  if (state.appliedCoupon && discountAmt > 0) {
+    const c = state.appliedCoupon;
+    const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` : `$${c.discount} MXN de descuento`;
+    msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)}\n`;
   }
+
+  msg += `💰 *TOTAL: $${total.toFixed(2)} MXN*\n`;
+  if (hasFreeShipping) msg += `🚚 *ENVÍO GRATIS APLICADO*\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+  msg += `📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\n\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
+
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  showToast('Abriendo WhatsApp...');
+  setTimeout(() => window.open(url, '_blank'), 600);
+}
 
   function showToast(msg) {
     const t = document.getElementById('toast');
