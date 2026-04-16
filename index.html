@@ -165,7 +165,6 @@
 
   .option-section { padding: 0 20px; }
 
-  /* ── SELECTOR DE TAMAÑO ── */
   .size-buttons, .conc-buttons {
     display: flex;
     gap: 10px;
@@ -191,7 +190,6 @@
     border-color: var(--dark);
   }
 
-  /* ── SELECTOR DE CONCENTRACIÓN ── */
   .conc-btn {
     flex: 1;
     padding: 14px 8px;
@@ -227,7 +225,6 @@
     cursor: default;
   }
 
-  /* ── PRECIO DINÁMICO ── */
   .selected-price-display {
     margin-top: 14px;
     font-size: 1.05rem;
@@ -239,7 +236,6 @@
     transition: opacity 0.2s;
   }
 
-  /* PAQUETES */
   .promo-section { padding: 0 20px; }
   .promo-instruction {
     font-size: 0.75rem;
@@ -358,7 +354,6 @@
   }
   .btn-clear-cart:hover { background: var(--bg-secondary); }
 
-  /* BÚSQUEDA */
   .search-section { padding: 0 20px; }
   .search-wrap { position: relative; }
   .search-wrap input {
@@ -435,7 +430,6 @@
   .selected-aroma-tag .aroma-text small { color: var(--muted); font-size: 0.75rem; }
   .remove-aroma { background: none; border: none; color: var(--dark); cursor: pointer; font-size: 1.2rem; }
 
-  /* FEROMONAS */
   .addon-section { padding: 0 20px; }
   .addon-option {
     display: flex;
@@ -465,7 +459,6 @@
   .addon-desc { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
   .addon-price { font-weight: 500; font-size: 0.9rem; }
 
-  /* ── BOTÓN AÑADIR PAQUETE ── */
   .finish-promo-wrapper {
     display: none;
     padding: 0 20px;
@@ -510,7 +503,6 @@
     letter-spacing: 0.5px;
   }
 
-  /* CANTIDAD */
   .quantity-section {
     padding: 0 20px;
     display: flex;
@@ -532,7 +524,6 @@
   .qty-btn:hover { background: var(--bg-secondary); }
   .qty-display { width: 40px; text-align: center; font-weight: 500; font-size: 0.9rem; }
 
-  /* CÓDIGO PROMOCIONAL */
   .coupon-section { padding: 0 20px; }
   .coupon-wrap { display: flex; gap: 8px; align-items: stretch; }
   .coupon-wrap input {
@@ -583,7 +574,6 @@
   .coupon-feedback-text { flex: 1; }
   .btn-remove-coupon { background: none; border: none; color: #1a6638; cursor: pointer; font-size: 1rem; padding: 0 4px; line-height: 1; }
 
-  /* CARRITO */
   .cart-summary {
     display: none;
     margin: 20px 20px 0;
@@ -606,7 +596,6 @@
   .cart-discount-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #1a6638; padding: 10px 0 0; font-weight: 500; }
   .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 500; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 
-  /* BOTONES FIJOS */
   .action-buttons {
     position: fixed;
     bottom: 0;
@@ -643,7 +632,6 @@
   .btn-wa:hover { background: var(--green-wa-dark); }
   .btn-add:active, .btn-wa:active { transform: scale(0.98); }
 
-  /* TOAST */
   .toast {
     position: fixed;
     top: 100px;
@@ -662,6 +650,125 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ══════════════════════════════════════
+     ONBOARDING TOUR STYLES
+  ══════════════════════════════════════ */
+
+  /* Overlay oscuro detrás del tooltip */
+  .tour-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    display: none;
+  }
+  .tour-overlay.active { display: block; }
+
+  /* Recorte iluminado sobre el elemento */
+  .tour-highlight {
+    position: fixed;
+    border-radius: 6px;
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.55);
+    z-index: 1001;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* Tooltip flotante */
+  .tour-tooltip {
+    position: fixed;
+    z-index: 1002;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 22px;
+    max-width: 300px;
+    width: calc(100vw - 40px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+  }
+  .tour-tooltip::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    transform: rotate(45deg);
+  }
+  .tour-tooltip.arrow-top::before    { top: -6px; left: 24px; }
+  .tour-tooltip.arrow-bottom::before { bottom: -6px; left: 24px; }
+  .tour-tooltip.arrow-top-right::before    { top: -6px; right: 24px; }
+  .tour-tooltip.arrow-bottom-right::before { bottom: -6px; right: 24px; }
+
+  .tour-step-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .tour-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .tour-body {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .tour-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .tour-dots {
+    display: flex;
+    gap: 5px;
+  }
+  .tour-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.2s;
+  }
+  .tour-dot.active { background: var(--dark); }
+  .tour-actions { display: flex; gap: 8px; }
+  .tour-btn-skip {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: border-color 0.2s;
+  }
+  .tour-btn-skip:hover { border-color: var(--muted); }
+  .tour-btn-next {
+    background: var(--dark);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 8px 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .tour-btn-next:hover { background: #333; }
 </style>
 </head>
 <body>
@@ -674,6 +781,22 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- TOUR ELEMENTS -->
+<div class="tour-overlay" id="tour-overlay" onclick="tourSkip()"></div>
+<div class="tour-highlight" id="tour-highlight"></div>
+<div class="tour-tooltip" id="tour-tooltip">
+  <div class="tour-step-label" id="tour-step-label"></div>
+  <div class="tour-title"     id="tour-title"></div>
+  <div class="tour-body"      id="tour-body"></div>
+  <div class="tour-footer">
+    <div class="tour-dots" id="tour-dots"></div>
+    <div class="tour-actions">
+      <button class="tour-btn-skip" onclick="tourSkip()">Omitir</button>
+      <button class="tour-btn-next" id="tour-btn-next" onclick="tourNext()">Siguiente →</button>
+    </div>
+  </div>
+</div>
 
 <div class="header">
   <h1>Aion Perfumes</h1>
@@ -694,7 +817,7 @@
   <div class="divider"></div>
 
   <!-- PASO 1A: TAMAÑO -->
-  <div class="option-section">
+  <div class="option-section" id="tour-anchor-size">
     <div class="section-label"><span class="step-number">1</span> Presentación</div>
     <div class="size-buttons">
       <button class="size-btn active" data-size="30ml" onclick="selectSize('30ml')">30 ml</button>
@@ -706,7 +829,7 @@
   <div class="divider"></div>
 
   <!-- PASO 1B: CONCENTRACIÓN -->
-  <div class="option-section">
+  <div class="option-section" id="tour-anchor-conc">
     <div class="section-label">💧 Concentración</div>
     <div class="conc-buttons">
       <button class="conc-btn active" data-conc="33" onclick="selectConc('33')">
@@ -725,7 +848,7 @@
   <div class="divider"></div>
 
   <!-- PASO 2: PAQUETES -->
-  <div class="promo-section">
+  <div class="promo-section" id="tour-anchor-promo">
     <div class="section-label"><span class="step-number">2</span> Paquetes Especiales (Opcional)</div>
     <p class="promo-instruction">
       ⚠️ <strong>Importante:</strong> Todos los aromas de tu paquete tendrán la misma presentación y concentración. Elige ambas opciones arriba para habilitar el paquete correspondiente.
@@ -751,7 +874,7 @@
   <div class="divider"></div>
 
   <!-- PASO 3: AROMA -->
-  <div class="search-section">
+  <div class="search-section" id="tour-anchor-aroma">
     <div class="section-label"><span class="step-number">3</span> Selección de Aroma</div>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
@@ -771,7 +894,7 @@
   <div class="divider"></div>
 
   <!-- PASO 4: EXTRAS -->
-  <div class="addon-section">
+  <div class="addon-section" id="tour-anchor-extras">
     <div class="section-label"><span class="step-number">4</span> Extras (Opcional)</div>
     <div class="addon-option" id="addon-feromonas" onclick="toggleAddon()">
       <div class="checkbox-box" id="checkbox-feromonas"></div>
@@ -798,7 +921,7 @@
   <div class="divider"></div>
 
   <!-- CANTIDAD -->
-  <div class="quantity-section" id="quantity-section">
+  <div class="quantity-section" id="tour-anchor-qty" id="quantity-section">
     <span class="section-label" style="margin:0;">Cantidad (Unidad)</span>
     <div class="qty-control">
       <button class="qty-btn" onclick="changeQty(-1)">−</button>
@@ -810,7 +933,7 @@
   <div class="divider"></div>
 
   <!-- PASO 5: CÓDIGO PROMOCIONAL -->
-  <div class="coupon-section">
+  <div class="coupon-section" id="tour-anchor-coupon">
     <div class="section-label"><span class="step-number">5</span> Código Promocional (Opcional)</div>
     <div class="coupon-wrap">
       <input type="text" id="coupon-input" placeholder="Ingresa tu código aquí" maxlength="20">
@@ -839,7 +962,7 @@
   </div>
 </div>
 
-<div class="action-buttons">
+<div class="action-buttons" id="tour-anchor-actions">
   <button class="btn-add" onclick="addToCart()">Añadir</button>
   <button class="btn-wa" onclick="sendToWhatsApp()">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
@@ -1540,6 +1663,146 @@
     selectedAromas: []
   };
 
+  // ══════════════════════════════════════
+  //  ONBOARDING TOUR
+  // ══════════════════════════════════════
+  const TOUR_STEPS = [
+    {
+      anchor: 'tour-anchor-size',
+      title: 'Elige tu presentación',
+      body: 'Selecciona el tamaño de tu frasco: 30 ml para probar el aroma, 60 ml para uso diario, o 100 ml para máxima duración. El precio se actualiza automáticamente.',
+      arrow: 'arrow-top',
+      position: 'below'
+    },
+    {
+      anchor: 'tour-anchor-conc',
+      title: 'Selecciona la concentración',
+      body: '33% Extrait de Parfum es nuestra base de larga duración. 42% Elixir Radiante intensifica la proyección. 50% Elixir Intenso es la experiencia más poderosa y envolvente.',
+      arrow: 'arrow-top',
+      position: 'below'
+    },
+    {
+      anchor: 'tour-anchor-promo',
+      title: 'Paquetes especiales',
+      body: '¿Quieres más de un aroma? Los paquetes te dan un frasco gratis: lleva 4 y paga 3 en 100 ml, 5×4 en 60 ml, o 6×5 en 30 ml. Primero elige tamaño y concentración arriba.',
+      arrow: 'arrow-top',
+      position: 'below'
+    },
+    {
+      anchor: 'tour-anchor-aroma',
+      title: 'Busca tu aroma',
+      body: 'Escribe el nombre de un perfume de marca, su código o su familia olfativa (ej. "floral", "oriental"). Selecciónalo del listado para añadirlo a tu pedido.',
+      arrow: 'arrow-top',
+      position: 'below'
+    },
+    {
+      anchor: 'tour-anchor-extras',
+      title: 'Añade feromonas (opcional)',
+      body: 'Potencia tu perfume con nuestra fórmula de feromonas por solo $60 MXN adicionales. Activa la casilla si deseas incluirla.',
+      arrow: 'arrow-top',
+      position: 'below'
+    },
+    {
+      anchor: 'tour-anchor-coupon',
+      title: 'Código promocional',
+      body: '¿Tienes un código de descuento? Ingrésalo aquí y presiona "Aplicar" antes de finalizar tu pedido.',
+      arrow: 'arrow-top',
+      position: 'below'
+    },
+    {
+      anchor: 'tour-anchor-actions',
+      title: '¡Listo para pedir!',
+      body: 'Presiona "Añadir" para agregar más aromas al carrito, o "Finalizar Pedido" para enviarnos tu selección por WhatsApp y coordinar tu entrega.',
+      arrow: 'arrow-bottom',
+      position: 'above'
+    }
+  ];
+
+  let tourStep = 0;
+
+  function tourStart() {
+    if (localStorage.getItem('aion_tour_done') === '1') return;
+    tourStep = 0;
+    tourRender();
+  }
+
+  function tourRender() {
+    const step   = TOUR_STEPS[tourStep];
+    const anchor = document.getElementById(step.anchor);
+    const overlay   = document.getElementById('tour-overlay');
+    const highlight = document.getElementById('tour-highlight');
+    const tooltip   = document.getElementById('tour-tooltip');
+    const nextBtn   = document.getElementById('tour-btn-next');
+
+    overlay.classList.add('active');
+
+    // Scroll anchor into view
+    anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    setTimeout(() => {
+      const r = anchor.getBoundingClientRect();
+      const pad = 8;
+
+      // Position highlight
+      highlight.style.left   = (r.left - pad) + 'px';
+      highlight.style.top    = (r.top  - pad) + 'px';
+      highlight.style.width  = (r.width  + pad * 2) + 'px';
+      highlight.style.height = (r.height + pad * 2) + 'px';
+
+      // Position tooltip
+      tooltip.className = 'tour-tooltip ' + step.arrow;
+      if (step.position === 'below') {
+        tooltip.style.top  = (r.bottom + pad + 14) + 'px';
+        tooltip.style.bottom = 'auto';
+      } else {
+        tooltip.style.bottom = (window.innerHeight - r.top + pad + 14) + 'px';
+        tooltip.style.top    = 'auto';
+      }
+      // Horizontal: left-align with anchor, clamped
+      let left = r.left;
+      const tw = Math.min(300, window.innerWidth - 40);
+      if (left + tw > window.innerWidth - 10) left = window.innerWidth - tw - 10;
+      if (left < 10) left = 10;
+      tooltip.style.left = left + 'px';
+
+      // Content
+      document.getElementById('tour-step-label').textContent = `Paso ${tourStep + 1} de ${TOUR_STEPS.length}`;
+      document.getElementById('tour-title').textContent = step.title;
+      document.getElementById('tour-body').textContent  = step.body;
+
+      // Dots
+      const dots = document.getElementById('tour-dots');
+      dots.innerHTML = TOUR_STEPS.map((_, i) =>
+        `<div class="tour-dot ${i === tourStep ? 'active' : ''}"></div>`
+      ).join('');
+
+      // Next button label
+      nextBtn.textContent = tourStep === TOUR_STEPS.length - 1 ? '¡Entendido! ✓' : 'Siguiente →';
+    }, 300);
+  }
+
+  function tourNext() {
+    tourStep++;
+    if (tourStep >= TOUR_STEPS.length) {
+      tourEnd();
+    } else {
+      tourRender();
+    }
+  }
+
+  function tourSkip() {
+    tourEnd();
+  }
+
+  function tourEnd() {
+    document.getElementById('tour-overlay').classList.remove('active');
+    document.getElementById('tour-highlight').style.width  = '0';
+    document.getElementById('tour-highlight').style.height = '0';
+    document.getElementById('tour-tooltip').style.top    = '-999px';
+    document.getElementById('tour-tooltip').style.bottom = 'auto';
+    localStorage.setItem('aion_tour_done', '1');
+  }
+
   // ── SELECTORES SEPARADOS ──
   function selectSize(size) {
     selectedSize = size;
@@ -1931,37 +2194,45 @@
 
   // ── WHATSAPP ──
   function sendToWhatsApp() {
-    if (state.cartItems.length === 0) { showToast('⚠️ Tu carrito está vacío'); return; }
+    if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
 
-    let msg = '🛒 *PEDIDO AION PERFUMES*\n\n';
-    let subtotal = 0;
+    const subtotal        = state.cartItems.reduce((s, i) => s + i.total, 0);
+    const discountAmt     = calculateDiscount(subtotal);
+    const total           = subtotal - discountAmt;
+    const hasFreeShipping = total > 999 || state.cartItems.some(i => i.type === 'promo');
+
+    const fecha = new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'2-digit', year:'numeric' });
+    const hora  = new Date().toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
+
+    let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
 
     state.cartItems.forEach((item, i) => {
-      subtotal += item.total;
-      if (item.type === 'individual') {
-        const fLabel = item.withFeromonas ? ' + Feromonas' : '';
-        msg += `*${i+1}. ${item.aroma.name}* [${item.aroma.code}]\n`;
-        msg += `   ${item.option.volume} · ${item.option.concentration}${fLabel}\n`;
-        msg += `   Cantidad: ${item.quantity} · $${item.total.toFixed(2)} MXN\n\n`;
+      if (item.type === 'single') {
+        msg += `*${i+1}. ${item.aromaCode} — ${item.aromaName}*\n`;
+        msg += `   📦 ${item.volume} · ${item.concentration}${item.feromonas ? ' + Feromonas' : ''} ×${item.quantity}\n`;
+        msg += `   💵 $${item.total.toFixed(2)}\n\n`;
       } else {
-        const aromaList = item.aromas.map(a => `${a.code} ${a.name}`).join(', ');
-        const fLabel    = item.withFeromonas ? ' + Feromonas' : '';
-        msg += `*${i+1}. 🎁 PAQUETE ${item.volume} (${item.required}×${item.payFor})${fLabel}*\n`;
-        msg += `   ${item.concentration}\n`;
-        msg += `   Aromas: ${aromaList}\n`;
-        msg += `   Total: $${item.total.toFixed(2)} MXN\n\n`;
+        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})*\n`;
+        msg += `   Concentración: ${item.concentration}${item.withFeromonas ? ' + Feromonas' : ''}\n`;
+        item.aromas.forEach(a => { msg += `   • ${a.code} ${a.name}\n`; });
+        msg += `   💵 Total paquete: $${item.total.toFixed(2)}\n\n`;
       }
     });
 
-    const discount = calculateDiscount(subtotal);
-    if (discount > 0 && state.appliedCoupon) {
-      msg += `💸 *Descuento (${state.appliedCoupon.code}):* −$${discount.toFixed(2)} MXN\n`;
+    msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
+    if (state.appliedCoupon && discountAmt > 0) {
+      const c = state.appliedCoupon;
+      const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` : `$${c.discount} MXN de descuento`;
+      msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)}\n`;
     }
-    const total = subtotal - discount;
-    msg += `💰 *TOTAL: $${total.toFixed(2)} MXN*`;
+    msg += `💰 *TOTAL: $${total.toFixed(2)} MXN*\n`;
+    if (hasFreeShipping) msg += `🚚 *ENVÍO GRATIS APLICADO*\n`;
+    msg += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+    msg += `📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\n\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
 
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
+    showToast('Abriendo WhatsApp...');
+    setTimeout(() => window.open(url, '_blank'), 600);
   }
 
   // ── TOAST ──
@@ -1977,6 +2248,8 @@
   // ── INIT ──
   window.onload = function() {
     syncOptionFromSelectors();
+    // Pequeño delay para que la página cargue antes de iniciar el tour
+    setTimeout(tourStart, 600);
   };
 
   // Expose globals
@@ -1996,6 +2269,8 @@
   window.sendToWhatsApp        = sendToWhatsApp;
   window.applyCoupon           = applyCoupon;
   window.removeCoupon          = removeCoupon;
+  window.tourNext              = tourNext;
+  window.tourSkip              = tourSkip;
 </script>
 </body>
 </html>
