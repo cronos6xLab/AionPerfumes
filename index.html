@@ -1764,15 +1764,17 @@
     let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
 
     state.cartItems.forEach((item, i) => {
-      if (item.type === 'single') {
-        msg += `*${i+1}. ${item.aromaCode} — ${item.aromaName}*\n`;
-        msg += `   📦 ${item.volume} · ${item.concentration}${item.feromonas ? ' + Feromonas' : ''} ×${item.quantity}\n`;
-        msg += `   💵 $${item.total.toFixed(2)}\n\n`;
+      if (item.type === 'individual') {
+        const fLabel = item.withFeromonas ? ' + Feromonas' : '';
+        msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n`;
+        msg += `   📦 ${item.option.volume} · ${item.option.concentration}${fLabel} ×${item.quantity}\n`;
+        msg += `   💵 $${item.total.toFixed(2)} MXN\n\n`;
       } else {
-        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})*\n`;
-        msg += `   Concentración: ${item.concentration}${item.withFeromonas ? ' + Feromonas' : ''}\n`;
+        const fLabel = item.withFeromonas ? ' + Feromonas' : '';
+        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})${fLabel}*\n`;
+        msg += `   Concentración: ${item.concentration}\n`;
         item.aromas.forEach(a => { msg += `   • ${a.code} ${a.name}\n`; });
-        msg += `   💵 Total paquete: $${item.total.toFixed(2)}\n\n`;
+        msg += `   💵 Total paquete: $${item.total.toFixed(2)} MXN\n\n`;
       }
     });
 
@@ -1780,7 +1782,7 @@
     if (state.appliedCoupon && discountAmt > 0) {
       const c = state.appliedCoupon;
       const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` : `$${c.discount} MXN de descuento`;
-      msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)}\n`;
+      msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)} MXN\n`;
     }
     msg += `💰 *TOTAL: $${total.toFixed(2)} MXN*\n`;
     if (hasFreeShipping) msg += `🚚 *ENVÍO GRATIS APLICADO*\n`;
@@ -1791,6 +1793,7 @@
     showToast('Abriendo WhatsApp...');
     setTimeout(() => window.open(url, '_blank'), 600);
   }
+
   // ── TOAST ──
   let toastTimer;
   function showToast(msg) {
