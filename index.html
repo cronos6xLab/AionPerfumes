@@ -46,10 +46,7 @@
     width: max-content;
     animation: marquee 20s linear infinite;
   }
-  .marquee-wrapper span {
-    padding-right: 40px;
-    white-space: nowrap;
-  }
+  .marquee-wrapper span { padding-right: 40px; white-space: nowrap; }
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -75,338 +72,106 @@
     text-transform: uppercase;
   }
 
-  .container {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 0 130px;
-  }
+  .container { max-width: 480px; margin: 0 auto; padding: 0 0 130px; }
 
-  .product-image-wrap {
-    position: relative;
-    width: 100%;
-    height: 380px;
-    overflow: hidden;
-    background: var(--bg-secondary);
-  }
-  .product-image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .product-image-wrap { position: relative; width: 100%; height: 380px; overflow: hidden; background: var(--bg-secondary); }
+  .product-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
   .rating-badge {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--border);
-    color: var(--dark);
-    padding: 6px 12px;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    position: absolute; bottom: 16px; left: 16px;
+    background: rgba(255,255,255,0.95); border: 1px solid var(--border);
+    color: var(--dark); padding: 6px 12px; border-radius: var(--radius-sm);
+    font-size: 0.75rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   }
 
   .product-info { padding: 30px 20px 10px; text-align: center; }
-  .product-info h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    font-weight: 300;
-    letter-spacing: 2px;
-    color: var(--dark);
-    margin-bottom: 8px;
-  }
-  .price-range {
-    font-size: 1.1rem;
-    color: var(--dark);
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-  }
-  .product-subtitle {
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
+  .product-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 2px; color: var(--dark); margin-bottom: 8px; }
+  .price-range { font-size: 1.1rem; color: var(--dark); font-weight: 400; letter-spacing: 1px; margin-bottom: 12px; }
+  .product-subtitle { font-size: 0.75rem; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
 
-  .section-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--dark);
-    margin-bottom: 16px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .step-number {
-    background: var(--dark);
-    color: white;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 0.6rem;
-  }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--dark); margin-bottom: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .step-number { background: var(--dark); color: white; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.6rem; }
 
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 24px 20px;
-  }
-
+  .divider { height: 1px; background: var(--border); margin: 24px 20px; }
   .option-section { padding: 0 20px; }
 
-  .size-buttons, .conc-buttons {
-    display: flex;
-    gap: 10px;
-  }
+  .size-buttons, .conc-buttons { display: flex; gap: 10px; }
   .size-btn {
-    flex: 1;
-    padding: 14px 8px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
+    flex: 1; padding: 14px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.95rem;
+    font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; text-align: center;
   }
   .size-btn:hover { border-color: var(--dark); color: var(--dark); }
-  .size-btn.active {
-    background: var(--dark);
-    color: white;
-    border-color: var(--dark);
-  }
+  .size-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
 
   .conc-btn {
-    flex: 1;
-    padding: 14px 8px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-    line-height: 1.5;
+    flex: 1; padding: 14px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.8rem;
+    font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; text-align: center; line-height: 1.5;
   }
-  .conc-btn small {
-    display: block;
-    font-size: 0.67rem;
-    font-weight: 400;
-    margin-top: 3px;
-    opacity: 0.75;
-  }
+  .conc-btn small { display: block; font-size: 0.67rem; font-weight: 400; margin-top: 3px; opacity: 0.75; }
   .conc-btn:hover { border-color: var(--dark); color: var(--dark); }
-  .conc-btn.active {
-    background: var(--dark);
-    color: white;
-    border-color: var(--dark);
-  }
+  .conc-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
   .conc-btn.active small { opacity: 0.7; }
-  .conc-btn.unavailable {
-    opacity: 0.28;
-    pointer-events: none;
-    cursor: default;
-  }
+  .conc-btn.unavailable { opacity: 0.28; pointer-events: none; cursor: default; }
 
-  .selected-price-display {
-    margin-top: 14px;
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--dark);
-    letter-spacing: 1px;
-    text-align: center;
-    min-height: 26px;
-    transition: opacity 0.2s;
-  }
+  .selected-price-display { margin-top: 14px; font-size: 1.05rem; font-weight: 500; color: var(--dark); letter-spacing: 1px; text-align: center; min-height: 26px; transition: opacity 0.2s; }
 
   .promo-section { padding: 0 20px; }
   .promo-instruction {
-    font-size: 0.75rem;
-    color: var(--dark);
-    background: #fffdf5;
-    border: 1px solid #e8dfc3;
-    border-left: 3px solid var(--gold);
-    padding: 12px;
-    border-radius: var(--radius-sm);
-    margin-bottom: 16px;
-    line-height: 1.4;
+    font-size: 0.75rem; color: var(--dark); background: #fffdf5;
+    border: 1px solid #e8dfc3; border-left: 3px solid var(--gold);
+    padding: 12px; border-radius: var(--radius-sm); margin-bottom: 16px; line-height: 1.4;
   }
-  .promo-buttons {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+  .promo-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
   .promo-btn {
-    flex: 1;
-    min-width: 100px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 14px 8px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-    line-height: 1.4;
-    opacity: 0.5;
+    flex: 1; min-width: 100px; background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 14px 8px; font-family: 'Jost', sans-serif;
+    font-size: 0.8rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s;
+    text-align: center; line-height: 1.4; opacity: 0.5;
   }
-  .promo-btn.active-vol {
-    opacity: 1;
-    background: var(--bg-main);
-    color: var(--dark);
-    border-color: var(--border);
-  }
+  .promo-btn.active-vol { opacity: 1; background: var(--bg-main); color: var(--dark); border-color: var(--border); }
   .promo-btn.active-vol:hover { border-color: var(--dark); }
-  .promo-btn.active {
-    background: var(--dark);
-    color: white;
-    border-color: var(--dark);
-    opacity: 1;
-  }
-  .promo-btn small {
-    display: block;
-    font-size: 0.7rem;
-    opacity: 0.8;
-    margin-top: 4px;
-    font-weight: 400;
-    min-height: 12px;
-  }
-  .promo-status {
-    margin-top: 16px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    padding: 16px;
-    border-radius: var(--radius-sm);
-    font-size: 0.85rem;
-    display: none;
-  }
+  .promo-btn.active { background: var(--dark); color: white; border-color: var(--dark); opacity: 1; }
+  .promo-btn small { display: block; font-size: 0.7rem; opacity: 0.8; margin-top: 4px; font-weight: 400; min-height: 12px; }
+  .promo-status { margin-top: 16px; background: var(--bg-secondary); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius-sm); font-size: 0.85rem; display: none; }
   .promo-status.visible { display: block; }
   .promo-selected-list { margin: 12px 0 4px; }
-  .promo-selected-item {
-    display: inline-flex;
-    align-items: center;
-    background: var(--bg-main);
-    padding: 6px 12px;
-    margin: 4px 6px 4px 0;
-    border: 1px solid var(--border);
-    font-size: 0.75rem;
-    border-radius: var(--radius-sm);
-  }
-  .promo-selected-item span {
-    margin-left: 8px;
-    cursor: pointer;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1;
-  }
+  .promo-selected-item { display: inline-flex; align-items: center; background: var(--bg-main); padding: 6px 12px; margin: 4px 6px 4px 0; border: 1px solid var(--border); font-size: 0.75rem; border-radius: var(--radius-sm); }
+  .promo-selected-item span { margin-left: 8px; cursor: pointer; color: var(--muted); font-size: 1rem; line-height: 1; }
   .btn-cancel-promo-inline {
-    background: transparent;
-    color: var(--dark);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 10px 16px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 8px;
-    transition: background 0.2s;
+    background: transparent; color: var(--dark); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 10px 16px; font-family: 'Jost', sans-serif;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; width: 100%; margin-top: 8px; transition: background 0.2s;
   }
   .btn-cancel-promo-inline:hover { background: var(--bg-secondary); }
 
   .btn-clear-cart {
-    background: transparent;
-    color: var(--dark);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px 16px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.2s;
-    font-family: 'Jost', sans-serif;
+    background: transparent; color: var(--dark); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer; width: 100%;
+    transition: background 0.2s; font-family: 'Jost', sans-serif;
   }
   .btn-clear-cart:hover { background: var(--bg-secondary); }
 
   .search-section { padding: 0 20px; }
   .search-wrap { position: relative; }
   .search-wrap input {
-    width: 100%;
-    padding: 14px 16px 14px 42px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.9rem;
-    color: var(--dark);
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
+    width: 100%; padding: 14px 16px 14px 42px; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); background: var(--bg-secondary); font-family: 'Jost', sans-serif;
+    font-size: 0.9rem; color: var(--dark); outline: none; transition: border-color 0.2s, background 0.2s;
   }
-  .search-wrap input:focus {
-    border-color: var(--dark);
-    background: var(--bg-main);
-  }
-  .search-icon {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    font-size: 1rem;
-  }
+  .search-wrap input:focus { border-color: var(--dark); background: var(--bg-main); }
+  .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; }
   .search-results {
-    background: var(--bg-main);
-    border: 1px solid var(--border);
-    border-top: none;
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    display: none;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    z-index: 50;
-    max-height: 300px;
-    overflow-y: auto;
+    background: var(--bg-main); border: 1px solid var(--border); border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm); position: absolute; top: 100%;
+    left: 0; right: 0; overflow: hidden; display: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); z-index: 50; max-height: 300px; overflow-y: auto;
   }
   .search-results.visible { display: block; }
-  .search-result-item {
-    padding: 14px 16px;
-    cursor: pointer;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: background 0.15s;
-  }
+  .search-result-item { padding: 14px 16px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 0.85rem; display: flex; align-items: center; gap: 12px; transition: background 0.15s; }
   .search-result-item:last-child { border-bottom: none; }
   .search-result-item:hover { background: var(--bg-secondary); }
   .search-result-item .aroma-code { font-weight: 500; min-width: 50px; }
@@ -414,16 +179,7 @@
   .search-result-item .aroma-name { font-weight: 500; margin-bottom: 2px; }
   .search-result-item .aroma-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.5px; }
 
-  .selected-aroma-tag {
-    display: none;
-    margin: 16px 20px 0;
-    background: var(--bg-main);
-    border: 1px solid var(--dark);
-    border-radius: var(--radius-sm);
-    padding: 14px 16px;
-    align-items: center;
-    gap: 12px;
-  }
+  .selected-aroma-tag { display: none; margin: 16px 20px 0; background: var(--bg-main); border: 1px solid var(--dark); border-radius: var(--radius-sm); padding: 14px 16px; align-items: center; gap: 12px; }
   .selected-aroma-tag.visible { display: flex; }
   .selected-aroma-tag .aroma-text { flex: 1; }
   .selected-aroma-tag .aroma-text strong { display: block; font-weight: 500; font-size: 0.9rem; }
@@ -431,157 +187,61 @@
   .remove-aroma { background: none; border: none; color: var(--dark); cursor: pointer; font-size: 1.2rem; }
 
   .addon-section { padding: 0 20px; }
-  .addon-option {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 16px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    transition: border-color 0.2s;
-  }
+  .addon-option { display: flex; align-items: center; cursor: pointer; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); transition: border-color 0.2s; }
   .addon-option:hover { border-color: var(--dark); }
-  .checkbox-box {
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--muted);
-    margin-right: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    color: white;
-    transition: all 0.2s;
-  }
+  .checkbox-box { width: 20px; height: 20px; border: 1px solid var(--muted); margin-right: 16px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white; transition: all 0.2s; }
   .addon-option.checked .checkbox-box { background: var(--dark); border-color: var(--dark); }
   .addon-text { flex: 1; }
   .addon-label { display: block; font-size: 0.9rem; font-weight: 500; }
   .addon-desc { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
   .addon-price { font-weight: 500; font-size: 0.9rem; }
 
-  .finish-promo-wrapper {
-    display: none;
-    padding: 0 20px;
-    margin-top: 16px;
-  }
+  .finish-promo-wrapper { display: none; padding: 0 20px; margin-top: 16px; }
   .finish-promo-wrapper.visible { display: block; }
   .btn-finish-promo {
-    background: var(--dark);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 16px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    background: var(--dark); color: white; border: none; border-radius: var(--radius-sm);
+    padding: 16px; font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase; cursor: pointer; width: 100%;
+    transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
   }
   .btn-finish-promo:hover { background: #333; }
   .btn-finish-promo:active { transform: scale(0.98); }
 
-  .promo-hint {
-    display: none;
-    padding: 0 20px;
-    margin-top: 16px;
-  }
+  .promo-hint { display: none; padding: 0 20px; margin-top: 16px; }
   .promo-hint.visible { display: block; }
-  .promo-hint-inner {
-    border: 1px dashed var(--border);
-    border-radius: var(--radius-sm);
-    padding: 14px 16px;
-    font-size: 0.78rem;
-    color: var(--muted);
-    text-align: center;
-    letter-spacing: 0.5px;
-  }
+  .promo-hint-inner { border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 0.78rem; color: var(--muted); text-align: center; letter-spacing: 0.5px; }
 
-  .quantity-section {
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .qty-control {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-  }
-  .qty-btn {
-    width: 40px; height: 40px;
-    background: none; border: none;
-    font-size: 1.2rem; color: var(--dark);
-    cursor: pointer; transition: background 0.15s;
-  }
+  .quantity-section { padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+  .qty-control { display: flex; align-items: center; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+  .qty-btn { width: 40px; height: 40px; background: none; border: none; font-size: 1.2rem; color: var(--dark); cursor: pointer; transition: background 0.15s; }
   .qty-btn:hover { background: var(--bg-secondary); }
   .qty-display { width: 40px; text-align: center; font-weight: 500; font-size: 0.9rem; }
 
   .coupon-section { padding: 0 20px; }
   .coupon-wrap { display: flex; gap: 8px; align-items: stretch; }
   .coupon-wrap input {
-    flex: 1;
-    padding: 14px 16px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.9rem;
-    color: var(--dark);
-    outline: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    flex: 1; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.9rem;
+    color: var(--dark); outline: none; text-transform: uppercase; letter-spacing: 2px;
     transition: border-color 0.2s, background 0.2s;
   }
   .coupon-wrap input:focus { border-color: var(--dark); background: var(--bg-main); }
   .coupon-wrap input::placeholder { text-transform: none; letter-spacing: 0.5px; color: var(--muted); }
   .btn-apply-coupon {
-    padding: 14px 18px;
-    background: var(--dark);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
+    padding: 14px 18px; background: var(--dark); color: white; border: none;
+    border-radius: var(--radius-sm); font-family: 'Jost', sans-serif; font-size: 0.78rem;
+    font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s; white-space: nowrap;
   }
   .btn-apply-coupon:hover { background: #333; }
-  .coupon-feedback {
-    margin-top: 10px;
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    font-size: 0.8rem;
-    display: none;
-    align-items: center;
-    gap: 10px;
-    line-height: 1.4;
-  }
+  .coupon-feedback { margin-top: 10px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; display: none; align-items: center; gap: 10px; line-height: 1.4; }
   .coupon-feedback.success { display: flex; background: #f0faf4; border: 1px solid #a8dfc0; color: #1a6638; }
   .coupon-feedback.error   { display: flex; background: #fff5f5; border: 1px solid #f5c0c0; color: #a33; }
   .coupon-feedback-icon { font-size: 1rem; }
   .coupon-feedback-text { flex: 1; }
   .btn-remove-coupon { background: none; border: none; color: #1a6638; cursor: pointer; font-size: 1rem; padding: 0 4px; line-height: 1; }
 
-  .cart-summary {
-    display: none;
-    margin: 20px 20px 0;
-    border: 1px solid var(--border);
-    background: var(--bg-main);
-    border-radius: var(--radius-sm);
-    padding: 20px;
-  }
+  .cart-summary { display: none; margin: 20px 20px 0; border: 1px solid var(--border); background: var(--bg-main); border-radius: var(--radius-sm); padding: 20px; }
   .cart-summary.visible { display: block; }
   .cart-summary-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-weight: 600; }
   .cart-item, .promo-item { font-size: 0.85rem; padding: 12px 0; border-bottom: 1px solid var(--border); }
@@ -597,33 +257,16 @@
   .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 500; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 
   .action-buttons {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 480px;
-    padding: 16px 20px 24px;
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 480px; padding: 16px 20px 24px;
     background: linear-gradient(to top, rgba(255,255,255,1) 70%, rgba(255,255,255,0));
-    display: flex;
-    gap: 12px;
-    z-index: 90;
+    display: flex; gap: 12px; z-index: 90;
   }
   .btn-add, .btn-wa {
-    flex: 1;
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 16px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    flex: 1; border: none; border-radius: var(--radius-sm); padding: 16px;
+    font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
     transition: transform 0.1s, opacity 0.2s;
   }
   .btn-add { background: var(--dark); color: #ffffff; }
@@ -633,65 +276,76 @@
   .btn-add:active, .btn-wa:active { transform: scale(0.98); }
 
   .toast {
-    position: fixed;
-    top: 100px;
-    left: 50%;
+    position: fixed; top: 100px; left: 50%;
     transform: translateX(-50%) translateY(-10px);
-    background: var(--dark);
-    color: #ffffff;
-    padding: 14px 24px;
-    border-radius: var(--radius-sm);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s;
-    z-index: 999;
+    background: var(--dark); color: #ffffff; padding: 14px 24px;
+    border-radius: var(--radius-sm); font-size: 0.8rem; letter-spacing: 1px;
+    opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 1200;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   /* ══════════════════════════════════════
-     ONBOARDING TOUR STYLES
+     ONBOARDING TOUR
   ══════════════════════════════════════ */
 
-  /* Overlay oscuro detrás del tooltip */
+  /* ── FIX 1: overlay usa opacity en lugar de display, para poder hacer
+     fade-out limpio y evitar que el box-shadow del highlight persista ── */
   .tour-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    /* El oscurecimiento lo hace el highlight con box-shadow gigante.
+       El overlay solo captura clicks para "omitir". */
+    background: transparent;
     z-index: 1000;
-    display: none;
+    pointer-events: none;        /* no bloquea nada mientras no hay tour */
+    opacity: 0;
+    transition: opacity 0.3s;
   }
-  .tour-overlay.active { display: block; }
+  .tour-overlay.active {
+    pointer-events: auto;
+    opacity: 1;
+  }
 
-  /* Recorte iluminado sobre el elemento */
+  /* ── FIX 2: highlight tiene transition y se resetea correctamente ── */
   .tour-highlight {
     position: fixed;
     border-radius: 6px;
-    box-shadow: 0 0 0 9999px rgba(0,0,0,0.55);
+    /* El box-shadow gigante crea el efecto oscuro alrededor */
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);   /* estado inicial: transparente */
     z-index: 1001;
     pointer-events: none;
-    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    transition: all 0.35s cubic-bezier(.4,0,.2,1),
+                box-shadow 0.3s ease;
+  }
+  .tour-highlight.active {
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.55);
   }
 
-  /* Tooltip flotante */
   .tour-tooltip {
     position: fixed;
-    z-index: 1002;
+    z-index: 1003;   /* por encima de overlay y highlight */
     background: #ffffff;
     border-radius: 10px;
     padding: 20px 22px;
     max-width: 300px;
     width: calc(100vw - 40px);
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    /* oculto por defecto fuera de pantalla */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, top 0.35s cubic-bezier(.4,0,.2,1),
+                bottom 0.35s cubic-bezier(.4,0,.2,1),
+                left 0.35s cubic-bezier(.4,0,.2,1);
+  }
+  .tour-tooltip.active {
+    opacity: 1;
+    pointer-events: auto;
   }
   .tour-tooltip::before {
     content: '';
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 12px; height: 12px;
     background: #ffffff;
     transform: rotate(45deg);
   }
@@ -700,73 +354,25 @@
   .tour-tooltip.arrow-top-right::before    { top: -6px; right: 24px; }
   .tour-tooltip.arrow-bottom-right::before { bottom: -6px; right: 24px; }
 
-  .tour-step-label {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .tour-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--dark);
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-  }
-  .tour-body {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 18px;
-  }
-  .tour-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .tour-dots {
-    display: flex;
-    gap: 5px;
-  }
-  .tour-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--border);
-    transition: background 0.2s;
-  }
+  .tour-step-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+  .tour-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; color: var(--dark); margin-bottom: 8px; letter-spacing: 1px; }
+  .tour-body { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+  .tour-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .tour-dots { display: flex; gap: 5px; }
+  .tour-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
   .tour-dot.active { background: var(--dark); }
   .tour-actions { display: flex; gap: 8px; }
   .tour-btn-skip {
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 8px 14px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.75rem;
-    color: var(--muted);
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: border-color 0.2s;
+    background: none; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 8px 14px; font-family: 'Jost', sans-serif; font-size: 0.75rem;
+    color: var(--muted); cursor: pointer; letter-spacing: 1px; transition: border-color 0.2s;
   }
   .tour-btn-skip:hover { border-color: var(--muted); }
   .tour-btn-next {
-    background: var(--dark);
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 8px 18px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: white;
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: background 0.2s;
+    background: var(--dark); border: none; border-radius: var(--radius-sm);
+    padding: 8px 18px; font-family: 'Jost', sans-serif; font-size: 0.75rem;
+    font-weight: 500; color: white; cursor: pointer; letter-spacing: 1px;
+    text-transform: uppercase; transition: background 0.2s;
   }
   .tour-btn-next:hover { background: #333; }
 </style>
@@ -832,15 +438,9 @@
   <div class="option-section" id="tour-anchor-conc">
     <div class="section-label">💧 Concentración</div>
     <div class="conc-buttons">
-      <button class="conc-btn active" data-conc="33" onclick="selectConc('33')">
-        💧 33%<small>Extrait de Parfum</small>
-      </button>
-      <button class="conc-btn" data-conc="42" onclick="selectConc('42')">
-        💧💧 42%<small>Elixir Radiante</small>
-      </button>
-      <button class="conc-btn" data-conc="50" onclick="selectConc('50')">
-        💧💧💧 50%<small>Elixir Intenso</small>
-      </button>
+      <button class="conc-btn active" data-conc="33" onclick="selectConc('33')">💧 33%<small>Extrait de Parfum</small></button>
+      <button class="conc-btn" data-conc="42" onclick="selectConc('42')">💧💧 42%<small>Elixir Radiante</small></button>
+      <button class="conc-btn" data-conc="50" onclick="selectConc('50')">💧💧💧 50%<small>Elixir Intenso</small></button>
     </div>
     <div class="selected-price-display" id="selected-price-display">$188.00 MXN</div>
   </div>
@@ -854,15 +454,9 @@
       ⚠️ <strong>Importante:</strong> Todos los aromas de tu paquete tendrán la misma presentación y concentración. Elige ambas opciones arriba para habilitar el paquete correspondiente.
     </p>
     <div class="promo-buttons">
-      <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">
-        4 × 3 <br>100ml <small id="promo-100-price"></small>
-      </button>
-      <button class="promo-btn promo-60" id="promo-60-btn" onclick="startPromo('60ml')">
-        5 × 4 <br>60ml <small id="promo-60-price"></small>
-      </button>
-      <button class="promo-btn promo-30" id="promo-30-btn" onclick="startPromo('30ml')">
-        6 × 5 <br>30ml <small id="promo-30-price"></small>
-      </button>
+      <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3 <br>100ml <small id="promo-100-price"></small></button>
+      <button class="promo-btn promo-60"  id="promo-60-btn"  onclick="startPromo('60ml')">5 × 4 <br>60ml  <small id="promo-60-price"></small></button>
+      <button class="promo-btn promo-30"  id="promo-30-btn"  onclick="startPromo('30ml')">6 × 5 <br>30ml  <small id="promo-30-price"></small></button>
     </div>
     <div class="promo-status" id="promo-status">
       <div id="promo-status-text"></div>
@@ -907,21 +501,17 @@
   </div>
 
   <div class="finish-promo-wrapper" id="finish-promo-wrapper">
-    <button class="btn-finish-promo" onclick="finishPromo()">
-      🎁 Añadir paquete al carrito
-    </button>
+    <button class="btn-finish-promo" onclick="finishPromo()">🎁 Añadir paquete al carrito</button>
   </div>
 
   <div class="promo-hint" id="promo-hint">
-    <div class="promo-hint-inner" id="promo-hint-text">
-      Selecciona todos los aromas en el paso 3 para continuar
-    </div>
+    <div class="promo-hint-inner" id="promo-hint-text">Selecciona todos los aromas en el paso 3 para continuar</div>
   </div>
 
   <div class="divider"></div>
 
   <!-- CANTIDAD -->
-  <div class="quantity-section" id="tour-anchor-qty" id="quantity-section">
+  <div class="quantity-section" id="quantity-section">
     <span class="section-label" style="margin:0;">Cantidad (Unidad)</span>
     <div class="qty-control">
       <button class="qty-btn" onclick="changeQty(-1)">−</button>
@@ -962,7 +552,12 @@
   </div>
 </div>
 
-<div class="action-buttons" id="tour-anchor-actions">
+<!-- ── FIX último paso: el anchor es un div en el flujo del documento,
+     NO el .action-buttons fijo, para que el tooltip aparezca dentro de la
+     página y sea fácil de presionar ── -->
+<div id="tour-anchor-actions" style="height:1px; margin-bottom: 140px;"></div>
+
+<div class="action-buttons">
   <button class="btn-add" onclick="addToCart()">Añadir</button>
   <button class="btn-wa" onclick="sendToWhatsApp()">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
@@ -976,14 +571,14 @@
   const WA_NUMBER = "528138917727";
 
   const PROMO_CODES = {
-    "A10N":    { discount: 10, type: "percent", description: "10% de descuento" },
-    "RC64":    { discount: 10, type: "percent", description: "10% de descuento" },
-    "J10EC":   { discount: 10, type: "percent", description: "10% de descuento" },
-    "HT10":    { discount: 10, type: "percent", description: "10% de descuento" },
-    "AT10":    { discount: 10, type: "percent", description: "10% de descuento" },
-    "DT10":    { discount: 10, type: "percent", description: "10% de descuento" },
-    "DOSH10":  { discount: 10, type: "percent", description: "10% de descuento" },
-    "AION15X": { discount: 15, type: "percent", description: "15% de descuento" },
+    "A10N":      { discount: 10, type: "percent", description: "10% de descuento" },
+    "RC64":      { discount: 10, type: "percent", description: "10% de descuento" },
+    "J10EC":     { discount: 10, type: "percent", description: "10% de descuento" },
+    "HT10":      { discount: 10, type: "percent", description: "10% de descuento" },
+    "AT10":      { discount: 10, type: "percent", description: "10% de descuento" },
+    "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
+    "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
+    "AION15X":   { discount: 15, type: "percent", description: "15% de descuento" },
     "LAUNCH20X": { discount: 20, type: "percent", description: "20% lanzamiento" },
     "VERANO50X": { discount: 50, type: "fixed",   description: "$50 MXN de descuento" },
   };
@@ -1640,7 +1235,6 @@
   { "code": "D0030", "name": "BLACK OPIUM", "brand": "YVES SAINT LAURENT", "occasion": "Noche, citas, salidas", "family": "Floral Gourmand" }
 ];
 
-  // ── STATE ──
   let selectedSize = '30ml';
   let selectedConc = '33';
 
@@ -1654,131 +1248,133 @@
   };
 
   let promoState = {
-    active: false,
-    volume: null,
-    required: 0,
-    basePrice: 0,
-    concentration: null,
-    withFeromonas: false,
-    selectedAromas: []
+    active: false, volume: null, required: 0, basePrice: 0,
+    concentration: null, withFeromonas: false, selectedAromas: []
   };
 
   // ══════════════════════════════════════
-  //  ONBOARDING TOUR
+  //  ONBOARDING TOUR — versión corregida
   // ══════════════════════════════════════
   const TOUR_STEPS = [
     {
       anchor: 'tour-anchor-size',
       title: 'Elige tu presentación',
       body: 'Selecciona el tamaño de tu frasco: 30 ml para probar el aroma, 60 ml para uso diario, o 100 ml para máxima duración. El precio se actualiza automáticamente.',
-      arrow: 'arrow-top',
-      position: 'below'
+      arrow: 'arrow-top', position: 'below'
     },
     {
       anchor: 'tour-anchor-conc',
       title: 'Selecciona la concentración',
-      body: '33% Extrait de Parfum es nuestra base de larga duración. 42% Elixir Radiante intensifica la proyección. 50% Elixir Intenso es la experiencia más poderosa y envolvente.',
-      arrow: 'arrow-top',
-      position: 'below'
+      body: '33% Extrait de Parfum es nuestra base de larga duración. 42% Elixir Radiante intensifica la proyección. 50% Elixir Intenso es la experiencia más poderosa.',
+      arrow: 'arrow-top', position: 'below'
     },
     {
       anchor: 'tour-anchor-promo',
       title: 'Paquetes especiales',
-      body: '¿Quieres más de un aroma? Los paquetes te dan un frasco gratis: lleva 4 y paga 3 en 100 ml, 5×4 en 60 ml, o 6×5 en 30 ml. Primero elige tamaño y concentración arriba.',
-      arrow: 'arrow-top',
-      position: 'below'
+      body: '¿Quieres más de un aroma? Lleva 4 y paga 3 en 100 ml, 5×4 en 60 ml, o 6×5 en 30 ml. Primero elige tamaño y concentración arriba.',
+      arrow: 'arrow-top', position: 'below'
     },
     {
       anchor: 'tour-anchor-aroma',
       title: 'Busca tu aroma',
-      body: 'Escribe el nombre de un perfume de marca, su código o su familia olfativa (ej. "floral", "oriental"). Selecciónalo del listado para añadirlo a tu pedido.',
-      arrow: 'arrow-top',
-      position: 'below'
+      body: 'Escribe el nombre de un perfume de marca, su código o familia olfativa (ej. "floral", "oriental"). Selecciónalo del listado.',
+      arrow: 'arrow-top', position: 'below'
     },
     {
       anchor: 'tour-anchor-extras',
       title: 'Añade feromonas (opcional)',
       body: 'Potencia tu perfume con nuestra fórmula de feromonas por solo $60 MXN adicionales. Activa la casilla si deseas incluirla.',
-      arrow: 'arrow-top',
-      position: 'below'
+      arrow: 'arrow-top', position: 'below'
     },
     {
       anchor: 'tour-anchor-coupon',
       title: 'Código promocional',
       body: '¿Tienes un código de descuento? Ingrésalo aquí y presiona "Aplicar" antes de finalizar tu pedido.',
-      arrow: 'arrow-top',
-      position: 'below'
+      arrow: 'arrow-top', position: 'below'
     },
     {
+      // FIX: apunta a un div fantasma en el flujo del documento,
+      // NO al action-buttons fijo que quedaba debajo del overlay
       anchor: 'tour-anchor-actions',
       title: '¡Listo para pedir!',
-      body: 'Presiona "Añadir" para agregar más aromas al carrito, o "Finalizar Pedido" para enviarnos tu selección por WhatsApp y coordinar tu entrega.',
-      arrow: 'arrow-bottom',
-      position: 'above'
+      body: 'Usa "Añadir" para agregar aromas al carrito o "Finalizar Pedido" para enviarnos tu selección por WhatsApp y coordinar tu entrega.',
+      arrow: 'arrow-bottom', position: 'above'
     }
   ];
 
   let tourStep = 0;
+  let tourActive = false;
 
   function tourStart() {
     if (localStorage.getItem('aion_tour_done') === '1') return;
+    tourActive = true;
     tourStep = 0;
     tourRender();
   }
 
   function tourRender() {
-    const step   = TOUR_STEPS[tourStep];
-    const anchor = document.getElementById(step.anchor);
+    const step    = TOUR_STEPS[tourStep];
+    const anchor  = document.getElementById(step.anchor);
     const overlay   = document.getElementById('tour-overlay');
     const highlight = document.getElementById('tour-highlight');
     const tooltip   = document.getElementById('tour-tooltip');
     const nextBtn   = document.getElementById('tour-btn-next');
 
+    // Activar overlay (solo captura clicks para omitir)
     overlay.classList.add('active');
 
-    // Scroll anchor into view
+    // Ocultar tooltip mientras se hace scroll y se reposiciona
+    tooltip.classList.remove('active');
+    highlight.classList.remove('active');
+
     anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     setTimeout(() => {
-      const r = anchor.getBoundingClientRect();
+      const r   = anchor.getBoundingClientRect();
       const pad = 8;
 
-      // Position highlight
+      // — Posicionar highlight —
       highlight.style.left   = (r.left - pad) + 'px';
       highlight.style.top    = (r.top  - pad) + 'px';
       highlight.style.width  = (r.width  + pad * 2) + 'px';
       highlight.style.height = (r.height + pad * 2) + 'px';
+      highlight.classList.add('active');
 
-      // Position tooltip
+      // — Posicionar tooltip —
       tooltip.className = 'tour-tooltip ' + step.arrow;
-      if (step.position === 'below') {
-        tooltip.style.top  = (r.bottom + pad + 14) + 'px';
-        tooltip.style.bottom = 'auto';
-      } else {
-        tooltip.style.bottom = (window.innerHeight - r.top + pad + 14) + 'px';
-        tooltip.style.top    = 'auto';
-      }
-      // Horizontal: left-align with anchor, clamped
-      let left = r.left;
-      const tw = Math.min(300, window.innerWidth - 40);
+
+      const tw  = Math.min(300, window.innerWidth - 40);
+      let   left = r.left;
       if (left + tw > window.innerWidth - 10) left = window.innerWidth - tw - 10;
       if (left < 10) left = 10;
       tooltip.style.left = left + 'px';
+      tooltip.style.width = tw + 'px';
 
-      // Content
+      if (step.position === 'below') {
+        tooltip.style.top    = (r.bottom + pad + 14) + 'px';
+        tooltip.style.bottom = 'auto';
+      } else {
+        // 'above': posicionamos con bottom desde el borde inferior de la ventana
+        const fromBottom = window.innerHeight - r.top + pad + 14;
+        tooltip.style.bottom = fromBottom + 'px';
+        tooltip.style.top    = 'auto';
+      }
+
+      // — Contenido —
       document.getElementById('tour-step-label').textContent = `Paso ${tourStep + 1} de ${TOUR_STEPS.length}`;
       document.getElementById('tour-title').textContent = step.title;
       document.getElementById('tour-body').textContent  = step.body;
 
-      // Dots
       const dots = document.getElementById('tour-dots');
       dots.innerHTML = TOUR_STEPS.map((_, i) =>
         `<div class="tour-dot ${i === tourStep ? 'active' : ''}"></div>`
       ).join('');
 
-      // Next button label
       nextBtn.textContent = tourStep === TOUR_STEPS.length - 1 ? '¡Entendido! ✓' : 'Siguiente →';
-    }, 300);
+
+      // Mostrar tooltip con fade-in
+      tooltip.classList.add('active');
+    }, 350);
   }
 
   function tourNext() {
@@ -1795,54 +1391,58 @@
   }
 
   function tourEnd() {
-    document.getElementById('tour-overlay').classList.remove('active');
-    document.getElementById('tour-highlight').style.width  = '0';
-    document.getElementById('tour-highlight').style.height = '0';
-    document.getElementById('tour-tooltip').style.top    = '-999px';
-    document.getElementById('tour-tooltip').style.bottom = 'auto';
-    localStorage.setItem('aion_tour_done', '1');
+    tourActive = false;
+    const overlay   = document.getElementById('tour-overlay');
+    const highlight = document.getElementById('tour-highlight');
+    const tooltip   = document.getElementById('tour-tooltip');
+
+    // FIX: secuencia de cierre limpia
+    // 1. Fade-out del tooltip primero
+    tooltip.classList.remove('active');
+
+    // 2. Quitar el box-shadow del highlight (fade-out)
+    highlight.classList.remove('active');
+
+    // 3. Desactivar overlay después del fade
+    setTimeout(() => {
+      overlay.classList.remove('active');
+      // Limpiar posición del highlight completamente
+      highlight.style.width  = '0px';
+      highlight.style.height = '0px';
+      highlight.style.left   = '-9999px';
+      highlight.style.top    = '-9999px';
+    }, 320);
+
+    try { localStorage.setItem('aion_tour_done', '1'); } catch(e) {}
   }
 
-  // ── SELECTORES SEPARADOS ──
+  // ── SELECTORES ──
   function selectSize(size) {
     selectedSize = size;
-    document.querySelectorAll('.size-btn').forEach(b =>
-      b.classList.toggle('active', b.dataset.size === size)
-    );
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size === size));
     syncOptionFromSelectors();
-    if (promoState.active) {
-      cancelPromo();
-      showToast('Promoción cancelada al cambiar la presentación');
-    }
+    if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la presentación'); }
   }
 
   function selectConc(conc) {
     selectedConc = conc;
-    document.querySelectorAll('.conc-btn').forEach(b =>
-      b.classList.toggle('active', b.dataset.conc === conc)
-    );
+    document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc === conc));
     syncOptionFromSelectors();
-    if (promoState.active) {
-      cancelPromo();
-      showToast('Promoción cancelada al cambiar la concentración');
-    }
+    if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la concentración'); }
   }
 
   function syncOptionFromSelectors() {
-    const match = PRODUCT_OPTIONS.find(opt =>
-      opt.volume === selectedSize && opt.conc === selectedConc
-    );
+    const match = PRODUCT_OPTIONS.find(o => o.volume === selectedSize && o.conc === selectedConc);
     if (match) {
       state.selectedOption = match;
-      document.getElementById('selected-price-display').textContent =
-        `$${match.price.toFixed(2)} MXN`;
+      document.getElementById('selected-price-display').textContent = `$${match.price.toFixed(2)} MXN`;
     } else {
       document.getElementById('selected-price-display').textContent = '—';
     }
     updatePromoPrices();
   }
 
-  // ── CÓDIGO PROMOCIONAL ──
+  // ── CUPÓN ──
   function applyCoupon() {
     const input = document.getElementById('coupon-input').value.trim().toUpperCase();
     if (!input) { showCouponFeedback('error', '⚠️', 'Ingresa un código antes de aplicar.'); return; }
@@ -1862,8 +1462,7 @@
     document.getElementById('coupon-input').disabled = false;
     document.getElementById('coupon-input').value = '';
     const fb = document.getElementById('coupon-feedback');
-    fb.className = 'coupon-feedback';
-    fb.style.display = 'none';
+    fb.className = 'coupon-feedback'; fb.style.display = 'none';
     updateCartSummary();
     showToast('Código eliminado');
   }
@@ -1913,10 +1512,8 @@
     const q = searchInput.value.toLowerCase().trim();
     if (!q) { searchResults.classList.remove('visible'); return; }
     const matches = AROMAS.filter(a =>
-      a.code.toLowerCase().includes(q)   ||
-      a.name.toLowerCase().includes(q)   ||
-      a.brand.toLowerCase().includes(q)  ||
-      a.family.toLowerCase().includes(q)
+      a.code.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) ||
+      a.brand.toLowerCase().includes(q) || a.family.toLowerCase().includes(q)
     );
     searchResults.innerHTML = matches.length === 0
       ? `<div class="search-result-item"><span class="aroma-name" style="color:var(--muted)">Sin resultados para "${q}"</span></div>`
@@ -1939,11 +1536,7 @@
 
   function handleAromaSelection(idx) {
     const aroma = AROMAS[idx];
-    if (promoState.active) {
-      addToPromoSelection(aroma);
-    } else {
-      selectAroma(aroma);
-    }
+    if (promoState.active) { addToPromoSelection(aroma); } else { selectAroma(aroma); }
     searchResults.classList.remove('visible');
     searchInput.value = '';
   }
@@ -1981,17 +1574,13 @@
   function startPromo(volume) {
     const currentOpt = state.selectedOption;
     if (!currentOpt || currentOpt.volume !== volume) {
-      showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`);
-      return;
+      showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`); return;
     }
     promoState = {
-      active: true,
-      volume,
+      active: true, volume,
       required: volume === '100ml' ? 4 : (volume === '60ml' ? 5 : 6),
-      basePrice: currentOpt.price,
-      concentration: currentOpt.concentration,
-      withFeromonas: false,
-      selectedAromas: []
+      basePrice: currentOpt.price, concentration: currentOpt.concentration,
+      withFeromonas: false, selectedAromas: []
     };
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(`promo-${volume.replace('ml','')}-btn`).classList.add('active');
@@ -2005,30 +1594,21 @@
   function updatePromoUI() {
     const count    = promoState.selectedAromas.length;
     const required = promoState.required;
-
     document.getElementById('promo-status-text').innerHTML =
       `<strong>Aromas seleccionados (${count}/${required})</strong><br><small>${promoState.concentration}</small>`;
-
     const listDiv = document.getElementById('promo-selected-list');
     listDiv.innerHTML = count === 0 ? '' : promoState.selectedAromas.map((a, i) =>
       `<span class="promo-selected-item">${a.code} ${a.name} <span onclick="removePromoAroma(${i})">×</span></span>`
     ).join('');
-
     const addonDiv = document.getElementById('addon-feromonas');
     const checkbox = document.getElementById('checkbox-feromonas');
-    if (promoState.withFeromonas) {
-      addonDiv.classList.add('checked'); checkbox.textContent = '✓';
-    } else {
-      addonDiv.classList.remove('checked'); checkbox.textContent = '';
-    }
-
+    if (promoState.withFeromonas) { addonDiv.classList.add('checked'); checkbox.textContent = '✓'; }
+    else { addonDiv.classList.remove('checked'); checkbox.textContent = ''; }
     const finishWrapper = document.getElementById('finish-promo-wrapper');
     const hintDiv       = document.getElementById('promo-hint');
     const hintText      = document.getElementById('promo-hint-text');
-
     if (count === required) {
-      finishWrapper.classList.add('visible');
-      hintDiv.classList.remove('visible');
+      finishWrapper.classList.add('visible'); hintDiv.classList.remove('visible');
     } else if (promoState.active) {
       finishWrapper.classList.remove('visible');
       const faltantes = required - count;
@@ -2062,13 +1642,9 @@
     const feromonasCost   = promoState.withFeromonas ? 60 * promoState.required : 0;
     const totalPromoPrice = (promoState.basePrice * (promoState.required - 1)) + feromonasCost;
     state.cartItems.push({
-      type: 'promo',
-      volume: promoState.volume,
-      concentration: promoState.concentration,
-      required: promoState.required,
-      payFor: promoState.required - 1,
-      aromas: [...promoState.selectedAromas],
-      withFeromonas: promoState.withFeromonas,
+      type: 'promo', volume: promoState.volume, concentration: promoState.concentration,
+      required: promoState.required, payFor: promoState.required - 1,
+      aromas: [...promoState.selectedAromas], withFeromonas: promoState.withFeromonas,
       total: totalPromoPrice
     });
     updateCartSummary();
@@ -2093,26 +1669,17 @@
     if (!state.selectedOption) { showToast('⚠️ Selecciona una presentación y concentración'); return; }
     if (!state.selectedAroma)  { showToast('⚠️ Selecciona un aroma primero'); return; }
     if (promoState.active)     { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
-
     const feromonasCost = state.withFeromonas ? 60 : 0;
     const unitPrice     = state.selectedOption.price + feromonasCost;
     const totalPrice    = unitPrice * state.quantity;
-
     state.cartItems.push({
-      type: 'individual',
-      option: state.selectedOption,
-      aroma: state.selectedAroma,
-      withFeromonas: state.withFeromonas,
-      quantity: state.quantity,
-      unitPrice,
-      total: totalPrice
+      type: 'individual', option: state.selectedOption, aroma: state.selectedAroma,
+      withFeromonas: state.withFeromonas, quantity: state.quantity, unitPrice, total: totalPrice
     });
-
     updateCartSummary();
     showToast(`✓ Añadido: ${state.selectedAroma.name}`);
     clearAroma();
-    state.withFeromonas = false;
-    state.quantity = 1;
+    state.withFeromonas = false; state.quantity = 1;
     document.getElementById('qty-display').textContent = 1;
     document.getElementById('addon-feromonas').classList.remove('checked');
     document.getElementById('checkbox-feromonas').textContent = '';
@@ -2130,22 +1697,16 @@
   }
 
   function updateCartSummary() {
-    const cartDiv  = document.getElementById('cart-summary');
-    const listDiv  = document.getElementById('cart-items-list');
-    const totalEl  = document.getElementById('cart-total-price');
-    const discRow  = document.getElementById('cart-discount-row');
-    const discLbl  = document.getElementById('cart-discount-label');
-    const discAmt  = document.getElementById('cart-discount-amount');
-
-    if (state.cartItems.length === 0) {
-      cartDiv.classList.remove('visible');
-      return;
-    }
+    const cartDiv = document.getElementById('cart-summary');
+    const listDiv = document.getElementById('cart-items-list');
+    const totalEl = document.getElementById('cart-total-price');
+    const discRow = document.getElementById('cart-discount-row');
+    const discLbl = document.getElementById('cart-discount-label');
+    const discAmt = document.getElementById('cart-discount-amount');
+    if (state.cartItems.length === 0) { cartDiv.classList.remove('visible'); return; }
     cartDiv.classList.add('visible');
-
     let subtotal = 0;
     let html = '';
-
     state.cartItems.forEach((item, i) => {
       subtotal += item.total;
       if (item.type === 'individual') {
@@ -2176,9 +1737,7 @@
         </div>`;
       }
     });
-
     listDiv.innerHTML = html;
-
     const discount = calculateDiscount(subtotal);
     if (discount > 0 && state.appliedCoupon) {
       discRow.style.display = 'flex';
@@ -2187,9 +1746,7 @@
     } else {
       discRow.style.display = 'none';
     }
-
-    const total = subtotal - discount;
-    totalEl.textContent = `$${total.toFixed(2)} MXN`;
+    totalEl.textContent = `$${(subtotal - discount).toFixed(2)} MXN`;
   }
 
   // ── WHATSAPP ──
@@ -2234,7 +1791,6 @@
     showToast('Abriendo WhatsApp...');
     setTimeout(() => window.open(url, '_blank'), 600);
   }
-
   // ── TOAST ──
   let toastTimer;
   function showToast(msg) {
@@ -2248,29 +1804,8 @@
   // ── INIT ──
   window.onload = function() {
     syncOptionFromSelectors();
-    // Pequeño delay para que la página cargue antes de iniciar el tour
-    setTimeout(tourStart, 600);
+    setTimeout(tourStart, 700);
   };
-
-  // Expose globals
-  window.selectSize            = selectSize;
-  window.selectConc            = selectConc;
-  window.startPromo            = startPromo;
-  window.cancelPromo           = cancelPromo;
-  window.finishPromo           = finishPromo;
-  window.removePromoAroma      = removePromoAroma;
-  window.handleAromaSelection  = handleAromaSelection;
-  window.clearAroma            = clearAroma;
-  window.toggleAddon           = toggleAddon;
-  window.changeQty             = changeQty;
-  window.addToCart             = addToCart;
-  window.removeCartItem        = removeCartItem;
-  window.clearCart             = clearCart;
-  window.sendToWhatsApp        = sendToWhatsApp;
-  window.applyCoupon           = applyCoupon;
-  window.removeCoupon          = removeCoupon;
-  window.tourNext              = tourNext;
-  window.tourSkip              = tourSkip;
 </script>
 </body>
 </html>
