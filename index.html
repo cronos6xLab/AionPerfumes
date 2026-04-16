@@ -29,27 +29,59 @@
     min-height: 100vh;
   }
 
+  /* ── ANNOUNCEMENT BAR — sticky + marquee continuo ── */
   .announcement-bar {
     background: var(--dark);
     color: #ffffff;
-    padding: 8px 0;
+    padding: 9px 0;
     overflow: hidden;
-    position: relative;
-    z-index: 101;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    /* Sticky: se queda arriba del todo al hacer scroll */
+    position: sticky;
+    top: 0;
+    z-index: 102;          /* encima del header (z-index:100) */
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     font-weight: 400;
+    /* Línea dorada sutil en la parte inferior */
+    border-bottom: 1px solid rgba(184,151,90,0.35);
   }
-  .marquee-wrapper {
+
+  /* Pista de desplazamiento: contiene dos copias idénticas para bucle perfecto */
+  .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee 20s linear infinite;
+    /* will-change para que el GPU se encargue del movimiento */
+    will-change: transform;
+    animation: marquee-smooth 28s linear infinite;
   }
-  .marquee-wrapper span { padding-right: 40px; white-space: nowrap; }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
+
+  /* Pausa al hover para que el usuario pueda leer cómodamente */
+  .announcement-bar:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-track span {
+    white-space: nowrap;
+    padding: 0 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Separador decorativo entre repeticiones */
+  .marquee-sep {
+    color: rgba(184,151,90,0.8);
+    font-size: 0.5rem;
+  }
+
+  @keyframes marquee-smooth {
+    0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
   }
 
   .header {
@@ -59,7 +91,9 @@
     align-items: center;
     justify-content: center;
     position: sticky;
-    top: 0;
+    /* Se posiciona justo debajo del announcement-bar (≈37px).
+       Usamos una variable calculada con JS para exactitud. */
+    top: var(--banner-h, 37px);
     z-index: 100;
     border-bottom: 1px solid var(--border);
   }
@@ -379,11 +413,16 @@
 </head>
 <body>
 
-<div class="announcement-bar">
-  <div class="marquee-wrapper">
-    <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $999 ✦</span>
-    <span>✦ 1 PERFUME GRATIS ELIGIENDO CUALQUIER PROMOCIÓN ✦</span>
-    <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $999 ✦</span>
+<div class="announcement-bar" role="marquee" aria-label="Anuncio: Envío gratis en promociones o superando $999">
+  <div class="marquee-track">
+    <!-- Primera copia -->
+    <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $999 <span class="marquee-sep">◆</span></span>
+    <span>ALTA CONCENTRACIÓN · LARGA DURACIÓN · ALTA ESTELA <span class="marquee-sep">◆</span></span>
+    <span>AROMAS INSPIRADOS EN LAS MEJORES CASAS DEL MUNDO <span class="marquee-sep">◆</span></span>
+    <!-- Segunda copia — bucle sin salto visible -->
+    <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $999 <span class="marquee-sep">◆</span></span>
+    <span>ALTA CONCENTRACIÓN · LARGA DURACIÓN · ALTA ESTELA <span class="marquee-sep">◆</span></span>
+    <span>AROMAS INSPIRADOS EN LAS MEJORES CASAS DEL MUNDO <span class="marquee-sep">◆</span></span>
   </div>
 </div>
 
@@ -417,6 +456,7 @@
 
   <div class="product-info">
     <h2>Perfume Concentrado</h2>
+    <div class="price-range" id="price-range">$188.00 – $654.00 MXN</div>
     <div class="product-subtitle">Longevidad · Alta Estela</div>
   </div>
 
@@ -1809,6 +1849,20 @@
     syncOptionFromSelectors();
     setTimeout(tourStart, 700);
   };
+</script>
+
+<script>
+  // Sincroniza la altura del announcement-bar con la variable CSS
+  // para que el header sticky quede exactamente debajo
+  (function syncBannerHeight() {
+    const bar = document.querySelector('.announcement-bar');
+    if (!bar) return;
+    const update = () => {
+      document.documentElement.style.setProperty('--banner-h', bar.offsetHeight + 'px');
+    };
+    update();
+    new ResizeObserver(update).observe(bar);
+  })();
 </script>
 </body>
 </html>
