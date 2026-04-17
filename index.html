@@ -91,12 +91,14 @@
     align-items: center;
     justify-content: center;
     position: sticky;
+    position: sticky;
     /* Se posiciona justo debajo del announcement-bar (≈37px).
        Usamos una variable calculada con JS para exactitud. */
     top: var(--banner-h, 37px);
     z-index: 100;
     border-bottom: 1px solid var(--border);
   }
+  .header { position: relative; }
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
     color: var(--dark);
@@ -409,6 +411,57 @@
     text-transform: uppercase; transition: background 0.2s;
   }
   .tour-btn-next:hover { background: #333; }
+
+  /* ── INFO MODALS ── */
+  .info-btn {
+    background: none; border: 1px solid rgba(184,151,90,0.5); border-radius: 50%;
+    width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 600; color: var(--gold); cursor: pointer;
+    transition: all 0.2s; line-height: 1; padding: 0; font-family: 'Jost', sans-serif;
+    flex-shrink: 0;
+  }
+  .info-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
+
+  .info-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    z-index: 2000; opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .info-modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .info-modal {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(20px);
+    width: 100%; max-width: 480px; background: #fff;
+    border-radius: 16px 16px 0 0; padding: 28px 24px 36px;
+    z-index: 2001; box-shadow: 0 -8px 32px rgba(0,0,0,0.15);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s;
+    opacity: 0;
+  }
+  .info-modal-overlay.open .info-modal { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  .info-modal-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+  }
+  .info-modal-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500;
+    letter-spacing: 1px; color: var(--dark);
+  }
+  .info-modal-close {
+    background: none; border: none; font-size: 1.3rem; color: var(--muted);
+    cursor: pointer; line-height: 1; padding: 4px; transition: color 0.15s;
+  }
+  .info-modal-close:hover { color: var(--dark); }
+  .info-modal-body {
+    font-size: 0.82rem; color: var(--muted); line-height: 1.7;
+    border-top: 1px solid var(--border); padding-top: 14px;
+  }
+  .info-modal-body strong { color: var(--dark); font-weight: 500; }
+  .info-modal-badge {
+    display: inline-block; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(184,151,90,0.4); border-radius: 3px;
+    padding: 2px 7px; margin-bottom: 12px;
+  }
+
 </style>
 </head>
 <body>
@@ -446,6 +499,7 @@
 
 <div class="header">
   <h1>Aion Perfumes</h1>
+  <button class="info-btn" onclick="openInfoModal('legal')" aria-label="Aviso legal de marcas" title="Aviso legal" style="position:absolute; right:20px;">i</button>
 </div>
 
 <div class="container">
@@ -508,7 +562,7 @@
 
   <!-- PASO 3: AROMA -->
   <div class="search-section" id="tour-anchor-aroma">
-    <div class="section-label"><span class="step-number">3</span> Selección de Aroma</div>
+    <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn" onclick="openInfoModal('aromas')" aria-label="Disponibilidad de aromas" title="Disponibilidad">i</button></div>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
       <input type="text" id="search-input" placeholder="Buscar familia olfativa, casa, código...">
@@ -3223,6 +3277,53 @@
     update();
     new ResizeObserver(update).observe(bar);
   })();
+</script>
+
+<!-- MODAL: Aviso Legal Propiedad Industrial -->
+<div class="info-modal-overlay" id="modal-legal-overlay" onclick="closeInfoModal('legal')">
+  <div class="info-modal" onclick="event.stopPropagation()">
+    <div class="info-modal-header">
+      <span class="info-modal-title">Aviso Legal</span>
+      <button class="info-modal-close" onclick="closeInfoModal('legal')" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="info-modal-body">
+      <div class="info-modal-badge">Art. 213 · Ley de Propiedad Industrial</div>
+      <p>En <strong>Aion Perfumes</strong> vendemos perfumes <strong>inspirados en diseñadores/marcas</strong> que se utilizan con fines de referencia a los aromas y aclaramos en atención al artículo 213 de la Ley de Propiedad Industrial que <strong>no guardan ningún tipo de relación o asociación</strong> con las marcas o nombres que se mencionan.</p>
+      <br>
+      <p>Los nombres, marcas y derechos de autor son propiedad de sus respectivos diseñadores/fabricantes. <strong>No son copias exactas</strong> y no compite con la marca diseñadora.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Disponibilidad de Aromas -->
+<div class="info-modal-overlay" id="modal-aromas-overlay" onclick="closeInfoModal('aromas')">
+  <div class="info-modal" onclick="event.stopPropagation()">
+    <div class="info-modal-header">
+      <span class="info-modal-title">Disponibilidad de Aromas</span>
+      <button class="info-modal-close" onclick="closeInfoModal('aromas')" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="info-modal-body">
+      <div class="info-modal-badge">Nota importante</div>
+      <p>Algunos aromas están <strong>sujetos a disponibilidad en tienda</strong>. En caso de que el aroma seleccionado no esté disponible al momento de procesar tu pedido, nos comunicaremos contigo por WhatsApp para ofrecerte una alternativa o confirmarte la fecha estimada de reabastecimiento.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openInfoModal(id) {
+    document.getElementById('modal-' + id + '-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInfoModal(id) {
+    document.getElementById('modal-' + id + '-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeInfoModal('legal');
+      closeInfoModal('aromas');
+    }
+  });
 </script>
 </body>
 </html>
