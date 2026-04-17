@@ -293,6 +293,10 @@
   .cart-item-remove, .promo-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; }
   .cart-item-remove:hover, .promo-remove:hover { color: var(--dark); }
   .cart-discount-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #1a6638; padding: 10px 0 0; font-weight: 500; }
+  .cart-shipping-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0 0; }
+  .cart-shipping-row .shipping-free { color: #1a6638; font-weight: 500; }
+  .cart-shipping-row .shipping-cost { color: var(--muted); }
+  .cart-shipping-row .shipping-notice { font-size: 0.72rem; color: var(--gold); font-weight: 500; }
   .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 500; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 
   .action-buttons {
@@ -662,7 +666,7 @@
     <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn" onclick="openInfoModal('aromas')" aria-label="Disponibilidad de aromas" title="Disponibilidad">i</button></div>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" placeholder="Buscar Nombre, Marca, ocación...">
+      <input type="text" id="search-input" placeholder="Buscar nombre, marca, ocasión...">
       <div class="search-results" id="search-results"></div>
     </div>
   </div>
@@ -735,6 +739,10 @@
       <span id="cart-discount-label">Descuento</span>
       <span id="cart-discount-amount"></span>
     </div>
+    <div class="cart-shipping-row" id="cart-shipping-row">
+      <span>Envío</span>
+      <span id="cart-shipping-label"></span>
+    </div>
     <div class="cart-total">
       <span>Total Estimado</span>
       <span id="cart-total-price">$0.00</span>
@@ -770,9 +778,9 @@
     "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
     "HAMMSYK":   { discount: 10, type: "percent", description: "10% de descuento" },
-    "AION5X":   { discount: 5, type: "percent", description: "5% de descuento" },
-    "LAUNCH9X": { discount: 9, type: "percent", description: "9% lanzamiento" },
-    "VERANO5X": { discount: 5, type: "fixed",   description: "$5 MXN de descuento" },
+    "AION15X":   { discount: 5, type: "percent", description: "5% de descuento" },
+    "LAUNCH20X": { discount: 2, type: "percent", description: "2% lanzamiento" },
+    "VERANO50X": { discount: 5, type: "fixed",   description: "$5 MXN de descuento" },
   };
 
   const PRODUCT_OPTIONS = [
@@ -3312,7 +3320,27 @@
     } else {
       discRow.style.display = 'none';
     }
-    totalEl.textContent = `$${(subtotal - discount).toFixed(2)} MXN`;
+
+    // ── Costo de envío ──
+    const SHIPPING_THRESHOLD = 1200;
+    const SHIPPING_COST      = 149;
+    const subtotalAfterDiscount = subtotal - discount;
+    const hasPromo      = state.cartItems.some(i => i.type === 'promo');
+    const freeShipping  = hasPromo || subtotalAfterDiscount >= SHIPPING_THRESHOLD;
+    const shippingRow   = document.getElementById('cart-shipping-row');
+    const shippingLabel = document.getElementById('cart-shipping-label');
+
+    if (freeShipping) {
+      shippingLabel.innerHTML = `<span class="shipping-free">✓ Gratis</span>`;
+    } else {
+      const needed = (SHIPPING_THRESHOLD - subtotalAfterDiscount).toFixed(2);
+      shippingLabel.innerHTML =
+        `<span class="shipping-cost">$${SHIPPING_COST.toFixed(2)} MXN</span>&ensp;<span class="shipping-notice">Falta $${needed} para gratis</span>`;
+    }
+    shippingRow.style.display = 'flex';
+
+    const grandTotal = subtotalAfterDiscount + (freeShipping ? 0 : SHIPPING_COST);
+    totalEl.textContent = `$${grandTotal.toFixed(2)} MXN`;
   }
 
   // ── WHATSAPP ──
@@ -3322,7 +3350,10 @@
     const subtotal        = state.cartItems.reduce((s, i) => s + i.total, 0);
     const discountAmt     = calculateDiscount(subtotal);
     const total           = subtotal - discountAmt;
-    const hasFreeShipping = total > 999 || state.cartItems.some(i => i.type === 'promo');
+    const hasPromoWA   = state.cartItems.some(i => i.type === 'promo');
+    const hasFreeShipping = hasPromoWA || total >= 1200;
+    const shippingCostWA  = hasFreeShipping ? 0 : 149;
+    const grandTotalWA    = total + shippingCostWA;
 
     const fecha = new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'2-digit', year:'numeric' });
     const hora  = new Date().toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
@@ -3350,8 +3381,12 @@
       const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` : `$${c.discount} MXN de descuento`;
       msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)} MXN\n`;
     }
-    msg += `💰 *TOTAL: $${total.toFixed(2)} MXN*\n`;
-    if (hasFreeShipping) msg += `🚚 *ENVÍO GRATIS APLICADO*\n`;
+    if (hasFreeShipping) {
+      msg += `🚚 Envío: *GRATIS*\n`;
+    } else {
+      msg += `🚚 Envío: *$${shippingCostWA.toFixed(2)} MXN*\n`;
+    }
+    msg += `💰 *TOTAL: $${grandTotalWA.toFixed(2)} MXN*\n`;
     msg += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
     msg += `📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\n\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
 
