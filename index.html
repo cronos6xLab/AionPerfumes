@@ -86,7 +86,7 @@
 
   .header {
     background: var(--bg-main);
-    padding: 20px 24px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,7 +102,7 @@
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
     color: var(--dark);
-    font-size: 1.6rem;
+    font-size: 1.45rem;
     font-weight: 400;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -212,14 +212,17 @@
   .search-result-item:hover { background: var(--bg-secondary); }
   .search-result-item .aroma-code { font-weight: 500; min-width: 50px; }
   .search-result-item .aroma-info { flex: 1; }
-  .search-result-item .aroma-name { font-weight: 500; margin-bottom: 2px; }
-  .search-result-item .aroma-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.5px; }
+  .search-result-item .aroma-name { font-weight: 500; margin-bottom: 4px; }
+  .search-result-item .aroma-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.5px; line-height: 1.5; }
+  .search-result-item .aroma-meta + .aroma-meta { margin-top: 3px; }
+  .search-result-item .aroma-label { color: var(--dark); font-weight: 500; }
 
   .selected-aroma-tag { display: none; margin: 16px 20px 0; background: var(--bg-main); border: 1px solid var(--dark); border-radius: var(--radius-sm); padding: 14px 16px; align-items: center; gap: 12px; }
   .selected-aroma-tag.visible { display: flex; }
   .selected-aroma-tag .aroma-text { flex: 1; }
   .selected-aroma-tag .aroma-text strong { display: block; font-weight: 500; font-size: 0.9rem; }
-  .selected-aroma-tag .aroma-text small { color: var(--muted); font-size: 0.75rem; }
+  .selected-aroma-tag .aroma-text small { color: var(--muted); font-size: 0.75rem; display: block; line-height: 1.5; }
+  .selected-aroma-tag .aroma-text small + small { margin-top: 2px; }
   .remove-aroma { background: none; border: none; color: var(--dark); cursor: pointer; font-size: 1.2rem; }
 
   .addon-section { padding: 0 20px; }
@@ -667,7 +670,8 @@
   <div class="selected-aroma-tag" id="selected-aroma-tag">
     <div class="aroma-text">
       <strong id="tag-name">Aroma seleccionado</strong>
-      <small id="tag-category">Código</small>
+      <small id="tag-category">Marca · Familia</small>
+      <small id="tag-occasion">Ocasión</small>
     </div>
     <button class="remove-aroma" onclick="clearAroma()">✕</button>
   </div>
@@ -765,9 +769,10 @@
     "AT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
-    "AION15X":   { discount: 15, type: "percent", description: "15% de descuento" },
-    "LAUNCH20X": { discount: 20, type: "percent", description: "20% lanzamiento" },
-    "VERANO50X": { discount: 50, type: "fixed",   description: "$50 MXN de descuento" },
+    "HAMMSYK":   { discount: 10, type: "percent", description: "10% de descuento" },
+    "AION5X":   { discount: 5, type: "percent", description: "5% de descuento" },
+    "LAUNCH9X": { discount: 9, type: "percent", description: "9% lanzamiento" },
+    "VERANO5X": { discount: 5, type: "fixed",   description: "$5 MXN de descuento" },
   };
 
   const PRODUCT_OPTIONS = [
@@ -3060,8 +3065,11 @@
     const q = searchInput.value.toLowerCase().trim();
     if (!q) { searchResults.classList.remove('visible'); return; }
     const matches = AROMAS.filter(a =>
-      a.code.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) ||
-      a.brand.toLowerCase().includes(q) || a.family.toLowerCase().includes(q)
+      a.code.toLowerCase().includes(q) ||
+      a.name.toLowerCase().includes(q) ||
+      a.brand.toLowerCase().includes(q) ||
+      a.family.toLowerCase().includes(q) ||
+      (a.occasion && a.occasion.toLowerCase().includes(q))
     );
     searchResults.innerHTML = matches.length === 0
       ? `<div class="search-result-item"><span class="aroma-name" style="color:var(--muted)">Sin resultados para "${q}"</span></div>`
@@ -3071,7 +3079,9 @@
             <span class="aroma-code">${a.code}</span>
             <div class="aroma-info">
               <div class="aroma-name">${a.name}</div>
-              <div class="aroma-meta">${a.brand} · ${a.family}</div>
+              <div class="aroma-meta"><span class="aroma-label">Marca:</span> ${a.brand}</div>
+              <div class="aroma-meta"><span class="aroma-label">Familia:</span> ${a.family}</div>
+              ${a.occasion ? `<div class="aroma-meta"><span class="aroma-label">Ocasión:</span> ${a.occasion}</div>` : ''}
             </div>
           </div>`;
         }).join('');
@@ -3092,13 +3102,15 @@
   function selectAroma(aroma) {
     state.selectedAroma = aroma;
     document.getElementById('tag-name').innerHTML = `[${aroma.code}] ${aroma.name}`;
-    document.getElementById('tag-category').textContent = `${aroma.brand} · ${aroma.family}`;
+    document.getElementById('tag-category').textContent = `Marca: ${aroma.brand} · Familia: ${aroma.family}`;
+    document.getElementById('tag-occasion').textContent = aroma.occasion ? `Ocasión: ${aroma.occasion}` : '';
     document.getElementById('selected-aroma-tag').classList.add('visible');
     showToast(`Seleccionado: ${aroma.name}`);
   }
 
   function clearAroma() {
     state.selectedAroma = null;
+    document.getElementById('tag-occasion').textContent = '';
     document.getElementById('selected-aroma-tag').classList.remove('visible');
   }
 
