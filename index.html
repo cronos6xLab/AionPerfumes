@@ -412,6 +412,100 @@
   }
   .tour-btn-next:hover { background: #333; }
 
+
+  /* ── PROMO GUIDE MODAL ── */
+  .promo-guide-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 2100; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .promo-guide-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .promo-guide-modal {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(30px);
+    width: 100%; max-width: 480px; background: #fff;
+    border-radius: 20px 20px 0 0; padding: 0 0 36px;
+    z-index: 2101;
+    box-shadow: 0 -12px 40px rgba(0,0,0,0.18);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+    opacity: 0;
+  }
+  .promo-guide-overlay.open .promo-guide-modal {
+    transform: translateX(-50%) translateY(0); opacity: 1;
+  }
+
+  .promo-guide-handle {
+    width: 36px; height: 4px; background: var(--border);
+    border-radius: 9999px; margin: 12px auto 0;
+  }
+
+  .promo-guide-header {
+    padding: 18px 22px 0;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  }
+  .promo-guide-title-wrap {}
+  .promo-guide-eyebrow {
+    font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 4px;
+  }
+  .promo-guide-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+    font-weight: 500; letter-spacing: 1px; color: var(--dark); line-height: 1.2;
+  }
+  .promo-guide-close {
+    background: var(--bg-secondary); border: none; border-radius: 50%;
+    width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; color: var(--muted); cursor: pointer; flex-shrink: 0;
+    transition: background 0.15s; margin-top: 2px;
+  }
+  .promo-guide-close:hover { background: var(--border); color: var(--dark); }
+
+  .promo-guide-steps {
+    padding: 20px 22px 0; display: flex; flex-direction: column; gap: 0;
+  }
+  .promo-guide-step {
+    display: flex; gap: 14px; align-items: flex-start; padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .promo-guide-step:last-child { border-bottom: none; }
+
+  .promo-guide-step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--dark); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 600; flex-shrink: 0; margin-top: 1px;
+  }
+  .promo-guide-step-num.gold { background: var(--gold); }
+
+  .promo-guide-step-body {}
+  .promo-guide-step-title {
+    font-size: 0.88rem; font-weight: 600; color: var(--dark);
+    margin-bottom: 3px; letter-spacing: 0.3px;
+  }
+  .promo-guide-step-desc {
+    font-size: 0.78rem; color: var(--muted); line-height: 1.55;
+  }
+  .promo-guide-step-desc strong { color: var(--dark); font-weight: 500; }
+
+  .promo-guide-badge {
+    display: inline-block; background: #fffdf5; border: 1px solid rgba(184,151,90,0.4);
+    color: var(--gold); font-size: 0.68rem; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; border-radius: 3px; padding: 2px 8px; margin-bottom: 16px;
+    margin-left: 22px; margin-top: 4px;
+  }
+
+  .promo-guide-cta {
+    margin: 18px 22px 0;
+    background: var(--dark); color: white; border: none;
+    border-radius: var(--radius-sm); padding: 15px;
+    font-family: 'Jost', sans-serif; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; width: calc(100% - 44px); transition: background 0.2s;
+    display: block;
+  }
+  .promo-guide-cta:hover { background: #333; }
+  .promo-guide-cta:active { transform: scale(0.98); }
+
   /* ── INFO MODALS ── */
   .info-btn {
     background: none; border: 1px solid rgba(184,151,90,0.5); border-radius: 50%;
@@ -672,7 +766,6 @@
     "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
     "AION15X":   { discount: 15, type: "percent", description: "15% de descuento" },
-    "HAMMSYK":   { discount: 10, type: "percent", description: "10% de descuento" },
     "LAUNCH20X": { discount: 20, type: "percent", description: "20% lanzamiento" },
     "VERANO50X": { discount: 50, type: "fixed",   description: "$50 MXN de descuento" },
   };
@@ -3043,7 +3136,13 @@
     state.selectedAroma = null;
     document.getElementById('selected-aroma-tag').classList.remove('visible');
     updatePromoUI();
-    showToast(`Paquete de ${volume} activado. Ahora selecciona los aromas.`);
+
+    // Mostrar modal guía
+    const promoTitles = { '100ml': 'Lleva 4, paga 3', '60ml': 'Lleva 5, paga 4', '30ml': 'Lleva 6, paga 5' };
+    const promoQty    = { '100ml': 4, '60ml': 5, '30ml': 6 };
+    const opt = state.selectedOption;
+    const badge = `${volume} · ${opt ? opt.concentration : ''}`;
+    openPromoGuide(volume, promoTitles[volume], badge, promoQty[volume]);
   }
 
   function updatePromoUI() {
@@ -3280,6 +3379,53 @@
   })();
 </script>
 
+
+<!-- MODAL: Guía de Paquete Promocional -->
+<div class="promo-guide-overlay" id="promo-guide-overlay" onclick="closePromoGuide()">
+  <div class="promo-guide-modal" onclick="event.stopPropagation()">
+    <div class="promo-guide-handle"></div>
+    <div class="promo-guide-header">
+      <div class="promo-guide-title-wrap">
+        <div class="promo-guide-eyebrow">Paquete activado ✦</div>
+        <div class="promo-guide-title" id="promo-guide-title">Lleva 6, paga 5</div>
+      </div>
+      <button class="promo-guide-close" onclick="closePromoGuide()" aria-label="Cerrar guía">✕</button>
+    </div>
+    <div class="promo-guide-badge" id="promo-guide-badge">30 ml · Extrait de Parfum 33%</div>
+    <div class="promo-guide-steps">
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num">1</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Baja al Paso 3 — Selección de Aroma</div>
+          <div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma. Escribe el nombre de la fragancia o su código (ej. <strong>"Sauvage"</strong> o <strong>"C0001"</strong>).</div>
+        </div>
+      </div>
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num">2</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> aromas diferentes</div>
+          <div class="promo-guide-step-desc">Cada vez que elijas uno del listado se irá añadiendo a tu paquete automáticamente. Puedes repetir el mismo aroma si gustas.</div>
+        </div>
+      </div>
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num">3</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Añade feromonas si deseas (opcional)</div>
+          <div class="promo-guide-step-desc">En el Paso 4 puedes activar la opción de feromonas <strong>+$60 MXN</strong> — se aplica a todos los perfumes del paquete.</div>
+        </div>
+      </div>
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num gold">✓</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Presiona "Añadir paquete al carrito"</div>
+          <div class="promo-guide-step-desc">Aparecerá el botón <strong>"🎁 Añadir paquete al carrito"</strong> cuando completes todos los aromas. Después finaliza tu pedido por WhatsApp.</div>
+        </div>
+      </div>
+    </div>
+    <button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido, voy a elegir mis aromas!</button>
+  </div>
+</div>
+
 <!-- MODAL: Aviso Legal Propiedad Industrial -->
 <div class="info-modal-overlay" id="modal-legal-overlay" onclick="closeInfoModal('legal')">
   <div class="info-modal" onclick="event.stopPropagation()">
@@ -3311,6 +3457,24 @@
 </div>
 
 <script>
+
+  function openPromoGuide(volume, title, badge, qty) {
+    document.getElementById('promo-guide-title').textContent = title;
+    document.getElementById('promo-guide-badge').textContent = badge;
+    document.getElementById('promo-guide-qty').textContent = qty;
+    document.getElementById('promo-guide-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePromoGuide() {
+    document.getElementById('promo-guide-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    // Scroll suave hacia la sección de aromas al cerrar
+    setTimeout(() => {
+      const aromaSection = document.getElementById('tour-anchor-aroma');
+      if (aromaSection) aromaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 200);
+  }
+
   function openInfoModal(id) {
     document.getElementById('modal-' + id + '-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
