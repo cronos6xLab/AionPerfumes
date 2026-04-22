@@ -513,6 +513,24 @@
   .promo-guide-cta:hover { background: #333; }
   .promo-guide-cta:active { transform: scale(0.98); }
 
+
+  /* ── PRODUCTOS EXTRA (crema / desodorante) ── */
+  .size-btn.extra-product {
+    font-size: 0.72rem; line-height: 1.35; padding: 10px 6px;
+    border-style: dashed;
+  }
+  .size-btn.extra-product.active {
+    background: var(--dark); color: white; border-color: var(--dark); border-style: solid;
+  }
+  .conc-section-hidden { display: none !important; }
+  .extra-price-note {
+    margin-top: 14px; font-size: 0.78rem; color: var(--muted);
+    text-align: center; letter-spacing: 0.5px;
+    background: #fffdf5; border: 1px solid rgba(184,151,90,0.3);
+    border-radius: var(--radius-sm); padding: 8px 14px;
+  }
+  .extra-price-note strong { color: var(--dark); }
+
   /* ── INFO MODALS ── */
   .info-btn {
     background: none; border: 1px solid rgba(184,151,90,0.5); border-radius: 50%;
@@ -621,8 +639,11 @@
     <div class="section-label"><span class="step-number">1</span> Presentación</div>
     <div class="size-buttons">
       <button class="size-btn active" data-size="30ml" onclick="selectSize('30ml')">30 ml</button>
+      <button class="size-btn" data-size="50ml" onclick="selectSize('50ml')">50 ml</button>
       <button class="size-btn" data-size="60ml" onclick="selectSize('60ml')">60 ml</button>
       <button class="size-btn" data-size="100ml" onclick="selectSize('100ml')">100 ml</button>
+      <button class="size-btn extra-product" data-size="crema" onclick="selectSize('crema')">🧴 Crema<br>Corporal 50ml</button>
+      <button class="size-btn extra-product" data-size="deo" onclick="selectSize('deo')">🧴 Desod.<br>Roll-on 50ml</button>
     </div>
   </div>
 
@@ -630,7 +651,7 @@
 
   <!-- PASO 1B: CONCENTRACIÓN -->
   <div class="option-section" id="tour-anchor-conc">
-    <div class="section-label">💧 Concentración</div>
+    <div class="section-label conc-label">💧 Concentración</div>
     <div class="conc-buttons">
       <button class="conc-btn active" data-conc="33" onclick="selectConc('33')">💧 33%<small>Extrait de Parfum</small></button>
       <button class="conc-btn" data-conc="42" onclick="selectConc('42')">💧💧 42%<small>Elixir Radiante</small></button>
@@ -650,7 +671,9 @@
     <div class="promo-buttons">
       <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3 <br>100ml <small id="promo-100-price"></small></button>
       <button class="promo-btn promo-60"  id="promo-60-btn"  onclick="startPromo('60ml')">5 × 4 <br>60ml  <small id="promo-60-price"></small></button>
+      <button class="promo-btn promo-50"  id="promo-50-btn"  onclick="startPromo('50ml')">5 × 4 <br>50ml  <small id="promo-50-price"></small></button>
       <button class="promo-btn promo-30"  id="promo-30-btn"  onclick="startPromo('30ml')">6 × 5 <br>30ml  <small id="promo-30-price"></small></button>
+      <button class="promo-btn promo-extra" id="promo-extra-btn" onclick="startPromo('extra')">6 × 5 <br><small style="font-size:0.65rem;">Crema/Deo</small> <small id="promo-extra-price"></small></button>
     </div>
     <div class="promo-status" id="promo-status">
       <div id="promo-status-text"></div>
@@ -777,6 +800,7 @@
     "AT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
+    "HAMMSYK":   { discount: 10, type: "percent", description: "10% de descuento" },
     "AION15X":   { discount: 15, type: "percent", description: "15% de descuento" },
     "LAUNCH20X": { discount: 20, type: "percent", description: "20% lanzamiento" },
     "VERANO50X": { discount: 50, type: "fixed",   description: "$50 MXN de descuento" },
@@ -786,12 +810,17 @@
     { volume: '30ml',  concentration: 'Sensación Aura (Extrait de Parfum 33%)',  conc: '33', price: 188 },
     { volume: '30ml',  concentration: 'Impacto Radiante (Elixir 42%)',           conc: '42', price: 232 },
     { volume: '30ml',  concentration: 'Aura Intensa (Elixir 50%)',               conc: '50', price: 277 },
+    { volume: '50ml',  concentration: 'Sensación Aura (Extrait de Parfum 33%)',  conc: '33', price: 277 },
+    { volume: '50ml',  concentration: 'Impacto Radiante (Elixir 42%)',           conc: '42', price: 349 },
+    { volume: '50ml',  concentration: 'Aura Intensa (Elixir 50%)',               conc: '50', price: 417 },
     { volume: '60ml',  concentration: 'Sensación Aura (Extrait de Parfum 33%)',  conc: '33', price: 321 },
     { volume: '60ml',  concentration: 'Impacto Radiante (Elixir 42%)',           conc: '42', price: 410 },
     { volume: '60ml',  concentration: 'Aura Intensa (Elixir 50%)',               conc: '50', price: 488 },
     { volume: '100ml', concentration: 'Sensación Aura (Extrait de Parfum 33%)',  conc: '33', price: 432 },
     { volume: '100ml', concentration: 'Impacto Radiante (Elixir 42%)',           conc: '42', price: 554 },
     { volume: '100ml', concentration: 'Aura Intensa (Elixir 50%)',               conc: '50', price: 654 },
+    { volume: 'crema', concentration: 'Crema Corporal Perfumada 50ml',           conc: 'N/A', price: 129 },
+    { volume: 'deo',   concentration: 'Desodorante Antitranspirante Roll-on 50ml', conc: 'N/A', price: 129 },
   ];
 
   const AROMAS = [
@@ -2977,10 +3006,24 @@
   }
 
   // ── SELECTORES ──
+  const EXTRA_PRODUCTS = ['crema', 'deo'];
+
   function selectSize(size) {
     selectedSize = size;
     document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size === size));
-    syncOptionFromSelectors();
+    const isExtra = EXTRA_PRODUCTS.includes(size);
+    // Ocultar solo los botones de concentración, pero dejar visible el precio
+    document.querySelector('.conc-buttons').classList.toggle('conc-section-hidden', isExtra);
+    const concLabelEl = document.querySelector('.conc-label');
+    if (concLabelEl) concLabelEl.classList.toggle('conc-section-hidden', isExtra);
+    if (isExtra) {
+      const opt = PRODUCT_OPTIONS.find(o => o.volume === size);
+      state.selectedOption = opt;
+      document.getElementById('selected-price-display').textContent = `$${opt.price.toFixed(2)} MXN`;
+      updatePromoPrices();
+    } else {
+      syncOptionFromSelectors();
+    }
     if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la presentación'); }
   }
 
@@ -3048,9 +3091,11 @@
     const opt = state.selectedOption;
     if (!opt) return;
     const vol = opt.volume;
-    document.getElementById('promo-100-price').textContent = '';
-    document.getElementById('promo-60-price').textContent  = '';
-    document.getElementById('promo-30-price').textContent  = '';
+    document.getElementById('promo-100-price').textContent  = '';
+    document.getElementById('promo-60-price').textContent   = '';
+    document.getElementById('promo-50-price').textContent   = '';
+    document.getElementById('promo-30-price').textContent   = '';
+    document.getElementById('promo-extra-price').textContent = '';
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active-vol'));
     if (vol === '100ml') {
       document.getElementById('promo-100-price').textContent = `$${(opt.price * 3).toFixed(0)}`;
@@ -3058,9 +3103,15 @@
     } else if (vol === '60ml') {
       document.getElementById('promo-60-price').textContent = `$${(opt.price * 4).toFixed(0)}`;
       document.getElementById('promo-60-btn').classList.add('active-vol');
+    } else if (vol === '50ml') {
+      document.getElementById('promo-50-price').textContent = `$${(opt.price * 4).toFixed(0)}`;
+      document.getElementById('promo-50-btn').classList.add('active-vol');
     } else if (vol === '30ml') {
       document.getElementById('promo-30-price').textContent = `$${(opt.price * 5).toFixed(0)}`;
       document.getElementById('promo-30-btn').classList.add('active-vol');
+    } else if (EXTRA_PRODUCTS.includes(vol)) {
+      document.getElementById('promo-extra-price').textContent = `$${(129 * 5).toFixed(0)}`;
+      document.getElementById('promo-extra-btn').classList.add('active-vol');
     }
   }
 
@@ -3140,14 +3191,19 @@
   // ── PROMOS ──
   function startPromo(volume) {
     const currentOpt = state.selectedOption;
-    if (!currentOpt || currentOpt.volume !== volume) {
+    const isExtraPromo = volume === 'extra';
+    if (!isExtraPromo && (!currentOpt || currentOpt.volume !== volume)) {
       showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`); return;
     }
+    if (isExtraPromo && (!currentOpt || !EXTRA_PRODUCTS.includes(currentOpt.volume))) {
+      showToast('⚠️ Selecciona Crema o Desodorante arriba primero'); return;
+    }
     promoState = {
-      active: true, volume,
-      required: volume === '100ml' ? 4 : (volume === '60ml' ? 5 : 6),
-      basePrice: currentOpt.price, concentration: currentOpt.concentration,
-      withFeromonas: false, selectedAromas: []
+      active: true, volume: isExtraPromo ? currentOpt.volume : volume,
+      required: (volume === '100ml') ? 4 : (volume === '60ml' || volume === '50ml') ? 5 : 6,
+      basePrice: isExtraPromo ? 129 : currentOpt.price,
+      concentration: isExtraPromo ? currentOpt.concentration : currentOpt.concentration,
+      withFeromonas: false, selectedAromas: [], isExtra: isExtraPromo
     };
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(`promo-${volume.replace('ml','')}-btn`).classList.add('active');
@@ -3157,11 +3213,12 @@
     updatePromoUI();
 
     // Mostrar modal guía
-    const promoTitles = { '100ml': 'Lleva 4, paga 3', '60ml': 'Lleva 5, paga 4', '30ml': 'Lleva 6, paga 5' };
-    const promoQty    = { '100ml': 4, '60ml': 5, '30ml': 6 };
+    const promoTitles = { '100ml': 'Lleva 4, paga 3', '60ml': 'Lleva 5, paga 4', '50ml': 'Lleva 5, paga 4', '30ml': 'Lleva 6, paga 5', 'crema': 'Lleva 6, paga 5', 'deo': 'Lleva 6, paga 5' };
+    const promoQty    = { '100ml': 4, '60ml': 5, '50ml': 5, '30ml': 6, 'crema': 6, 'deo': 6 };
     const opt = state.selectedOption;
     const badge = `${volume} · ${opt ? opt.concentration : ''}`;
-    openPromoGuide(volume, promoTitles[volume], badge, promoQty[volume]);
+    const guideVolKey = (isExtraPromo ? currentOpt.volume : volume);
+    openPromoGuide(guideVolKey, promoTitles[guideVolKey] || 'Lleva 6, paga 5', badge, promoQty[guideVolKey] || 6);
   }
 
   function updatePromoUI() {
@@ -3180,7 +3237,10 @@
     const finishWrapper = document.getElementById('finish-promo-wrapper');
     const hintDiv       = document.getElementById('promo-hint');
     const hintText      = document.getElementById('promo-hint-text');
-    if (count === required) {
+    if (promoState.isExtra) {
+      // Productos extra no requieren selección de aromas
+      finishWrapper.classList.add('visible'); hintDiv.classList.remove('visible');
+    } else if (count === required) {
       finishWrapper.classList.add('visible'); hintDiv.classList.remove('visible');
     } else if (promoState.active) {
       finishWrapper.classList.remove('visible');
@@ -3209,16 +3269,20 @@
   }
 
   function finishPromo() {
-    if (promoState.selectedAromas.length !== promoState.required) {
+    if (!promoState.isExtra && promoState.selectedAromas.length !== promoState.required) {
       showToast(`Debes seleccionar ${promoState.required} aromas`); return;
     }
     const feromonasCost   = promoState.withFeromonas ? 60 * promoState.required : 0;
     const totalPromoPrice = (promoState.basePrice * (promoState.required - 1)) + feromonasCost;
+    // Para productos extra llenamos aromas con el nombre del producto
+    const aromasFinal = promoState.isExtra
+      ? Array(promoState.required).fill({ code: '', name: promoState.concentration })
+      : [...promoState.selectedAromas];
     state.cartItems.push({
       type: 'promo', volume: promoState.volume, concentration: promoState.concentration,
       required: promoState.required, payFor: promoState.required - 1,
-      aromas: [...promoState.selectedAromas], withFeromonas: promoState.withFeromonas,
-      total: totalPromoPrice
+      aromas: aromasFinal, withFeromonas: promoState.withFeromonas,
+      total: totalPromoPrice, isExtra: promoState.isExtra
     });
     updateCartSummary();
     cancelPromo();
@@ -3240,18 +3304,20 @@
   // ── CARRITO ──
   function addToCart() {
     if (!state.selectedOption) { showToast('⚠️ Selecciona una presentación y concentración'); return; }
-    if (!state.selectedAroma)  { showToast('⚠️ Selecciona un aroma primero'); return; }
-    if (promoState.active)     { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
-    const feromonasCost = state.withFeromonas ? 60 : 0;
+    const isExtra = EXTRA_PRODUCTS.includes(state.selectedOption.volume);
+    if (!isExtra && !state.selectedAroma) { showToast('⚠️ Selecciona un aroma primero'); return; }
+    if (promoState.active) { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
+    const feromonasCost = (!isExtra && state.withFeromonas) ? 60 : 0;
     const unitPrice     = state.selectedOption.price + feromonasCost;
     const totalPrice    = unitPrice * state.quantity;
+    const aromaLabel    = isExtra ? null : state.selectedAroma;
     state.cartItems.push({
-      type: 'individual', option: state.selectedOption, aroma: state.selectedAroma,
-      withFeromonas: state.withFeromonas, quantity: state.quantity, unitPrice, total: totalPrice
+      type: 'individual', option: state.selectedOption, aroma: aromaLabel,
+      withFeromonas: !isExtra && state.withFeromonas, quantity: state.quantity, unitPrice, total: totalPrice
     });
     updateCartSummary();
-    showToast(`✓ Añadido: ${state.selectedAroma.name}`);
-    clearAroma();
+    showToast(`✓ Añadido: ${state.selectedOption.concentration}`);
+    if (!isExtra) clearAroma();
     state.withFeromonas = false; state.quantity = 1;
     document.getElementById('qty-display').textContent = 1;
     document.getElementById('addon-feromonas').classList.remove('checked');
@@ -3290,16 +3356,22 @@
       subtotal += item.total;
       if (item.type === 'individual') {
         const fLabel = item.withFeromonas ? ' + Feromonas' : '';
+        const nameLabel = item.aroma ? `[${item.aroma.code}] ${item.aroma.name}` : item.option.concentration;
+        const subLabel  = item.aroma
+          ? `${item.option.volume} · ${item.option.concentration}${fLabel} × ${item.quantity}`
+          : `× ${item.quantity}`;
         html += `<div class="cart-item">
           <div style="flex:1;font-size:0.82rem;">
-            <div style="font-weight:500;">[${item.aroma.code}] ${item.aroma.name}</div>
-            <div style="color:var(--muted);font-size:0.72rem;margin-top:2px;">${item.option.volume} · ${item.option.concentration}${fLabel} × ${item.quantity}</div>
+            <div style="font-weight:500;">${nameLabel}</div>
+            <div style="color:var(--muted);font-size:0.72rem;margin-top:2px;">${subLabel}</div>
           </div>
           <span class="cart-item-price">$${item.total.toFixed(2)}</span>
           <button class="cart-item-remove" onclick="removeCartItem(${i})">✕</button>
         </div>`;
       } else {
-        const aromaList = item.aromas.map(a => `${a.code} ${a.name}`).join(', ');
+        const aromaList = item.isExtra
+          ? item.concentration
+          : item.aromas.map(a => `${a.code} ${a.name}`).join(', ');
         const fLabel    = item.withFeromonas ? ' + Feromonas' : '';
         html += `<div class="promo-item">
           <div class="promo-header" onclick="this.nextElementSibling.classList.toggle('expanded')">
