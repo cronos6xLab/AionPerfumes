@@ -801,9 +801,9 @@
     "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
     "HAMMSYK":   { discount: 10, type: "percent", description: "10% de descuento" },
-    "AION15X":   { discount: 15, type: "percent", description: "15% de descuento" },
-    "LAUNCH20X": { discount: 20, type: "percent", description: "20% lanzamiento" },
-    "VERANO50X": { discount: 50, type: "fixed",   description: "$50 MXN de descuento" },
+    "AION15X":   { discount: 1, type: "percent", description: "1% de descuento" },
+    "LAUNCH20X": { discount: 2, type: "percent", description: "2% lanzamiento" },
+    "VERANO50X": { discount: 5, type: "fixed",   description: "$5 MXN de descuento" },
   };
 
   const PRODUCT_OPTIONS = [
@@ -3237,10 +3237,7 @@
     const finishWrapper = document.getElementById('finish-promo-wrapper');
     const hintDiv       = document.getElementById('promo-hint');
     const hintText      = document.getElementById('promo-hint-text');
-    if (promoState.isExtra) {
-      // Productos extra no requieren selección de aromas
-      finishWrapper.classList.add('visible'); hintDiv.classList.remove('visible');
-    } else if (count === required) {
+    if (count === required) {
       finishWrapper.classList.add('visible'); hintDiv.classList.remove('visible');
     } else if (promoState.active) {
       finishWrapper.classList.remove('visible');
@@ -3269,19 +3266,15 @@
   }
 
   function finishPromo() {
-    if (!promoState.isExtra && promoState.selectedAromas.length !== promoState.required) {
+    if (promoState.selectedAromas.length !== promoState.required) {
       showToast(`Debes seleccionar ${promoState.required} aromas`); return;
     }
     const feromonasCost   = promoState.withFeromonas ? 60 * promoState.required : 0;
     const totalPromoPrice = (promoState.basePrice * (promoState.required - 1)) + feromonasCost;
-    // Para productos extra llenamos aromas con el nombre del producto
-    const aromasFinal = promoState.isExtra
-      ? Array(promoState.required).fill({ code: '', name: promoState.concentration })
-      : [...promoState.selectedAromas];
     state.cartItems.push({
       type: 'promo', volume: promoState.volume, concentration: promoState.concentration,
       required: promoState.required, payFor: promoState.required - 1,
-      aromas: aromasFinal, withFeromonas: promoState.withFeromonas,
+      aromas: [...promoState.selectedAromas], withFeromonas: promoState.withFeromonas,
       total: totalPromoPrice, isExtra: promoState.isExtra
     });
     updateCartSummary();
@@ -3305,19 +3298,18 @@
   function addToCart() {
     if (!state.selectedOption) { showToast('⚠️ Selecciona una presentación y concentración'); return; }
     const isExtra = EXTRA_PRODUCTS.includes(state.selectedOption.volume);
-    if (!isExtra && !state.selectedAroma) { showToast('⚠️ Selecciona un aroma primero'); return; }
+    if (!state.selectedAroma) { showToast('⚠️ Selecciona un aroma primero'); return; }
     if (promoState.active) { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
-    const feromonasCost = (!isExtra && state.withFeromonas) ? 60 : 0;
+    const feromonasCost = state.withFeromonas && !isExtra ? 60 : 0;
     const unitPrice     = state.selectedOption.price + feromonasCost;
     const totalPrice    = unitPrice * state.quantity;
-    const aromaLabel    = isExtra ? null : state.selectedAroma;
     state.cartItems.push({
-      type: 'individual', option: state.selectedOption, aroma: aromaLabel,
-      withFeromonas: !isExtra && state.withFeromonas, quantity: state.quantity, unitPrice, total: totalPrice
+      type: 'individual', option: state.selectedOption, aroma: state.selectedAroma,
+      withFeromonas: state.withFeromonas && !isExtra, quantity: state.quantity, unitPrice, total: totalPrice
     });
     updateCartSummary();
-    showToast(`✓ Añadido: ${state.selectedOption.concentration}`);
-    if (!isExtra) clearAroma();
+    showToast(`✓ Añadido: ${state.selectedAroma.name}`);
+    clearAroma();
     state.withFeromonas = false; state.quantity = 1;
     document.getElementById('qty-display').textContent = 1;
     document.getElementById('addon-feromonas').classList.remove('checked');
@@ -3441,7 +3433,7 @@
       if (item.type === 'individual') {
         const fLabel = item.withFeromonas ? ' + Feromonas' : '';
         msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n`;
-        msg += `   📦 ${item.option.volume} · ${item.option.concentration}${fLabel} ×${item.quantity}\n`;
+        msg += `   📦 ${item.option.concentration}${fLabel} ×${item.quantity}\n`;
         msg += `   💵 $${item.total.toFixed(2)} MXN\n\n`;
       } else {
         const fLabel = item.withFeromonas ? ' + Feromonas' : '';
