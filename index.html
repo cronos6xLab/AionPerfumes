@@ -852,6 +852,18 @@
   .info-modal-body { font-size: 0.82rem; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 14px; }
   .info-modal-body strong { color: var(--dark); font-weight: 500; }
   .info-modal-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,151,90,0.4); border-radius: 3px; padding: 2px 7px; margin-bottom: 12px; }
+  /* ── FIX: Prevenir zoom automático en iOS al enfocar inputs ── */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
 </style>
 </head>
 <body>
