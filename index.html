@@ -18,87 +18,55 @@
     --green-wa-dark: #128c4e;
     --radius-sm: 4px;
     --radius-md: 8px;
+    --drawer-w: 420px;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   body {
     background: var(--bg-main);
     font-family: 'Jost', sans-serif;
     color: var(--dark);
     min-height: 100vh;
   }
-
-  /* ── ANNOUNCEMENT BAR — sticky + marquee continuo ── */
+ 
+  /* ── ANNOUNCEMENT BAR ── */
   .announcement-bar {
     background: var(--dark);
     color: #ffffff;
     padding: 9px 0;
     overflow: hidden;
-    /* Sticky: se queda arriba del todo al hacer scroll */
     position: sticky;
     top: 0;
-    z-index: 102;          /* encima del header (z-index:100) */
+    z-index: 102;
     font-size: 0.68rem;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     font-weight: 400;
-    /* Línea dorada sutil en la parte inferior */
     border-bottom: 1px solid rgba(184,151,90,0.35);
   }
-
-  /* Pista de desplazamiento: contiene dos copias idénticas para bucle perfecto */
   .marquee-track {
     display: flex;
     width: max-content;
-    /* will-change para que el GPU se encargue del movimiento */
     will-change: transform;
     animation: marquee-smooth 28s linear infinite;
   }
-
-  /* Pausa al hover para que el usuario pueda leer cómodamente */
-  .announcement-bar:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-  .marquee-track span {
-    white-space: nowrap;
-    padding: 0 48px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  /* Separador decorativo entre repeticiones */
-  .marquee-sep {
-    color: rgba(184,151,90,0.8);
-    font-size: 0.5rem;
-  }
-
-  @keyframes marquee-smooth {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track { animation: none; }
-  }
-
+  .announcement-bar:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track span { white-space: nowrap; padding: 0 48px; display: inline-flex; align-items: center; gap: 10px; }
+  .marquee-sep { color: rgba(184,151,90,0.8); font-size: 0.5rem; }
+  @keyframes marquee-smooth { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+ 
   .header {
     background: var(--bg-main);
     padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: sticky;
-    position: sticky;
-    /* Se posiciona justo debajo del announcement-bar (≈37px).
-       Usamos una variable calculada con JS para exactitud. */
-    top: var(--banner-h, 37px);
+    position: relative;
     z-index: 100;
     border-bottom: 1px solid var(--border);
   }
-  .header { position: relative; }
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
     color: var(--dark);
@@ -107,9 +75,9 @@
     letter-spacing: 4px;
     text-transform: uppercase;
   }
-
+ 
   .container { max-width: 480px; margin: 0 auto; padding: 0 0 130px; }
-
+ 
   .product-image-wrap { position: relative; width: 100%; height: 380px; overflow: hidden; background: var(--bg-secondary); }
   .product-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
   .rating-badge {
@@ -119,18 +87,18 @@
     font-size: 0.75rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   }
-
+ 
   .product-info { padding: 30px 20px 10px; text-align: center; }
   .product-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 2px; color: var(--dark); margin-bottom: 8px; }
   .price-range { font-size: 1.1rem; color: var(--dark); font-weight: 400; letter-spacing: 1px; margin-bottom: 12px; }
   .product-subtitle { font-size: 0.75rem; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
-
+ 
   .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--dark); margin-bottom: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
   .step-number { background: var(--dark); color: white; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.6rem; }
-
+ 
   .divider { height: 1px; background: var(--border); margin: 24px 20px; }
   .option-section { padding: 0 20px; }
-
+ 
   .size-buttons, .conc-buttons { display: flex; gap: 10px; }
   .size-btn {
     flex: 1; padding: 14px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm);
@@ -139,7 +107,7 @@
   }
   .size-btn:hover { border-color: var(--dark); color: var(--dark); }
   .size-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
-
+ 
   .conc-btn {
     flex: 1; padding: 14px 8px; border: 1px solid var(--border); border-radius: var(--radius-sm);
     background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.8rem;
@@ -150,9 +118,9 @@
   .conc-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
   .conc-btn.active small { opacity: 0.7; }
   .conc-btn.unavailable { opacity: 0.28; pointer-events: none; cursor: default; }
-
+ 
   .selected-price-display { margin-top: 14px; font-size: 1.05rem; font-weight: 500; color: var(--dark); letter-spacing: 1px; text-align: center; min-height: 26px; transition: opacity 0.2s; }
-
+ 
   .promo-section { padding: 0 20px; }
   .promo-instruction {
     font-size: 0.75rem; color: var(--dark); background: #fffdf5;
@@ -182,15 +150,7 @@
     cursor: pointer; width: 100%; margin-top: 8px; transition: background 0.2s;
   }
   .btn-cancel-promo-inline:hover { background: var(--bg-secondary); }
-
-  .btn-clear-cart {
-    background: transparent; color: var(--dark); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); padding: 12px 16px; font-size: 0.8rem; font-weight: 500;
-    letter-spacing: 1px; text-transform: uppercase; cursor: pointer; width: 100%;
-    transition: background 0.2s; font-family: 'Jost', sans-serif;
-  }
-  .btn-clear-cart:hover { background: var(--bg-secondary); }
-
+ 
   .search-section { padding: 0 20px; }
   .search-wrap { position: relative; }
   .search-wrap input {
@@ -216,7 +176,7 @@
   .search-result-item .aroma-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.5px; line-height: 1.5; }
   .search-result-item .aroma-meta + .aroma-meta { margin-top: 3px; }
   .search-result-item .aroma-label { color: var(--dark); font-weight: 500; }
-
+ 
   .selected-aroma-tag { display: none; margin: 16px 20px 0; background: var(--bg-main); border: 1px solid var(--dark); border-radius: var(--radius-sm); padding: 14px 16px; align-items: center; gap: 12px; }
   .selected-aroma-tag.visible { display: flex; }
   .selected-aroma-tag .aroma-text { flex: 1; }
@@ -224,7 +184,7 @@
   .selected-aroma-tag .aroma-text small { color: var(--muted); font-size: 0.75rem; display: block; line-height: 1.5; }
   .selected-aroma-tag .aroma-text small + small { margin-top: 2px; }
   .remove-aroma { background: none; border: none; color: var(--dark); cursor: pointer; font-size: 1.2rem; }
-
+ 
   .addon-section { padding: 0 20px; }
   .addon-option { display: flex; align-items: center; cursor: pointer; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); transition: border-color 0.2s; }
   .addon-option:hover { border-color: var(--dark); }
@@ -234,7 +194,7 @@
   .addon-label { display: block; font-size: 0.9rem; font-weight: 500; }
   .addon-desc { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
   .addon-price { font-weight: 500; font-size: 0.9rem; }
-
+ 
   .finish-promo-wrapper { display: none; padding: 0 20px; margin-top: 16px; }
   .finish-promo-wrapper.visible { display: block; }
   .btn-finish-promo {
@@ -245,17 +205,17 @@
   }
   .btn-finish-promo:hover { background: #333; }
   .btn-finish-promo:active { transform: scale(0.98); }
-
+ 
   .promo-hint { display: none; padding: 0 20px; margin-top: 16px; }
   .promo-hint.visible { display: block; }
   .promo-hint-inner { border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 0.78rem; color: var(--muted); text-align: center; letter-spacing: 0.5px; }
-
+ 
   .quantity-section { padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
   .qty-control { display: flex; align-items: center; border: 1px solid var(--border); border-radius: var(--radius-sm); }
   .qty-btn { width: 40px; height: 40px; background: none; border: none; font-size: 1.2rem; color: var(--dark); cursor: pointer; transition: background 0.15s; }
   .qty-btn:hover { background: var(--bg-secondary); }
   .qty-display { width: 40px; text-align: center; font-weight: 500; font-size: 0.9rem; }
-
+ 
   .coupon-section { padding: 0 20px; }
   .coupon-wrap { display: flex; gap: 8px; align-items: stretch; }
   .coupon-wrap input {
@@ -279,45 +239,480 @@
   .coupon-feedback-icon { font-size: 1rem; }
   .coupon-feedback-text { flex: 1; }
   .btn-remove-coupon { background: none; border: none; color: #1a6638; cursor: pointer; font-size: 1rem; padding: 0 4px; line-height: 1; }
-
-  .cart-summary { display: none; margin: 20px 20px 0; border: 1px solid var(--border); background: var(--bg-main); border-radius: var(--radius-sm); padding: 20px; }
-  .cart-summary.visible { display: block; }
-  .cart-summary-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-weight: 600; }
-  .cart-item, .promo-item { font-size: 0.85rem; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .cart-item { display: flex; justify-content: space-between; align-items: center; }
-  .promo-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-  .promo-details { margin-top: 12px; padding: 12px; background: var(--bg-secondary); font-size: 0.75rem; display: none; border-radius: var(--radius-sm); }
-  .promo-details.expanded { display: block; }
-  .promo-detail-item { display: flex; justify-content: space-between; padding: 4px 0; color: var(--muted); }
-  .cart-item-price { font-weight: 500; margin: 0 12px; }
-  .cart-item-remove, .promo-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; }
-  .cart-item-remove:hover, .promo-remove:hover { color: var(--dark); }
-  .cart-discount-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #1a6638; padding: 10px 0 0; font-weight: 500; }
-  .cart-shipping-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0 0; }
-  .cart-shipping-row .shipping-free { color: #1a6638; font-weight: 500; }
-  .cart-shipping-row .shipping-cost { color: var(--muted); }
-  .cart-shipping-row .shipping-notice { font-size: 0.72rem; color: var(--gold); font-weight: 500; }
-  .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 500; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
-
+ 
+  /* ══════════════════════════════════════
+     CART DRAWER — Panel lateral
+  ══════════════════════════════════════ */
+ 
+  /* Overlay oscuro detrás del drawer */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 200;
+    pointer-events: none;
+    transition: background 0.35s ease;
+  }
+  .cart-overlay.open {
+    background: rgba(0,0,0,0.45);
+    pointer-events: auto;
+  }
+ 
+  /* El panel en sí */
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--drawer-w);
+    max-width: 100vw;
+    background: var(--bg-main);
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -12px 0 48px rgba(0,0,0,0.12);
+  }
+  .cart-drawer.open {
+    transform: translateX(0);
+  }
+ 
+  /* Cabecera del drawer */
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .drawer-header-left { display: flex; align-items: center; gap: 12px; }
+  .drawer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+  .drawer-item-count {
+    background: var(--dark);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+  }
+  .drawer-close {
+    background: var(--bg-secondary);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .drawer-close:hover { background: var(--border); color: var(--dark); }
+ 
+  /* Zona de scroll del contenido */
+  .drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    /* Scrollbar discreta */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .drawer-body::-webkit-scrollbar { width: 4px; }
+  .drawer-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+ 
+  /* Estado vacío */
+  .drawer-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 30px;
+    text-align: center;
+    height: 100%;
+    color: var(--muted);
+  }
+  .drawer-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.3;
+  }
+  .drawer-empty-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--dark);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .drawer-empty-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+  }
+ 
+  /* Items en el drawer */
+  .drawer-items { padding: 0 20px; }
+ 
+  .drawer-cart-item {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    animation: slideIn 0.25s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(12px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+ 
+  .drawer-item-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .drawer-item-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .drawer-item-meta { flex: 1; min-width: 0; }
+  .drawer-item-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .drawer-item-sub {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.4px;
+    line-height: 1.5;
+  }
+  .drawer-item-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+  .drawer-item-price {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--dark);
+  }
+  .drawer-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .drawer-remove-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.5px;
+    transition: all 0.15s;
+  }
+  .drawer-remove-btn:hover { border-color: #c00; color: #c00; background: #fff5f5; }
+ 
+  /* Acordeón: detalles del paquete */
+  .drawer-promo-toggle {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 0.75rem;
+    font-family: 'Jost', sans-serif;
+    color: var(--dark);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    transition: background 0.15s;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .drawer-promo-toggle:hover { background: var(--border); }
+  .drawer-promo-toggle .toggle-arrow {
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+    color: var(--muted);
+  }
+  .drawer-promo-toggle.expanded .toggle-arrow { transform: rotate(180deg); }
+ 
+  .drawer-promo-details {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+  .drawer-promo-details.expanded { max-height: 400px; }
+  .drawer-promo-details-inner {
+    padding: 12px 14px;
+    background: #fafafa;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  }
+  .drawer-promo-aroma-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .drawer-promo-aroma-row:last-child { border-bottom: none; }
+  .drawer-promo-aroma-code { font-weight: 500; color: var(--dark); margin-right: 8px; font-size: 0.7rem; }
+  .drawer-promo-aroma-name { flex: 1; }
+  .drawer-promo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fffdf5;
+    border: 1px solid rgba(184,151,90,0.35);
+    color: var(--gold);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    display: block;
+    width: fit-content;
+  }
+ 
+  /* Sección de feromonas badge dentro del drawer */
+  .drawer-feromonas-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #f5f0fa;
+    border: 1px solid #d0bde8;
+    color: #6b3fa0;
+    font-size: 0.68rem;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-top: 6px;
+  }
+ 
+  /* ── Zona de totales del drawer ── */
+  .drawer-footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 24px 28px;
+    background: var(--bg-main);
+    flex-shrink: 0;
+  }
+ 
+  .drawer-totals { margin-bottom: 18px; }
+  .drawer-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    padding: 5px 0;
+    color: var(--muted);
+  }
+  .drawer-total-row.subtotal { color: var(--dark); }
+  .drawer-total-row.discount { color: #1a6638; font-weight: 500; }
+  .drawer-total-row.shipping-free { color: #1a6638; }
+  .drawer-total-row.shipping-cost .shipping-notice {
+    font-size: 0.68rem; color: var(--gold); font-weight: 500; text-align: right;
+    display: block; margin-top: 1px;
+  }
+ 
+  .drawer-grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 0;
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .drawer-grand-total .label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  .drawer-grand-total .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--dark);
+  }
+ 
+  .drawer-coupon-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: #fffdf5;
+    border: 1px solid rgba(184,151,90,0.3);
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+  }
+  .drawer-coupon-code { font-weight: 600; color: var(--gold); letter-spacing: 1px; }
+  .drawer-coupon-desc { flex: 1; color: var(--muted); }
+  .drawer-coupon-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.9rem; padding: 2px; }
+  .drawer-coupon-remove:hover { color: #c00; }
+ 
+  /* Botones del footer */
+  .drawer-actions { display: flex; flex-direction: column; gap: 10px; }
+  .drawer-btn-wa {
+    background: var(--green-wa);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+  .drawer-btn-wa:hover { background: var(--green-wa-dark); }
+  .drawer-btn-wa:active { transform: scale(0.98); }
+ 
+  .drawer-btn-clear {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 11px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+  }
+  .drawer-btn-clear:hover { background: var(--bg-secondary); color: var(--dark); border-color: var(--dark); }
+ 
+  /* ── CART FAB (botón flotante) ── */
+  .cart-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 20px;
+    z-index: 190;
+    background: var(--dark);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 22px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background 0.2s, opacity 0.2s;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+  }
+  .cart-fab.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .cart-fab:hover { background: #333; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.22); }
+  .cart-fab:active { transform: scale(0.97); }
+  .cart-fab-count {
+    background: var(--gold);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    letter-spacing: 0;
+  }
+  /* Pulso al añadir item */
+  .cart-fab.pulse {
+    animation: fabPulse 0.4s ease;
+  }
+  @keyframes fabPulse {
+    0%   { transform: translateY(0) scale(1); }
+    40%  { transform: translateY(-4px) scale(1.06); }
+    100% { transform: translateY(0) scale(1); }
+  }
+ 
+  /* ── ACTION BUTTONS (fondo) ── */
   .action-buttons {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
     width: 100%; max-width: 480px; padding: 16px 20px 24px;
     background: linear-gradient(to top, rgba(255,255,255,1) 70%, rgba(255,255,255,0));
     display: flex; gap: 12px; z-index: 90;
   }
-  .btn-add, .btn-wa {
+  .btn-add {
     flex: 1; border: none; border-radius: var(--radius-sm); padding: 16px;
     font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500;
     letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
     display: flex; align-items: center; justify-content: center; gap: 8px;
     transition: transform 0.1s, opacity 0.2s;
+    background: var(--dark); color: #ffffff;
   }
-  .btn-add { background: var(--dark); color: #ffffff; }
   .btn-add:hover { opacity: 0.9; }
-  .btn-wa { background: var(--green-wa); color: #ffffff; }
-  .btn-wa:hover { background: var(--green-wa-dark); }
-  .btn-add:active, .btn-wa:active { transform: scale(0.98); }
-
+  .btn-add:active { transform: scale(0.98); }
+ 
   .toast {
     position: fixed; top: 100px; left: 50%;
     transform: translateX(-50%) translateY(-10px);
@@ -327,76 +722,36 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-  /* ══════════════════════════════════════
-     ONBOARDING TOUR
-  ══════════════════════════════════════ */
-
-  /* ── FIX 1: overlay usa opacity en lugar de display, para poder hacer
-     fade-out limpio y evitar que el box-shadow del highlight persista ── */
+ 
+  /* ══ ONBOARDING TOUR ══ */
   .tour-overlay {
-    position: fixed;
-    inset: 0;
-    /* El oscurecimiento lo hace el highlight con box-shadow gigante.
-       El overlay solo captura clicks para "omitir". */
-    background: transparent;
-    z-index: 1000;
-    pointer-events: none;        /* no bloquea nada mientras no hay tour */
-    opacity: 0;
-    transition: opacity 0.3s;
+    position: fixed; inset: 0; background: transparent; z-index: 1000;
+    pointer-events: none; opacity: 0; transition: opacity 0.3s;
   }
-  .tour-overlay.active {
-    pointer-events: auto;
-    opacity: 1;
-  }
-
-  /* ── FIX 2: highlight tiene transition y se resetea correctamente ── */
+  .tour-overlay.active { pointer-events: auto; opacity: 1; }
   .tour-highlight {
-    position: fixed;
-    border-radius: 6px;
-    /* El box-shadow gigante crea el efecto oscuro alrededor */
-    box-shadow: 0 0 0 0 rgba(0,0,0,0);   /* estado inicial: transparente */
-    z-index: 1001;
-    pointer-events: none;
-    transition: all 0.35s cubic-bezier(.4,0,.2,1),
-                box-shadow 0.3s ease;
+    position: fixed; border-radius: 6px;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    z-index: 1001; pointer-events: none;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.3s ease;
   }
-  .tour-highlight.active {
-    box-shadow: 0 0 0 9999px rgba(0,0,0,0.55);
-  }
-
+  .tour-highlight.active { box-shadow: 0 0 0 9999px rgba(0,0,0,0.55); }
   .tour-tooltip {
-    position: fixed;
-    z-index: 1003;   /* por encima de overlay y highlight */
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 20px 22px;
-    max-width: 300px;
-    width: calc(100vw - 40px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-    /* oculto por defecto fuera de pantalla */
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s, top 0.35s cubic-bezier(.4,0,.2,1),
-                bottom 0.35s cubic-bezier(.4,0,.2,1),
-                left 0.35s cubic-bezier(.4,0,.2,1);
+    position: fixed; z-index: 1003; background: #ffffff;
+    border-radius: 10px; padding: 20px 22px; max-width: 300px;
+    width: calc(100vw - 40px); box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, top 0.35s cubic-bezier(.4,0,.2,1), bottom 0.35s cubic-bezier(.4,0,.2,1), left 0.35s cubic-bezier(.4,0,.2,1);
   }
-  .tour-tooltip.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  .tour-tooltip.active { opacity: 1; pointer-events: auto; }
   .tour-tooltip::before {
-    content: '';
-    position: absolute;
-    width: 12px; height: 12px;
-    background: #ffffff;
-    transform: rotate(45deg);
+    content: ''; position: absolute; width: 12px; height: 12px;
+    background: #ffffff; transform: rotate(45deg);
   }
   .tour-tooltip.arrow-top::before    { top: -6px; left: 24px; }
   .tour-tooltip.arrow-bottom::before { bottom: -6px; left: 24px; }
   .tour-tooltip.arrow-top-right::before    { top: -6px; right: 24px; }
   .tour-tooltip.arrow-bottom-right::before { bottom: -6px; right: 24px; }
-
   .tour-step-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
   .tour-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; color: var(--dark); margin-bottom: 8px; letter-spacing: 1px; }
   .tour-body { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
@@ -405,201 +760,110 @@
   .tour-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
   .tour-dot.active { background: var(--dark); }
   .tour-actions { display: flex; gap: 8px; }
-  .tour-btn-skip {
-    background: none; border: 1px solid var(--border); border-radius: var(--radius-sm);
-    padding: 8px 14px; font-family: 'Jost', sans-serif; font-size: 0.75rem;
-    color: var(--muted); cursor: pointer; letter-spacing: 1px; transition: border-color 0.2s;
-  }
+  .tour-btn-skip { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 14px; font-family: 'Jost', sans-serif; font-size: 0.75rem; color: var(--muted); cursor: pointer; letter-spacing: 1px; transition: border-color 0.2s; }
   .tour-btn-skip:hover { border-color: var(--muted); }
-  .tour-btn-next {
-    background: var(--dark); border: none; border-radius: var(--radius-sm);
-    padding: 8px 18px; font-family: 'Jost', sans-serif; font-size: 0.75rem;
-    font-weight: 500; color: white; cursor: pointer; letter-spacing: 1px;
-    text-transform: uppercase; transition: background 0.2s;
-  }
+  .tour-btn-next { background: var(--dark); border: none; border-radius: var(--radius-sm); padding: 8px 18px; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; color: white; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: background 0.2s; }
   .tour-btn-next:hover { background: #333; }
-
-
+ 
   /* ── PROMO GUIDE MODAL ── */
-  .promo-guide-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    z-index: 2100; opacity: 0; pointer-events: none;
-    transition: opacity 0.3s;
-  }
+  .promo-guide-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
   .promo-guide-overlay.open { opacity: 1; pointer-events: auto; }
-
-  .promo-guide-modal {
-    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(30px);
-    width: 100%; max-width: 480px; background: #fff;
-    border-radius: 20px 20px 0 0; padding: 0 0 36px;
-    z-index: 2101;
-    box-shadow: 0 -12px 40px rgba(0,0,0,0.18);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
-    opacity: 0;
-  }
-  .promo-guide-overlay.open .promo-guide-modal {
-    transform: translateX(-50%) translateY(0); opacity: 1;
-  }
-
-  .promo-guide-handle {
-    width: 36px; height: 4px; background: var(--border);
-    border-radius: 9999px; margin: 12px auto 0;
-  }
-
-  .promo-guide-header {
-    padding: 18px 22px 0;
-    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-  }
-  .promo-guide-title-wrap {}
-  .promo-guide-eyebrow {
-    font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--gold); font-weight: 600; margin-bottom: 4px;
-  }
-  .promo-guide-title {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
-    font-weight: 500; letter-spacing: 1px; color: var(--dark); line-height: 1.2;
-  }
-  .promo-guide-close {
-    background: var(--bg-secondary); border: none; border-radius: 50%;
-    width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-    font-size: 0.9rem; color: var(--muted); cursor: pointer; flex-shrink: 0;
-    transition: background 0.15s; margin-top: 2px;
-  }
+  .promo-guide-modal { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(30px); width: 100%; max-width: 480px; background: #fff; border-radius: 20px 20px 0 0; padding: 0 0 36px; z-index: 2101; box-shadow: 0 -12px 40px rgba(0,0,0,0.18); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s; opacity: 0; }
+  .promo-guide-overlay.open .promo-guide-modal { transform: translateX(-50%) translateY(0); opacity: 1; }
+  .promo-guide-handle { width: 36px; height: 4px; background: var(--border); border-radius: 9999px; margin: 12px auto 0; }
+  .promo-guide-header { padding: 18px 22px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .promo-guide-eyebrow { font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+  .promo-guide-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; letter-spacing: 1px; color: var(--dark); line-height: 1.2; }
+  .promo-guide-close { background: var(--bg-secondary); border: none; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--muted); cursor: pointer; flex-shrink: 0; transition: background 0.15s; margin-top: 2px; }
   .promo-guide-close:hover { background: var(--border); color: var(--dark); }
-
-  .promo-guide-steps {
-    padding: 20px 22px 0; display: flex; flex-direction: column; gap: 0;
-  }
-  .promo-guide-step {
-    display: flex; gap: 14px; align-items: flex-start; padding: 14px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .promo-guide-steps { padding: 20px 22px 0; display: flex; flex-direction: column; gap: 0; }
+  .promo-guide-step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); }
   .promo-guide-step:last-child { border-bottom: none; }
-
-  .promo-guide-step-num {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--dark); color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.72rem; font-weight: 600; flex-shrink: 0; margin-top: 1px;
-  }
+  .promo-guide-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--dark); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
   .promo-guide-step-num.gold { background: var(--gold); }
-
-  .promo-guide-step-body {}
-  .promo-guide-step-title {
-    font-size: 0.88rem; font-weight: 600; color: var(--dark);
-    margin-bottom: 3px; letter-spacing: 0.3px;
-  }
-  .promo-guide-step-desc {
-    font-size: 0.78rem; color: var(--muted); line-height: 1.55;
-  }
+  .promo-guide-step-title { font-size: 0.88rem; font-weight: 600; color: var(--dark); margin-bottom: 3px; letter-spacing: 0.3px; }
+  .promo-guide-step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
   .promo-guide-step-desc strong { color: var(--dark); font-weight: 500; }
-
-  .promo-guide-badge {
-    display: inline-block; background: #fffdf5; border: 1px solid rgba(184,151,90,0.4);
-    color: var(--gold); font-size: 0.68rem; font-weight: 600; letter-spacing: 1px;
-    text-transform: uppercase; border-radius: 3px; padding: 2px 8px; margin-bottom: 16px;
-    margin-left: 22px; margin-top: 4px;
-  }
-
-  .promo-guide-cta {
-    margin: 18px 22px 0;
-    background: var(--dark); color: white; border: none;
-    border-radius: var(--radius-sm); padding: 15px;
-    font-family: 'Jost', sans-serif; font-size: 0.82rem;
-    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
-    cursor: pointer; width: calc(100% - 44px); transition: background 0.2s;
-    display: block;
-  }
+  .promo-guide-badge { display: inline-block; background: #fffdf5; border: 1px solid rgba(184,151,90,0.4); color: var(--gold); font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 3px; padding: 2px 8px; margin-bottom: 16px; margin-left: 22px; margin-top: 4px; }
+  .promo-guide-cta { margin: 18px 22px 0; background: var(--dark); color: white; border: none; border-radius: var(--radius-sm); padding: 15px; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; width: calc(100% - 44px); transition: background 0.2s; display: block; }
   .promo-guide-cta:hover { background: #333; }
-  .promo-guide-cta:active { transform: scale(0.98); }
-
-
-  /* ── PRODUCTOS EXTRA (crema / desodorante) ── */
-  .size-btn.extra-product {
-    font-size: 0.72rem; line-height: 1.35; padding: 10px 6px;
-    border-style: dashed;
-  }
-  .size-btn.extra-product.active {
-    background: var(--dark); color: white; border-color: var(--dark); border-style: solid;
-  }
+ 
+  /* ── EXTRAS: crema/deo ── */
+  .size-btn.extra-product { font-size: 0.72rem; line-height: 1.35; padding: 10px 6px; border-style: dashed; }
+  .size-btn.extra-product.active { background: var(--dark); color: white; border-color: var(--dark); border-style: solid; }
   .conc-section-hidden { display: none !important; }
-  .extra-price-note {
-    margin-top: 14px; font-size: 0.78rem; color: var(--muted);
-    text-align: center; letter-spacing: 0.5px;
-    background: #fffdf5; border: 1px solid rgba(184,151,90,0.3);
-    border-radius: var(--radius-sm); padding: 8px 14px;
-  }
-  .extra-price-note strong { color: var(--dark); }
-
+ 
   /* ── INFO MODALS ── */
   .info-btn {
-    background: none; border: 1px solid rgba(184,151,90,0.5); border-radius: 50%;
-    width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center;
-    font-size: 0.65rem; font-weight: 600; color: var(--gold); cursor: pointer;
-    transition: all 0.2s; line-height: 1; padding: 0; font-family: 'Jost', sans-serif;
-    flex-shrink: 0;
+    background: none;
+    border: 1.5px solid rgba(184,151,90,0.5);
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 600; color: var(--gold);
+    cursor: pointer; line-height: 1; padding: 0;
+    font-family: 'Jost', sans-serif; flex-shrink: 0;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
   .info-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
-
-  .info-modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.45);
-    z-index: 2000; opacity: 0; pointer-events: none;
-    transition: opacity 0.25s;
+ 
+  /* Aro neon azul parpadeante — solo mientras .unseen esté activo */
+  .info-btn.unseen {
+    border-color: #00aaff;
+    color: #00aaff;
+    animation: infoBtnPulse 1.4s ease-in-out infinite;
   }
-  .info-modal-overlay.open { opacity: 1; pointer-events: auto; }
-
-  .info-modal {
-    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(20px);
-    width: 100%; max-width: 480px; background: #fff;
-    border-radius: 16px 16px 0 0; padding: 28px 24px 36px;
-    z-index: 2001; box-shadow: 0 -8px 32px rgba(0,0,0,0.15);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s;
+  .info-btn.unseen::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid #00aaff;
     opacity: 0;
+    animation: infoBtnRing 1.4s ease-in-out infinite;
+    pointer-events: none;
   }
+  @keyframes infoBtnPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,170,255,0.0); border-color: #00aaff; color: #00aaff; }
+    50%       { box-shadow: 0 0 8px 2px rgba(0,170,255,0.55); border-color: #55ccff; color: #55ccff; }
+  }
+  @keyframes infoBtnRing {
+    0%   { transform: scale(0.85); opacity: 0.7; }
+    70%  { transform: scale(1.5);  opacity: 0; }
+    100% { transform: scale(1.5);  opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .info-btn.unseen, .info-btn.unseen::after { animation: none; }
+  }
+  .info-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+  .info-modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .info-modal { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(20px); width: 100%; max-width: 480px; background: #fff; border-radius: 16px 16px 0 0; padding: 28px 24px 36px; z-index: 2001; box-shadow: 0 -8px 32px rgba(0,0,0,0.15); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s; opacity: 0; }
   .info-modal-overlay.open .info-modal { transform: translateX(-50%) translateY(0); opacity: 1; }
-
-  .info-modal-header {
-    display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
-  }
-  .info-modal-title {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500;
-    letter-spacing: 1px; color: var(--dark);
-  }
-  .info-modal-close {
-    background: none; border: none; font-size: 1.3rem; color: var(--muted);
-    cursor: pointer; line-height: 1; padding: 4px; transition: color 0.15s;
-  }
+  .info-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .info-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; letter-spacing: 1px; color: var(--dark); }
+  .info-modal-close { background: none; border: none; font-size: 1.3rem; color: var(--muted); cursor: pointer; line-height: 1; padding: 4px; transition: color 0.15s; }
   .info-modal-close:hover { color: var(--dark); }
-  .info-modal-body {
-    font-size: 0.82rem; color: var(--muted); line-height: 1.7;
-    border-top: 1px solid var(--border); padding-top: 14px;
-  }
+  .info-modal-body { font-size: 0.82rem; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 14px; }
   .info-modal-body strong { color: var(--dark); font-weight: 500; }
-  .info-modal-badge {
-    display: inline-block; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--gold); border: 1px solid rgba(184,151,90,0.4); border-radius: 3px;
-    padding: 2px 7px; margin-bottom: 12px;
-  }
-
+  .info-modal-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,151,90,0.4); border-radius: 3px; padding: 2px 7px; margin-bottom: 12px; }
 </style>
 </head>
 <body>
-
+ 
 <div class="announcement-bar" role="marquee" aria-label="Anuncio: Envío gratis en promociones o superando $1200">
   <div class="marquee-track">
-    <!-- Primera copia -->
     <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $1200 <span class="marquee-sep">◆</span></span>
     <span>ALTA CONCENTRACIÓN · LARGA DURACIÓN · ALTA ESTELA <span class="marquee-sep">◆</span></span>
     <span>AROMAS INSPIRADOS EN LAS MEJORES CASAS DEL MUNDO <span class="marquee-sep">◆</span></span>
-    <!-- Segunda copia — bucle sin salto visible -->
     <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $1200 <span class="marquee-sep">◆</span></span>
     <span>  1 PERFUME GRATIS ELIGIENDO CUALQUIER PROMOCIÓN  <span class="marquee-sep">◆</span></span>
     <span>  10% DE DESCUENTO AÑADIENDO CÓDIGO PROMOCIONAL  <span class="marquee-sep">◆</span></span>
   </div>
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <!-- TOUR ELEMENTS -->
 <div class="tour-overlay" id="tour-overlay" onclick="tourSkip()"></div>
 <div class="tour-highlight" id="tour-highlight"></div>
@@ -615,25 +879,63 @@
     </div>
   </div>
 </div>
-
+ 
+<!-- ══════════════════════════════════════
+     CART DRAWER
+══════════════════════════════════════ -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Carrito de compras" role="dialog">
+  <div class="drawer-header">
+    <div class="drawer-header-left">
+      <span class="drawer-title">Carrito</span>
+      <span class="drawer-item-count" id="drawer-item-count">0</span>
+    </div>
+    <button class="drawer-close" onclick="closeCart()" aria-label="Cerrar carrito" title="Cerrar carrito">—</button>
+  </div>
+ 
+  <div class="drawer-body" id="drawer-body">
+    <!-- Estado vacío -->
+    <div class="drawer-empty" id="drawer-empty">
+      <div class="drawer-empty-icon">🛒</div>
+      <div class="drawer-empty-title">Tu carrito está vacío</div>
+      <div class="drawer-empty-sub">Selecciona un aroma y añádelo<br>para comenzar tu pedido.</div>
+    </div>
+    <!-- Items dinámicos -->
+    <div class="drawer-items" id="drawer-items" style="display:none;"></div>
+  </div>
+ 
+  <div class="drawer-footer" id="drawer-footer" style="display:none;">
+    <div class="drawer-totals" id="drawer-totals"></div>
+    <div class="drawer-actions">
+      <button class="drawer-btn-wa" onclick="sendToWhatsApp()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Finalizar por WhatsApp
+      </button>
+      <button class="drawer-btn-clear" onclick="clearCart()">Vaciar carrito</button>
+    </div>
+  </div>
+</aside>
+ 
 <div class="header">
   <h1>Aion Perfumes</h1>
-  <button class="info-btn" onclick="openInfoModal('legal')" aria-label="Aviso legal de marcas" title="Aviso legal" style="position:absolute; right:20px;">i</button>
+  <button class="info-btn unseen" id="info-btn-legal" onclick="openInfoModal('legal')" aria-label="Aviso legal de marcas" title="Aviso legal" style="position:absolute; right:20px;">i</button>
 </div>
-
+ 
 <div class="container">
   <div class="product-image-wrap">
     <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=800&q=80" alt="Perfume Concentrado">
     <div class="rating-badge">★ 4.8 (1623 reseñas)</div>
   </div>
-
+ 
   <div class="product-info">
     <h2>Perfume Concentrado</h2>
     <div class="product-subtitle">Longevidad · Alta Estela</div>
   </div>
-
+ 
   <div class="divider"></div>
-
+ 
   <!-- PASO 1A: TAMAÑO -->
   <div class="option-section" id="tour-anchor-size">
     <div class="section-label"><span class="step-number">1</span> Presentación</div>
@@ -646,9 +948,9 @@
       <button class="size-btn extra-product" data-size="deo" onclick="selectSize('deo')">🧴 Desod.<br>Roll-on 50ml</button>
     </div>
   </div>
-
+ 
   <div class="divider"></div>
-
+ 
   <!-- PASO 1B: CONCENTRACIÓN -->
   <div class="option-section" id="tour-anchor-conc">
     <div class="section-label conc-label">💧 Concentración</div>
@@ -659,9 +961,9 @@
     </div>
     <div class="selected-price-display" id="selected-price-display">$188.00 MXN</div>
   </div>
-
+ 
   <div class="divider"></div>
-
+ 
   <!-- PASO 2: PAQUETES -->
   <div class="promo-section" id="tour-anchor-promo">
     <div class="section-label"><span class="step-number">2</span> Paquetes Especiales (Opcional)</div>
@@ -681,19 +983,19 @@
       <button class="btn-cancel-promo-inline" onclick="cancelPromo()">✕ Cancelar paquete</button>
     </div>
   </div>
-
+ 
   <div class="divider"></div>
-
+ 
   <!-- PASO 3: AROMA -->
   <div class="search-section" id="tour-anchor-aroma">
-    <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn" onclick="openInfoModal('aromas')" aria-label="Disponibilidad de aromas" title="Disponibilidad">i</button></div>
+    <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')" aria-label="Disponibilidad de aromas" title="Disponibilidad">i</button></div>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
       <input type="text" id="search-input" placeholder="Buscar familia olfativa, casa, código...">
       <div class="search-results" id="search-results"></div>
     </div>
   </div>
-
+ 
   <div class="selected-aroma-tag" id="selected-aroma-tag">
     <div class="aroma-text">
       <strong id="tag-name">Aroma seleccionado</strong>
@@ -702,9 +1004,9 @@
     </div>
     <button class="remove-aroma" onclick="clearAroma()">✕</button>
   </div>
-
+ 
   <div class="divider"></div>
-
+ 
   <!-- PASO 4: EXTRAS -->
   <div class="addon-section" id="tour-anchor-extras">
     <div class="section-label"><span class="step-number">4</span> Extras (Opcional)</div>
@@ -717,17 +1019,17 @@
       <span class="addon-price">+$60.00</span>
     </div>
   </div>
-
+ 
   <div class="finish-promo-wrapper" id="finish-promo-wrapper">
     <button class="btn-finish-promo" onclick="finishPromo()">🎁 Añadir paquete al carrito</button>
   </div>
-
+ 
   <div class="promo-hint" id="promo-hint">
     <div class="promo-hint-inner" id="promo-hint-text">Selecciona todos los aromas en el paso 3 para continuar</div>
   </div>
-
+ 
   <div class="divider"></div>
-
+ 
   <!-- CANTIDAD -->
   <div class="quantity-section" id="quantity-section">
     <span class="section-label" style="margin:0;">Cantidad (Unidad)</span>
@@ -737,9 +1039,9 @@
       <button class="qty-btn" onclick="changeQty(1)">+</button>
     </div>
   </div>
-
+ 
   <div class="divider"></div>
-
+ 
   <!-- PASO 5: CÓDIGO PROMOCIONAL -->
   <div class="coupon-section" id="tour-anchor-coupon">
     <div class="section-label"><span class="step-number">5</span> Código Promocional (Opcional)</div>
@@ -753,45 +1055,98 @@
       <button class="btn-remove-coupon" id="btn-remove-coupon" onclick="removeCoupon()" style="display:none;">✕</button>
     </div>
   </div>
-
-  <!-- RESUMEN DE COMPRA -->
-  <div class="cart-summary" id="cart-summary">
-    <div class="cart-summary-title">Resumen de Compra</div>
-    <div id="cart-items-list"></div>
-    <div class="cart-discount-row" id="cart-discount-row" style="display:none;">
-      <span id="cart-discount-label">Descuento</span>
-      <span id="cart-discount-amount"></span>
+</div>
+ 
+<div id="tour-anchor-actions" style="height:1px; margin-bottom: 80px;"></div>
+ 
+<!-- FAB del carrito -->
+<button class="cart-fab" id="cart-fab" onclick="openCart()" aria-label="Ver carrito">
+  🛒 Ver Carrito
+  <span class="cart-fab-count" id="cart-fab-count">0</span>
+</button>
+ 
+<!-- Botón añadir (único en footer) -->
+<div class="action-buttons">
+  <button class="btn-add" onclick="addToCart()">+ Añadir al carrito</button>
+</div>
+ 
+<!-- ══ MODALES ══ -->
+<div class="promo-guide-overlay" id="promo-guide-overlay" onclick="closePromoGuide()">
+  <div class="promo-guide-modal" onclick="event.stopPropagation()">
+    <div class="promo-guide-handle"></div>
+    <div class="promo-guide-header">
+      <div class="promo-guide-title-wrap">
+        <div class="promo-guide-eyebrow">Paquete activado ✦</div>
+        <div class="promo-guide-title" id="promo-guide-title">Lleva 6, paga 5</div>
+      </div>
+      <button class="promo-guide-close" onclick="closePromoGuide()" aria-label="Cerrar guía">✕</button>
     </div>
-    <div class="cart-shipping-row" id="cart-shipping-row">
-      <span>Envío</span>
-      <span id="cart-shipping-label"></span>
+    <div class="promo-guide-badge" id="promo-guide-badge">30 ml · Extrait de Parfum 33%</div>
+    <div class="promo-guide-steps">
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num">1</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Baja al Paso 3 — Selección de Aroma</div>
+          <div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma. Escribe el nombre de la fragancia o su código (ej. <strong>"Sauvage"</strong> o <strong>"C0001"</strong>).</div>
+        </div>
+      </div>
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num">2</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> aromas diferentes</div>
+          <div class="promo-guide-step-desc">Cada vez que elijas uno del listado se irá añadiendo a tu paquete automáticamente.</div>
+        </div>
+      </div>
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num">3</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Añade feromonas si deseas (opcional)</div>
+          <div class="promo-guide-step-desc">En el Paso 4 puedes activar la opción de feromonas <strong>+$60 MXN</strong> — se aplica a todos los perfumes del paquete.</div>
+        </div>
+      </div>
+      <div class="promo-guide-step">
+        <div class="promo-guide-step-num gold">✓</div>
+        <div class="promo-guide-step-body">
+          <div class="promo-guide-step-title">Presiona "Añadir paquete al carrito"</div>
+          <div class="promo-guide-step-desc">Aparecerá el botón cuando completes todos los aromas. Después finaliza por WhatsApp desde el carrito.</div>
+        </div>
+      </div>
     </div>
-    <div class="cart-total">
-      <span>Total Estimado</span>
-      <span id="cart-total-price">$0.00</span>
-    </div>
-    <button class="btn-clear-cart" style="margin-top:20px; font-size:0.75rem;" onclick="clearCart()">Vaciar Carrito</button>
+    <button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido, voy a elegir mis aromas!</button>
   </div>
 </div>
-
-<!-- ── FIX último paso: el anchor es un div en el flujo del documento,
-     NO el .action-buttons fijo, para que el tooltip aparezca dentro de la
-     página y sea fácil de presionar ── -->
-<div id="tour-anchor-actions" style="height:1px; margin-bottom: 140px;"></div>
-
-<div class="action-buttons">
-  <button class="btn-add" onclick="addToCart()">Añadir</button>
-  <button class="btn-wa" id="btn-wa" onclick="sendToWhatsApp()" style="display:none;">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-    Finalizar Pedido
-  </button>
+ 
+<div class="info-modal-overlay" id="modal-legal-overlay" onclick="closeInfoModal('legal')">
+  <div class="info-modal" onclick="event.stopPropagation()">
+    <div class="info-modal-header">
+      <span class="info-modal-title">Aviso Legal</span>
+      <button class="info-modal-close" onclick="closeInfoModal('legal')" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="info-modal-body">
+      <div class="info-modal-badge">Art. 213 · Ley de Propiedad Industrial</div>
+      <p>En <strong>Aion Perfumes</strong> vendemos perfumes <strong>inspirados en diseñadores/marcas</strong> que se utilizan con fines de referencia a los aromas y aclaramos en atención al artículo 213 de la Ley de Propiedad Industrial que <strong>no guardan ningún tipo de relación o asociación</strong> con las marcas o nombres que se mencionan.</p>
+      <br>
+      <p>Los nombres, marcas y derechos de autor son propiedad de sus respectivos diseñadores/fabricantes. <strong>No son copias exactas</strong> y no compite con la marca diseñadora.</p>
+    </div>
+  </div>
 </div>
-
+ 
+<div class="info-modal-overlay" id="modal-aromas-overlay" onclick="closeInfoModal('aromas')">
+  <div class="info-modal" onclick="event.stopPropagation()">
+    <div class="info-modal-header">
+      <span class="info-modal-title">Disponibilidad de Aromas</span>
+      <button class="info-modal-close" onclick="closeInfoModal('aromas')" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="info-modal-body">
+      <div class="info-modal-badge">Nota importante</div>
+      <p>Algunos aromas están <strong>sujetos a disponibilidad en tienda</strong>. En caso de que el aroma seleccionado no esté disponible al momento de procesar tu pedido, nos comunicaremos contigo por WhatsApp para ofrecerte una alternativa o confirmarte la fecha estimada de reabastecimiento.</p>
+    </div>
+  </div>
+</div>
+ 
 <script>
   const WA_NUMBER = "528138917727";
-
+ 
   const PROMO_CODES = {
     "A10N":      { discount: 10, type: "percent", description: "10% de descuento" },
     "RC64":      { discount: 10, type: "percent", description: "10% de descuento" },
@@ -801,11 +1156,11 @@
     "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
     "HAMMSYK":   { discount: 10, type: "percent", description: "10% de descuento" },
-    "AION15X":   { discount: 1, type: "percent", description: "1% de descuento" },
-    "LAUNCH20X": { discount: 2, type: "percent", description: "2% lanzamiento" },
-    "VERANO50X": { discount: 5, type: "fixed",   description: "$5 MXN de descuento" },
+    "AION15X":   { discount: 1,  type: "percent", description: "1% de descuento" },
+    "LAUNCH20X": { discount: 2,  type: "percent", description: "2% lanzamiento" },
+    "VERANO50X": { discount: 5,  type: "fixed",   description: "$5 MXN de descuento" },
   };
-
+ 
   const PRODUCT_OPTIONS = [
     { volume: '30ml',  concentration: 'Sensación Aura (Extrait de Parfum 33%)',  conc: '33', price: 188 },
     { volume: '30ml',  concentration: 'Impacto Radiante (Elixir 42%)',           conc: '42', price: 232 },
@@ -822,7 +1177,7 @@
     { volume: 'crema', concentration: 'Crema Corporal Perfumada 50ml',           conc: 'N/A', price: 129 },
     { volume: 'deo',   concentration: 'Desodorante Antitranspirante Roll-on 50ml', conc: 'N/A', price: 129 },
   ];
-
+ 
   const AROMAS = [
   {"code": "BCP0001", "name": "BLUE SURF", "brand": "BOD MAN", "occasion": "Verano, casual, playa", "family": "Acuática Aromática"},
   {"code": "BCP0002", "name": "NEW YORK SEDUCTIVE", "brand": "CREACIONES IGUAZU", "occasion": "Noche, salidas, citas", "family": "Amaderada Aromática"},
@@ -2823,10 +3178,11 @@
   {"code": "VBODY0005", "name": "BODY AGUA TURQUESA VIP", "brand": "ABSOLUTO A", "occasion": "Uso corporal, casual, verano", "family": "Acuática Floral"},
   {"code": "C0001", "name": "1 MILLION", "brand": "PACO RABANNE", "occasion": "Salidas nocturnas, citas", "family": "Oriental Especiada"}
 ];
-
+ 
+  const EXTRA_PRODUCTS = ['crema', 'deo'];
   let selectedSize = '30ml';
   let selectedConc = '33';
-
+ 
   let state = {
     selectedOption: PRODUCT_OPTIONS[0],
     selectedAroma: null,
@@ -2835,184 +3191,193 @@
     cartItems: [],
     appliedCoupon: null
   };
-
+ 
   let promoState = {
     active: false, volume: null, required: 0, basePrice: 0,
     concentration: null, withFeromonas: false, selectedAromas: []
   };
-
-  // ══════════════════════════════════════
-  //  ONBOARDING TOUR — versión corregida
-  // ══════════════════════════════════════
-  const TOUR_STEPS = [
-    {
-      anchor: 'tour-anchor-size',
-      title: 'Elige tu presentación',
-      body: 'Selecciona el tamaño de tu frasco: 30 ml para probar el aroma, 60 ml para uso diario, o 100 ml para máxima duración. El precio se actualiza automáticamente.',
-      arrow: 'arrow-top', position: 'below'
-    },
-    {
-      anchor: 'tour-anchor-conc',
-      title: 'Selecciona la concentración',
-      body: '33% Extrait de Parfum es nuestra base de larga duración. 42% Elixir Radiante intensifica la proyección. 50% Elixir Intenso es la experiencia más poderosa.',
-      arrow: 'arrow-top', position: 'below'
-    },
-    {
-      anchor: 'tour-anchor-promo',
-      title: 'Paquetes especiales',
-      body: '¿Te gustaría 1 perfume gratis? Lleva 4 y paga 3 en 100 ml, 5×4 en 60 ml, o 6×5 en 30 ml. Primero elige tamaño y concentración arriba.',
-      arrow: 'arrow-top', position: 'below'
-    },
-    {
-      anchor: 'tour-anchor-aroma',
-      title: 'Busca tu aroma',
-      body: 'Escribe el nombre de un perfume de marca, su código o familia olfativa (ej. "floral", "oriental"). Selecciónalo del listado.',
-      arrow: 'arrow-top', position: 'below'
-    },
-    {
-      anchor: 'tour-anchor-extras',
-      title: 'Añade feromonas (opcional)',
-      body: 'Potencia tu perfume con nuestra fórmula de feromonas por solo $60 MXN adicionales. Activa la casilla si deseas incluirla.',
-      arrow: 'arrow-top', position: 'below'
-    },
-    {
-      anchor: 'tour-anchor-coupon',
-      title: 'Código promocional',
-      body: '¿Tienes un código de descuento? Ingrésalo aquí y presiona "Aplicar" antes de finalizar tu pedido.',
-      arrow: 'arrow-top', position: 'below'
-    },
-    {
-      // FIX: apunta a un div fantasma en el flujo del documento,
-      // NO al action-buttons fijo que quedaba debajo del overlay
-      anchor: 'tour-anchor-actions',
-      title: '¡Listo para pedir!',
-      body: 'Usa "Añadir" para agregar aromas al carrito o "Finalizar Pedido" para enviarnos tu selección por WhatsApp y coordinar tu entrega.',
-      arrow: 'arrow-bottom', position: 'above'
-    }
-  ];
-
-  let tourStep = 0;
-  let tourActive = false;
-
-  function tourStart() {
-    if (localStorage.getItem('aion_tour_done') === '1') return;
-    tourActive = true;
-    tourStep = 0;
-    tourRender();
+ 
+  // ══ DRAWER ══
+  function openCart() {
+    document.getElementById('cart-overlay').classList.add('open');
+    document.getElementById('cart-drawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-
-  function tourRender() {
-    const step    = TOUR_STEPS[tourStep];
-    const anchor  = document.getElementById(step.anchor);
-    const overlay   = document.getElementById('tour-overlay');
-    const highlight = document.getElementById('tour-highlight');
-    const tooltip   = document.getElementById('tour-tooltip');
-    const nextBtn   = document.getElementById('tour-btn-next');
-
-    // Activar overlay (solo captura clicks para omitir)
-    overlay.classList.add('active');
-
-    // Ocultar tooltip mientras se hace scroll y se reposiciona
-    tooltip.classList.remove('active');
-    highlight.classList.remove('active');
-
-    anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-    setTimeout(() => {
-      const r   = anchor.getBoundingClientRect();
-      const pad = 8;
-
-      // — Posicionar highlight —
-      highlight.style.left   = (r.left - pad) + 'px';
-      highlight.style.top    = (r.top  - pad) + 'px';
-      highlight.style.width  = (r.width  + pad * 2) + 'px';
-      highlight.style.height = (r.height + pad * 2) + 'px';
-      highlight.classList.add('active');
-
-      // — Posicionar tooltip —
-      tooltip.className = 'tour-tooltip ' + step.arrow;
-
-      const tw  = Math.min(300, window.innerWidth - 40);
-      let   left = r.left;
-      if (left + tw > window.innerWidth - 10) left = window.innerWidth - tw - 10;
-      if (left < 10) left = 10;
-      tooltip.style.left = left + 'px';
-      tooltip.style.width = tw + 'px';
-
-      if (step.position === 'below') {
-        tooltip.style.top    = (r.bottom + pad + 14) + 'px';
-        tooltip.style.bottom = 'auto';
-      } else {
-        // 'above': posicionamos con bottom desde el borde inferior de la ventana
-        const fromBottom = window.innerHeight - r.top + pad + 14;
-        tooltip.style.bottom = fromBottom + 'px';
-        tooltip.style.top    = 'auto';
-      }
-
-      // — Contenido —
-      document.getElementById('tour-step-label').textContent = `Paso ${tourStep + 1} de ${TOUR_STEPS.length}`;
-      document.getElementById('tour-title').textContent = step.title;
-      document.getElementById('tour-body').textContent  = step.body;
-
-      const dots = document.getElementById('tour-dots');
-      dots.innerHTML = TOUR_STEPS.map((_, i) =>
-        `<div class="tour-dot ${i === tourStep ? 'active' : ''}"></div>`
-      ).join('');
-
-      nextBtn.textContent = tourStep === TOUR_STEPS.length - 1 ? '¡Entendido! ✓' : 'Siguiente →';
-
-      // Mostrar tooltip con fade-in
-      tooltip.classList.add('active');
-    }, 350);
+  function closeCart() {
+    document.getElementById('cart-overlay').classList.remove('open');
+    document.getElementById('cart-drawer').classList.remove('open');
+    document.body.style.overflow = '';
   }
-
-  function tourNext() {
-    tourStep++;
-    if (tourStep >= TOUR_STEPS.length) {
-      tourEnd();
+ 
+  function updateCartDrawer() {
+    const items = state.cartItems;
+    const count = items.length;
+ 
+    // FAB
+    const fab      = document.getElementById('cart-fab');
+    const fabCount = document.getElementById('cart-fab-count');
+    fabCount.textContent = count;
+    if (count > 0) {
+      fab.classList.add('visible');
+      fab.classList.remove('pulse');
+      void fab.offsetWidth;
+      fab.classList.add('pulse');
     } else {
-      tourRender();
+      fab.classList.remove('visible');
     }
+ 
+    // Drawer header count
+    document.getElementById('drawer-item-count').textContent = count;
+ 
+    const emptyEl  = document.getElementById('drawer-empty');
+    const itemsEl  = document.getElementById('drawer-items');
+    const footerEl = document.getElementById('drawer-footer');
+ 
+    if (count === 0) {
+      emptyEl.style.display  = 'flex';
+      itemsEl.style.display  = 'none';
+      footerEl.style.display = 'none';
+      return;
+    }
+ 
+    emptyEl.style.display  = 'none';
+    itemsEl.style.display  = 'block';
+    footerEl.style.display = 'block';
+ 
+    // Renderizar items
+    let html = '';
+    items.forEach((item, i) => {
+      if (item.type === 'individual') {
+        const fLabel = item.withFeromonas ? ' · + Feromonas' : '';
+        const isExtra = EXTRA_PRODUCTS.includes(item.option.volume);
+        html += `
+        <div class="drawer-cart-item">
+          <div class="drawer-item-header">
+            <div class="drawer-item-icon">${isExtra ? '🧴' : '🌿'}</div>
+            <div class="drawer-item-meta">
+              <div class="drawer-item-name">[${item.aroma.code}] ${item.aroma.name}</div>
+              <div class="drawer-item-sub">${item.option.volume} · ${item.option.concentration}${fLabel}</div>
+              <div class="drawer-item-sub">Cantidad: ${item.quantity}</div>
+              ${item.withFeromonas ? '<span class="drawer-feromonas-badge">✨ Feromonas incluidas</span>' : ''}
+            </div>
+          </div>
+          <div class="drawer-item-price-row">
+            <span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span>
+            <div class="drawer-item-actions">
+              <button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button>
+            </div>
+          </div>
+        </div>`;
+      } else {
+        const fLabel = item.withFeromonas ? ' · + Feromonas' : '';
+        const aromasHtml = item.aromas.map(a =>
+          `<div class="drawer-promo-aroma-row">
+            <span><span class="drawer-promo-aroma-code">${a.code}</span><span class="drawer-promo-aroma-name">${a.name}</span></span>
+          </div>`
+        ).join('');
+        html += `
+        <div class="drawer-cart-item">
+          <div class="drawer-item-header">
+            <div class="drawer-item-icon">🎁</div>
+            <div class="drawer-item-meta">
+              <div class="drawer-item-name">Paquete ${item.volume} (${item.required}×${item.payFor})${fLabel}</div>
+              <div class="drawer-item-sub">${item.concentration}</div>
+              ${item.withFeromonas ? '<span class="drawer-feromonas-badge">✨ Feromonas en todos</span>' : ''}
+            </div>
+          </div>
+          <div class="drawer-item-price-row">
+            <span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span>
+            <div class="drawer-item-actions">
+              <button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button>
+            </div>
+          </div>
+          <button class="drawer-promo-toggle" id="promo-toggle-${i}" onclick="togglePromoDetail(${i})">
+            Ver ${item.aromas.length} aromas del paquete
+            <span class="toggle-arrow">▾</span>
+          </button>
+          <div class="drawer-promo-details" id="promo-detail-${i}">
+            <div class="drawer-promo-details-inner">
+              <span class="drawer-promo-badge">🎁 ${item.required} llevas · ${item.payFor} pagas</span>
+              ${aromasHtml}
+            </div>
+          </div>
+        </div>`;
+      }
+    });
+    itemsEl.innerHTML = html;
+ 
+    // Totales
+    const subtotal   = items.reduce((s, i) => s + i.total, 0);
+    const discount   = calculateDiscount(subtotal);
+    const hasPromo   = items.some(i => i.type === 'promo');
+    const subtotalAfterDiscount = subtotal - discount;
+    const freeShipping = hasPromo || subtotalAfterDiscount >= 1200;
+    const shippingCost = freeShipping ? 0 : 149;
+    const grandTotal   = subtotalAfterDiscount + shippingCost;
+ 
+    let totalsHtml = `
+      <div class="drawer-total-row subtotal">
+        <span>Subtotal (${count} ${count === 1 ? 'artículo' : 'artículos'})</span>
+        <span>$${subtotal.toFixed(2)}</span>
+      </div>`;
+ 
+    if (state.appliedCoupon) {
+      totalsHtml += `
+      <div class="drawer-coupon-row">
+        <span>🏷️</span>
+        <span class="drawer-coupon-code">${state.appliedCoupon.code}</span>
+        <span class="drawer-coupon-desc">${state.appliedCoupon.description}</span>
+        <button class="drawer-coupon-remove" onclick="removeCoupon()" title="Eliminar código">✕</button>
+      </div>`;
+    }
+ 
+    if (discount > 0) {
+      totalsHtml += `
+      <div class="drawer-total-row discount">
+        <span>Descuento aplicado</span>
+        <span>−$${discount.toFixed(2)}</span>
+      </div>`;
+    }
+ 
+    if (freeShipping) {
+      totalsHtml += `
+      <div class="drawer-total-row shipping-free">
+        <span>🚚 Envío</span>
+        <span>✓ Gratis</span>
+      </div>`;
+    } else {
+      const needed = (1200 - subtotalAfterDiscount).toFixed(2);
+      totalsHtml += `
+      <div class="drawer-total-row shipping-cost">
+        <span>🚚 Envío</span>
+        <div style="text-align:right;">
+          <span>$149.00 MXN</span>
+          <span class="shipping-notice" style="font-size:0.68rem;color:var(--gold);font-weight:500;display:block;">Falta $${needed} para envío gratis</span>
+        </div>
+      </div>`;
+    }
+ 
+    totalsHtml += `
+      <div class="drawer-grand-total">
+        <span class="label">Total Estimado</span>
+        <span class="amount">$${grandTotal.toFixed(2)}</span>
+      </div>`;
+ 
+    document.getElementById('drawer-totals').innerHTML = totalsHtml;
   }
-
-  function tourSkip() {
-    tourEnd();
+ 
+  function togglePromoDetail(i) {
+    const btn    = document.getElementById(`promo-toggle-${i}`);
+    const detail = document.getElementById(`promo-detail-${i}`);
+    btn.classList.toggle('expanded');
+    detail.classList.toggle('expanded');
   }
-
-  function tourEnd() {
-    tourActive = false;
-    const overlay   = document.getElementById('tour-overlay');
-    const highlight = document.getElementById('tour-highlight');
-    const tooltip   = document.getElementById('tour-tooltip');
-
-    // FIX: secuencia de cierre limpia
-    // 1. Fade-out del tooltip primero
-    tooltip.classList.remove('active');
-
-    // 2. Quitar el box-shadow del highlight (fade-out)
-    highlight.classList.remove('active');
-
-    // 3. Desactivar overlay después del fade
-    setTimeout(() => {
-      overlay.classList.remove('active');
-      // Limpiar posición del highlight completamente
-      highlight.style.width  = '0px';
-      highlight.style.height = '0px';
-      highlight.style.left   = '-9999px';
-      highlight.style.top    = '-9999px';
-    }, 320);
-
-    try { localStorage.setItem('aion_tour_done', '1'); } catch(e) {}
-  }
-
-  // ── SELECTORES ──
-  const EXTRA_PRODUCTS = ['crema', 'deo'];
-
+ 
+  // ══ SELECTORES ══
   function selectSize(size) {
     selectedSize = size;
     document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size === size));
     const isExtra = EXTRA_PRODUCTS.includes(size);
-    // Ocultar solo los botones de concentración, pero dejar visible el precio
     document.querySelector('.conc-buttons').classList.toggle('conc-section-hidden', isExtra);
     const concLabelEl = document.querySelector('.conc-label');
     if (concLabelEl) concLabelEl.classList.toggle('conc-section-hidden', isExtra);
@@ -3026,14 +3391,14 @@
     }
     if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la presentación'); }
   }
-
+ 
   function selectConc(conc) {
     selectedConc = conc;
     document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc === conc));
     syncOptionFromSelectors();
     if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la concentración'); }
   }
-
+ 
   function syncOptionFromSelectors() {
     const match = PRODUCT_OPTIONS.find(o => o.volume === selectedSize && o.conc === selectedConc);
     if (match) {
@@ -3044,8 +3409,8 @@
     }
     updatePromoPrices();
   }
-
-  // ── CUPÓN ──
+ 
+  // ══ CUPÓN ══
   function applyCoupon() {
     const input = document.getElementById('coupon-input').value.trim().toUpperCase();
     if (!input) { showCouponFeedback('error', '⚠️', 'Ingresa un código antes de aplicar.'); return; }
@@ -3056,20 +3421,20 @@
     document.getElementById('coupon-input').value = '';
     document.getElementById('coupon-input').disabled = true;
     showCouponFeedback('success', '✓', `Código <strong>${input}</strong> aplicado — ${promo.description}`, true);
-    updateCartSummary();
+    updateCartDrawer();
     showToast(`¡Código ${input} aplicado!`);
   }
-
+ 
   function removeCoupon() {
     state.appliedCoupon = null;
     document.getElementById('coupon-input').disabled = false;
     document.getElementById('coupon-input').value = '';
     const fb = document.getElementById('coupon-feedback');
     fb.className = 'coupon-feedback'; fb.style.display = 'none';
-    updateCartSummary();
+    updateCartDrawer();
     showToast('Código eliminado');
   }
-
+ 
   function showCouponFeedback(type, iconChar, message, showRemove = false) {
     const fb = document.getElementById('coupon-feedback');
     document.getElementById('coupon-icon').textContent = iconChar;
@@ -3077,7 +3442,7 @@
     document.getElementById('btn-remove-coupon').style.display = showRemove ? 'inline-block' : 'none';
     fb.className = `coupon-feedback ${type}`;
   }
-
+ 
   function calculateDiscount(subtotal) {
     if (!state.appliedCoupon) return 0;
     const { discount, type } = state.appliedCoupon;
@@ -3085,17 +3450,15 @@
     if (type === 'fixed')   return Math.min(discount, subtotal);
     return 0;
   }
-
-  // ── PRECIOS PROMO ──
+ 
+  // ══ PRECIOS PROMO ══
   function updatePromoPrices() {
     const opt = state.selectedOption;
     if (!opt) return;
     const vol = opt.volume;
-    document.getElementById('promo-100-price').textContent  = '';
-    document.getElementById('promo-60-price').textContent   = '';
-    document.getElementById('promo-50-price').textContent   = '';
-    document.getElementById('promo-30-price').textContent   = '';
-    document.getElementById('promo-extra-price').textContent = '';
+    ['100','60','50','30','extra'].forEach(k => {
+      document.getElementById(`promo-${k}-price`).textContent = '';
+    });
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active-vol'));
     if (vol === '100ml') {
       document.getElementById('promo-100-price').textContent = `$${(opt.price * 3).toFixed(0)}`;
@@ -3114,11 +3477,11 @@
       document.getElementById('promo-extra-btn').classList.add('active-vol');
     }
   }
-
-  // ── BÚSQUEDA ──
+ 
+  // ══ BÚSQUEDA ══
   const searchInput   = document.getElementById('search-input');
   const searchResults = document.getElementById('search-results');
-
+ 
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.toLowerCase().trim();
     if (!q) { searchResults.classList.remove('visible'); return; }
@@ -3145,18 +3508,18 @@
         }).join('');
     searchResults.classList.add('visible');
   });
-
+ 
   document.addEventListener('click', e => {
     if (!e.target.closest('.search-wrap')) searchResults.classList.remove('visible');
   });
-
+ 
   function handleAromaSelection(idx) {
     const aroma = AROMAS[idx];
     if (promoState.active) { addToPromoSelection(aroma); } else { selectAroma(aroma); }
     searchResults.classList.remove('visible');
     searchInput.value = '';
   }
-
+ 
   function selectAroma(aroma) {
     state.selectedAroma = aroma;
     document.getElementById('tag-name').innerHTML = `[${aroma.code}] ${aroma.name}`;
@@ -3165,13 +3528,13 @@
     document.getElementById('selected-aroma-tag').classList.add('visible');
     showToast(`Seleccionado: ${aroma.name}`);
   }
-
+ 
   function clearAroma() {
     state.selectedAroma = null;
     document.getElementById('tag-occasion').textContent = '';
     document.getElementById('selected-aroma-tag').classList.remove('visible');
   }
-
+ 
   function toggleAddon() {
     if (promoState.active) {
       promoState.withFeromonas = !promoState.withFeromonas;
@@ -3182,15 +3545,15 @@
       document.getElementById('checkbox-feromonas').textContent = state.withFeromonas ? '✓' : '';
     }
   }
-
+ 
   function changeQty(delta) {
     state.quantity = Math.max(1, state.quantity + delta);
     document.getElementById('qty-display').textContent = state.quantity;
   }
-
-  // ── PROMOS ──
+ 
+  // ══ PROMOS ══
   function startPromo(volume) {
-    const currentOpt = state.selectedOption;
+    const currentOpt   = state.selectedOption;
     const isExtraPromo = volume === 'extra';
     if (!isExtraPromo && (!currentOpt || currentOpt.volume !== volume)) {
       showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`); return;
@@ -3202,7 +3565,7 @@
       active: true, volume: isExtraPromo ? currentOpt.volume : volume,
       required: (volume === '100ml') ? 4 : (volume === '60ml' || volume === '50ml') ? 5 : 6,
       basePrice: isExtraPromo ? 129 : currentOpt.price,
-      concentration: isExtraPromo ? currentOpt.concentration : currentOpt.concentration,
+      concentration: currentOpt.concentration,
       withFeromonas: false, selectedAromas: [], isExtra: isExtraPromo
     };
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
@@ -3211,16 +3574,13 @@
     state.selectedAroma = null;
     document.getElementById('selected-aroma-tag').classList.remove('visible');
     updatePromoUI();
-
-    // Mostrar modal guía
-    const promoTitles = { '100ml': 'Lleva 4, paga 3', '60ml': 'Lleva 5, paga 4', '50ml': 'Lleva 5, paga 4', '30ml': 'Lleva 6, paga 5', 'crema': 'Lleva 6, paga 5', 'deo': 'Lleva 6, paga 5' };
-    const promoQty    = { '100ml': 4, '60ml': 5, '50ml': 5, '30ml': 6, 'crema': 6, 'deo': 6 };
-    const opt = state.selectedOption;
-    const badge = `${volume} · ${opt ? opt.concentration : ''}`;
-    const guideVolKey = (isExtraPromo ? currentOpt.volume : volume);
+    const promoTitles = { '100ml':'Lleva 4, paga 3','60ml':'Lleva 5, paga 4','50ml':'Lleva 5, paga 4','30ml':'Lleva 6, paga 5','crema':'Lleva 6, paga 5','deo':'Lleva 6, paga 5' };
+    const promoQty    = { '100ml':4,'60ml':5,'50ml':5,'30ml':6,'crema':6,'deo':6 };
+    const guideVolKey = isExtraPromo ? currentOpt.volume : volume;
+    const badge = `${guideVolKey} · ${currentOpt ? currentOpt.concentration : ''}`;
     openPromoGuide(guideVolKey, promoTitles[guideVolKey] || 'Lleva 6, paga 5', badge, promoQty[guideVolKey] || 6);
   }
-
+ 
   function updatePromoUI() {
     const count    = promoState.selectedAromas.length;
     const required = promoState.required;
@@ -3232,8 +3592,8 @@
     ).join('');
     const addonDiv = document.getElementById('addon-feromonas');
     const checkbox = document.getElementById('checkbox-feromonas');
-    if (promoState.withFeromonas) { addonDiv.classList.add('checked'); checkbox.textContent = '✓'; }
-    else { addonDiv.classList.remove('checked'); checkbox.textContent = ''; }
+    addonDiv.classList.toggle('checked', promoState.withFeromonas);
+    checkbox.textContent = promoState.withFeromonas ? '✓' : '';
     const finishWrapper = document.getElementById('finish-promo-wrapper');
     const hintDiv       = document.getElementById('promo-hint');
     const hintText      = document.getElementById('promo-hint-text');
@@ -3246,7 +3606,7 @@
       hintDiv.classList.add('visible');
     }
   }
-
+ 
   function addToPromoSelection(aroma) {
     if (promoState.selectedAromas.length >= promoState.required) {
       showToast(`Ya has seleccionado ${promoState.required} aromas`); return;
@@ -3259,12 +3619,12 @@
       showToast(`Añadido (${promoState.selectedAromas.length}/${promoState.required})`);
     }
   }
-
+ 
   function removePromoAroma(index) {
     promoState.selectedAromas.splice(index, 1);
     updatePromoUI();
   }
-
+ 
   function finishPromo() {
     if (promoState.selectedAromas.length !== promoState.required) {
       showToast(`Debes seleccionar ${promoState.required} aromas`); return;
@@ -3277,11 +3637,12 @@
       aromas: [...promoState.selectedAromas], withFeromonas: promoState.withFeromonas,
       total: totalPromoPrice, isExtra: promoState.isExtra
     });
-    updateCartSummary();
+    updateCartDrawer();
     cancelPromo();
-    showToast(`🎁 Paquete añadido al carrito`);
+    showToast('🎁 Paquete añadido al carrito');
+    setTimeout(() => openCart(), 600);
   }
-
+ 
   function cancelPromo() {
     promoState.active = false;
     document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
@@ -3293,13 +3654,13 @@
     addonDiv.classList.toggle('checked', state.withFeromonas);
     checkbox.textContent = state.withFeromonas ? '✓' : '';
   }
-
-  // ── CARRITO ──
+ 
+  // ══ CARRITO ══
   function addToCart() {
     if (!state.selectedOption) { showToast('⚠️ Selecciona una presentación y concentración'); return; }
-    const isExtra = EXTRA_PRODUCTS.includes(state.selectedOption.volume);
-    if (!state.selectedAroma) { showToast('⚠️ Selecciona un aroma primero'); return; }
-    if (promoState.active) { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
+    if (!state.selectedAroma)  { showToast('⚠️ Selecciona un aroma primero'); return; }
+    if (promoState.active)     { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
+    const isExtra       = EXTRA_PRODUCTS.includes(state.selectedOption.volume);
     const feromonasCost = state.withFeromonas && !isExtra ? 60 : 0;
     const unitPrice     = state.selectedOption.price + feromonasCost;
     const totalPrice    = unitPrice * state.quantity;
@@ -3307,164 +3668,68 @@
       type: 'individual', option: state.selectedOption, aroma: state.selectedAroma,
       withFeromonas: state.withFeromonas && !isExtra, quantity: state.quantity, unitPrice, total: totalPrice
     });
-    updateCartSummary();
-    showToast(`✓ Añadido: ${state.selectedAroma.name}`);
+    updateCartDrawer();
+    showToast(`✓ ${state.selectedAroma.name} añadido`);
+    // Abrir drawer suavemente después del toast
+    setTimeout(() => openCart(), 500);
     clearAroma();
     state.withFeromonas = false; state.quantity = 1;
     document.getElementById('qty-display').textContent = 1;
     document.getElementById('addon-feromonas').classList.remove('checked');
     document.getElementById('checkbox-feromonas').textContent = '';
   }
-
+ 
   function removeCartItem(index) {
     state.cartItems.splice(index, 1);
-    updateCartSummary();
+    updateCartDrawer();
+    if (state.cartItems.length === 0) closeCart();
   }
-
+ 
   function clearCart() {
     state.cartItems = [];
-    updateCartSummary();
+    updateCartDrawer();
+    closeCart();
     showToast('Carrito vaciado');
   }
-
-  function updateCartSummary() {
-    const cartDiv = document.getElementById('cart-summary');
-    const listDiv = document.getElementById('cart-items-list');
-    const totalEl = document.getElementById('cart-total-price');
-    const discRow = document.getElementById('cart-discount-row');
-    const discLbl = document.getElementById('cart-discount-label');
-    const discAmt = document.getElementById('cart-discount-amount');
-    const btnWa = document.getElementById('btn-wa');
-    if (state.cartItems.length === 0) {
-      cartDiv.classList.remove('visible');
-      if (btnWa) btnWa.style.display = 'none';
-      return;
-    }
-    if (btnWa) btnWa.style.display = 'flex';
-    cartDiv.classList.add('visible');
-    let subtotal = 0;
-    let html = '';
-    state.cartItems.forEach((item, i) => {
-      subtotal += item.total;
-      if (item.type === 'individual') {
-        const fLabel = item.withFeromonas ? ' + Feromonas' : '';
-        const nameLabel = item.aroma ? `[${item.aroma.code}] ${item.aroma.name}` : item.option.concentration;
-        const subLabel  = item.aroma
-          ? `${item.option.volume} · ${item.option.concentration}${fLabel} × ${item.quantity}`
-          : `× ${item.quantity}`;
-        html += `<div class="cart-item">
-          <div style="flex:1;font-size:0.82rem;">
-            <div style="font-weight:500;">${nameLabel}</div>
-            <div style="color:var(--muted);font-size:0.72rem;margin-top:2px;">${subLabel}</div>
-          </div>
-          <span class="cart-item-price">$${item.total.toFixed(2)}</span>
-          <button class="cart-item-remove" onclick="removeCartItem(${i})">✕</button>
-        </div>`;
-      } else {
-        const aromaList = item.isExtra
-          ? item.concentration
-          : item.aromas.map(a => `${a.code} ${a.name}`).join(', ');
-        const fLabel    = item.withFeromonas ? ' + Feromonas' : '';
-        html += `<div class="promo-item">
-          <div class="promo-header" onclick="this.nextElementSibling.classList.toggle('expanded')">
-            <div style="flex:1;">
-              <span style="font-weight:500;">🎁 Paquete ${item.volume} (${item.required}×${item.payFor})${fLabel}</span>
-              <div style="color:var(--muted);font-size:0.72rem;margin-top:2px;">${item.concentration}</div>
-            </div>
-            <span class="cart-item-price">$${item.total.toFixed(2)}</span>
-            <button class="promo-remove" onclick="event.stopPropagation();removeCartItem(${i})">✕</button>
-          </div>
-          <div class="promo-details">
-            <div class="promo-detail-item"><span>Aromas:</span><span style="text-align:right;max-width:200px;">${aromaList}</span></div>
-          </div>
-        </div>`;
-      }
-    });
-    listDiv.innerHTML = html;
-    const discount = calculateDiscount(subtotal);
-    if (discount > 0 && state.appliedCoupon) {
-      discRow.style.display = 'flex';
-      discLbl.textContent = `Descuento (${state.appliedCoupon.code})`;
-      discAmt.textContent = `−$${discount.toFixed(2)}`;
-    } else {
-      discRow.style.display = 'none';
-    }
-
-    // ── Costo de envío ──
-    const SHIPPING_THRESHOLD = 1200;
-    const SHIPPING_COST      = 149;
-    const subtotalAfterDiscount = subtotal - discount;
-    const hasPromo      = state.cartItems.some(i => i.type === 'promo');
-    const freeShipping  = hasPromo || subtotalAfterDiscount >= SHIPPING_THRESHOLD;
-    const shippingRow   = document.getElementById('cart-shipping-row');
-    const shippingLabel = document.getElementById('cart-shipping-label');
-
-    if (freeShipping) {
-      shippingLabel.innerHTML = `<span class="shipping-free">✓ Gratis</span>`;
-    } else {
-      const needed = (SHIPPING_THRESHOLD - subtotalAfterDiscount).toFixed(2);
-      shippingLabel.innerHTML =
-        `<span class="shipping-cost">$${SHIPPING_COST.toFixed(2)} MXN</span>&ensp;<span class="shipping-notice">Falta $${needed} para gratis</span>`;
-    }
-    shippingRow.style.display = 'flex';
-
-    const grandTotal = subtotalAfterDiscount + (freeShipping ? 0 : SHIPPING_COST);
-    totalEl.textContent = `$${grandTotal.toFixed(2)} MXN`;
-  }
-
-  // ── WHATSAPP ──
+ 
+  // ══ WHATSAPP ══
   function sendToWhatsApp() {
     if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
-
-    const subtotal        = state.cartItems.reduce((s, i) => s + i.total, 0);
-    const discountAmt     = calculateDiscount(subtotal);
-    const total           = subtotal - discountAmt;
-    const hasPromoWA   = state.cartItems.some(i => i.type === 'promo');
-    const hasFreeShipping = hasPromoWA || total >= 1200;
-    const shippingCostWA  = hasFreeShipping ? 0 : 149;
-    const grandTotalWA    = total + shippingCostWA;
-
+    const subtotal    = state.cartItems.reduce((s, i) => s + i.total, 0);
+    const discountAmt = calculateDiscount(subtotal);
+    const total       = subtotal - discountAmt;
+    const hasPromoWA  = state.cartItems.some(i => i.type === 'promo');
+    const freeShip    = hasPromoWA || total >= 1200;
+    const shipCost    = freeShip ? 0 : 149;
+    const grandTotal  = total + shipCost;
     const fecha = new Date().toLocaleDateString('es-MX', { day:'2-digit', month:'2-digit', year:'numeric' });
     const hora  = new Date().toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
-
     let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
-
     state.cartItems.forEach((item, i) => {
       if (item.type === 'individual') {
         const fLabel = item.withFeromonas ? ' + Feromonas' : '';
-        msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n`;
-        msg += `   📦 ${item.option.concentration}${fLabel} ×${item.quantity}\n`;
-        msg += `   💵 $${item.total.toFixed(2)} MXN\n\n`;
+        msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n   📦 ${item.option.concentration}${fLabel} ×${item.quantity}\n   💵 $${item.total.toFixed(2)} MXN\n\n`;
       } else {
         const fLabel = item.withFeromonas ? ' + Feromonas' : '';
-        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})${fLabel}*\n`;
-        msg += `   Concentración: ${item.concentration}\n`;
+        msg += `*${i+1}. 🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})${fLabel}*\n   Concentración: ${item.concentration}\n`;
         item.aromas.forEach(a => { msg += `   • ${a.code} ${a.name}\n`; });
         msg += `   💵 Total paquete: $${item.total.toFixed(2)} MXN\n\n`;
       }
     });
-
     msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
     if (state.appliedCoupon && discountAmt > 0) {
       const c = state.appliedCoupon;
       const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` : `$${c.discount} MXN de descuento`;
       msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)} MXN\n`;
     }
-    if (hasFreeShipping) {
-      msg += `🚚 Envío: *GRATIS*\n`;
-    } else {
-      msg += `🚚 Envío: *$${shippingCostWA.toFixed(2)} MXN*\n`;
-    }
-    msg += `💰 *TOTAL: $${grandTotalWA.toFixed(2)} MXN*\n`;
-    msg += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
-    msg += `📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\n\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
-
+    msg += freeShip ? `🚚 Envío: *GRATIS*\n` : `🚚 Envío: *$${shipCost.toFixed(2)} MXN*\n`;
+    msg += `💰 *TOTAL: $${grandTotal.toFixed(2)} MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\n\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     showToast('Abriendo WhatsApp...');
     setTimeout(() => window.open(url, '_blank'), 600);
   }
-
-  // ── TOAST ──
+ 
+  // ══ TOAST ══
   let toastTimer;
   function showToast(msg) {
     const t = document.getElementById('toast');
@@ -3473,136 +3738,130 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
   }
-
-  // ── INIT ──
+ 
+  // ══ ONBOARDING TOUR ══
+  const TOUR_STEPS = [
+    { anchor:'tour-anchor-size',  title:'Elige tu presentación', body:'Selecciona el tamaño de tu frasco: 30 ml para probar, 60 ml para uso diario, o 100 ml para máxima duración.', arrow:'arrow-top', position:'below' },
+    { anchor:'tour-anchor-conc',  title:'Selecciona la concentración', body:'33% Extrait de Parfum es nuestra base de larga duración. 42% intensifica la proyección. 50% es la experiencia más poderosa.', arrow:'arrow-top', position:'below' },
+    { anchor:'tour-anchor-promo', title:'Paquetes especiales', body:'¿Te gustaría 1 perfume gratis? Lleva 4 y paga 3 en 100 ml, 5×4 en 60 ml, o 6×5 en 30 ml.', arrow:'arrow-top', position:'below' },
+    { anchor:'tour-anchor-aroma', title:'Busca tu aroma', body:'Escribe el nombre de un perfume de marca, su código o familia olfativa (ej. "floral", "oriental"). Selecciónalo del listado.', arrow:'arrow-top', position:'below' },
+    { anchor:'tour-anchor-extras',title:'Añade feromonas (opcional)', body:'Potencia tu perfume con nuestra fórmula de feromonas por solo $60 MXN adicionales.', arrow:'arrow-top', position:'below' },
+    { anchor:'tour-anchor-coupon',title:'Código promocional', body:'¿Tienes un código de descuento? Ingrésalo aquí y presiona "Aplicar" antes de finalizar tu pedido.', arrow:'arrow-top', position:'below' },
+    { anchor:'tour-anchor-actions',title:'¡Listo para pedir!', body:'Usa "Añadir al carrito" para acumular aromas. El carrito se abrirá automáticamente — desde ahí finaliza tu pedido por WhatsApp.', arrow:'arrow-bottom', position:'above' }
+  ];
+  let tourStep = 0, tourActive = false;
+ 
+  function tourStart() {
+    if (localStorage.getItem('aion_tour_done') === '1') return;
+    tourActive = true; tourStep = 0; tourRender();
+  }
+  function tourRender() {
+    const step    = TOUR_STEPS[tourStep];
+    const anchor  = document.getElementById(step.anchor);
+    const overlay   = document.getElementById('tour-overlay');
+    const highlight = document.getElementById('tour-highlight');
+    const tooltip   = document.getElementById('tour-tooltip');
+    const nextBtn   = document.getElementById('tour-btn-next');
+    overlay.classList.add('active');
+    tooltip.classList.remove('active');
+    highlight.classList.remove('active');
+    anchor.scrollIntoView({ behavior:'smooth', block:'center' });
+    setTimeout(() => {
+      const r = anchor.getBoundingClientRect(), pad = 8;
+      highlight.style.left   = (r.left - pad) + 'px';
+      highlight.style.top    = (r.top  - pad) + 'px';
+      highlight.style.width  = (r.width  + pad*2) + 'px';
+      highlight.style.height = (r.height + pad*2) + 'px';
+      highlight.classList.add('active');
+      tooltip.className = 'tour-tooltip ' + step.arrow;
+      const tw = Math.min(300, window.innerWidth - 40);
+      let left = r.left;
+      if (left + tw > window.innerWidth - 10) left = window.innerWidth - tw - 10;
+      if (left < 10) left = 10;
+      tooltip.style.left = left + 'px';
+      tooltip.style.width = tw + 'px';
+      if (step.position === 'below') {
+        tooltip.style.top    = (r.bottom + pad + 14) + 'px';
+        tooltip.style.bottom = 'auto';
+      } else {
+        tooltip.style.bottom = (window.innerHeight - r.top + pad + 14) + 'px';
+        tooltip.style.top    = 'auto';
+      }
+      document.getElementById('tour-step-label').textContent = `Paso ${tourStep+1} de ${TOUR_STEPS.length}`;
+      document.getElementById('tour-title').textContent = step.title;
+      document.getElementById('tour-body').textContent  = step.body;
+      document.getElementById('tour-dots').innerHTML = TOUR_STEPS.map((_,i) =>
+        `<div class="tour-dot ${i===tourStep?'active':''}"></div>`).join('');
+      nextBtn.textContent = tourStep === TOUR_STEPS.length - 1 ? '¡Entendido! ✓' : 'Siguiente →';
+      tooltip.classList.add('active');
+    }, 350);
+  }
+  function tourNext() {
+    tourStep++;
+    if (tourStep >= TOUR_STEPS.length) tourEnd(); else tourRender();
+  }
+  function tourSkip() { tourEnd(); }
+  function tourEnd() {
+    tourActive = false;
+    const overlay   = document.getElementById('tour-overlay');
+    const highlight = document.getElementById('tour-highlight');
+    const tooltip   = document.getElementById('tour-tooltip');
+    tooltip.classList.remove('active');
+    highlight.classList.remove('active');
+    setTimeout(() => {
+      overlay.classList.remove('active');
+      highlight.style.cssText = 'width:0;height:0;left:-9999px;top:-9999px;';
+    }, 320);
+    try { localStorage.setItem('aion_tour_done','1'); } catch(e) {}
+  }
+ 
+  // ══ INIT ══
   window.onload = function() {
     syncOptionFromSelectors();
     setTimeout(tourStart, 700);
   };
-</script>
-
-<script>
-  // Sincroniza la altura del announcement-bar con la variable CSS
-  // para que el header sticky quede exactamente debajo
-  (function syncBannerHeight() {
+ 
+  // Sync announcement bar height
+  (function() {
     const bar = document.querySelector('.announcement-bar');
     if (!bar) return;
-    const update = () => {
-      document.documentElement.style.setProperty('--banner-h', bar.offsetHeight + 'px');
-    };
+    const update = () => document.documentElement.style.setProperty('--banner-h', bar.offsetHeight + 'px');
     update();
     new ResizeObserver(update).observe(bar);
   })();
-</script>
-
-
-<!-- MODAL: Guía de Paquete Promocional -->
-<div class="promo-guide-overlay" id="promo-guide-overlay" onclick="closePromoGuide()">
-  <div class="promo-guide-modal" onclick="event.stopPropagation()">
-    <div class="promo-guide-handle"></div>
-    <div class="promo-guide-header">
-      <div class="promo-guide-title-wrap">
-        <div class="promo-guide-eyebrow">Paquete activado ✦</div>
-        <div class="promo-guide-title" id="promo-guide-title">Lleva 6, paga 5</div>
-      </div>
-      <button class="promo-guide-close" onclick="closePromoGuide()" aria-label="Cerrar guía">✕</button>
-    </div>
-    <div class="promo-guide-badge" id="promo-guide-badge">30 ml · Extrait de Parfum 33%</div>
-    <div class="promo-guide-steps">
-      <div class="promo-guide-step">
-        <div class="promo-guide-step-num">1</div>
-        <div class="promo-guide-step-body">
-          <div class="promo-guide-step-title">Baja al Paso 3 — Selección de Aroma</div>
-          <div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma. Escribe el nombre de la fragancia o su código (ej. <strong>"Sauvage"</strong> o <strong>"C0001"</strong>).</div>
-        </div>
-      </div>
-      <div class="promo-guide-step">
-        <div class="promo-guide-step-num">2</div>
-        <div class="promo-guide-step-body">
-          <div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> aromas diferentes</div>
-          <div class="promo-guide-step-desc">Cada vez que elijas uno del listado se irá añadiendo a tu paquete automáticamente. Puedes repetir el mismo aroma si gustas.</div>
-        </div>
-      </div>
-      <div class="promo-guide-step">
-        <div class="promo-guide-step-num">3</div>
-        <div class="promo-guide-step-body">
-          <div class="promo-guide-step-title">Añade feromonas si deseas (opcional)</div>
-          <div class="promo-guide-step-desc">En el Paso 4 puedes activar la opción de feromonas <strong>+$60 MXN</strong> — se aplica a todos los perfumes del paquete.</div>
-        </div>
-      </div>
-      <div class="promo-guide-step">
-        <div class="promo-guide-step-num gold">✓</div>
-        <div class="promo-guide-step-body">
-          <div class="promo-guide-step-title">Presiona "Añadir paquete al carrito"</div>
-          <div class="promo-guide-step-desc">Aparecerá el botón <strong>"🎁 Añadir paquete al carrito"</strong> cuando completes todos los aromas. Después finaliza tu pedido por WhatsApp.</div>
-        </div>
-      </div>
-    </div>
-    <button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido, voy a elegir mis aromas!</button>
-  </div>
-</div>
-
-<!-- MODAL: Aviso Legal Propiedad Industrial -->
-<div class="info-modal-overlay" id="modal-legal-overlay" onclick="closeInfoModal('legal')">
-  <div class="info-modal" onclick="event.stopPropagation()">
-    <div class="info-modal-header">
-      <span class="info-modal-title">Aviso Legal</span>
-      <button class="info-modal-close" onclick="closeInfoModal('legal')" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="info-modal-body">
-      <div class="info-modal-badge">Art. 213 · Ley de Propiedad Industrial</div>
-      <p>En <strong>Aion Perfumes</strong> vendemos perfumes <strong>inspirados en diseñadores/marcas</strong> que se utilizan con fines de referencia a los aromas y aclaramos en atención al artículo 213 de la Ley de Propiedad Industrial que <strong>no guardan ningún tipo de relación o asociación</strong> con las marcas o nombres que se mencionan.</p>
-      <br>
-      <p>Los nombres, marcas y derechos de autor son propiedad de sus respectivos diseñadores/fabricantes. <strong>No son copias exactas</strong> y no compite con la marca diseñadora.</p>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Disponibilidad de Aromas -->
-<div class="info-modal-overlay" id="modal-aromas-overlay" onclick="closeInfoModal('aromas')">
-  <div class="info-modal" onclick="event.stopPropagation()">
-    <div class="info-modal-header">
-      <span class="info-modal-title">Disponibilidad de Aromas</span>
-      <button class="info-modal-close" onclick="closeInfoModal('aromas')" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="info-modal-body">
-      <div class="info-modal-badge">Nota importante</div>
-      <p>Algunos aromas están <strong>sujetos a disponibilidad en tienda</strong>. En caso de que el aroma seleccionado no esté disponible al momento de procesar tu pedido, nos comunicaremos contigo por WhatsApp para ofrecerte una alternativa o confirmarte la fecha estimada de reabastecimiento.</p>
-    </div>
-  </div>
-</div>
-
-<script>
-
+ 
+  // ══ MODALES ══
   function openPromoGuide(volume, title, badge, qty) {
     document.getElementById('promo-guide-title').textContent = title;
     document.getElementById('promo-guide-badge').textContent = badge;
-    document.getElementById('promo-guide-qty').textContent = qty;
+    document.getElementById('promo-guide-qty').textContent   = qty;
     document.getElementById('promo-guide-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closePromoGuide() {
     document.getElementById('promo-guide-overlay').classList.remove('open');
     document.body.style.overflow = '';
-    // Scroll suave hacia la sección de aromas al cerrar
     setTimeout(() => {
-      const aromaSection = document.getElementById('tour-anchor-aroma');
-      if (aromaSection) aromaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const s = document.getElementById('tour-anchor-aroma');
+      if (s) s.scrollIntoView({ behavior:'smooth', block:'center' });
     }, 200);
   }
-
   function openInfoModal(id) {
-    document.getElementById('modal-' + id + '-overlay').classList.add('open');
+    document.getElementById('modal-'+id+'-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Quitar el aro neon la primera vez que se abre
+    const btn = document.getElementById('info-btn-' + id);
+    if (btn) btn.classList.remove('unseen');
   }
   function closeInfoModal(id) {
-    document.getElementById('modal-' + id + '-overlay').classList.remove('open');
+    document.getElementById('modal-'+id+'-overlay').classList.remove('open');
     document.body.style.overflow = '';
   }
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeInfoModal('legal');
       closeInfoModal('aromas');
+      closeCart();
     }
   });
 </script>
