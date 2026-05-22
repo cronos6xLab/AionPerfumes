@@ -641,7 +641,7 @@
 /* ── CART FAB (botón flotante arrastrable) ── */
 .cart-fab {
   position: fixed;
-  bottom: 88px;
+  top: 70px;
   right: 20px;
   z-index: 190;
   background: var(--dark);
@@ -654,28 +654,23 @@
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  cursor: grab;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 10px;
   box-shadow: 0 6px 24px rgba(0,0,0,0.2);
-  transition: background 0.2s, opacity 0.2s, box-shadow 0.2s;
+  transition: opacity 0.3s ease, background 0.2s;
   opacity: 0;
   pointer-events: none;
-  user-select: none;
-  touch-action: none;
+  width: fit-content;
+  height: auto;
 }
 .cart-fab.visible {
   opacity: 1;
   pointer-events: auto;
 }
-.cart-fab.dragging {
-  cursor: grabbing;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.32);
-  transition: box-shadow 0.15s;
-}
-.cart-fab:hover { background: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.22); }
-.cart-fab:active { background: #222; }
+.cart-fab:hover { background: #333; }
+.cart-fab:active { transform: scale(0.97); }
 .cart-fab-count {
   background: var(--gold);
   color: white;
@@ -690,7 +685,6 @@
   padding: 0 5px;
   letter-spacing: 0;
 }
-/* Pulso al añadir item */
 .cart-fab.pulse {
   animation: fabPulse 0.4s ease;
 }
@@ -699,7 +693,6 @@
   40%  { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
- 
   /* ── ACTION BUTTONS (fondo) ── */
   .action-buttons {
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
@@ -1077,7 +1070,7 @@
 <div id="tour-anchor-actions" style="height:1px; margin-bottom: 80px;"></div>
  
 <!-- FAB del carrito -->
-<button class="cart-fab" id="cart-fab" aria-label="Ver carrito">
+<button class="cart-fab" id="cart-fab" onclick="openCart()" ontouchend="event.preventDefault(); openCart();" aria-label="Ver carrito">
   🛒 Ver Carrito
   <span class="cart-fab-count" id="cart-fab-count">0</span>
 </button>
@@ -1238,7 +1231,7 @@
   let startX, startY, origLeft, origTop;
 
   // Posición inicial (esquina inferior derecha, sobre el btn-add)
-  fab.style.bottom = '88px';
+  fab.style.top = '70px';
   fab.style.right  = '20px';
 
   function getPos() {
@@ -1326,12 +1319,14 @@
     "J10EC":     { discount: 10, type: "percent", description: "10% de descuento" },
     "HT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "AT10":      { discount: 10, type: "percent", description: "10% de descuento" },
+    "PECH10":    { discount: 10, type: "percent", description: "10% de descuento" },
     "DT10":      { discount: 10, type: "percent", description: "10% de descuento" },
     "DOSH10":    { discount: 10, type: "percent", description: "10% de descuento" },
+    "L10S":      { discount: 10, type: "percent", description: "10% de descuento" },
     "HAMMSYK":   { discount: 10, type: "percent", description: "10% de descuento" },
     "AION15X":   { discount: 1,  type: "percent", description: "1% de descuento" },
-    "LAUNCH20X": { discount: 2,  type: "percent", description: "2% lanzamiento" },
-    "VERANO50X": { discount: 5,  type: "fixed",   description: "$5 MXN de descuento" },
+    "LAUNCH20X": { discount: 2,  type: "fixed", description: "$2% lanzamiento" },
+    "MOM10":     { discount: 10, type: "percent", description: "10% de descuento" },
   };
  
   const PRODUCT_OPTIONS = [
