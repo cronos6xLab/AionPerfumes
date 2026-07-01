@@ -21,11 +21,7 @@
             --drawer-w: 420px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background: var(--bg-main);
@@ -46,7 +42,7 @@
             letter-spacing: 2.5px;
             text-transform: uppercase;
             font-weight: 400;
-            border-bottom: 1px solid rgba(184, 151, 90, 0.35);
+            border-bottom: 1px solid rgba(184,151,90,0.35);
         }
         .marquee-track {
             display: flex;
@@ -54,33 +50,11 @@
             will-change: transform;
             animation: marquee-smooth 28s linear infinite;
         }
-        .announcement-bar:hover .marquee-track {
-            animation-play-state: paused;
-        }
-        .marquee-track span {
-            white-space: nowrap;
-            padding: 0 48px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .marquee-sep {
-            color: rgba(184, 151, 90, 0.8);
-            font-size: 0.5rem;
-        }
-        @keyframes marquee-smooth {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .marquee-track {
-                animation: none;
-            }
-        }
+        .announcement-bar:hover .marquee-track { animation-play-state: paused; }
+        .marquee-track span { white-space: nowrap; padding: 0 48px; display: inline-flex; align-items: center; gap: 10px; }
+        .marquee-sep { color: rgba(184,151,90,0.8); font-size: 0.5rem; }
+        @keyframes marquee-smooth { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
         .header {
             background: var(--bg-main);
@@ -101,1745 +75,366 @@
             text-transform: uppercase;
         }
 
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 0 0 130px;
-        }
+        .container { max-width: 480px; margin: 0 auto; padding: 0 0 130px; }
 
-        .product-image-wrap {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            overflow: hidden;
-            background: var(--bg-secondary);
-        }
-        .product-image-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .product-image-wrap { position: relative; width: 100%; height: 380px; overflow: hidden; background: var(--bg-secondary); }
+        .product-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
         .rating-badge {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid var(--border);
-            color: var(--dark);
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: absolute; bottom: 16px; left: 16px;
+            background: rgba(255,255,255,0.95); border: 1px solid var(--border);
+            color: var(--dark); padding: 6px 12px; border-radius: var(--radius-sm);
+            font-size: 0.75rem; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .product-info {
-            padding: 30px 20px 10px;
-            text-align: center;
-        }
-        .product-info h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-        .price-range {
-            font-size: 1.1rem;
-            color: var(--dark);
-            font-weight: 400;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-        .product-subtitle {
-            font-size: 0.75rem;
-            color: var(--muted);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
+        .product-info { padding: 30px 20px 10px; text-align: center; }
+        .product-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 2px; color: var(--dark); margin-bottom: 8px; }
+        .product-subtitle { font-size: 0.75rem; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
 
-        .section-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--dark);
-            margin-bottom: 16px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .step-number {
-            background: var(--dark);
-            color: white;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 0.6rem;
-        }
+        .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--dark); margin-bottom: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+        .step-number { background: var(--dark); color: white; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.6rem; }
 
-        .divider {
-            height: 1px;
-            background: var(--border);
-            margin: 24px 20px;
-        }
-        .option-section {
-            padding: 0 20px;
-        }
+        .divider { height: 1px; background: var(--border); margin: 24px 20px; }
+        .option-section { padding: 0 20px; }
 
-        .size-buttons,
-        .conc-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+        .size-buttons, .conc-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
         .size-btn {
-            flex: 1 1 auto;
-            min-width: 60px;
-            padding: 12px 6px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: var(--bg-secondary);
-            font-family: 'Jost', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--muted);
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            line-height: 1.3;
+            flex: 1 1 auto; min-width: 60px; padding: 12px 6px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+            background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; text-align: center; line-height: 1.3;
         }
-        .size-btn:hover {
-            border-color: var(--dark);
-            color: var(--dark);
-        }
-        .size-btn.active {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-        }
+        .size-btn:hover { border-color: var(--dark); color: var(--dark); }
+        .size-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
 
         .conc-btn {
-            flex: 1 1 auto;
-            min-width: 65px;
-            padding: 10px 4px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: var(--bg-secondary);
-            font-family: 'Jost', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--muted);
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            line-height: 1.4;
+            flex: 1 1 auto; min-width: 65px; padding: 10px 4px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+            background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; text-align: center; line-height: 1.4;
         }
-        .conc-btn small {
-            display: block;
-            font-size: 0.6rem;
-            font-weight: 400;
-            margin-top: 2px;
-            opacity: 0.75;
-        }
-        .conc-btn:hover {
-            border-color: var(--dark);
-            color: var(--dark);
-        }
-        .conc-btn.active {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-        }
-        .conc-btn.active small {
-            opacity: 0.7;
-        }
-        .conc-btn.unavailable {
-            opacity: 0.28;
-            pointer-events: none;
-            cursor: default;
-        }
+        .conc-btn small { display: block; font-size: 0.6rem; font-weight: 400; margin-top: 2px; opacity: 0.75; }
+        .conc-btn:hover { border-color: var(--dark); color: var(--dark); }
+        .conc-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
+        .conc-btn.active small { opacity: 0.7; }
 
-        .selected-price-display {
-            margin-top: 14px;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--dark);
-            letter-spacing: 1px;
-            text-align: center;
-            min-height: 26px;
-            transition: opacity 0.2s;
-        }
+        .selected-price-display { margin-top: 14px; font-size: 1.05rem; font-weight: 500; color: var(--dark); letter-spacing: 1px; text-align: center; min-height: 26px; transition: opacity 0.2s; }
 
-        .promo-section {
-            padding: 0 20px;
-        }
+        .promo-section { padding: 0 20px; }
         .promo-instruction {
-            font-size: 0.75rem;
-            color: var(--dark);
-            background: #fffdf5;
-            border: 1px solid #e8dfc3;
-            border-left: 3px solid var(--gold);
-            padding: 12px;
-            border-radius: var(--radius-sm);
-            margin-bottom: 16px;
-            line-height: 1.4;
+            font-size: 0.75rem; color: var(--dark); background: #fffdf5; border: 1px solid #e8dfc3; border-left: 3px solid var(--gold);
+            padding: 12px; border-radius: var(--radius-sm); margin-bottom: 16px; line-height: 1.4;
         }
-        .promo-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .promo-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
         .promo-btn {
-            flex: 1 1 auto;
-            min-width: 90px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 12px 6px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--muted);
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            line-height: 1.4;
-            opacity: 0.5;
+            flex: 1 1 auto; min-width: 90px; background: var(--bg-secondary); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 12px 6px; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s;
+            text-align: center; line-height: 1.4; opacity: 0.5;
         }
-        .promo-btn.active-vol {
-            opacity: 1;
-            background: var(--bg-main);
-            color: var(--dark);
-            border-color: var(--border);
-        }
-        .promo-btn.active-vol:hover {
-            border-color: var(--dark);
-        }
-        .promo-btn.active {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-            opacity: 1;
-        }
-        .promo-btn small {
-            display: block;
-            font-size: 0.7rem;
-            opacity: 0.8;
-            margin-top: 4px;
-            font-weight: 400;
-            min-height: 12px;
-        }
+        .promo-btn.active-vol { opacity: 1; background: var(--bg-main); color: var(--dark); border-color: var(--border); }
+        .promo-btn.active-vol:hover { border-color: var(--dark); }
+        .promo-btn.active { background: var(--dark); color: white; border-color: var(--dark); opacity: 1; }
+        .promo-btn small { display: block; font-size: 0.7rem; opacity: 0.8; margin-top: 4px; font-weight: 400; min-height: 12px; }
         .promo-status {
-            margin-top: 16px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            font-size: 0.85rem;
-            display: none;
+            margin-top: 16px; background: var(--bg-secondary); border: 1px solid var(--border); padding: 16px;
+            border-radius: var(--radius-sm); font-size: 0.85rem; display: none;
         }
-        .promo-status.visible {
-            display: block;
-        }
-        .promo-selected-list {
-            margin: 12px 0 4px;
-        }
+        .promo-status.visible { display: block; }
+        .promo-selected-list { margin: 12px 0 4px; }
         .promo-selected-item {
-            display: inline-flex;
-            align-items: center;
-            background: var(--bg-main);
-            padding: 6px 12px;
-            margin: 4px 6px 4px 0;
-            border: 1px solid var(--border);
-            font-size: 0.75rem;
-            border-radius: var(--radius-sm);
+            display: inline-flex; align-items: center; background: var(--bg-main); padding: 6px 12px; margin: 4px 6px 4px 0;
+            border: 1px solid var(--border); font-size: 0.75rem; border-radius: var(--radius-sm);
         }
-        .promo-selected-item span {
-            margin-left: 8px;
-            cursor: pointer;
-            color: var(--muted);
-            font-size: 1rem;
-            line-height: 1;
-        }
+        .promo-selected-item span { margin-left: 8px; cursor: pointer; color: var(--muted); font-size: 1rem; line-height: 1; }
         .btn-cancel-promo-inline {
-            background: transparent;
-            color: var(--dark);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 10px 16px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 8px;
-            transition: background 0.2s;
+            background: transparent; color: var(--dark); border: 1px solid var(--border); border-radius: var(--radius-sm);
+            padding: 10px 16px; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 1px;
+            text-transform: uppercase; cursor: pointer; width: 100%; margin-top: 8px; transition: background 0.2s;
         }
-        .btn-cancel-promo-inline:hover {
-            background: var(--bg-secondary);
-        }
+        .btn-cancel-promo-inline:hover { background: var(--bg-secondary); }
 
-        .search-section {
-            padding: 0 20px;
-        }
-        .search-wrap {
-            position: relative;
-        }
+        .search-section { padding: 0 20px; }
+        .search-wrap { position: relative; }
         .search-wrap input {
-            width: 100%;
-            padding: 14px 16px 14px 42px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: var(--bg-secondary);
-            font-family: 'Jost', sans-serif;
-            font-size: 0.9rem;
-            color: var(--dark);
-            outline: none;
+            width: 100%; padding: 14px 16px 14px 42px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+            background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--dark); outline: none;
             transition: border-color 0.2s, background 0.2s;
         }
-        .search-wrap input:focus {
-            border-color: var(--dark);
-            background: var(--bg-main);
-        }
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--muted);
-            font-size: 1rem;
-        }
+        .search-wrap input:focus { border-color: var(--dark); background: var(--bg-main); }
+        .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; }
         .search-results {
-            background: var(--bg-main);
-            border: 1px solid var(--border);
-            border-top: none;
-            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-            display: none;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            z-index: 50;
-            max-height: 300px;
-            overflow-y: auto;
+            background: var(--bg-main); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            position: absolute; top: 100%; left: 0; right: 0; overflow: hidden; display: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); z-index: 50; max-height: 300px; overflow-y: auto;
         }
-        .search-results.visible {
-            display: block;
-        }
+        .search-results.visible { display: block; }
         .search-result-item {
-            padding: 14px 16px;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: background 0.15s;
+            padding: 14px 16px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 0.85rem;
+            display: flex; align-items: center; gap: 12px; transition: background 0.15s;
         }
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-        .search-result-item:hover {
-            background: var(--bg-secondary);
-        }
-        .search-result-item .aroma-code {
-            font-weight: 500;
-            min-width: 50px;
-        }
-        .search-result-item .aroma-info {
-            flex: 1;
-        }
-        .search-result-item .aroma-name {
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-        .search-result-item .aroma-meta {
-            font-size: 0.7rem;
-            color: var(--muted);
-            letter-spacing: 0.5px;
-            line-height: 1.5;
-        }
-        .search-result-item .aroma-meta+.aroma-meta {
-            margin-top: 3px;
-        }
-        .search-result-item .aroma-label {
-            color: var(--dark);
-            font-weight: 500;
-        }
+        .search-result-item:last-child { border-bottom: none; }
+        .search-result-item:hover { background: var(--bg-secondary); }
+        .search-result-item .aroma-code { font-weight: 500; min-width: 50px; }
+        .search-result-item .aroma-info { flex: 1; }
+        .search-result-item .aroma-name { font-weight: 500; margin-bottom: 4px; }
+        .search-result-item .aroma-meta { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.5px; line-height: 1.5; }
+        .search-result-item .aroma-meta + .aroma-meta { margin-top: 3px; }
+        .search-result-item .aroma-label { color: var(--dark); font-weight: 500; }
 
         .selected-aroma-tag {
-            display: none;
-            margin: 16px 20px 0;
-            background: var(--bg-main);
-            border: 1px solid var(--dark);
-            border-radius: var(--radius-sm);
-            padding: 14px 16px;
-            align-items: center;
-            gap: 12px;
+            display: none; margin: 16px 20px 0; background: var(--bg-main); border: 1px solid var(--dark);
+            border-radius: var(--radius-sm); padding: 14px 16px; align-items: center; gap: 12px;
         }
-        .selected-aroma-tag.visible {
-            display: flex;
-        }
-        .selected-aroma-tag .aroma-text {
-            flex: 1;
-        }
-        .selected-aroma-tag .aroma-text strong {
-            display: block;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        .selected-aroma-tag .aroma-text small {
-            color: var(--muted);
-            font-size: 0.75rem;
-            display: block;
-            line-height: 1.5;
-        }
-        .selected-aroma-tag .aroma-text small+small {
-            margin-top: 2px;
-        }
-        .remove-aroma {
-            background: none;
-            border: none;
-            color: var(--dark);
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
+        .selected-aroma-tag.visible { display: flex; }
+        .selected-aroma-tag .aroma-text { flex: 1; }
+        .selected-aroma-tag .aroma-text strong { display: block; font-weight: 500; font-size: 0.9rem; }
+        .selected-aroma-tag .aroma-text small { color: var(--muted); font-size: 0.75rem; display: block; line-height: 1.5; }
+        .selected-aroma-tag .aroma-text small + small { margin-top: 2px; }
+        .remove-aroma { background: none; border: none; color: var(--dark); cursor: pointer; font-size: 1.2rem; }
 
-        .addon-section {
-            padding: 0 20px;
-        }
+        .addon-section { padding: 0 20px; }
         .addon-option {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 16px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            transition: border-color 0.2s;
+            display: flex; align-items: center; cursor: pointer; padding: 16px; border: 1px solid var(--border);
+            border-radius: var(--radius-sm); transition: border-color 0.2s;
         }
-        .addon-option:hover {
-            border-color: var(--dark);
-        }
+        .addon-option:hover { border-color: var(--dark); }
         .checkbox-box {
-            width: 20px;
-            height: 20px;
-            border: 1px solid var(--muted);
-            margin-right: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: white;
-            transition: all 0.2s;
+            width: 20px; height: 20px; border: 1px solid var(--muted); margin-right: 16px;
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white; transition: all 0.2s;
         }
-        .addon-option.checked .checkbox-box {
-            background: var(--dark);
-            border-color: var(--dark);
-        }
-        .addon-text {
-            flex: 1;
-        }
-        .addon-label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .addon-desc {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-top: 2px;
-        }
-        .addon-price {
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
+        .addon-option.checked .checkbox-box { background: var(--dark); border-color: var(--dark); }
+        .addon-text { flex: 1; }
+        .addon-label { display: block; font-size: 0.9rem; font-weight: 500; }
+        .addon-desc { display: block; font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+        .addon-price { font-weight: 500; font-size: 0.9rem; }
 
-        .finish-promo-wrapper {
-            display: none;
-            padding: 0 20px;
-            margin-top: 16px;
-        }
-        .finish-promo-wrapper.visible {
-            display: block;
-        }
+        .finish-promo-wrapper { display: none; padding: 0 20px; margin-top: 16px; }
+        .finish-promo-wrapper.visible { display: block; }
         .btn-finish-promo {
-            background: var(--dark);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            background: var(--dark); color: white; border: none; border-radius: var(--radius-sm); padding: 16px;
+            font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; width: 100%; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .btn-finish-promo:hover {
-            background: #333;
-        }
-        .btn-finish-promo:active {
-            transform: scale(0.98);
-        }
+        .btn-finish-promo:hover { background: #333; }
+        .btn-finish-promo:active { transform: scale(0.98); }
 
-        .promo-hint {
-            display: none;
-            padding: 0 20px;
-            margin-top: 16px;
-        }
-        .promo-hint.visible {
-            display: block;
-        }
+        .promo-hint { display: none; padding: 0 20px; margin-top: 16px; }
+        .promo-hint.visible { display: block; }
         .promo-hint-inner {
-            border: 1px dashed var(--border);
-            border-radius: var(--radius-sm);
-            padding: 14px 16px;
-            font-size: 0.78rem;
-            color: var(--muted);
-            text-align: center;
-            letter-spacing: 0.5px;
+            border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 14px 16px;
+            font-size: 0.78rem; color: var(--muted); text-align: center; letter-spacing: 0.5px;
         }
 
-        .quantity-section {
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .qty-control {
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-        }
-        .qty-btn {
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--dark);
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-        .qty-btn:hover {
-            background: var(--bg-secondary);
-        }
-        .qty-display {
-            width: 40px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
+        .quantity-section { padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+        .qty-control { display: flex; align-items: center; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+        .qty-btn { width: 40px; height: 40px; background: none; border: none; font-size: 1.2rem; color: var(--dark); cursor: pointer; transition: background 0.15s; }
+        .qty-btn:hover { background: var(--bg-secondary); }
+        .qty-display { width: 40px; text-align: center; font-weight: 500; font-size: 0.9rem; }
 
-        .coupon-section {
-            padding: 0 20px;
-        }
-        .coupon-wrap {
-            display: flex;
-            gap: 8px;
-            align-items: stretch;
-        }
+        .coupon-section { padding: 0 20px; }
+        .coupon-wrap { display: flex; gap: 8px; align-items: stretch; }
         .coupon-wrap input {
-            flex: 1;
-            padding: 14px 16px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: var(--bg-secondary);
-            font-family: 'Jost', sans-serif;
-            font-size: 0.9rem;
-            color: var(--dark);
-            outline: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: border-color 0.2s, background 0.2s;
+            flex: 1; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+            background: var(--bg-secondary); font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--dark); outline: none;
+            text-transform: uppercase; letter-spacing: 2px; transition: border-color 0.2s, background 0.2s;
         }
-        .coupon-wrap input:focus {
-            border-color: var(--dark);
-            background: var(--bg-main);
-        }
-        .coupon-wrap input::placeholder {
-            text-transform: none;
-            letter-spacing: 0.5px;
-            color: var(--muted);
-        }
+        .coupon-wrap input:focus { border-color: var(--dark); background: var(--bg-main); }
+        .coupon-wrap input::placeholder { text-transform: none; letter-spacing: 0.5px; color: var(--muted); }
         .btn-apply-coupon {
-            padding: 14px 18px;
-            background: var(--dark);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-family: 'Jost', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.2s;
-            white-space: nowrap;
+            padding: 14px 18px; background: var(--dark); color: white; border: none; border-radius: var(--radius-sm);
+            font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+            cursor: pointer; transition: background 0.2s; white-space: nowrap;
         }
-        .btn-apply-coupon:hover {
-            background: #333;
-        }
+        .btn-apply-coupon:hover { background: #333; }
         .coupon-feedback {
-            margin-top: 10px;
-            padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            font-size: 0.8rem;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            line-height: 1.4;
+            margin-top: 10px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; display: none;
+            align-items: center; gap: 10px; line-height: 1.4;
         }
-        .coupon-feedback.success {
-            display: flex;
-            background: #f0faf4;
-            border: 1px solid #a8dfc0;
-            color: #1a6638;
-        }
-        .coupon-feedback.error {
-            display: flex;
-            background: #fff5f5;
-            border: 1px solid #f5c0c0;
-            color: #a33;
-        }
-        .coupon-feedback-icon {
-            font-size: 1rem;
-        }
-        .coupon-feedback-text {
-            flex: 1;
-        }
-        .btn-remove-coupon {
-            background: none;
-            border: none;
-            color: #1a6638;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 0 4px;
-            line-height: 1;
-        }
+        .coupon-feedback.success { display: flex; background: #f0faf4; border: 1px solid #a8dfc0; color: #1a6638; }
+        .coupon-feedback.error   { display: flex; background: #fff5f5; border: 1px solid #f5c0c0; color: #a33; }
+        .coupon-feedback-icon { font-size: 1rem; }
+        .coupon-feedback-text { flex: 1; }
+        .btn-remove-coupon { background: none; border: none; color: #1a6638; cursor: pointer; font-size: 1rem; padding: 0 4px; line-height: 1; }
 
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0);
-            z-index: 200;
-            pointer-events: none;
-            transition: background 0.35s ease;
-        }
-        .cart-overlay.open {
-            background: rgba(0, 0, 0, 0.45);
-            pointer-events: auto;
-        }
+        .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0); z-index: 200; pointer-events: none; transition: background 0.35s ease; }
+        .cart-overlay.open { background: rgba(0,0,0,0.45); pointer-events: auto; }
 
         .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: var(--drawer-w);
-            max-width: 100vw;
-            background: var(--bg-main);
-            z-index: 201;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: -12px 0 48px rgba(0, 0, 0, 0.12);
+            position: fixed; top: 0; right: 0; bottom: 0; width: var(--drawer-w); max-width: 100vw;
+            background: var(--bg-main); z-index: 201; display: flex; flex-direction: column;
+            transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -12px 0 48px rgba(0,0,0,0.12);
         }
-        .cart-drawer.open {
-            transform: translateX(0);
-        }
+        .cart-drawer.open { transform: translateX(0); }
 
-        .drawer-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 22px 24px 18px;
-            border-bottom: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-        .drawer-header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .drawer-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.35rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--dark);
-        }
-        .drawer-item-count {
-            background: var(--dark);
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            min-width: 22px;
-            height: 22px;
-            border-radius: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 6px;
-        }
-        .drawer-close {
-            background: var(--bg-secondary);
-            border: none;
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: var(--muted);
-            cursor: pointer;
-            transition: background 0.15s, color 0.15s;
-            flex-shrink: 0;
-        }
-        .drawer-close:hover {
-            background: var(--border);
-            color: var(--dark);
-        }
+        .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 22px 24px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+        .drawer-header-left { display: flex; align-items: center; gap: 12px; }
+        .drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--dark); }
+        .drawer-item-count { background: var(--dark); color: white; font-size: 0.65rem; font-weight: 600; letter-spacing: 1px; min-width: 22px; height: 22px; border-radius: 11px; display: flex; align-items: center; justify-content: center; padding: 0 6px; }
+        .drawer-close { background: var(--bg-secondary); border: none; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--muted); cursor: pointer; transition: background 0.15s, color 0.15s; flex-shrink: 0; }
+        .drawer-close:hover { background: var(--border); color: var(--dark); }
 
-        .drawer-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0;
-            scrollbar-width: thin;
-            scrollbar-color: var(--border) transparent;
-        }
-        .drawer-body::-webkit-scrollbar {
-            width: 4px;
-        }
-        .drawer-body::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-        }
+        .drawer-body { flex: 1; overflow-y: auto; padding: 0; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+        .drawer-body::-webkit-scrollbar { width: 4px; }
+        .drawer-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-        .drawer-empty {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 30px;
-            text-align: center;
-            height: 100%;
-            color: var(--muted);
-        }
-        .drawer-empty-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            opacity: 0.3;
-        }
-        .drawer-empty-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--dark);
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-        .drawer-empty-sub {
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            line-height: 1.6;
-        }
+        .drawer-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 30px; text-align: center; height: 100%; color: var(--muted); }
+        .drawer-empty-icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
+        .drawer-empty-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--dark); letter-spacing: 2px; margin-bottom: 8px; }
+        .drawer-empty-sub { font-size: 0.8rem; letter-spacing: 0.5px; line-height: 1.6; }
 
-        .drawer-items {
-            padding: 0 20px;
-        }
+        .drawer-items { padding: 0 20px; }
+        .drawer-cart-item { border-bottom: 1px solid var(--border); padding: 18px 0; animation: slideIn 0.25s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
 
-        .drawer-cart-item {
-            border-bottom: 1px solid var(--border);
-            padding: 18px 0;
-            animation: slideIn 0.25s ease;
-        }
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+        .drawer-item-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+        .drawer-item-icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--bg-secondary); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .drawer-item-meta { flex: 1; min-width: 0; }
+        .drawer-item-name { font-weight: 500; font-size: 0.9rem; line-height: 1.3; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .drawer-item-sub { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.4px; line-height: 1.5; }
+        .drawer-item-price-row { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+        .drawer-item-price { font-size: 1rem; font-weight: 500; letter-spacing: 0.5px; color: var(--dark); }
+        .drawer-item-actions { display: flex; align-items: center; gap: 8px; }
+        .drawer-remove-btn { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 5px 10px; font-size: 0.7rem; color: var(--muted); cursor: pointer; font-family: 'Jost', sans-serif; letter-spacing: 0.5px; transition: all 0.15s; }
+        .drawer-remove-btn:hover { border-color: #c00; color: #c00; background: #fff5f5; }
 
-        .drawer-item-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-        .drawer-item-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-sm);
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-        .drawer-item-meta {
-            flex: 1;
-            min-width: 0;
-        }
-        .drawer-item-name {
-            font-weight: 500;
-            font-size: 0.9rem;
-            line-height: 1.3;
-            margin-bottom: 3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .drawer-item-sub {
-            font-size: 0.72rem;
-            color: var(--muted);
-            letter-spacing: 0.4px;
-            line-height: 1.5;
-        }
-        .drawer-item-price-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 6px;
-        }
-        .drawer-item-price {
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            color: var(--dark);
-        }
-        .drawer-item-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .drawer-remove-btn {
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 5px 10px;
-            font-size: 0.7rem;
-            color: var(--muted);
-            cursor: pointer;
-            font-family: 'Jost', sans-serif;
-            letter-spacing: 0.5px;
-            transition: all 0.15s;
-        }
-        .drawer-remove-btn:hover {
-            border-color: #c00;
-            color: #c00;
-            background: #fff5f5;
-        }
+        .drawer-promo-toggle { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 0.75rem; font-family: 'Jost', sans-serif; color: var(--dark); cursor: pointer; width: 100%; text-align: left; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; transition: background 0.15s; font-weight: 500; letter-spacing: 0.5px; }
+        .drawer-promo-toggle:hover { background: var(--border); }
+        .drawer-promo-toggle .toggle-arrow { font-size: 0.65rem; transition: transform 0.2s; color: var(--muted); }
+        .drawer-promo-toggle.expanded .toggle-arrow { transform: rotate(180deg); }
 
-        .drawer-promo-toggle {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 10px 14px;
-            font-size: 0.75rem;
-            font-family: 'Jost', sans-serif;
-            color: var(--dark);
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 10px;
-            transition: background 0.15s;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-        .drawer-promo-toggle:hover {
-            background: var(--border);
-        }
-        .drawer-promo-toggle .toggle-arrow {
-            font-size: 0.65rem;
-            transition: transform 0.2s;
-            color: var(--muted);
-        }
-        .drawer-promo-toggle.expanded .toggle-arrow {
-            transform: rotate(180deg);
-        }
+        .drawer-promo-details { overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+        .drawer-promo-details.expanded { max-height: 400px; }
+        .drawer-promo-details-inner { padding: 12px 14px; background: #fafafa; border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+        .drawer-promo-aroma-row { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); }
+        .drawer-promo-aroma-row:last-child { border-bottom: none; }
+        .drawer-promo-aroma-code { font-weight: 500; color: var(--dark); margin-right: 8px; font-size: 0.7rem; }
+        .drawer-promo-aroma-name { flex: 1; }
+        .drawer-promo-badge { display: inline-flex; align-items: center; gap: 4px; background: #fffdf5; border: 1px solid rgba(184,151,90,0.35); color: var(--gold); font-size: 0.65rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
 
-        .drawer-promo-details {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.3s ease;
-        }
-        .drawer-promo-details.expanded {
-            max-height: 400px;
-        }
-        .drawer-promo-details-inner {
-            padding: 12px 14px;
-            background: #fafafa;
-            border: 1px solid var(--border);
-            border-top: none;
-            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-        }
-        .drawer-promo-aroma-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-        .drawer-promo-aroma-row:last-child {
-            border-bottom: none;
-        }
-        .drawer-promo-aroma-code {
-            font-weight: 500;
-            color: var(--dark);
-            margin-right: 8px;
-            font-size: 0.7rem;
-        }
-        .drawer-promo-aroma-name {
-            flex: 1;
-        }
-        .drawer-promo-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: #fffdf5;
-            border: 1px solid rgba(184, 151, 90, 0.35);
-            color: var(--gold);
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 2px 8px;
-            border-radius: 3px;
-            margin-bottom: 10px;
-        }
+        .drawer-feromonas-badge { display: inline-flex; align-items: center; gap: 5px; background: #f5f0fa; border: 1px solid #d0bde8; color: #6b3fa0; font-size: 0.68rem; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 3px; margin-top: 6px; }
 
-        .drawer-feromonas-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: #f5f0fa;
-            border: 1px solid #d0bde8;
-            color: #6b3fa0;
-            font-size: 0.68rem;
-            letter-spacing: 0.5px;
-            padding: 3px 10px;
-            border-radius: 3px;
-            margin-top: 6px;
-        }
+        .drawer-footer { border-top: 1px solid var(--border); padding: 20px 24px 28px; background: var(--bg-main); flex-shrink: 0; }
+        .drawer-totals { margin-bottom: 18px; }
+        .drawer-total-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; padding: 5px 0; color: var(--muted); }
+        .drawer-total-row.subtotal { color: var(--dark); }
+        .drawer-total-row.discount { color: #1a6638; font-weight: 500; }
+        .drawer-total-row.shipping-free { color: #1a6638; }
+        .drawer-total-row.shipping-cost .shipping-notice { font-size: 0.68rem; color: var(--gold); font-weight: 500; text-align: right; display: block; margin-top: 1px; }
 
-        .drawer-footer {
-            border-top: 1px solid var(--border);
-            padding: 20px 24px 28px;
-            background: var(--bg-main);
-            flex-shrink: 0;
-        }
+        .drawer-grand-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 0; margin-top: 8px; border-top: 1px solid var(--border); }
+        .drawer-grand-total .label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--dark); }
+        .drawer-grand-total .amount { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; letter-spacing: 1px; color: var(--dark); }
 
-        .drawer-totals {
-            margin-bottom: 18px;
-        }
-        .drawer-total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.82rem;
-            padding: 5px 0;
-            color: var(--muted);
-        }
-        .drawer-total-row.subtotal {
-            color: var(--dark);
-        }
-        .drawer-total-row.discount {
-            color: #1a6638;
-            font-weight: 500;
-        }
-        .drawer-total-row.shipping-free {
-            color: #1a6638;
-        }
-        .drawer-total-row.shipping-cost .shipping-notice {
-            font-size: 0.68rem;
-            color: var(--gold);
-            font-weight: 500;
-            text-align: right;
-            display: block;
-            margin-top: 1px;
-        }
+        .drawer-coupon-row { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; padding: 10px 14px; background: #fffdf5; border: 1px solid rgba(184,151,90,0.3); border-radius: var(--radius-sm); font-size: 0.78rem; }
+        .drawer-coupon-code { font-weight: 600; color: var(--gold); letter-spacing: 1px; }
+        .drawer-coupon-desc { flex: 1; color: var(--muted); }
+        .drawer-coupon-remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.9rem; padding: 2px; }
+        .drawer-coupon-remove:hover { color: #c00; }
 
-        .drawer-grand-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 0 0;
-            margin-top: 8px;
-            border-top: 1px solid var(--border);
-        }
-        .drawer-grand-total .label {
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        .drawer-grand-total .amount {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--dark);
-        }
+        .drawer-actions { display: flex; flex-direction: column; gap: 10px; }
+        .drawer-btn-wa { background: var(--green-wa); color: white; border: none; border-radius: var(--radius-sm); padding: 16px; font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+        .drawer-btn-wa:hover { background: var(--green-wa-dark); }
+        .drawer-btn-wa:active { transform: scale(0.98); }
+        .drawer-btn-clear { background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 16px; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; width: 100%; transition: all 0.2s; }
+        .drawer-btn-clear:hover { background: var(--bg-secondary); color: var(--dark); border-color: var(--dark); }
 
-        .drawer-coupon-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 14px;
-            padding: 10px 14px;
-            background: #fffdf5;
-            border: 1px solid rgba(184, 151, 90, 0.3);
-            border-radius: var(--radius-sm);
-            font-size: 0.78rem;
-        }
-        .drawer-coupon-code {
-            font-weight: 600;
-            color: var(--gold);
-            letter-spacing: 1px;
-        }
-        .drawer-coupon-desc {
-            flex: 1;
-            color: var(--muted);
-        }
-        .drawer-coupon-remove {
-            background: none;
-            border: none;
-            color: var(--muted);
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 2px;
-        }
-        .drawer-coupon-remove:hover {
-            color: #c00;
-        }
+        .cart-fab { position: fixed; top: 70px; right: 20px; z-index: 190; background: var(--dark); color: white; border: none; border-radius: 50px; padding: 14px 22px; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.2); transition: opacity 0.3s ease, background 0.2s; opacity: 0; pointer-events: none; width: fit-content; height: auto; }
+        .cart-fab.visible { opacity: 1; pointer-events: auto; }
+        .cart-fab:hover { background: #333; }
+        .cart-fab:active { transform: scale(0.97); }
+        .cart-fab-count { background: var(--gold); color: white; font-size: 0.62rem; font-weight: 700; min-width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 0 5px; letter-spacing: 0; }
+        .cart-fab.pulse { animation: fabPulse 0.4s ease; }
+        @keyframes fabPulse { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
 
-        .drawer-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .drawer-btn-wa {
-            background: var(--green-wa);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-        .drawer-btn-wa:hover {
-            background: var(--green-wa-dark);
-        }
-        .drawer-btn-wa:active {
-            transform: scale(0.98);
-        }
+        .action-buttons { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; padding: 16px 20px 24px; background: linear-gradient(to top, rgba(255,255,255,1) 70%, rgba(255,255,255,0)); display: flex; gap: 12px; z-index: 90; }
+        .btn-add { flex: 1; border: none; border-radius: var(--radius-sm); padding: 16px; font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.1s, opacity 0.2s; background: var(--dark); color: #ffffff; }
+        .btn-add:hover { opacity: 0.9; }
+        .btn-add:active { transform: scale(0.98); }
 
-        .drawer-btn-clear {
-            background: transparent;
-            color: var(--muted);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 11px 16px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.2s;
-        }
-        .drawer-btn-clear:hover {
-            background: var(--bg-secondary);
-            color: var(--dark);
-            border-color: var(--dark);
-        }
+        .toast { position: fixed; top: 100px; left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--dark); color: #ffffff; padding: 14px 24px; border-radius: var(--radius-sm); font-size: 0.8rem; letter-spacing: 1px; opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 1200; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        .cart-fab {
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            z-index: 190;
-            background: var(--dark);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 14px 22px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.3s ease, background 0.2s;
-            opacity: 0;
-            pointer-events: none;
-            width: fit-content;
-            height: auto;
-        }
-        .cart-fab.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .cart-fab:hover {
-            background: #333;
-        }
-        .cart-fab:active {
-            transform: scale(0.97);
-        }
-        .cart-fab-count {
-            background: var(--gold);
-            color: white;
-            font-size: 0.62rem;
-            font-weight: 700;
-            min-width: 20px;
-            height: 20px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5px;
-            letter-spacing: 0;
-        }
-        .cart-fab.pulse {
-            animation: fabPulse 0.4s ease;
-        }
-        @keyframes fabPulse {
-            0% {
-                transform: scale(1);
-            }
-            40% {
-                transform: scale(1.08);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
+        .tour-overlay { position: fixed; inset: 0; background: transparent; z-index: 1000; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+        .tour-overlay.active { pointer-events: auto; opacity: 1; }
+        .tour-highlight { position: fixed; border-radius: 6px; box-shadow: 0 0 0 0 rgba(0,0,0,0); z-index: 1001; pointer-events: none; transition: all 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.3s ease; }
+        .tour-highlight.active { box-shadow: 0 0 0 9999px rgba(0,0,0,0.55); }
+        .tour-tooltip { position: fixed; z-index: 1003; background: #ffffff; border-radius: 10px; padding: 20px 22px; max-width: 300px; width: calc(100vw - 40px); box-shadow: 0 8px 32px rgba(0,0,0,0.18); opacity: 0; pointer-events: none; transition: opacity 0.3s, top 0.35s cubic-bezier(.4,0,.2,1), bottom 0.35s cubic-bezier(.4,0,.2,1), left 0.35s cubic-bezier(.4,0,.2,1); }
+        .tour-tooltip.active { opacity: 1; pointer-events: auto; }
+        .tour-tooltip::before { content: ''; position: absolute; width: 12px; height: 12px; background: #ffffff; transform: rotate(45deg); }
+        .tour-tooltip.arrow-top::before { top: -6px; left: 24px; }
+        .tour-tooltip.arrow-bottom::before { bottom: -6px; left: 24px; }
+        .tour-step-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+        .tour-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; color: var(--dark); margin-bottom: 8px; letter-spacing: 1px; }
+        .tour-body { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+        .tour-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .tour-dots { display: flex; gap: 5px; }
+        .tour-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+        .tour-dot.active { background: var(--dark); }
+        .tour-actions { display: flex; gap: 8px; }
+        .tour-btn-skip { background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 14px; font-family: 'Jost', sans-serif; font-size: 0.75rem; color: var(--muted); cursor: pointer; letter-spacing: 1px; transition: border-color 0.2s; }
+        .tour-btn-skip:hover { border-color: var(--muted); }
+        .tour-btn-next { background: var(--dark); border: none; border-radius: var(--radius-sm); padding: 8px 18px; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; color: white; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: background 0.2s; }
+        .tour-btn-next:hover { background: #333; }
 
-        .action-buttons {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            padding: 16px 20px 24px;
-            background: linear-gradient(to top, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0));
-            display: flex;
-            gap: 12px;
-            z-index: 90;
-        }
-        .btn-add {
-            flex: 1;
-            border: none;
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform 0.1s, opacity 0.2s;
-            background: var(--dark);
-            color: #ffffff;
-        }
-        .btn-add:hover {
-            opacity: 0.9;
-        }
-        .btn-add:active {
-            transform: scale(0.98);
-        }
+        .promo-guide-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .promo-guide-overlay.open { opacity: 1; pointer-events: auto; }
+        .promo-guide-modal { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(30px); width: 100%; max-width: 480px; background: #fff; border-radius: 20px 20px 0 0; padding: 0 0 36px; z-index: 2101; box-shadow: 0 -12px 40px rgba(0,0,0,0.18); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s; opacity: 0; }
+        .promo-guide-overlay.open .promo-guide-modal { transform: translateX(-50%) translateY(0); opacity: 1; }
+        .promo-guide-handle { width: 36px; height: 4px; background: var(--border); border-radius: 9999px; margin: 12px auto 0; }
+        .promo-guide-header { padding: 18px 22px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+        .promo-guide-eyebrow { font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+        .promo-guide-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; letter-spacing: 1px; color: var(--dark); line-height: 1.2; }
+        .promo-guide-close { background: var(--bg-secondary); border: none; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--muted); cursor: pointer; flex-shrink: 0; transition: background 0.15s; margin-top: 2px; }
+        .promo-guide-close:hover { background: var(--border); color: var(--dark); }
+        .promo-guide-steps { padding: 20px 22px 0; display: flex; flex-direction: column; gap: 0; }
+        .promo-guide-step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); }
+        .promo-guide-step:last-child { border-bottom: none; }
+        .promo-guide-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--dark); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+        .promo-guide-step-num.gold { background: var(--gold); }
+        .promo-guide-step-title { font-size: 0.88rem; font-weight: 600; color: var(--dark); margin-bottom: 3px; letter-spacing: 0.3px; }
+        .promo-guide-step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+        .promo-guide-step-desc strong { color: var(--dark); font-weight: 500; }
+        .promo-guide-badge { display: inline-block; background: #fffdf5; border: 1px solid rgba(184,151,90,0.4); color: var(--gold); font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 3px; padding: 2px 8px; margin-bottom: 16px; margin-left: 22px; margin-top: 4px; }
+        .promo-guide-cta { margin: 18px 22px 0; background: var(--dark); color: white; border: none; border-radius: var(--radius-sm); padding: 15px; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; width: calc(100% - 44px); transition: background 0.2s; display: block; }
+        .promo-guide-cta:hover { background: #333; }
 
-        .toast {
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-10px);
-            background: var(--dark);
-            color: #ffffff;
-            padding: 14px 24px;
-            border-radius: var(--radius-sm);
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s;
-            z-index: 1200;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
+        .size-btn.extra-product { font-size: 0.68rem; line-height: 1.35; padding: 10px 4px; border-style: dashed; }
+        .size-btn.extra-product.active { background: var(--dark); color: white; border-color: var(--dark); border-style: solid; }
+        .conc-section-hidden { display: none !important; }
 
-        .tour-overlay {
-            position: fixed;
-            inset: 0;
-            background: transparent;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tour-overlay.active {
-            pointer-events: auto;
-            opacity: 1;
-        }
-        .tour-highlight {
-            position: fixed;
-            border-radius: 6px;
-            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-            z-index: 1001;
-            pointer-events: none;
-            transition: all 0.35s cubic-bezier(.4, 0, .2, 1), box-shadow 0.3s ease;
-        }
-        .tour-highlight.active {
-            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.55);
-        }
-        .tour-tooltip {
-            position: fixed;
-            z-index: 1003;
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 20px 22px;
-            max-width: 300px;
-            width: calc(100vw - 40px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s, top 0.35s cubic-bezier(.4, 0, .2, 1), bottom 0.35s cubic-bezier(.4, 0, .2, 1), left 0.35s cubic-bezier(.4, 0, .2, 1);
-        }
-        .tour-tooltip.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .tour-tooltip::before {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #ffffff;
-            transform: rotate(45deg);
-        }
-        .tour-tooltip.arrow-top::before {
-            top: -6px;
-            left: 24px;
-        }
-        .tour-tooltip.arrow-bottom::before {
-            bottom: -6px;
-            left: 24px;
-        }
-        .tour-tooltip.arrow-top-right::before {
-            top: -6px;
-            right: 24px;
-        }
-        .tour-tooltip.arrow-bottom-right::before {
-            bottom: -6px;
-            right: 24px;
-        }
-        .tour-step-label {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .tour-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--dark);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-        .tour-body {
-            font-size: 0.82rem;
-            color: var(--muted);
-            line-height: 1.6;
-            margin-bottom: 18px;
-        }
-        .tour-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .tour-dots {
-            display: flex;
-            gap: 5px;
-        }
-        .tour-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--border);
-            transition: background 0.2s;
-        }
-        .tour-dot.active {
-            background: var(--dark);
-        }
-        .tour-actions {
-            display: flex;
-            gap: 8px;
-        }
-        .tour-btn-skip {
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 8px 14px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            color: var(--muted);
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: border-color 0.2s;
-        }
-        .tour-btn-skip:hover {
-            border-color: var(--muted);
-        }
-        .tour-btn-next {
-            background: var(--dark);
-            border: none;
-            border-radius: var(--radius-sm);
-            padding: 8px 18px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: white;
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: background 0.2s;
-        }
-        .tour-btn-next:hover {
-            background: #333;
-        }
+        .info-btn { background: none; border: 1.5px solid rgba(184,151,90,0.5); border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 600; color: var(--gold); cursor: pointer; line-height: 1; padding: 0; font-family: 'Jost', sans-serif; flex-shrink: 0; position: relative; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+        .info-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
+        .info-btn.unseen { border-color: #00aaff; color: #00aaff; animation: infoBtnPulse 1.4s ease-in-out infinite; }
+        .info-btn.unseen::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #00aaff; opacity: 0; animation: infoBtnRing 1.4s ease-in-out infinite; pointer-events: none; }
+        @keyframes infoBtnPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(0,170,255,0.0); border-color: #00aaff; color: #00aaff; } 50% { box-shadow: 0 0 8px 2px rgba(0,170,255,0.55); border-color: #55ccff; color: #55ccff; } }
+        @keyframes infoBtnRing { 0% { transform: scale(0.85); opacity: 0.7; } 70% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(1.5); opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .info-btn.unseen, .info-btn.unseen::after { animation: none; } }
 
-        .promo-guide-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .promo-guide-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .promo-guide-modal {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%) translateY(30px);
-            width: 100%;
-            max-width: 480px;
-            background: #fff;
-            border-radius: 20px 20px 0 0;
-            padding: 0 0 36px;
-            z-index: 2101;
-            box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.18);
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
-            opacity: 0;
-        }
-        .promo-guide-overlay.open .promo-guide-modal {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-        .promo-guide-handle {
-            width: 36px;
-            height: 4px;
-            background: var(--border);
-            border-radius: 9999px;
-            margin: 12px auto 0;
-        }
-        .promo-guide-header {
-            padding: 18px 22px 0;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 12px;
-        }
-        .promo-guide-eyebrow {
-            font-size: 0.6rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .promo-guide-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.35rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: var(--dark);
-            line-height: 1.2;
-        }
-        .promo-guide-close {
-            background: var(--bg-secondary);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            color: var(--muted);
-            cursor: pointer;
-            flex-shrink: 0;
-            transition: background 0.15s;
-            margin-top: 2px;
-        }
-        .promo-guide-close:hover {
-            background: var(--border);
-            color: var(--dark);
-        }
-        .promo-guide-steps {
-            padding: 20px 22px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .promo-guide-step {
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .promo-guide-step:last-child {
-            border-bottom: none;
-        }
-        .promo-guide-step-num {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--dark);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.72rem;
-            font-weight: 600;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .promo-guide-step-num.gold {
-            background: var(--gold);
-        }
-        .promo-guide-step-title {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 3px;
-            letter-spacing: 0.3px;
-        }
-        .promo-guide-step-desc {
-            font-size: 0.78rem;
-            color: var(--muted);
-            line-height: 1.55;
-        }
-        .promo-guide-step-desc strong {
-            color: var(--dark);
-            font-weight: 500;
-        }
-        .promo-guide-badge {
-            display: inline-block;
-            background: #fffdf5;
-            border: 1px solid rgba(184, 151, 90, 0.4);
-            color: var(--gold);
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-radius: 3px;
-            padding: 2px 8px;
-            margin-bottom: 16px;
-            margin-left: 22px;
-            margin-top: 4px;
-        }
-        .promo-guide-cta {
-            margin: 18px 22px 0;
-            background: var(--dark);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            padding: 15px;
-            font-family: 'Jost', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: calc(100% - 44px);
-            transition: background 0.2s;
-            display: block;
-        }
-        .promo-guide-cta:hover {
-            background: #333;
-        }
-
-        .size-btn.extra-product {
-            font-size: 0.68rem;
-            line-height: 1.35;
-            padding: 10px 4px;
-            border-style: dashed;
-        }
-        .size-btn.extra-product.active {
-            background: var(--dark);
-            color: white;
-            border-color: var(--dark);
-            border-style: solid;
-        }
-        .conc-section-hidden {
-            display: none !important;
-        }
-
-        .info-btn {
-            background: none;
-            border: 1.5px solid rgba(184, 151, 90, 0.5);
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--gold);
-            cursor: pointer;
-            line-height: 1;
-            padding: 0;
-            font-family: 'Jost', sans-serif;
-            flex-shrink: 0;
-            position: relative;
-            transition: background 0.2s, border-color 0.2s, color 0.2s;
-        }
-        .info-btn:hover {
-            background: var(--gold);
-            color: white;
-            border-color: var(--gold);
-        }
-
-        .info-btn.unseen {
-            border-color: #00aaff;
-            color: #00aaff;
-            animation: infoBtnPulse 1.4s ease-in-out infinite;
-        }
-        .info-btn.unseen::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            border: 2px solid #00aaff;
-            opacity: 0;
-            animation: infoBtnRing 1.4s ease-in-out infinite;
-            pointer-events: none;
-        }
-        @keyframes infoBtnPulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.0);
-                border-color: #00aaff;
-                color: #00aaff;
-            }
-            50% {
-                box-shadow: 0 0 8px 2px rgba(0, 170, 255, 0.55);
-                border-color: #55ccff;
-                color: #55ccff;
-            }
-        }
-        @keyframes infoBtnRing {
-            0% {
-                transform: scale(0.85);
-                opacity: 0.7;
-            }
-            70% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .info-btn.unseen,
-            .info-btn.unseen::after {
-                animation: none;
-            }
-        }
-        .info-modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s;
-        }
-        .info-modal-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .info-modal {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            width: 100%;
-            max-width: 480px;
-            background: #fff;
-            border-radius: 16px 16px 0 0;
-            padding: 28px 24px 36px;
-            z-index: 2001;
-            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s;
-            opacity: 0;
-        }
-        .info-modal-overlay.open .info-modal {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-        .info-modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-        .info-modal-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: var(--dark);
-        }
-        .info-modal-close {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            color: var(--muted);
-            cursor: pointer;
-            line-height: 1;
-            padding: 4px;
-            transition: color 0.15s;
-        }
-        .info-modal-close:hover {
-            color: var(--dark);
-        }
-        .info-modal-body {
-            font-size: 0.82rem;
-            color: var(--muted);
-            line-height: 1.7;
-            border-top: 1px solid var(--border);
-            padding-top: 14px;
-        }
-        .info-modal-body strong {
-            color: var(--dark);
-            font-weight: 500;
-        }
-        .info-modal-badge {
-            display: inline-block;
-            font-size: 0.6rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(184, 151, 90, 0.4);
-            border-radius: 3px;
-            padding: 2px 7px;
-            margin-bottom: 12px;
-        }
+        .info-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+        .info-modal-overlay.open { opacity: 1; pointer-events: auto; }
+        .info-modal { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(20px); width: 100%; max-width: 480px; background: #fff; border-radius: 16px 16px 0 0; padding: 28px 24px 36px; z-index: 2001; box-shadow: 0 -8px 32px rgba(0,0,0,0.15); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s; opacity: 0; }
+        .info-modal-overlay.open .info-modal { transform: translateX(-50%) translateY(0); opacity: 1; }
+        .info-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .info-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; letter-spacing: 1px; color: var(--dark); }
+        .info-modal-close { background: none; border: none; font-size: 1.3rem; color: var(--muted); cursor: pointer; line-height: 1; padding: 4px; transition: color 0.15s; }
+        .info-modal-close:hover { color: var(--dark); }
+        .info-modal-body { font-size: 0.82rem; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 14px; }
+        .info-modal-body strong { color: var(--dark); font-weight: 500; }
+        .info-modal-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,151,90,0.4); border-radius: 3px; padding: 2px 7px; margin-bottom: 12px; }
 
         @media screen and (-webkit-min-device-pixel-ratio: 0) {
-            input[type="text"],
-            input[type="search"],
-            input[type="email"],
-            input[type="tel"],
-            input[type="password"],
-            textarea,
-            select {
-                font-size: 16px !important;
-            }
+            input[type="text"], input[type="search"], textarea, select { font-size: 16px !important; }
         }
     </style>
 </head>
 <body>
-
-    <div class="announcement-bar" role="marquee" aria-label="Anuncio: Envío gratis en promociones o superando $1200">
+    <div class="announcement-bar" role="marquee">
         <div class="marquee-track">
-            <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $1200 <span class="marquee-sep">◆</span></span>
+            <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN (excepto 2ml y 10ml) O SUPERANDO $1200 <span class="marquee-sep">◆</span></span>
             <span>ALTA CONCENTRACIÓN · LARGA DURACIÓN · ALTA ESTELA <span class="marquee-sep">◆</span></span>
             <span>AROMAS INSPIRADOS EN LAS MEJORES CASAS DEL MUNDO <span class="marquee-sep">◆</span></span>
-            <span>✦ ENVÍO GRATIS EN CUALQUIER PROMOCIÓN O SUPERANDO $1200 <span class="marquee-sep">◆</span></span>
-            <span> 1 PERFUME GRATIS ELIGIENDO CUALQUIER PROMOCIÓN <span class="marquee-sep">◆</span></span>
-            <span> 10% DE DESCUENTO AÑADIENDO CÓDIGO PROMOCIONAL <span class="marquee-sep">◆</span></span>
-            <span>🧪 NUEVO: DISCOVERY SET 10 AROMAS 2ML <span class="marquee-sep">◆</span></span>
+            <span>🧪 NUEVO: DISCOVERY SET 15×12 AROMAS 2ML <span class="marquee-sep">◆</span></span>
         </div>
     </div>
 
     <div class="toast" id="toast"></div>
-
     <div class="tour-overlay" id="tour-overlay" onclick="tourSkip()"></div>
     <div class="tour-highlight" id="tour-highlight"></div>
     <div class="tour-tooltip" id="tour-tooltip">
@@ -1856,13 +451,13 @@
     </div>
 
     <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
-    <aside class="cart-drawer" id="cart-drawer" aria-label="Carrito de compras" role="dialog">
+    <aside class="cart-drawer" id="cart-drawer">
         <div class="drawer-header">
             <div class="drawer-header-left">
                 <span class="drawer-title">Carrito</span>
                 <span class="drawer-item-count" id="drawer-item-count">0</span>
             </div>
-            <button class="drawer-close" onclick="closeCart()" aria-label="Cerrar carrito" title="Cerrar carrito">—</button>
+            <button class="drawer-close" onclick="closeCart()">—</button>
         </div>
         <div class="drawer-body" id="drawer-body">
             <div class="drawer-empty" id="drawer-empty">
@@ -1876,9 +471,7 @@
             <div class="drawer-totals" id="drawer-totals"></div>
             <div class="drawer-actions">
                 <button class="drawer-btn-wa" onclick="sendToWhatsApp()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     Finalizar por WhatsApp
                 </button>
                 <button class="drawer-btn-clear" onclick="clearCart()">Vaciar carrito</button>
@@ -1888,7 +481,7 @@
 
     <div class="header">
         <h1>Aion Perfumes</h1>
-        <button class="info-btn unseen" id="info-btn-legal" onclick="openInfoModal('legal')" aria-label="Aviso legal de marcas" title="Aviso legal" style="position:absolute; right:20px;">i</button>
+        <button class="info-btn unseen" id="info-btn-legal" onclick="openInfoModal('legal')" style="position:absolute; right:20px;">i</button>
     </div>
 
     <div class="container">
@@ -1896,15 +489,13 @@
             <img src="https://i.ibb.co/s9xDQ6RR/Photoroom-20260422-231853.jpg?w=800&q=80" alt="Perfume Concentrado">
             <div class="rating-badge">★ 4.8 (1623 reseñas)</div>
         </div>
-
         <div class="product-info">
             <h2>Perfume Concentrado</h2>
             <div class="product-subtitle">Longevidad · Alta Estela</div>
         </div>
-
         <div class="divider"></div>
 
-        <!-- PASO 1A: TAMAÑO -->
+        <!-- TAMAÑOS -->
         <div class="option-section" id="tour-anchor-size">
             <div class="section-label"><span class="step-number">1</span> Presentación</div>
             <div class="size-buttons">
@@ -1918,10 +509,9 @@
                 <button class="size-btn extra-product" data-size="deo" onclick="selectSize('deo')">🧴 Desod.<br>Roll-on 50ml</button>
             </div>
         </div>
-
         <div class="divider"></div>
 
-        <!-- PASO 1B: CONCENTRACIÓN -->
+        <!-- CONCENTRACIONES -->
         <div class="option-section" id="tour-anchor-conc">
             <div class="section-label conc-label">💧 Concentración</div>
             <div class="conc-buttons">
@@ -1932,23 +522,22 @@
             </div>
             <div class="selected-price-display" id="selected-price-display">$188.00 MXN</div>
         </div>
-
         <div class="divider"></div>
 
-        <!-- PASO 2: PAQUETES -->
+        <!-- PROMOCIONES -->
         <div class="promo-section" id="tour-anchor-promo">
             <div class="section-label"><span class="step-number">2</span> Paquetes Especiales (Opcional)</div>
             <p class="promo-instruction">
-                ⚠️ <strong>Importante:</strong> Todos los aromas de tu paquete tendrán la misma presentación y concentración. Elige ambas opciones arriba para habilitar el paquete correspondiente.
+                ⚠️ <strong>Importante:</strong> Todos los aromas del paquete tendrán la misma presentación y concentración. Elige ambas opciones arriba para habilitar el paquete correspondiente.
             </p>
             <div class="promo-buttons">
                 <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3<br>100ml <small id="promo-100-price"></small></button>
-                <button class="promo-btn promo-60" id="promo-60-btn" onclick="startPromo('60ml')">5 × 4<br>60ml <small id="promo-60-price"></small></button>
-                <button class="promo-btn promo-50" id="promo-50-btn" onclick="startPromo('50ml')">5 × 4<br>50ml <small id="promo-50-price"></small></button>
-                <button class="promo-btn promo-30" id="promo-30-btn" onclick="startPromo('30ml')">6 × 5<br>30ml <small id="promo-30-price"></small></button>
-                <button class="promo-btn promo-10" id="promo-10-btn" onclick="startPromo('10ml')">6 × 5<br>10ml <small id="promo-10-price"></small></button>
-                <button class="promo-btn promo-2" id="promo-2-btn" onclick="startPromo('2ml')">🧪 Discovery Set<br>10 aromas 2ml <small id="promo-2-price"></small></button>
-                <button class="promo-btn promo-extra" id="promo-extra-btn" onclick="startPromo('extra')">6 × 5<br><small style="font-size:0.65rem;">Crema/Deo</small> <small id="promo-extra-price"></small></button>
+                <button class="promo-btn promo-60"  id="promo-60-btn"  onclick="startPromo('60ml')">5 × 4<br>60ml  <small id="promo-60-price"></small></button>
+                <button class="promo-btn promo-50"  id="promo-50-btn"  onclick="startPromo('50ml')">5 × 4<br>50ml  <small id="promo-50-price"></small></button>
+                <button class="promo-btn promo-30"  id="promo-30-btn"  onclick="startPromo('30ml')">6 × 5<br>30ml  <small id="promo-30-price"></small></button>
+                <button class="promo-btn promo-10"  id="promo-10-btn"  onclick="startPromo('10ml')">12 × 10<br>10ml  <small id="promo-10-price"></small></button>
+                <button class="promo-btn promo-2"   id="promo-2-btn"   onclick="startPromo('2ml')">15 × 12<br>2ml   <small id="promo-2-price"></small></button>
+                <button class="promo-btn promo-extra" id="promo-extra-btn" onclick="startPromo('extra')">6 × 5<br><small>Crema/Deo</small> <small id="promo-extra-price"></small></button>
             </div>
             <div class="promo-status" id="promo-status">
                 <div id="promo-status-text"></div>
@@ -1956,19 +545,17 @@
                 <button class="btn-cancel-promo-inline" onclick="cancelPromo()">✕ Cancelar paquete</button>
             </div>
         </div>
-
         <div class="divider"></div>
 
-        <!-- PASO 3: AROMA -->
+        <!-- BÚSQUEDA DE AROMA -->
         <div class="search-section" id="tour-anchor-aroma">
-            <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')" aria-label="Disponibilidad de aromas" title="Disponibilidad">i</button></div>
+            <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')">i</button></div>
             <div class="search-wrap">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="search-input" placeholder="Buscar familia olfativa, casa, código...">
                 <div class="search-results" id="search-results"></div>
             </div>
         </div>
-
         <div class="selected-aroma-tag" id="selected-aroma-tag">
             <div class="aroma-text">
                 <strong id="tag-name">Aroma seleccionado</strong>
@@ -1977,10 +564,9 @@
             </div>
             <button class="remove-aroma" onclick="clearAroma()">✕</button>
         </div>
-
         <div class="divider"></div>
 
-        <!-- PASO 4: EXTRAS -->
+        <!-- EXTRAS -->
         <div class="addon-section" id="tour-anchor-extras">
             <div class="section-label"><span class="step-number">4</span> Extras (Opcional)</div>
             <div class="addon-option" id="addon-feromonas" onclick="toggleAddon()">
@@ -1992,15 +578,12 @@
                 <span class="addon-price">+$60.00</span>
             </div>
         </div>
-
         <div class="finish-promo-wrapper" id="finish-promo-wrapper">
             <button class="btn-finish-promo" onclick="finishPromo()">🎁 Añadir paquete al carrito</button>
         </div>
-
         <div class="promo-hint" id="promo-hint">
             <div class="promo-hint-inner" id="promo-hint-text">Selecciona todos los aromas en el paso 3 para continuar</div>
         </div>
-
         <div class="divider"></div>
 
         <!-- CANTIDAD -->
@@ -2012,10 +595,9 @@
                 <button class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
         </div>
-
         <div class="divider"></div>
 
-        <!-- PASO 5: CÓDIGO PROMOCIONAL -->
+        <!-- CÓDIGO PROMOCIONAL -->
         <div class="coupon-section" id="tour-anchor-coupon">
             <div class="section-label"><span class="step-number">5</span> Código Promocional (Opcional)</div>
             <div class="coupon-wrap">
@@ -2030,13 +612,7 @@
         </div>
     </div>
 
-    <div id="tour-anchor-actions" style="height:1px; margin-bottom: 80px;"></div>
-
-    <button class="cart-fab" id="cart-fab" onclick="openCart()" ontouchend="event.preventDefault(); openCart();" aria-label="Ver carrito">
-        🛒 Ver Carrito
-        <span class="cart-fab-count" id="cart-fab-count">0</span>
-    </button>
-
+    <button class="cart-fab" id="cart-fab" onclick="openCart()">🛒 Ver Carrito <span class="cart-fab-count" id="cart-fab-count">0</span></button>
     <div class="action-buttons">
         <button class="btn-add" onclick="addToCart()">+ Añadir al carrito</button>
     </div>
@@ -2046,214 +622,81 @@
         <div class="promo-guide-modal" onclick="event.stopPropagation()">
             <div class="promo-guide-handle"></div>
             <div class="promo-guide-header">
-                <div class="promo-guide-title-wrap">
+                <div>
                     <div class="promo-guide-eyebrow">Paquete activado ✦</div>
                     <div class="promo-guide-title" id="promo-guide-title">Lleva 6, paga 5</div>
                 </div>
-                <button class="promo-guide-close" onclick="closePromoGuide()" aria-label="Cerrar guía">✕</button>
+                <button class="promo-guide-close" onclick="closePromoGuide()">✕</button>
             </div>
             <div class="promo-guide-badge" id="promo-guide-badge">30 ml · Parfum</div>
             <div class="promo-guide-steps">
-                <div class="promo-guide-step">
-                    <div class="promo-guide-step-num">1</div>
-                    <div class="promo-guide-step-body">
-                        <div class="promo-guide-step-title">Baja al Paso 3 — Selección de Aroma</div>
-                        <div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma. Escribe el nombre de la fragancia o su código (ej. <strong>"Sauvage"</strong> o <strong>"C0001"</strong>).</div>
-                    </div>
-                </div>
-                <div class="promo-guide-step">
-                    <div class="promo-guide-step-num">2</div>
-                    <div class="promo-guide-step-body">
-                        <div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> aromas diferentes</div>
-                        <div class="promo-guide-step-desc">Cada vez que elijas uno del listado se irá añadiendo a tu paquete automáticamente.</div>
-                    </div>
-                </div>
-                <div class="promo-guide-step">
-                    <div class="promo-guide-step-num">3</div>
-                    <div class="promo-guide-step-body">
-                        <div class="promo-guide-step-title">Añade feromonas si deseas (opcional)</div>
-                        <div class="promo-guide-step-desc">En el Paso 4 puedes activar la opción de feromonas <strong>+$60 MXN</strong> — se aplica a todos los perfumes del paquete.</div>
-                    </div>
-                </div>
-                <div class="promo-guide-step">
-                    <div class="promo-guide-step-num gold">✓</div>
-                    <div class="promo-guide-step-body">
-                        <div class="promo-guide-step-title">Presiona "Añadir paquete al carrito"</div>
-                        <div class="promo-guide-step-desc">Aparecerá el botón cuando completes todos los aromas. Después finaliza por WhatsApp desde el carrito.</div>
-                    </div>
-                </div>
+                <div class="promo-guide-step"><div class="promo-guide-step-num">1</div><div><div class="promo-guide-step-title">Baja al Paso 3</div><div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma.</div></div></div>
+                <div class="promo-guide-step"><div class="promo-guide-step-num">2</div><div><div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> aromas diferentes</div><div class="promo-guide-step-desc">Cada elección se añade al paquete automáticamente.</div></div></div>
+                <div class="promo-guide-step"><div class="promo-guide-step-num">3</div><div><div class="promo-guide-step-title">Añade feromonas si deseas</div><div class="promo-guide-step-desc">Opcional <strong>+$60 MXN</strong> por perfume.</div></div></div>
+                <div class="promo-guide-step"><div class="promo-guide-step-num gold">✓</div><div><div class="promo-guide-step-title">Presiona "Añadir paquete al carrito"</div><div class="promo-guide-step-desc">Luego finaliza por WhatsApp desde el carrito.</div></div></div>
             </div>
-            <button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido, voy a elegir mis aromas!</button>
+            <button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido!</button>
         </div>
     </div>
 
     <div class="info-modal-overlay" id="modal-legal-overlay" onclick="closeInfoModal('legal')">
         <div class="info-modal" onclick="event.stopPropagation()">
-            <div class="info-modal-header">
-                <span class="info-modal-title">Aviso Legal</span>
-                <button class="info-modal-close" onclick="closeInfoModal('legal')" aria-label="Cerrar">✕</button>
-            </div>
-            <div class="info-modal-body">
-                <div class="info-modal-badge">Art. 213 · Ley de Propiedad Industrial</div>
-                <p>En <strong>Aion Perfumes</strong> vendemos perfumes <strong>inspirados en diseñadores/marcas</strong> que se utilizan con fines de referencia a los aromas y aclaramos en atención al artículo 213 de la Ley de Propiedad Industrial que <strong>no guardan ningún tipo de relación o asociación</strong> con las marcas o nombres que se mencionan.</p>
-                <br>
-                <p>Los nombres, marcas y derechos de autor son propiedad de sus respectivos diseñadores/fabricantes. <strong>No son copias exactas</strong> y no compite con la marca diseñadora.</p>
-            </div>
+            <div class="info-modal-header"><span class="info-modal-title">Aviso Legal</span><button class="info-modal-close" onclick="closeInfoModal('legal')">✕</button></div>
+            <div class="info-modal-body"><div class="info-modal-badge">Art. 213 · Ley de Propiedad Industrial</div><p>En <strong>Aion Perfumes</strong> vendemos perfumes <strong>inspirados en diseñadores/marcas</strong>…</p></div>
         </div>
     </div>
-
     <div class="info-modal-overlay" id="modal-aromas-overlay" onclick="closeInfoModal('aromas')">
         <div class="info-modal" onclick="event.stopPropagation()">
-            <div class="info-modal-header">
-                <span class="info-modal-title">Disponibilidad de Aromas</span>
-                <button class="info-modal-close" onclick="closeInfoModal('aromas')" aria-label="Cerrar">✕</button>
-            </div>
-            <div class="info-modal-body">
-                <div class="info-modal-badge">Nota importante</div>
-                <p>Algunos aromas están <strong>sujetos a disponibilidad en tienda</strong>. En caso de que el aroma seleccionado no esté disponible al momento de procesar tu pedido, nos comunicaremos contigo por WhatsApp para ofrecerte una alternativa o confirmarte la fecha estimada de reabastecimiento.</p>
-            </div>
+            <div class="info-modal-header"><span class="info-modal-title">Disponibilidad de Aromas</span><button class="info-modal-close" onclick="closeInfoModal('aromas')">✕</button></div>
+            <div class="info-modal-body"><div class="info-modal-badge">Nota importante</div><p>Algunos aromas están <strong>sujetos a disponibilidad en tienda</strong>…</p></div>
         </div>
     </div>
 
     <script>
         (function initSwipeGestures() {
-            let touchStartX = 0;
-            let touchStartY = 0;
-            const SWIPE_THRESHOLD = 60;
-            const SWIPE_MAX_Y = 80;
-
-            document.addEventListener('touchstart', function(e) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-
-            document.addEventListener('touchend', function(e) {
-                const dx = e.changedTouches[0].clientX - touchStartX;
-                const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+            let touchStartX = 0, touchStartY = 0;
+            const SWIPE_THRESHOLD = 60, SWIPE_MAX_Y = 80;
+            document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, {passive: true});
+            document.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - touchStartX, dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
                 const drawer = document.getElementById('cart-drawer');
-                const isOpen = drawer.classList.contains('open');
                 if (e.target.closest('.cart-drawer') || e.target.closest('.cart-fab')) return;
                 if (dy > SWIPE_MAX_Y) return;
-                if (!isOpen && dx < -SWIPE_THRESHOLD && touchStartX > window.innerWidth - 80) {
-                    openCart();
-                }
-            }, { passive: true });
-
+                if (!drawer.classList.contains('open') && dx < -SWIPE_THRESHOLD && touchStartX > window.innerWidth - 80) openCart();
+            }, {passive: true});
             const drawer = document.getElementById('cart-drawer');
-            let drawerTouchStartX = 0;
-            let drawerTouchStartY = 0;
-
-            drawer.addEventListener('touchstart', function(e) {
-                drawerTouchStartX = e.touches[0].clientX;
-                drawerTouchStartY = e.touches[0].clientY;
-            }, { passive: true });
-
-            drawer.addEventListener('touchmove', function(e) {
-                const dx = e.touches[0].clientX - drawerTouchStartX;
-                const dy = Math.abs(e.touches[0].clientY - drawerTouchStartY);
-                if (dx > 0 && dy < SWIPE_MAX_Y) {
-                    drawer.style.transition = 'none';
-                    drawer.style.transform = `translateX(${dx}px)`;
-                }
-            }, { passive: true });
-
-            drawer.addEventListener('touchend', function(e) {
-                const dx = e.changedTouches[0].clientX - drawerTouchStartX;
-                const dy = Math.abs(e.changedTouches[0].clientY - drawerTouchStartY);
-                drawer.style.transition = '';
-                drawer.style.transform = '';
-                if (dx > SWIPE_THRESHOLD && dy < SWIPE_MAX_Y) {
-                    closeCart();
-                }
-            }, { passive: true });
+            let drawerTouchStartX = 0, drawerTouchStartY = 0;
+            drawer.addEventListener('touchstart', e => { drawerTouchStartX = e.touches[0].clientX; drawerTouchStartY = e.touches[0].clientY; }, {passive: true});
+            drawer.addEventListener('touchmove', e => {
+                const dx = e.touches[0].clientX - drawerTouchStartX, dy = Math.abs(e.touches[0].clientY - drawerTouchStartY);
+                if (dx > 0 && dy < SWIPE_MAX_Y) { drawer.style.transition = 'none'; drawer.style.transform = `translateX(${dx}px)`; }
+            }, {passive: true});
+            drawer.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - drawerTouchStartX, dy = Math.abs(e.changedTouches[0].clientY - drawerTouchStartY);
+                drawer.style.transition = ''; drawer.style.transform = '';
+                if (dx > SWIPE_THRESHOLD && dy < SWIPE_MAX_Y) closeCart();
+            }, {passive: true});
         })();
 
         (function initDraggableFab() {
             const fab = document.getElementById('cart-fab');
-            let isDragging = false;
-            let wasDragged = false;
-            let startX, startY, origLeft, origTop;
-
-            fab.style.top = '70px';
-            fab.style.right = '20px';
-
-            function getPos() {
-                const rect = fab.getBoundingClientRect();
-                return { left: rect.left, top: rect.top };
+            let isDragging = false, wasDragged = false, startX, startY, origLeft, origTop;
+            fab.style.top = '70px'; fab.style.right = '20px';
+            function getPos() { const r = fab.getBoundingClientRect(); return {left: r.left, top: r.top}; }
+            function applyPos(l, t) {
+                const maxX = window.innerWidth - fab.offsetWidth - 8, maxY = window.innerHeight - fab.offsetHeight - 8;
+                l = Math.max(8, Math.min(l, maxX)); t = Math.max(8, Math.min(t, maxY));
+                fab.style.right = 'auto'; fab.style.bottom = 'auto'; fab.style.left = l+'px'; fab.style.top = t+'px';
             }
-
-            function applyPos(left, top) {
-                const maxX = window.innerWidth - fab.offsetWidth - 8;
-                const maxY = window.innerHeight - fab.offsetHeight - 8;
-                left = Math.max(8, Math.min(left, maxX));
-                top = Math.max(8, Math.min(top, maxY));
-                fab.style.right = 'auto';
-                fab.style.bottom = 'auto';
-                fab.style.left = left + 'px';
-                fab.style.top = top + 'px';
-            }
-
-            fab.addEventListener('mousedown', function(e) {
-                if (e.button !== 0) return;
-                isDragging = true;
-                wasDragged = false;
-                const pos = getPos();
-                startX = e.clientX;
-                startY = e.clientY;
-                origLeft = pos.left;
-                origTop = pos.top;
-                fab.classList.add('dragging');
-                e.preventDefault();
-            });
-
-            document.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
-                const dx = e.clientX - startX;
-                const dy = e.clientY - startY;
-                if (Math.abs(dx) > 4 || Math.abs(dy) > 4) wasDragged = true;
-                applyPos(origLeft + dx, origTop + dy);
-            });
-
-            document.addEventListener('mouseup', function(e) {
-                if (!isDragging) return;
-                isDragging = false;
-                fab.classList.remove('dragging');
-                if (!wasDragged) openCart();
-            });
-
-            fab.addEventListener('touchstart', function(e) {
-                isDragging = true;
-                wasDragged = false;
-                const touch = e.touches[0];
-                const pos = getPos();
-                startX = touch.clientX;
-                startY = touch.clientY;
-                origLeft = pos.left;
-                origTop = pos.top;
-                fab.classList.add('dragging');
-                e.stopPropagation();
-            }, { passive: true });
-
-            fab.addEventListener('touchmove', function(e) {
-                if (!isDragging) return;
-                const touch = e.touches[0];
-                const dx = touch.clientX - startX;
-                const dy = touch.clientY - startY;
-                if (Math.abs(dx) > 4 || Math.abs(dy) > 4) wasDragged = true;
-                applyPos(origLeft + dx, origTop + dy);
-                e.preventDefault();
-            }, { passive: false });
-
-            fab.addEventListener('touchend', function(e) {
-                if (!isDragging) return;
-                isDragging = false;
-                fab.classList.remove('dragging');
-                if (!wasDragged) openCart();
-            });
+            fab.addEventListener('mousedown', e => { if(e.button!==0)return; isDragging=true; wasDragged=false; const p=getPos(); startX=e.clientX; startY=e.clientY; origLeft=p.left; origTop=p.top; fab.classList.add('dragging'); e.preventDefault(); });
+            document.addEventListener('mousemove', e => { if(!isDragging)return; if(Math.abs(e.clientX-startX)>4||Math.abs(e.clientY-startY)>4) wasDragged=true; applyPos(origLeft+e.clientX-startX, origTop+e.clientY-startY); });
+            document.addEventListener('mouseup', () => { if(!isDragging)return; isDragging=false; fab.classList.remove('dragging'); if(!wasDragged) openCart(); });
+            fab.addEventListener('touchstart', e => { isDragging=true; wasDragged=false; const t=e.touches[0]; const p=getPos(); startX=t.clientX; startY=t.clientY; origLeft=p.left; origTop=p.top; fab.classList.add('dragging'); e.stopPropagation(); }, {passive:true});
+            fab.addEventListener('touchmove', e => { if(!isDragging)return; const t=e.touches[0]; if(Math.abs(t.clientX-startX)>4||Math.abs(t.clientY-startY)>4) wasDragged=true; applyPos(origLeft+t.clientX-startX, origTop+t.clientY-startY); e.preventDefault(); }, {passive:false});
+            fab.addEventListener('touchend', () => { if(!isDragging)return; isDragging=false; fab.classList.remove('dragging'); if(!wasDragged) openCart(); });
         })();
 
         const WA_NUMBER = "528138917727";
-
         const PROMO_CODES = {
             "A10N": { discount: 10, type: "percent", description: "10% de descuento" },
             "RC64": { discount: 10, type: "percent", description: "10% de descuento" },
@@ -2266,20 +709,21 @@
             "L10S": { discount: 10, type: "percent", description: "10% de descuento" },
             "HAMMSYK": { discount: 10, type: "percent", description: "10% de descuento" },
             "AION15X": { discount: 1, type: "percent", description: "1% de descuento" },
-            "LAUNCH20X": { discount: 2, type: "fixed", description: "$2% lanzamiento" },
             "MOM10": { discount: 10, type: "percent", description: "10% de descuento" },
-            "AN10": { discount: 10, type: "percent", description: "10% de descuento" },
         };
 
         const PRODUCT_OPTIONS = [
-            { volume: '2ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 8 },
-            { volume: '2ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 13 },
-            { volume: '2ml', concentration: 'Parfum Premium', conc: '42', price: 15 },
-            { volume: '2ml', concentration: 'Extrait de Parfum', conc: '50', price: 18 },
-            { volume: '10ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 38 },
-            { volume: '10ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 63 },
-            { volume: '10ml', concentration: 'Parfum Premium', conc: '42', price: 77 },
-            { volume: '10ml', concentration: 'Extrait de Parfum', conc: '50', price: 92 },
+            // 2ml precios desde $21
+            { volume: '2ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 21 },
+            { volume: '2ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 28 },
+            { volume: '2ml', concentration: 'Parfum Premium', conc: '42', price: 35 },
+            { volume: '2ml', concentration: 'Extrait de Parfum', conc: '50', price: 42 },
+            // 10ml precios desde $42
+            { volume: '10ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 42 },
+            { volume: '10ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 75 },
+            { volume: '10ml', concentration: 'Parfum Premium', conc: '42', price: 92 },
+            { volume: '10ml', concentration: 'Extrait de Parfum', conc: '50', price: 110 },
+            // resto igual
             { volume: '30ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 114 },
             { volume: '30ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 188 },
             { volume: '30ml', concentration: 'Parfum Premium', conc: '42', price: 232 },
@@ -2301,20 +745,13 @@
         ];
 
         const AROMAS = [
-            { "code": "BCP0001", "name": "BLUE SURF", "brand": "BOD MAN", "occasion": "Verano, casual, playa",
-                "family": "Acuática Aromática" },
-            { "code": "UP01162", "name": "SOLEIL NEIGE PARFUM", "brand": "TOM FORD",
-                "occasion": "Invierno, eventos, citas elegantes", "family": "Floral Amaderada" },
-            { "code": "UP01163", "name": "ROYAL MAYFAIR", "brand": "CREED", "occasion": "Trabajo, eventos, uso elegante",
-                "family": "Amaderada Aromática" },
-            { "code": "UP01164", "name": "BADE'E AL OUD SUBLIME", "brand": "LATTAFA", "occasion": "Noche, citas, eventos",
-                "family": "Oriental Oud" },
-            { "code": "UP01165", "name": "AL NASHAMA CAPRICE", "brand": "LATTAFA", "occasion": "Uso diario, casual",
-                "family": "Floral Oriental" },
-            { "code": "UP01166", "name": "VELVET INFUSION", "brand": "DOLCE & GABBANA", "occasion": "Uso diario, trabajo",
-                "family": "Amaderada Almizclada" },
-            { "code": "C0001", "name": "1 MILLION", "brand": "PACO RABANNE", "occasion": "Salidas nocturnas, citas",
-                "family": "Oriental Especiada" }
+            {"code": "BCP0001", "name": "BLUE SURF", "brand": "BOD MAN", "occasion": "Verano, casual, playa", "family": "Acuática Aromática"},
+            {"code": "UP01162", "name": "SOLEIL NEIGE PARFUM", "brand": "TOM FORD", "occasion": "Invierno, eventos, citas elegantes", "family": "Floral Amaderada"},
+            {"code": "UP01163", "name": "ROYAL MAYFAIR", "brand": "CREED", "occasion": "Trabajo, eventos, uso elegante", "family": "Amaderada Aromática"},
+            {"code": "UP01164", "name": "BADE'E AL OUD SUBLIME", "brand": "LATTAFA", "occasion": "Noche, citas, eventos", "family": "Oriental Oud"},
+            {"code": "UP01165", "name": "AL NASHAMA CAPRICE", "brand": "LATTAFA", "occasion": "Uso diario, casual", "family": "Floral Oriental"},
+            {"code": "UP01166", "name": "VELVET INFUSION", "brand": "DOLCE & GABBANA", "occasion": "Uso diario, trabajo", "family": "Amaderada Almizclada"},
+            {"code": "C0001", "name": "1 MILLION", "brand": "PACO RABANNE", "occasion": "Salidas nocturnas, citas", "family": "Oriental Especiada"}
         ];
 
         const EXTRA_PRODUCTS = ['crema', 'deo'];
@@ -2322,7 +759,7 @@
         let selectedConc = '33';
 
         let state = {
-            selectedOption: PRODUCT_OPTIONS.find(o => o.volume === '30ml' && o.conc === '33'),
+            selectedOption: PRODUCT_OPTIONS.find(o => o.volume==='30ml' && o.conc==='33'),
             selectedAroma: null,
             withFeromonas: false,
             quantity: 1,
@@ -2331,15 +768,9 @@
         };
 
         let promoState = {
-            active: false,
-            volume: null,
-            required: 0,
-            payFor: 0,
-            basePrice: 0,
-            concentration: null,
-            withFeromonas: false,
-            selectedAromas: [],
-            isExtra: false
+            active: false, volume: null, required: 0, payFor: 0,
+            basePrice: 0, concentration: null, withFeromonas: false,
+            selectedAromas: [], isExtra: false
         };
 
         function openCart() {
@@ -2347,7 +778,6 @@
             document.getElementById('cart-drawer').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-
         function closeCart() {
             document.getElementById('cart-overlay').classList.remove('open');
             document.getElementById('cart-drawer').classList.remove('open');
@@ -2355,182 +785,84 @@
         }
 
         function updateCartDrawer() {
-            const items = state.cartItems;
-            const count = items.length;
-            const fab = document.getElementById('cart-fab');
-            const fabCount = document.getElementById('cart-fab-count');
+            const items = state.cartItems, count = items.length;
+            const fab = document.getElementById('cart-fab'), fabCount = document.getElementById('cart-fab-count');
             fabCount.textContent = count;
-            if (count > 0) {
-                fab.classList.add('visible');
-                fab.classList.remove('pulse');
-                void fab.offsetWidth;
-                fab.classList.add('pulse');
-            } else {
-                fab.classList.remove('visible');
-            }
+            if (count > 0) { fab.classList.add('visible'); fab.classList.remove('pulse'); void fab.offsetWidth; fab.classList.add('pulse'); }
+            else { fab.classList.remove('visible'); }
             document.getElementById('drawer-item-count').textContent = count;
-            const emptyEl = document.getElementById('drawer-empty');
-            const itemsEl = document.getElementById('drawer-items');
-            const footerEl = document.getElementById('drawer-footer');
-            if (count === 0) {
-                emptyEl.style.display = 'flex';
-                itemsEl.style.display = 'none';
-                footerEl.style.display = 'none';
-                return;
-            }
-            emptyEl.style.display = 'none';
-            itemsEl.style.display = 'block';
-            footerEl.style.display = 'block';
+            const emptyEl = document.getElementById('drawer-empty'), itemsEl = document.getElementById('drawer-items'), footerEl = document.getElementById('drawer-footer');
+            if (count === 0) { emptyEl.style.display='flex'; itemsEl.style.display='none'; footerEl.style.display='none'; return; }
+            emptyEl.style.display='none'; itemsEl.style.display='block'; footerEl.style.display='block';
             let html = '';
             items.forEach((item, i) => {
                 if (item.type === 'individual') {
                     const fLabel = item.withFeromonas ? ' · + Feromonas' : '';
                     const isExtra = EXTRA_PRODUCTS.includes(item.option.volume);
-                    html += `
-                <div class="drawer-cart-item">
-                  <div class="drawer-item-header">
-                    <div class="drawer-item-icon">${isExtra ? '🧴' : '🌿'}</div>
-                    <div class="drawer-item-meta">
-                      <div class="drawer-item-name">[${item.aroma.code}] ${item.aroma.name}</div>
-                      <div class="drawer-item-sub">${item.option.volume} · ${item.option.concentration}${fLabel}</div>
-                      <div class="drawer-item-sub">Cantidad: ${item.quantity}</div>
-                      ${item.withFeromonas ? '<span class="drawer-feromonas-badge">✨ Feromonas incluidas</span>' : ''}
-                    </div>
-                  </div>
-                  <div class="drawer-item-price-row">
-                    <span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span>
-                    <div class="drawer-item-actions">
-                      <button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button>
-                    </div>
-                  </div>
-                </div>`;
+                    html += `<div class="drawer-cart-item">
+                        <div class="drawer-item-header"><div class="drawer-item-icon">${isExtra?'🧴':'🌿'}</div><div class="drawer-item-meta"><div class="drawer-item-name">[${item.aroma.code}] ${item.aroma.name}</div><div class="drawer-item-sub">${item.option.volume} · ${item.option.concentration}${fLabel}</div><div class="drawer-item-sub">Cantidad: ${item.quantity}</div>${item.withFeromonas?'<span class="drawer-feromonas-badge">✨ Feromonas incluidas</span>':''}</div></div>
+                        <div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><div class="drawer-item-actions"><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>
+                    </div>`;
                 } else {
                     const fLabel = item.withFeromonas ? ' · + Feromonas' : '';
-                    const aromasHtml = item.aromas.map(a =>
-                        `<div class="drawer-promo-aroma-row">
-                    <span><span class="drawer-promo-aroma-code">${a.code}</span><span class="drawer-promo-aroma-name">${a.name}</span></span>
-                  </div>`
-                    ).join('');
-                    html += `
-                <div class="drawer-cart-item">
-                  <div class="drawer-item-header">
-                    <div class="drawer-item-icon">🎁</div>
-                    <div class="drawer-item-meta">
-                      <div class="drawer-item-name">${item.volume === '2ml' ? '🧪 Discovery Set' : 'Paquete ' + item.volume} (${item.required}×${item.payFor})${fLabel}</div>
-                      <div class="drawer-item-sub">${item.concentration}</div>
-                      ${item.withFeromonas ? '<span class="drawer-feromonas-badge">✨ Feromonas en todos</span>' : ''}
-                    </div>
-                  </div>
-                  <div class="drawer-item-price-row">
-                    <span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span>
-                    <div class="drawer-item-actions">
-                      <button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button>
-                    </div>
-                  </div>
-                  <button class="drawer-promo-toggle" id="promo-toggle-${i}" onclick="togglePromoDetail(${i})">
-                    Ver ${item.aromas.length} aromas del paquete
-                    <span class="toggle-arrow">▾</span>
-                  </button>
-                  <div class="drawer-promo-details" id="promo-detail-${i}">
-                    <div class="drawer-promo-details-inner">
-                      <span class="drawer-promo-badge">🎁 llevas ${item.required} · pagas ${item.payFor}</span>
-                      ${aromasHtml}
-                    </div>
-                  </div>
-                </div>`;
+                    const aromasHtml = item.aromas.map(a => `<div class="drawer-promo-aroma-row"><span><span class="drawer-promo-aroma-code">${a.code}</span><span class="drawer-promo-aroma-name">${a.name}</span></span></div>`).join('');
+                    html += `<div class="drawer-cart-item">
+                        <div class="drawer-item-header"><div class="drawer-item-icon">🎁</div><div class="drawer-item-meta"><div class="drawer-item-name">${item.volume==='2ml'?'🧪 Discovery Set':'Paquete '+item.volume} (${item.required}×${item.payFor})${fLabel}</div><div class="drawer-item-sub">${item.concentration}</div>${item.withFeromonas?'<span class="drawer-feromonas-badge">✨ Feromonas en todos</span>':''}</div></div>
+                        <div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><div class="drawer-item-actions"><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>
+                        <button class="drawer-promo-toggle" id="promo-toggle-${i}" onclick="togglePromoDetail(${i})">Ver ${item.aromas.length} aromas <span class="toggle-arrow">▾</span></button>
+                        <div class="drawer-promo-details" id="promo-detail-${i}"><div class="drawer-promo-details-inner"><span class="drawer-promo-badge">🎁 llevas ${item.required} · pagas ${item.payFor}</span>${aromasHtml}</div></div>
+                    </div>`;
                 }
             });
             itemsEl.innerHTML = html;
-            const subtotal = items.reduce((s, i) => s + i.total, 0);
+            const subtotal = items.reduce((s,i)=>s+i.total,0);
             const discount = calculateDiscount(subtotal);
-            const hasPromo = items.some(i => i.type === 'promo');
+            const hasPromo = items.some(i=>i.type==='promo');
+            const smallPromoVolumes = ['2ml','10ml'];
+            const hasSmallPromo = items.some(i=>i.type==='promo' && smallPromoVolumes.includes(i.volume));
             const subtotalAfterDiscount = subtotal - discount;
-            const freeShipping = hasPromo || subtotalAfterDiscount >= 1200;
+            const freeShipping = (subtotalAfterDiscount >= 1200) || (hasPromo && !hasSmallPromo);
             const shippingCost = freeShipping ? 0 : 149;
             const grandTotal = subtotalAfterDiscount + shippingCost;
-            let totalsHtml = `
-              <div class="drawer-total-row subtotal">
-                <span>Subtotal (${count} ${count === 1 ? 'artículo' : 'artículos'})</span>
-                <span>$${subtotal.toFixed(2)}</span>
-              </div>`;
-            if (state.appliedCoupon) {
-                totalsHtml += `
-              <div class="drawer-coupon-row">
-                <span>🏷️</span>
-                <span class="drawer-coupon-code">${state.appliedCoupon.code}</span>
-                <span class="drawer-coupon-desc">${state.appliedCoupon.description}</span>
-                <button class="drawer-coupon-remove" onclick="removeCoupon()" title="Eliminar código">✕</button>
-              </div>`;
-            }
-            if (discount > 0) {
-                totalsHtml += `
-              <div class="drawer-total-row discount">
-                <span>Descuento aplicado</span>
-                <span>−$${discount.toFixed(2)}</span>
-              </div>`;
-            }
-            if (freeShipping) {
-                totalsHtml += `
-              <div class="drawer-total-row shipping-free">
-                <span>🚚 Envío</span>
-                <span>✓ Gratis</span>
-              </div>`;
-            } else {
-                const needed = (1200 - subtotalAfterDiscount).toFixed(2);
-                totalsHtml += `
-              <div class="drawer-total-row shipping-cost">
-                <span>🚚 Envío</span>
-                <div style="text-align:right;">
-                  <span>$149.00 MXN</span>
-                  <span class="shipping-notice">Falta $${needed} para envío gratis</span>
-                </div>
-              </div>`;
-            }
-            totalsHtml += `
-              <div class="drawer-grand-total">
-                <span class="label">Total Estimado</span>
-                <span class="amount">$${grandTotal.toFixed(2)}</span>
-              </div>`;
+            let totalsHtml = `<div class="drawer-total-row subtotal"><span>Subtotal (${count} ${count===1?'artículo':'artículos'})</span><span>$${subtotal.toFixed(2)}</span></div>`;
+            if (state.appliedCoupon) totalsHtml += `<div class="drawer-coupon-row"><span>🏷️</span><span class="drawer-coupon-code">${state.appliedCoupon.code}</span><span class="drawer-coupon-desc">${state.appliedCoupon.description}</span><button class="drawer-coupon-remove" onclick="removeCoupon()">✕</button></div>`;
+            if (discount>0) totalsHtml += `<div class="drawer-total-row discount"><span>Descuento aplicado</span><span>−$${discount.toFixed(2)}</span></div>`;
+            if (freeShipping) totalsHtml += `<div class="drawer-total-row shipping-free"><span>🚚 Envío</span><span>✓ Gratis</span></div>`;
+            else { const needed = (1200-subtotalAfterDiscount).toFixed(2); totalsHtml += `<div class="drawer-total-row shipping-cost"><span>🚚 Envío</span><div style="text-align:right;"><span>$149.00 MXN</span><span class="shipping-notice">Falta $${needed} para envío gratis</span></div></div>`; }
+            totalsHtml += `<div class="drawer-grand-total"><span class="label">Total Estimado</span><span class="amount">$${grandTotal.toFixed(2)}</span></div>`;
             document.getElementById('drawer-totals').innerHTML = totalsHtml;
         }
 
         function togglePromoDetail(i) {
-            const btn = document.getElementById(`promo-toggle-${i}`);
-            const detail = document.getElementById(`promo-detail-${i}`);
-            btn.classList.toggle('expanded');
-            detail.classList.toggle('expanded');
+            document.getElementById(`promo-toggle-${i}`).classList.toggle('expanded');
+            document.getElementById(`promo-detail-${i}`).classList.toggle('expanded');
         }
 
         function selectSize(size) {
             selectedSize = size;
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size ===
-                size));
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size===size));
             const isExtra = EXTRA_PRODUCTS.includes(size);
             document.querySelector('.conc-buttons').classList.toggle('conc-section-hidden', isExtra);
-            const concLabelEl = document.querySelector('.conc-label');
-            if (concLabelEl) concLabelEl.classList.toggle('conc-section-hidden', isExtra);
+            document.querySelector('.conc-label').classList.toggle('conc-section-hidden', isExtra);
             if (isExtra) {
-                const opt = PRODUCT_OPTIONS.find(o => o.volume === size);
-                state.selectedOption = opt;
-                document.getElementById('selected-price-display').textContent = `$${opt.price.toFixed(2)} MXN`;
+                state.selectedOption = PRODUCT_OPTIONS.find(o=>o.volume===size);
+                document.getElementById('selected-price-display').textContent = `$${state.selectedOption.price.toFixed(2)} MXN`;
                 updatePromoPrices();
             } else {
                 syncOptionFromSelectors();
             }
-            if (promoState.active) { cancelPromo();
-                showToast('Promoción cancelada al cambiar la presentación'); }
+            if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la presentación'); }
         }
 
         function selectConc(conc) {
             selectedConc = conc;
-            document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc === conc));
+            document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc===conc));
             syncOptionFromSelectors();
-            if (promoState.active) { cancelPromo();
-                showToast('Promoción cancelada al cambiar la concentración'); }
+            if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la concentración'); }
         }
 
         function syncOptionFromSelectors() {
-            const match = PRODUCT_OPTIONS.find(o => o.volume === selectedSize && o.conc === selectedConc);
+            const match = PRODUCT_OPTIONS.find(o=>o.volume===selectedSize && o.conc===selectedConc);
             if (match) {
                 state.selectedOption = match;
                 document.getElementById('selected-price-display').textContent = `$${match.price.toFixed(2)} MXN`;
@@ -2542,35 +874,27 @@
 
         function applyCoupon() {
             const input = document.getElementById('coupon-input').value.trim().toUpperCase();
-            if (!input) { showCouponFeedback('error', '⚠️', 'Ingresa un código antes de aplicar.'); return; }
-            if (state.appliedCoupon) { showCouponFeedback('error', '⚠️',
-                    'Ya tienes un código aplicado. Elimínalo primero.'); return; }
+            if (!input) { showCouponFeedback('error','⚠️','Ingresa un código.'); return; }
+            if (state.appliedCoupon) { showCouponFeedback('error','⚠️','Ya tienes un código aplicado.'); return; }
             const promo = PROMO_CODES[input];
-            if (!promo) { showCouponFeedback('error', '✕', `El código "${input}" no es válido.`); return; }
+            if (!promo) { showCouponFeedback('error','✕',`Código "${input}" no válido.`); return; }
             state.appliedCoupon = { code: input, ...promo };
-            document.getElementById('coupon-input').value = '';
-            document.getElementById('coupon-input').disabled = true;
-            showCouponFeedback('success', '✓', `Código <strong>${input}</strong> aplicado — ${promo.description}`,
-            true);
-            updateCartDrawer();
-            showToast(`¡Código ${input} aplicado!`);
+            document.getElementById('coupon-input').value = ''; document.getElementById('coupon-input').disabled = true;
+            showCouponFeedback('success','✓',`Código <strong>${input}</strong> aplicado — ${promo.description}`, true);
+            updateCartDrawer(); showToast(`¡Código ${input} aplicado!`);
         }
 
         function removeCoupon() {
             state.appliedCoupon = null;
-            document.getElementById('coupon-input').disabled = false;
-            document.getElementById('coupon-input').value = '';
-            const fb = document.getElementById('coupon-feedback');
-            fb.className = 'coupon-feedback';
-            fb.style.display = 'none';
-            updateCartDrawer();
-            showToast('Código eliminado');
+            document.getElementById('coupon-input').disabled = false; document.getElementById('coupon-input').value = '';
+            document.getElementById('coupon-feedback').className = 'coupon-feedback'; document.getElementById('coupon-feedback').style.display = 'none';
+            updateCartDrawer(); showToast('Código eliminado');
         }
 
-        function showCouponFeedback(type, iconChar, message, showRemove = false) {
+        function showCouponFeedback(type, icon, msg, showRemove=false) {
             const fb = document.getElementById('coupon-feedback');
-            document.getElementById('coupon-icon').textContent = iconChar;
-            document.getElementById('coupon-text').innerHTML = message;
+            document.getElementById('coupon-icon').textContent = icon;
+            document.getElementById('coupon-text').innerHTML = msg;
             document.getElementById('btn-remove-coupon').style.display = showRemove ? 'inline-block' : 'none';
             fb.className = `coupon-feedback ${type}`;
         }
@@ -2578,7 +902,7 @@
         function calculateDiscount(subtotal) {
             if (!state.appliedCoupon) return 0;
             const { discount, type } = state.appliedCoupon;
-            if (type === 'percent') return subtotal * (discount / 100);
+            if (type === 'percent') return subtotal * (discount/100);
             if (type === 'fixed') return Math.min(discount, subtotal);
             return 0;
         }
@@ -2586,75 +910,52 @@
         function updatePromoPrices() {
             const opt = state.selectedOption;
             if (!opt) return;
-            const vol = opt.volume;
-            ['100', '60', '50', '30', '10', '2', 'extra'].forEach(k => {
+            ['100','60','50','30','10','2','extra'].forEach(k => {
                 const el = document.getElementById(`promo-${k}-price`);
                 if (el) el.textContent = '';
             });
             document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active-vol'));
-            if (vol === '100ml') {
-                document.getElementById('promo-100-price').textContent = `$${(opt.price * 3).toFixed(0)}`;
+            if (opt.volume === '100ml') {
+                document.getElementById('promo-100-price').textContent = `$${(opt.price*3).toFixed(0)}`;
                 document.getElementById('promo-100-btn').classList.add('active-vol');
-            } else if (vol === '60ml') {
-                document.getElementById('promo-60-price').textContent = `$${(opt.price * 4).toFixed(0)}`;
+            } else if (opt.volume === '60ml') {
+                document.getElementById('promo-60-price').textContent = `$${(opt.price*4).toFixed(0)}`;
                 document.getElementById('promo-60-btn').classList.add('active-vol');
-            } else if (vol === '50ml') {
-                document.getElementById('promo-50-price').textContent = `$${(opt.price * 4).toFixed(0)}`;
+            } else if (opt.volume === '50ml') {
+                document.getElementById('promo-50-price').textContent = `$${(opt.price*4).toFixed(0)}`;
                 document.getElementById('promo-50-btn').classList.add('active-vol');
-            } else if (vol === '30ml') {
-                document.getElementById('promo-30-price').textContent = `$${(opt.price * 5).toFixed(0)}`;
+            } else if (opt.volume === '30ml') {
+                document.getElementById('promo-30-price').textContent = `$${(opt.price*5).toFixed(0)}`;
                 document.getElementById('promo-30-btn').classList.add('active-vol');
-            } else if (vol === '10ml') {
-                document.getElementById('promo-10-price').textContent = `$${(opt.price * 5).toFixed(0)}`;
+            } else if (opt.volume === '10ml') {
+                document.getElementById('promo-10-price').textContent = `$${(opt.price*10).toFixed(0)}`;
                 document.getElementById('promo-10-btn').classList.add('active-vol');
-            } else if (vol === '2ml') {
-                document.getElementById('promo-2-price').textContent = `$${(opt.price * 8).toFixed(0)}`;
+            } else if (opt.volume === '2ml') {
+                document.getElementById('promo-2-price').textContent = `$${(opt.price*12).toFixed(0)}`;
                 document.getElementById('promo-2-btn').classList.add('active-vol');
-            } else if (EXTRA_PRODUCTS.includes(vol)) {
-                document.getElementById('promo-extra-price').textContent = `$${(129 * 5).toFixed(0)}`;
+            } else if (EXTRA_PRODUCTS.includes(opt.volume)) {
+                document.getElementById('promo-extra-price').textContent = `$${(129*5).toFixed(0)}`;
                 document.getElementById('promo-extra-btn').classList.add('active-vol');
             }
         }
 
-        const searchInput = document.getElementById('search-input');
-        const searchResults = document.getElementById('search-results');
-
+        const searchInput = document.getElementById('search-input'), searchResults = document.getElementById('search-results');
         searchInput.addEventListener('input', () => {
             const q = searchInput.value.toLowerCase().trim();
             if (!q) { searchResults.classList.remove('visible'); return; }
-            const matches = AROMAS.filter(a =>
-                a.code.toLowerCase().includes(q) ||
-                a.name.toLowerCase().includes(q) ||
-                a.brand.toLowerCase().includes(q) ||
-                a.family.toLowerCase().includes(q) ||
-                (a.occasion && a.occasion.toLowerCase().includes(q))
-            );
-            searchResults.innerHTML = matches.length === 0 ?
-                `<div class="search-result-item"><span class="aroma-name" style="color:var(--muted)">Sin resultados para "${q}"</span></div>` :
-                matches.map(a => {
-                    const idx = AROMAS.indexOf(a);
-                    return `<div class="search-result-item" onclick="handleAromaSelection(${idx})">
-                <span class="aroma-code">${a.code}</span>
-                <div class="aroma-info">
-                  <div class="aroma-name">${a.name}</div>
-                  <div class="aroma-meta"><span class="aroma-label">Marca:</span> ${a.brand}</div>
-                  <div class="aroma-meta"><span class="aroma-label">Familia:</span> ${a.family}</div>
-                  ${a.occasion ? `<div class="aroma-meta"><span class="aroma-label">Ocasión:</span> ${a.occasion}</div>` : ''}
-                </div>
-              </div>`;
-                }).join('');
+            const matches = AROMAS.filter(a => a.code.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.brand.toLowerCase().includes(q) || a.family.toLowerCase().includes(q) || (a.occasion && a.occasion.toLowerCase().includes(q)));
+            searchResults.innerHTML = matches.length===0 ? `<div class="search-result-item"><span class="aroma-name" style="color:var(--muted)">Sin resultados</span></div>` : matches.map(a => {
+                const idx = AROMAS.indexOf(a);
+                return `<div class="search-result-item" onclick="handleAromaSelection(${idx})"><span class="aroma-code">${a.code}</span><div class="aroma-info"><div class="aroma-name">${a.name}</div><div class="aroma-meta"><span class="aroma-label">Marca:</span> ${a.brand}</div><div class="aroma-meta"><span class="aroma-label">Familia:</span> ${a.family}</div>${a.occasion?`<div class="aroma-meta"><span class="aroma-label">Ocasión:</span> ${a.occasion}</div>`:''}</div></div>`;
+            }).join('');
             searchResults.classList.add('visible');
         });
-
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.search-wrap')) searchResults.classList.remove('visible');
-        });
+        document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) searchResults.classList.remove('visible'); });
 
         function handleAromaSelection(idx) {
             const aroma = AROMAS[idx];
             if (promoState.active) { addToPromoSelection(aroma); } else { selectAroma(aroma); }
-            searchResults.classList.remove('visible');
-            searchInput.value = '';
+            searchResults.classList.remove('visible'); searchInput.value = '';
         }
 
         function selectAroma(aroma) {
@@ -2665,153 +966,87 @@
             document.getElementById('selected-aroma-tag').classList.add('visible');
             showToast(`Seleccionado: ${aroma.name}`);
         }
-
-        function clearAroma() {
-            state.selectedAroma = null;
-            document.getElementById('tag-occasion').textContent = '';
-            document.getElementById('selected-aroma-tag').classList.remove('visible');
-        }
+        function clearAroma() { state.selectedAroma = null; document.getElementById('selected-aroma-tag').classList.remove('visible'); }
 
         function toggleAddon() {
-            if (promoState.active) {
-                promoState.withFeromonas = !promoState.withFeromonas;
-                updatePromoUI();
-            } else {
+            if (promoState.active) { promoState.withFeromonas = !promoState.withFeromonas; updatePromoUI(); }
+            else {
                 state.withFeromonas = !state.withFeromonas;
                 document.getElementById('addon-feromonas').classList.toggle('checked', state.withFeromonas);
                 document.getElementById('checkbox-feromonas').textContent = state.withFeromonas ? '✓' : '';
             }
         }
 
-        function changeQty(delta) {
-            state.quantity = Math.max(1, state.quantity + delta);
-            document.getElementById('qty-display').textContent = state.quantity;
-        }
+        function changeQty(delta) { state.quantity = Math.max(1, state.quantity+delta); document.getElementById('qty-display').textContent = state.quantity; }
 
         function startPromo(volume) {
             const currentOpt = state.selectedOption;
             const isExtraPromo = volume === 'extra';
-            if (!isExtraPromo && volume !== '2ml' && volume !== '10ml' && (!currentOpt || currentOpt.volume !==
-                volume)) {
-                showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`);
-                return;
+            if (!isExtraPromo && volume!=='2ml' && volume!=='10ml' && (!currentOpt || currentOpt.volume!==volume)) {
+                showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`); return;
             }
-            if (volume === '2ml' && (!currentOpt || currentOpt.volume !== '2ml')) {
-                showToast('⚠️ Selecciona la presentación de 2ml arriba primero');
-                return;
-            }
-            if (volume === '10ml' && (!currentOpt || currentOpt.volume !== '10ml')) {
-                showToast('⚠️ Selecciona la presentación de 10ml arriba primero');
-                return;
-            }
-            if (isExtraPromo && (!currentOpt || !EXTRA_PRODUCTS.includes(currentOpt.volume))) {
-                showToast('⚠️ Selecciona Crema o Desodorante arriba primero');
-                return;
-            }
+            if (volume==='2ml' && (!currentOpt || currentOpt.volume!=='2ml')) { showToast('⚠️ Selecciona 2ml primero'); return; }
+            if (volume==='10ml' && (!currentOpt || currentOpt.volume!=='10ml')) { showToast('⚠️ Selecciona 10ml primero'); return; }
+            if (isExtraPromo && (!currentOpt || !EXTRA_PRODUCTS.includes(currentOpt.volume))) { showToast('⚠️ Selecciona Crema o Desodorante primero'); return; }
             let required, payFor;
-            if (volume === '100ml') { required = 4;
-                payFor = 3; } else if (volume === '60ml' || volume === '50ml') { required = 5;
-                payFor = 4; } else if (volume === '30ml' || volume === '10ml') { required = 6;
-                payFor = 5; } else if (volume === '2ml') { required = 10;
-                payFor = 8; } else { required = 6;
-                payFor = 5; }
+            if (volume==='100ml') { required=4; payFor=3; }
+            else if (volume==='60ml' || volume==='50ml') { required=5; payFor=4; }
+            else if (volume==='30ml') { required=6; payFor=5; }
+            else if (volume==='10ml') { required=12; payFor=10; }
+            else if (volume==='2ml') { required=15; payFor=12; }
+            else { required=6; payFor=5; }
             promoState = {
-                active: true,
-                volume: isExtraPromo ? currentOpt.volume : volume,
-                required: required,
-                payFor: payFor,
+                active: true, volume: isExtraPromo ? currentOpt.volume : volume,
+                required, payFor,
                 basePrice: isExtraPromo ? 129 : currentOpt.price,
                 concentration: currentOpt.concentration,
-                withFeromonas: false,
-                selectedAromas: [],
-                isExtra: isExtraPromo
+                withFeromonas: false, selectedAromas: [], isExtra: isExtraPromo
             };
             document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
-            const btnMap = { '100ml': 'promo-100-btn', '60ml': 'promo-60-btn', '50ml': 'promo-50-btn',
-                '30ml': 'promo-30-btn', '10ml': 'promo-10-btn', '2ml': 'promo-2-btn', 'extra': 'promo-extra-btn' };
-            const btnId = btnMap[isExtraPromo ? 'extra' : volume];
+            const btnMap = { '100ml':'promo-100-btn','60ml':'promo-60-btn','50ml':'promo-50-btn','30ml':'promo-30-btn','10ml':'promo-10-btn','2ml':'promo-2-btn','extra':'promo-extra-btn' };
+            const btnId = btnMap[isExtraPromo?'extra':volume];
             if (btnId) document.getElementById(btnId).classList.add('active');
             document.getElementById('promo-status').classList.add('visible');
-            state.selectedAroma = null;
-            document.getElementById('selected-aroma-tag').classList.remove('visible');
+            state.selectedAroma = null; document.getElementById('selected-aroma-tag').classList.remove('visible');
             updatePromoUI();
-            const promoTitles = { '100ml': 'Lleva 4, paga 3', '60ml': 'Lleva 5, paga 4', '50ml': 'Lleva 5, paga 4',
-                '30ml': 'Lleva 6, paga 5', '10ml': 'Lleva 6, paga 5', '2ml': 'Discovery Set · 10 aromas',
-                'crema': 'Lleva 6, paga 5', 'deo': 'Lleva 6, paga 5' };
+            const titles = { '100ml':'Lleva 4, paga 3','60ml':'Lleva 5, paga 4','50ml':'Lleva 5, paga 4','30ml':'Lleva 6, paga 5','10ml':'Lleva 12, paga 10','2ml':'Discovery Set · 15×12','crema':'Lleva 6, paga 5','deo':'Lleva 6, paga 5' };
             const guideVolKey = isExtraPromo ? currentOpt.volume : volume;
-            const badge =
-                `${guideVolKey === '2ml' ? 'Discovery Set · 2ml' : guideVolKey} · ${currentOpt ? currentOpt.concentration : ''}`;
-            openPromoGuide(guideVolKey, promoTitles[guideVolKey] || 'Lleva 6, paga 5', badge, required);
+            const badge = `${guideVolKey==='2ml'?'Discovery Set · 2ml':guideVolKey} · ${currentOpt?currentOpt.concentration:''}`;
+            openPromoGuide(guideVolKey, titles[guideVolKey]||'Lleva 6, paga 5', badge, required);
         }
 
         function updatePromoUI() {
-            const count = promoState.selectedAromas.length;
-            const required = promoState.required;
-            document.getElementById('promo-status-text').innerHTML =
-                `<strong>Aromas seleccionados (${count}/${required})</strong><br><small>${promoState.concentration}</small>`;
-            const listDiv = document.getElementById('promo-selected-list');
-            listDiv.innerHTML = count === 0 ? '' : promoState.selectedAromas.map((a, i) =>
-                `<span class="promo-selected-item">${a.code} ${a.name} <span onclick="removePromoAroma(${i})">×</span></span>`
-            ).join('');
-            const addonDiv = document.getElementById('addon-feromonas');
-            const checkbox = document.getElementById('checkbox-feromonas');
-            addonDiv.classList.toggle('checked', promoState.withFeromonas);
-            checkbox.textContent = promoState.withFeromonas ? '✓' : '';
-            const finishWrapper = document.getElementById('finish-promo-wrapper');
-            const hintDiv = document.getElementById('promo-hint');
-            const hintText = document.getElementById('promo-hint-text');
-            if (count === required) {
-                finishWrapper.classList.add('visible');
-                hintDiv.classList.remove('visible');
-            } else if (promoState.active) {
-                finishWrapper.classList.remove('visible');
-                const faltantes = required - count;
-                hintText.textContent = `Faltan ${faltantes} aroma${faltantes > 1 ? 's' : ''} por seleccionar en el paso 3`;
-                hintDiv.classList.add('visible');
-            }
+            const count = promoState.selectedAromas.length, required = promoState.required;
+            document.getElementById('promo-status-text').innerHTML = `<strong>Aromas seleccionados (${count}/${required})</strong><br><small>${promoState.concentration}</small>`;
+            document.getElementById('promo-selected-list').innerHTML = count===0 ? '' : promoState.selectedAromas.map((a,i) => `<span class="promo-selected-item">${a.code} ${a.name} <span onclick="removePromoAroma(${i})">×</span></span>`).join('');
+            document.getElementById('addon-feromonas').classList.toggle('checked', promoState.withFeromonas);
+            document.getElementById('checkbox-feromonas').textContent = promoState.withFeromonas ? '✓' : '';
+            document.getElementById('finish-promo-wrapper').classList.toggle('visible', count===required);
+            document.getElementById('promo-hint').classList.toggle('visible', promoState.active && count<required);
+            if (count<required) document.getElementById('promo-hint-text').textContent = `Faltan ${required-count} aroma${required-count>1?'s':''} por seleccionar`;
         }
 
         function addToPromoSelection(aroma) {
-            if (promoState.selectedAromas.length >= promoState.required) {
-                showToast(`Ya has seleccionado ${promoState.required} aromas`);
-                return;
-            }
+            if (promoState.selectedAromas.length >= promoState.required) { showToast(`Ya has seleccionado ${promoState.required} aromas`); return; }
             promoState.selectedAromas.push(aroma);
             updatePromoUI();
-            if (promoState.selectedAromas.length === promoState.required) {
-                showToast(`✓ Paquete completo — elige feromonas o añade al carrito`);
-            } else {
-                showToast(`Añadido (${promoState.selectedAromas.length}/${promoState.required})`);
-            }
+            showToast(promoState.selectedAromas.length===promoState.required ? '✓ Paquete completo' : `Añadido (${promoState.selectedAromas.length}/${promoState.required})`);
         }
 
-        function removePromoAroma(index) {
-            promoState.selectedAromas.splice(index, 1);
-            updatePromoUI();
-        }
+        function removePromoAroma(index) { promoState.selectedAromas.splice(index,1); updatePromoUI(); }
 
         function finishPromo() {
-            if (promoState.selectedAromas.length !== promoState.required) {
-                showToast(`Debes seleccionar ${promoState.required} aromas`);
-                return;
-            }
+            if (promoState.selectedAromas.length !== promoState.required) { showToast(`Debes seleccionar ${promoState.required} aromas`); return; }
             const feromonasCost = promoState.withFeromonas ? 60 * promoState.required : 0;
-            const totalPromoPrice = (promoState.basePrice * promoState.payFor) + feromonasCost;
+            const total = (promoState.basePrice * promoState.payFor) + feromonasCost;
             state.cartItems.push({
-                type: 'promo',
-                volume: promoState.volume,
-                concentration: promoState.concentration,
-                required: promoState.required,
-                payFor: promoState.payFor,
-                aromas: [...promoState.selectedAromas],
-                withFeromonas: promoState.withFeromonas,
-                total: totalPromoPrice,
-                isExtra: promoState.isExtra
+                type: 'promo', volume: promoState.volume, concentration: promoState.concentration,
+                required: promoState.required, payFor: promoState.payFor,
+                aromas: [...promoState.selectedAromas], withFeromonas: promoState.withFeromonas,
+                total, isExtra: promoState.isExtra
             });
-            updateCartDrawer();
-            cancelPromo();
-            showToast(promoState.volume === '2ml' ? '🧪 Discovery Set añadido al carrito' :
-                '🎁 Paquete añadido al carrito');
+            updateCartDrawer(); cancelPromo();
+            showToast(promoState.volume==='2ml' ? '🧪 Discovery Set añadido' : '🎁 Paquete añadido');
             setTimeout(() => openCart(), 600);
         }
 
@@ -2821,256 +1056,117 @@
             document.getElementById('promo-status').classList.remove('visible');
             document.getElementById('finish-promo-wrapper').classList.remove('visible');
             document.getElementById('promo-hint').classList.remove('visible');
-            const addonDiv = document.getElementById('addon-feromonas');
-            const checkbox = document.getElementById('checkbox-feromonas');
-            addonDiv.classList.toggle('checked', state.withFeromonas);
-            checkbox.textContent = state.withFeromonas ? '✓' : '';
+            document.getElementById('addon-feromonas').classList.toggle('checked', state.withFeromonas);
+            document.getElementById('checkbox-feromonas').textContent = state.withFeromonas ? '✓' : '';
         }
 
         function addToCart() {
-            if (!state.selectedOption) { showToast('⚠️ Selecciona una presentación y concentración'); return; }
-            if (!state.selectedAroma) { showToast('⚠️ Selecciona un aroma primero'); return; }
-            if (promoState.active) { showToast(
-                    '⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
+            if (!state.selectedOption || !state.selectedAroma) { showToast('⚠️ Selecciona presentación, concentración y aroma'); return; }
+            if (promoState.active) { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
             const isExtra = EXTRA_PRODUCTS.includes(state.selectedOption.volume);
             const feromonasCost = state.withFeromonas && !isExtra ? 60 : 0;
             const unitPrice = state.selectedOption.price + feromonasCost;
-            const totalPrice = unitPrice * state.quantity;
-            state.cartItems.push({
-                type: 'individual',
-                option: state.selectedOption,
-                aroma: state.selectedAroma,
-                withFeromonas: state.withFeromonas && !isExtra,
-                quantity: state.quantity,
-                unitPrice,
-                total: totalPrice
-            });
-            updateCartDrawer();
-            showToast(`✓ ${state.selectedAroma.name} añadido`);
+            const total = unitPrice * state.quantity;
+            state.cartItems.push({ type:'individual', option: state.selectedOption, aroma: state.selectedAroma, withFeromonas: state.withFeromonas && !isExtra, quantity: state.quantity, unitPrice, total });
+            updateCartDrawer(); showToast(`✓ ${state.selectedAroma.name} añadido`);
             setTimeout(() => openCart(), 500);
-            clearAroma();
-            state.withFeromonas = false;
-            state.quantity = 1;
+            clearAroma(); state.withFeromonas = false; state.quantity = 1;
             document.getElementById('qty-display').textContent = 1;
             document.getElementById('addon-feromonas').classList.remove('checked');
             document.getElementById('checkbox-feromonas').textContent = '';
         }
 
-        function removeCartItem(index) {
-            state.cartItems.splice(index, 1);
-            updateCartDrawer();
-            if (state.cartItems.length === 0) closeCart();
-        }
-
-        function clearCart() {
-            state.cartItems = [];
-            updateCartDrawer();
-            closeCart();
-            showToast('Carrito vaciado');
-        }
+        function removeCartItem(index) { state.cartItems.splice(index,1); updateCartDrawer(); if (state.cartItems.length===0) closeCart(); }
+        function clearCart() { state.cartItems = []; updateCartDrawer(); closeCart(); showToast('Carrito vaciado'); }
 
         function sendToWhatsApp() {
-            if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
-            const subtotal = state.cartItems.reduce((s, i) => s + i.total, 0);
+            if (state.cartItems.length===0) { showToast('El carrito está vacío'); return; }
+            const subtotal = state.cartItems.reduce((s,i)=>s+i.total,0);
             const discountAmt = calculateDiscount(subtotal);
             const total = subtotal - discountAmt;
-            const hasPromoWA = state.cartItems.some(i => i.type === 'promo');
-            const freeShip = hasPromoWA || total >= 1200;
+            const hasPromo = state.cartItems.some(i=>i.type==='promo');
+            const smallPromoVolumes = ['2ml','10ml'];
+            const hasSmallPromo = state.cartItems.some(i=>i.type==='promo' && smallPromoVolumes.includes(i.volume));
+            const freeShip = (total >= 1200) || (hasPromo && !hasSmallPromo);
             const shipCost = freeShip ? 0 : 149;
             const grandTotal = total + shipCost;
-            const fecha = new Date().toLocaleDateString('es-MX', { day: '2-digit', month: '2-digit',
-            year: 'numeric' });
-            const hora = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
-            let msg =
-                `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
-            state.cartItems.forEach((item, i) => {
-                if (item.type === 'individual') {
-                    const fLabel = item.withFeromonas ? ' + Feromonas' : '';
-                    msg +=
-                        `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n   📦 ${item.option.concentration}${fLabel} ×${item.quantity}\n   💵 $${item.total.toFixed(2)} MXN\n\n`;
+            const fecha = new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric'});
+            const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+            let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
+            state.cartItems.forEach((item,i) => {
+                if (item.type==='individual') {
+                    msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n   📦 ${item.option.concentration}${item.withFeromonas?' + Feromonas':''} ×${item.quantity}\n   💵 $${item.total.toFixed(2)} MXN\n\n`;
                 } else {
-                    const fLabel = item.withFeromonas ? ' + Feromonas' : '';
-                    const promoLabel = item.volume === '2ml' ? '🧪 DISCOVERY SET' :
-                        `🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})`;
-                    msg +=
-                        `*${i+1}. ${promoLabel}${fLabel}*\n   Concentración: ${item.concentration}\n`;
-                    item.aromas.forEach(a => { msg += `   • ${a.code} ${a.name}\n`; });
-                    msg += `   💵 Total paquete: $${item.total.toFixed(2)} MXN\n\n`;
+                    const fLabel = item.withFeromonas?' + Feromonas':'';
+                    msg += `*${i+1}. ${item.volume==='2ml'?'🧪 DISCOVERY SET':`🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})`}${fLabel}*\n   Concentración: ${item.concentration}\n`;
+                    item.aromas.forEach(a => msg += `   • ${a.code} ${a.name}\n`);
+                    msg += `   💵 Total: $${item.total.toFixed(2)} MXN\n\n`;
                 }
             });
             msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
-            if (state.appliedCoupon && discountAmt > 0) {
-                const c = state.appliedCoupon;
-                const labelDesc = c.type === 'percent' ? `${c.discount}% de descuento` :
-                    `$${c.discount} MXN de descuento`;
-                msg += `🏷️ *Código: ${c.code}* (${labelDesc}) → −$${discountAmt.toFixed(2)} MXN\n`;
-            }
+            if (state.appliedCoupon && discountAmt>0) msg += `🏷️ *Código: ${state.appliedCoupon.code}* → −$${discountAmt.toFixed(2)} MXN\n`;
             msg += freeShip ? `🚚 Envío: *GRATIS*\n` : `🚚 Envío: *$${shipCost.toFixed(2)} MXN*\n`;
-            msg +=
-                `💰 *TOTAL: $${grandTotal.toFixed(2)} MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario para tus datos y dirección._\n\nPor favor envíame el link de Mercado Pago. ¡Gracias! 🙏`;
+            msg += `💰 *TOTAL: $${grandTotal.toFixed(2)} MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario._`;
             const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-            showToast('Abriendo WhatsApp...');
-            setTimeout(() => window.open(url, '_blank'), 600);
+            showToast('Abriendo WhatsApp...'); setTimeout(() => window.open(url,'_blank'), 600);
         }
 
         let toastTimer;
-
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.add('show');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
-        }
+        function showToast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2500); }
 
         const TOUR_STEPS = [
-            { anchor: 'tour-anchor-size', title: 'Elige tu presentación',
-                body: 'Desde 2ml para probar, 10ml para viaje, 30ml y 50ml para uso diario, 60ml y 100ml para máxima duración. También tenemos Crema Corporal y Desodorante.',
-                arrow: 'arrow-top', position: 'below' },
-            { anchor: 'tour-anchor-conc', title: 'Selecciona la concentración',
-                body: '🌸 EDT es la más ligera. 💧 Parfum es nuestra concentración clásica. 💧💧 Parfum Premium intensifica la proyección. 💧💧💧 Extrait es la experiencia más intensa y duradera.',
-                arrow: 'arrow-top', position: 'below' },
-            { anchor: 'tour-anchor-promo', title: 'Paquetes especiales',
-                body: '¿Te gustaría perfumes gratis? Elige entre nuestras promociones 4×3, 5×4, 6×5 o el nuevo 🧪 Discovery Set con 10 aromas de 2ml.',
-                arrow: 'arrow-top', position: 'below' },
-            { anchor: 'tour-anchor-aroma', title: 'Busca tu aroma',
-                body: 'Escribe el nombre de un perfume de marca, su código o familia olfativa (ej. "floral", "oriental"). Selecciónalo del listado.',
-                arrow: 'arrow-top', position: 'below' },
-            { anchor: 'tour-anchor-extras', title: 'Añade feromonas (opcional)',
-                body: 'Potencia tu perfume con nuestra fórmula de feromonas por solo $60 MXN adicionales.', arrow: 'arrow-top',
-                position: 'below' },
-            { anchor: 'tour-anchor-coupon', title: 'Código promocional',
-                body: '¿Tienes un código de descuento? Ingrésalo aquí y presiona "Aplicar" antes de finalizar tu pedido.',
-                arrow: 'arrow-top', position: 'below' },
-            { anchor: 'tour-anchor-actions', title: '¡Listo para pedir!',
-                body: 'Usa "Añadir al carrito" para acumular aromas. El carrito se abrirá automáticamente — desde ahí finaliza tu pedido por WhatsApp.',
-                arrow: 'arrow-bottom', position: 'above' }
+            { anchor:'tour-anchor-size', title:'Elige tu presentación', body:'Desde 2ml para probar, 10ml para viaje, 30ml y 50ml para uso diario, 60ml y 100ml para máxima duración. También Crema y Desodorante.', arrow:'arrow-top', position:'below' },
+            { anchor:'tour-anchor-conc', title:'Selecciona la concentración', body:'🌸 EDT ligera. 💧 Parfum clásica. 💧💧 Parfum Premium. 💧💧💧 Extrait máxima intensidad.', arrow:'arrow-top', position:'below' },
+            { anchor:'tour-anchor-promo', title:'Paquetes especiales', body:'Promociones 4×3, 5×4, 6×5, 12×10 (10ml) y 🧪 Discovery Set 15×12 (2ml). ¡Lleva más pagando menos!', arrow:'arrow-top', position:'below' },
+            { anchor:'tour-anchor-aroma', title:'Busca tu aroma', body:'Escribe código, marca o familia olfativa. Selecciónalo del listado.', arrow:'arrow-top', position:'below' },
+            { anchor:'tour-anchor-extras', title:'Feromonas opcionales', body:'Potencia tu perfume con feromonas por $60 MXN.', arrow:'arrow-top', position:'below' },
+            { anchor:'tour-anchor-coupon', title:'Código promocional', body:'Ingresa tu código de descuento aquí.', arrow:'arrow-top', position:'below' },
+            { anchor:'tour-anchor-actions', title:'¡Listo!', body:'Añade al carrito y finaliza por WhatsApp.', arrow:'arrow-bottom', position:'above' }
         ];
-        let tourStep = 0,
-            tourActive = false;
-
-        function tourStart() {
-            if (localStorage.getItem('aion_tour_done') === '1') return;
-            tourActive = true;
-            tourStep = 0;
-            tourRender();
-        }
-
+        let tourStep=0, tourActive=false;
+        function tourStart() { if(localStorage.getItem('aion_tour_done')==='1') return; tourActive=true; tourStep=0; tourRender(); }
         function tourRender() {
-            const step = TOUR_STEPS[tourStep];
-            const anchor = document.getElementById(step.anchor);
-            const overlay = document.getElementById('tour-overlay');
-            const highlight = document.getElementById('tour-highlight');
-            const tooltip = document.getElementById('tour-tooltip');
-            const nextBtn = document.getElementById('tour-btn-next');
-            overlay.classList.add('active');
-            tooltip.classList.remove('active');
-            highlight.classList.remove('active');
-            anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => {
-                const r = anchor.getBoundingClientRect(),
-                    pad = 8;
-                highlight.style.left = (r.left - pad) + 'px';
-                highlight.style.top = (r.top - pad) + 'px';
-                highlight.style.width = (r.width + pad * 2) + 'px';
-                highlight.style.height = (r.height + pad * 2) + 'px';
+            const step=TOUR_STEPS[tourStep], anchor=document.getElementById(step.anchor);
+            const overlay=document.getElementById('tour-overlay'), highlight=document.getElementById('tour-highlight'), tooltip=document.getElementById('tour-tooltip');
+            overlay.classList.add('active'); tooltip.classList.remove('active'); highlight.classList.remove('active');
+            anchor.scrollIntoView({behavior:'smooth',block:'center'});
+            setTimeout(()=>{
+                const r=anchor.getBoundingClientRect(), pad=8;
+                highlight.style.left=(r.left-pad)+'px'; highlight.style.top=(r.top-pad)+'px'; highlight.style.width=(r.width+pad*2)+'px'; highlight.style.height=(r.height+pad*2)+'px';
                 highlight.classList.add('active');
-                tooltip.className = 'tour-tooltip ' + step.arrow;
-                const tw = Math.min(300, window.innerWidth - 40);
-                let left = r.left;
-                if (left + tw > window.innerWidth - 10) left = window.innerWidth - tw - 10;
-                if (left < 10) left = 10;
-                tooltip.style.left = left + 'px';
-                tooltip.style.width = tw + 'px';
-                if (step.position === 'below') {
-                    tooltip.style.top = (r.bottom + pad + 14) + 'px';
-                    tooltip.style.bottom = 'auto';
-                } else {
-                    tooltip.style.bottom = (window.innerHeight - r.top + pad + 14) + 'px';
-                    tooltip.style.top = 'auto';
-                }
-                document.getElementById('tour-step-label').textContent =
-                    `Paso ${tourStep+1} de ${TOUR_STEPS.length}`;
-                document.getElementById('tour-title').textContent = step.title;
-                document.getElementById('tour-body').textContent = step.body;
-                document.getElementById('tour-dots').innerHTML = TOUR_STEPS.map((_, i) =>
-                    `<div class="tour-dot ${i===tourStep?'active':''}"></div>`).join('');
-                nextBtn.textContent = tourStep === TOUR_STEPS.length - 1 ? '¡Entendido! ✓' : 'Siguiente →';
+                tooltip.className='tour-tooltip '+step.arrow;
+                const tw=Math.min(300,window.innerWidth-40); let left=r.left; if(left+tw>window.innerWidth-10) left=window.innerWidth-tw-10; if(left<10) left=10;
+                tooltip.style.left=left+'px'; tooltip.style.width=tw+'px';
+                if(step.position==='below') { tooltip.style.top=(r.bottom+pad+14)+'px'; tooltip.style.bottom='auto'; }
+                else { tooltip.style.bottom=(window.innerHeight-r.top+pad+14)+'px'; tooltip.style.top='auto'; }
+                document.getElementById('tour-step-label').textContent=`Paso ${tourStep+1} de ${TOUR_STEPS.length}`;
+                document.getElementById('tour-title').textContent=step.title;
+                document.getElementById('tour-body').textContent=step.body;
+                document.getElementById('tour-dots').innerHTML=TOUR_STEPS.map((_,i)=>`<div class="tour-dot ${i===tourStep?'active':''}"></div>`).join('');
+                document.getElementById('tour-btn-next').textContent=tourStep===TOUR_STEPS.length-1?'¡Entendido! ✓':'Siguiente →';
                 tooltip.classList.add('active');
-            }, 350);
+            },350);
         }
-
-        function tourNext() {
-            tourStep++;
-            if (tourStep >= TOUR_STEPS.length) tourEnd();
-            else tourRender();
-        }
-
+        function tourNext() { tourStep++; if(tourStep>=TOUR_STEPS.length) tourEnd(); else tourRender(); }
         function tourSkip() { tourEnd(); }
-
         function tourEnd() {
-            tourActive = false;
-            const overlay = document.getElementById('tour-overlay');
-            const highlight = document.getElementById('tour-highlight');
-            const tooltip = document.getElementById('tour-tooltip');
-            tooltip.classList.remove('active');
-            highlight.classList.remove('active');
-            setTimeout(() => {
-                overlay.classList.remove('active');
-                highlight.style.cssText = 'width:0;height:0;left:-9999px;top:-9999px;';
-            }, 320);
-            try { localStorage.setItem('aion_tour_done', '1'); } catch (e) {}
+            tourActive=false; document.getElementById('tour-tooltip').classList.remove('active'); document.getElementById('tour-highlight').classList.remove('active');
+            setTimeout(()=>{ document.getElementById('tour-overlay').classList.remove('active'); document.getElementById('tour-highlight').style.cssText='width:0;height:0;left:-9999px;top:-9999px;'; },320);
+            try{localStorage.setItem('aion_tour_done','1');}catch(e){}
         }
-
-        window.onload = function() {
-            syncOptionFromSelectors();
-            setTimeout(tourStart, 700);
-        };
-
-        (function() {
-            const bar = document.querySelector('.announcement-bar');
-            if (!bar) return;
-            const update = () => document.documentElement.style.setProperty('--banner-h', bar.offsetHeight +
-                'px');
-            update();
-            new ResizeObserver(update).observe(bar);
-        })();
-
+        window.onload = function() { syncOptionFromSelectors(); setTimeout(tourStart,700); };
+        (function(){ const bar=document.querySelector('.announcement-bar'); if(!bar)return; const update=()=>document.documentElement.style.setProperty('--banner-h',bar.offsetHeight+'px'); update(); new ResizeObserver(update).observe(bar); })();
         function openPromoGuide(volume, title, badge, qty) {
-            document.getElementById('promo-guide-title').textContent = title;
-            document.getElementById('promo-guide-badge').textContent = badge;
-            document.getElementById('promo-guide-qty').textContent = qty;
+            document.getElementById('promo-guide-title').textContent=title;
+            document.getElementById('promo-guide-badge').textContent=badge;
+            document.getElementById('promo-guide-qty').textContent=qty;
             document.getElementById('promo-guide-overlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow='hidden';
         }
-
-        function closePromoGuide() {
-            document.getElementById('promo-guide-overlay').classList.remove('open');
-            document.body.style.overflow = '';
-            setTimeout(() => {
-                const s = document.getElementById('tour-anchor-aroma');
-                if (s) s.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 200);
-        }
-
-        function openInfoModal(id) {
-            document.getElementById('modal-' + id + '-overlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
-            const btn = document.getElementById('info-btn-' + id);
-            if (btn) btn.classList.remove('unseen');
-        }
-
-        function closeInfoModal(id) {
-            document.getElementById('modal-' + id + '-overlay').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeInfoModal('legal');
-                closeInfoModal('aromas');
-                closeCart();
-            }
-        });
+        function closePromoGuide() { document.getElementById('promo-guide-overlay').classList.remove('open'); document.body.style.overflow=''; }
+        function openInfoModal(id) { document.getElementById('modal-'+id+'-overlay').classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('info-btn-'+id).classList.remove('unseen'); }
+        function closeInfoModal(id) { document.getElementById('modal-'+id+'-overlay').classList.remove('open'); document.body.style.overflow=''; }
+        document.addEventListener('keydown', e => { if(e.key==='Escape') { closeInfoModal('legal'); closeInfoModal('aromas'); closeCart(); } });
     </script>
 </body>
 </html>
