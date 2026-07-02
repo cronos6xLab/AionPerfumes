@@ -768,10 +768,10 @@
 
         <!-- SECCIÓN ESENCIA PURA (oculta por defecto) -->
         <div class="esencia-section" id="esencia-section">
-            <div class="section-label" style="margin-top: 8px;">🧪 Personaliza tu Esencia Pura</div>
+            <div class="section-label" style="margin-top: 8px;">🧪 Elige tu Esencia Pura</div>
             <p class="promo-instruction">
                 ✨ <strong>Precio por gramo:</strong> $9 (1-149g) · <strong>$7</strong> (150-499g) · <strong>$6</strong> (500-999g) · <strong>$5</strong> (1000g+).<br>
-                ⚠️ Mínimo <strong>50g</strong> por aroma. Puedes elegir varios aromas y nosotros mezclamos la cantidad total.
+                ⚠️ Mínimo <strong>50g</strong> por aroma. Puedes elegir varios aromas y nosotros sumamos la cantidad total.
             </p>
             <div id="esencia-aromas-container"></div>
             <button class="btn-add-esencia-aroma" onclick="openEsenciaSearch()">+ Agregar aroma</button>
@@ -984,7 +984,7 @@
                 esenciaSection.classList.add('visible');
                 actionButtons.style.display = 'none';
                 productTitle.textContent = 'Esencia Pura';
-                productSubtitle.textContent = 'Personaliza tu mezcla · Mín. 50g por aroma';
+                productSubtitle.textContent = 'Agrega tu esencia · Mín. 50g por aroma';
                 if (promoState.active) cancelPromo();
                 renderEsenciaAromas();
             } else {
