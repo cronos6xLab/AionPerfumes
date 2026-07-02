@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aion Perfumes · Concentrado</title>
+    <title>Aion Perfumes · Concentrado & Esencia Pura</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -76,6 +76,35 @@
         }
 
         .container { max-width: 480px; margin: 0 auto; padding: 0 0 130px; }
+
+        .product-switch {
+            display: flex;
+            gap: 8px;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .product-switch-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.3;
+        }
+        .product-switch-btn.active {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
 
         .product-image-wrap { position: relative; width: 100%; height: 380px; overflow: hidden; background: var(--bg-secondary); }
         .product-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
@@ -348,6 +377,123 @@
         .btn-add:hover { opacity: 0.9; }
         .btn-add:active { transform: scale(0.98); }
 
+        /* NUEVO: Estilos para Esencia Pura */
+        .esencia-section { padding: 0 20px; display: none; }
+        .esencia-section.visible { display: block; }
+        .esencia-aroma-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 8px;
+            background: var(--bg-secondary);
+            font-size: 0.82rem;
+            flex-wrap: wrap;
+        }
+        .esencia-aroma-item .info { flex: 1; min-width: 120px; }
+        .esencia-aroma-item .info strong { display: block; font-weight: 500; font-size: 0.85rem; }
+        .esencia-aroma-item .info small { color: var(--muted); font-size: 0.7rem; }
+        .esencia-gramos-input {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .esencia-gramos-input input {
+            width: 70px;
+            padding: 8px 6px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem;
+            background: white;
+            outline: none;
+        }
+        .esencia-gramos-input input:focus { border-color: var(--dark); }
+        .esencia-remove-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 4px;
+            transition: color 0.15s;
+        }
+        .esencia-remove-btn:hover { color: #c00; }
+        .esencia-total-gramos {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-top: 12px;
+            padding: 12px;
+            background: #fffdf5;
+            border: 1px solid #e8dfc3;
+            border-radius: var(--radius-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .esencia-total-gramos .precio-label { color: var(--gold); font-weight: 600; }
+        .btn-add-esencia-aroma {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-sm);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--muted);
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .btn-add-esencia-aroma:hover {
+            border-color: var(--dark);
+            color: var(--dark);
+            background: var(--bg-main);
+        }
+        .esencia-search-modal {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            width: 100%;
+            max-width: 480px;
+            background: white;
+            border-radius: 16px 16px 0 0;
+            z-index: 2100;
+            box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 20px 20px 28px;
+        }
+        .esencia-search-modal.open { transform: translateX(-50%) translateY(0); }
+        .esencia-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 2099;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .esencia-modal-overlay.open { opacity: 1; pointer-events: auto; }
+        .esencia-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .esencia-modal-title { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.2rem; letter-spacing: 1px; }
+        .esencia-modal-close { background: none; border: none; font-size: 1.4rem; color: var(--muted); cursor: pointer; }
+
+        .hidden-when-esencia { transition: opacity 0.2s; }
+        .hidden-when-esencia.hide { display: none !important; }
+
         .toast { position: fixed; top: 100px; left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--dark); color: #ffffff; padding: 14px 24px; border-radius: var(--radius-sm); font-size: 0.8rem; letter-spacing: 1px; opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 1200; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
@@ -463,7 +609,7 @@
             <div class="drawer-empty" id="drawer-empty">
                 <div class="drawer-empty-icon">🛒</div>
                 <div class="drawer-empty-title">Tu carrito está vacío</div>
-                <div class="drawer-empty-sub">Selecciona un aroma y añádelo<br>para comenzar tu pedido.</div>
+                <div class="drawer-empty-sub">Selecciona un producto y añádelo<br>para comenzar tu pedido.</div>
             </div>
             <div class="drawer-items" id="drawer-items" style="display:none;"></div>
         </div>
@@ -485,135 +631,182 @@
     </div>
 
     <div class="container">
+        <!-- Selector de producto -->
+        <div class="product-switch" id="product-switch">
+            <button class="product-switch-btn active" data-product="concentrado" onclick="switchProduct('concentrado')">💧 Perfume Concentrado</button>
+            <button class="product-switch-btn" data-product="esencia" onclick="switchProduct('esencia')">🧪 Esencia Pura</button>
+        </div>
+
         <div class="product-image-wrap">
             <img src="https://i.ibb.co/s9xDQ6RR/Photoroom-20260422-231853.jpg?w=800&q=80" alt="Perfume Concentrado">
             <div class="rating-badge">★ 4.8 (1623 reseñas)</div>
         </div>
-        <div class="product-info">
-            <h2>Perfume Concentrado</h2>
-            <div class="product-subtitle">Longevidad · Alta Estela</div>
+        <div class="product-info" id="product-info">
+            <h2 id="product-title">Perfume Concentrado</h2>
+            <div class="product-subtitle" id="product-subtitle">Longevidad · Alta Estela</div>
         </div>
         <div class="divider"></div>
 
-        <!-- TAMAÑOS -->
-        <div class="option-section" id="tour-anchor-size">
-            <div class="section-label"><span class="step-number">1</span> Presentación</div>
-            <div class="size-buttons">
-                <button class="size-btn" data-size="2ml" onclick="selectSize('2ml')">2 ml</button>
-                <button class="size-btn" data-size="10ml" onclick="selectSize('10ml')">10 ml</button>
-                <button class="size-btn active" data-size="30ml" onclick="selectSize('30ml')">30 ml</button>
-                <button class="size-btn" data-size="50ml" onclick="selectSize('50ml')">50 ml</button>
-                <button class="size-btn" data-size="60ml" onclick="selectSize('60ml')">60 ml</button>
-                <button class="size-btn" data-size="100ml" onclick="selectSize('100ml')">100 ml</button>
-                <button class="size-btn extra-product" data-size="crema" onclick="selectSize('crema')">🧴 Crema<br>Corporal 50ml</button>
-                <button class="size-btn extra-product" data-size="deo" onclick="selectSize('deo')">🧴 Desod.<br>Roll-on 50ml</button>
-            </div>
-        </div>
-        <div class="divider"></div>
-
-        <!-- CONCENTRACIONES -->
-        <div class="option-section" id="tour-anchor-conc">
-            <div class="section-label conc-label">💧 Concentración</div>
-            <div class="conc-buttons">
-                <button class="conc-btn" data-conc="edt" onclick="selectConc('edt')">🌸 EDT<small>Eau de Toilette</small></button>
-                <button class="conc-btn active" data-conc="33" onclick="selectConc('33')">💧 Parfum<small>Eau de Parfum</small></button>
-                <button class="conc-btn" data-conc="42" onclick="selectConc('42')">💧💧 Parfum Premium<small>Alta concentración</small></button>
-                <button class="conc-btn" data-conc="50" onclick="selectConc('50')">💧💧💧 Extrait<small>Máxima intensidad</small></button>
-            </div>
-            <div class="selected-price-display" id="selected-price-display">$188.00 MXN</div>
-        </div>
-        <div class="divider"></div>
-
-        <!-- PROMOCIONES -->
-        <div class="promo-section" id="tour-anchor-promo">
-            <div class="section-label"><span class="step-number">2</span> Paquetes Especiales (Opcional)</div>
-            <p class="promo-instruction">
-                ⚠️ <strong>Importante:</strong> Todos los aromas del paquete tendrán la misma presentación y concentración. Elige ambas opciones arriba para habilitar el paquete correspondiente.
-            </p>
-            <div class="promo-buttons">
-                <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3<br>100ml <small id="promo-100-price"></small></button>
-                <button class="promo-btn promo-60"  id="promo-60-btn"  onclick="startPromo('60ml')">5 × 4<br>60ml  <small id="promo-60-price"></small></button>
-                <button class="promo-btn promo-50"  id="promo-50-btn"  onclick="startPromo('50ml')">5 × 4<br>50ml  <small id="promo-50-price"></small></button>
-                <button class="promo-btn promo-30"  id="promo-30-btn"  onclick="startPromo('30ml')">6 × 5<br>30ml  <small id="promo-30-price"></small></button>
-                <button class="promo-btn promo-10"  id="promo-10-btn"  onclick="startPromo('10ml')">12 × 10<br>10ml  <small id="promo-10-price"></small></button>
-                <button class="promo-btn promo-2"   id="promo-2-btn"   onclick="startPromo('2ml')">15 × 12<br>2ml   <small id="promo-2-price"></small></button>
-                <button class="promo-btn promo-extra" id="promo-extra-btn" onclick="startPromo('extra')">6 × 5<br><small>Crema/Deo</small> <small id="promo-extra-price"></small></button>
-            </div>
-            <div class="promo-status" id="promo-status">
-                <div id="promo-status-text"></div>
-                <div class="promo-selected-list" id="promo-selected-list"></div>
-                <button class="btn-cancel-promo-inline" onclick="cancelPromo()">✕ Cancelar paquete</button>
-            </div>
-        </div>
-        <div class="divider"></div>
-
-        <!-- BÚSQUEDA DE AROMA -->
-        <div class="search-section" id="tour-anchor-aroma">
-            <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')">i</button></div>
-            <div class="search-wrap">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Buscar familia olfativa, casa, código...">
-                <div class="search-results" id="search-results"></div>
-            </div>
-        </div>
-        <div class="selected-aroma-tag" id="selected-aroma-tag">
-            <div class="aroma-text">
-                <strong id="tag-name">Aroma seleccionado</strong>
-                <small id="tag-category">Marca · Familia</small>
-                <small id="tag-occasion">Ocasión</small>
-            </div>
-            <button class="remove-aroma" onclick="clearAroma()">✕</button>
-        </div>
-        <div class="divider"></div>
-
-        <!-- EXTRAS -->
-        <div class="addon-section" id="tour-anchor-extras">
-            <div class="section-label"><span class="step-number">4</span> Extras (Opcional)</div>
-            <div class="addon-option" id="addon-feromonas" onclick="toggleAddon()">
-                <div class="checkbox-box" id="checkbox-feromonas"></div>
-                <div class="addon-text">
-                    <span class="addon-label">Adición de Feromonas</span>
-                    <span class="addon-desc">Mejora la atracción e impacto</span>
+        <!-- Secciones exclusivas de Perfume Concentrado -->
+        <div id="concentrado-sections">
+            <!-- TAMAÑOS -->
+            <div class="option-section" id="tour-anchor-size">
+                <div class="section-label"><span class="step-number">1</span> Presentación</div>
+                <div class="size-buttons">
+                    <button class="size-btn" data-size="2ml" onclick="selectSize('2ml')">2 ml</button>
+                    <button class="size-btn" data-size="10ml" onclick="selectSize('10ml')">10 ml</button>
+                    <button class="size-btn active" data-size="30ml" onclick="selectSize('30ml')">30 ml</button>
+                    <button class="size-btn" data-size="50ml" onclick="selectSize('50ml')">50 ml</button>
+                    <button class="size-btn" data-size="60ml" onclick="selectSize('60ml')">60 ml</button>
+                    <button class="size-btn" data-size="100ml" onclick="selectSize('100ml')">100 ml</button>
+                    <button class="size-btn extra-product" data-size="crema" onclick="selectSize('crema')">🧴 Crema<br>Corporal 50ml</button>
+                    <button class="size-btn extra-product" data-size="deo" onclick="selectSize('deo')">🧴 Desod.<br>Roll-on 50ml</button>
                 </div>
-                <span class="addon-price">+$60.00</span>
             </div>
-        </div>
-        <div class="finish-promo-wrapper" id="finish-promo-wrapper">
-            <button class="btn-finish-promo" onclick="finishPromo()">🎁 Añadir paquete al carrito</button>
-        </div>
-        <div class="promo-hint" id="promo-hint">
-            <div class="promo-hint-inner" id="promo-hint-text">Selecciona todos los aromas en el paso 3 para continuar</div>
-        </div>
-        <div class="divider"></div>
+            <div class="divider"></div>
 
-        <!-- CANTIDAD -->
-        <div class="quantity-section" id="quantity-section">
-            <span class="section-label" style="margin:0;">Cantidad (Unidad)</span>
-            <div class="qty-control">
-                <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                <div class="qty-display" id="qty-display">1</div>
-                <button class="qty-btn" onclick="changeQty(1)">+</button>
+            <!-- CONCENTRACIONES -->
+            <div class="option-section" id="tour-anchor-conc">
+                <div class="section-label conc-label">💧 Concentración</div>
+                <div class="conc-buttons">
+                    <button class="conc-btn" data-conc="edt" onclick="selectConc('edt')">🌸 EDT<small>Eau de Toilette</small></button>
+                    <button class="conc-btn active" data-conc="33" onclick="selectConc('33')">💧 Parfum<small>Eau de Parfum</small></button>
+                    <button class="conc-btn" data-conc="42" onclick="selectConc('42')">💧💧 Parfum Premium<small>Alta concentración</small></button>
+                    <button class="conc-btn" data-conc="50" onclick="selectConc('50')">💧💧💧 Extrait<small>Máxima intensidad</small></button>
+                </div>
+                <div class="selected-price-display" id="selected-price-display">$188.00 MXN</div>
+            </div>
+            <div class="divider"></div>
+
+            <!-- PROMOCIONES -->
+            <div class="promo-section" id="tour-anchor-promo">
+                <div class="section-label"><span class="step-number">2</span> Paquetes Especiales (Opcional)</div>
+                <p class="promo-instruction">
+                    ⚠️ <strong>Importante:</strong> Todos los aromas del paquete tendrán la misma presentación y concentración. Elige ambas opciones arriba para habilitar el paquete correspondiente.
+                </p>
+                <div class="promo-buttons">
+                    <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3<br>100ml <small id="promo-100-price"></small></button>
+                    <button class="promo-btn promo-60"  id="promo-60-btn"  onclick="startPromo('60ml')">5 × 4<br>60ml  <small id="promo-60-price"></small></button>
+                    <button class="promo-btn promo-50"  id="promo-50-btn"  onclick="startPromo('50ml')">5 × 4<br>50ml  <small id="promo-50-price"></small></button>
+                    <button class="promo-btn promo-30"  id="promo-30-btn"  onclick="startPromo('30ml')">6 × 5<br>30ml  <small id="promo-30-price"></small></button>
+                    <button class="promo-btn promo-10"  id="promo-10-btn"  onclick="startPromo('10ml')">12 × 10<br>10ml  <small id="promo-10-price"></small></button>
+                    <button class="promo-btn promo-2"   id="promo-2-btn"   onclick="startPromo('2ml')">15 × 12<br>2ml   <small id="promo-2-price"></small></button>
+                    <button class="promo-btn promo-extra" id="promo-extra-btn" onclick="startPromo('extra')">6 × 5<br><small>Crema/Deo</small> <small id="promo-extra-price"></small></button>
+                </div>
+                <div class="promo-status" id="promo-status">
+                    <div id="promo-status-text"></div>
+                    <div class="promo-selected-list" id="promo-selected-list"></div>
+                    <button class="btn-cancel-promo-inline" onclick="cancelPromo()">✕ Cancelar paquete</button>
+                </div>
+            </div>
+            <div class="divider"></div>
+
+            <!-- BÚSQUEDA DE AROMA -->
+            <div class="search-section" id="tour-anchor-aroma">
+                <div class="section-label"><span class="step-number">3</span> Selección de Aroma <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')">i</button></div>
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="search-input" placeholder="Buscar familia olfativa, casa, código...">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+            <div class="selected-aroma-tag" id="selected-aroma-tag">
+                <div class="aroma-text">
+                    <strong id="tag-name">Aroma seleccionado</strong>
+                    <small id="tag-category">Marca · Familia</small>
+                    <small id="tag-occasion">Ocasión</small>
+                </div>
+                <button class="remove-aroma" onclick="clearAroma()">✕</button>
+            </div>
+            <div class="divider"></div>
+
+            <!-- EXTRAS -->
+            <div class="addon-section" id="tour-anchor-extras">
+                <div class="section-label"><span class="step-number">4</span> Extras (Opcional)</div>
+                <div class="addon-option" id="addon-feromonas" onclick="toggleAddon()">
+                    <div class="checkbox-box" id="checkbox-feromonas"></div>
+                    <div class="addon-text">
+                        <span class="addon-label">Adición de Feromonas</span>
+                        <span class="addon-desc">Mejora la atracción e impacto</span>
+                    </div>
+                    <span class="addon-price">+$60.00</span>
+                </div>
+            </div>
+            <div class="finish-promo-wrapper" id="finish-promo-wrapper">
+                <button class="btn-finish-promo" onclick="finishPromo()">🎁 Añadir paquete al carrito</button>
+            </div>
+            <div class="promo-hint" id="promo-hint">
+                <div class="promo-hint-inner" id="promo-hint-text">Selecciona todos los aromas en el paso 3 para continuar</div>
+            </div>
+            <div class="divider"></div>
+
+            <!-- CANTIDAD -->
+            <div class="quantity-section" id="quantity-section">
+                <span class="section-label" style="margin:0;">Cantidad (Unidad)</span>
+                <div class="qty-control">
+                    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                    <div class="qty-display" id="qty-display">1</div>
+                    <button class="qty-btn" onclick="changeQty(1)">+</button>
+                </div>
+            </div>
+            <div class="divider"></div>
+
+            <!-- CÓDIGO PROMOCIONAL -->
+            <div class="coupon-section" id="tour-anchor-coupon">
+                <div class="section-label"><span class="step-number">5</span> Código Promocional (Opcional)</div>
+                <div class="coupon-wrap">
+                    <input type="text" id="coupon-input" placeholder="Ingresa tu código aquí" maxlength="20">
+                    <button class="btn-apply-coupon" onclick="applyCoupon()">Aplicar</button>
+                </div>
+                <div class="coupon-feedback" id="coupon-feedback">
+                    <span class="coupon-feedback-icon" id="coupon-icon"></span>
+                    <span class="coupon-feedback-text" id="coupon-text"></span>
+                    <button class="btn-remove-coupon" id="btn-remove-coupon" onclick="removeCoupon()" style="display:none;">✕</button>
+                </div>
             </div>
         </div>
-        <div class="divider"></div>
 
-        <!-- CÓDIGO PROMOCIONAL -->
-        <div class="coupon-section" id="tour-anchor-coupon">
-            <div class="section-label"><span class="step-number">5</span> Código Promocional (Opcional)</div>
-            <div class="coupon-wrap">
-                <input type="text" id="coupon-input" placeholder="Ingresa tu código aquí" maxlength="20">
-                <button class="btn-apply-coupon" onclick="applyCoupon()">Aplicar</button>
+        <!-- SECCIÓN ESENCIA PURA (oculta por defecto) -->
+        <div class="esencia-section" id="esencia-section">
+            <div class="section-label" style="margin-top: 8px;">🧪 Personaliza tu Esencia Pura</div>
+            <p class="promo-instruction">
+                ✨ <strong>Precio por gramo:</strong> $9 (1-149g) · <strong>$7</strong> (150-499g) · <strong>$6</strong> (500-999g) · <strong>$5</strong> (1000g+).<br>
+                ⚠️ Mínimo <strong>50g</strong> por aroma. Puedes elegir varios aromas y nosotros mezclamos la cantidad total.
+            </p>
+            <div id="esencia-aromas-container"></div>
+            <button class="btn-add-esencia-aroma" onclick="openEsenciaSearch()">+ Agregar aroma</button>
+            <div class="esencia-total-gramos" id="esencia-total-gramos">
+                <span>Total: <strong id="esencia-total-g">0g</strong></span>
+                <span class="precio-label" id="esencia-precio-label">$0.00 MXN</span>
             </div>
-            <div class="coupon-feedback" id="coupon-feedback">
-                <span class="coupon-feedback-icon" id="coupon-icon"></span>
-                <span class="coupon-feedback-text" id="coupon-text"></span>
-                <button class="btn-remove-coupon" id="btn-remove-coupon" onclick="removeCoupon()" style="display:none;">✕</button>
+            <div style="margin-top:16px;">
+                <button class="btn-add" style="position:static; width:100%;" onclick="addEsenciaToCart()">🧪 Añadir Esencia al Carrito</button>
             </div>
         </div>
     </div>
 
+    <!-- Modal para búsqueda de aroma en Esencia Pura -->
+    <div class="esencia-modal-overlay" id="esencia-modal-overlay" onclick="closeEsenciaSearch()"></div>
+    <div class="esencia-search-modal" id="esencia-search-modal">
+        <div class="esencia-modal-header">
+            <span class="esencia-modal-title">Seleccionar Aroma</span>
+            <button class="esencia-modal-close" onclick="closeEsenciaSearch()">✕</button>
+        </div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="esencia-search-input" placeholder="Buscar aroma...">
+            <div class="search-results" id="esencia-search-results"></div>
+        </div>
+        <div style="margin-top: 12px; display: flex; gap: 8px; align-items: center;">
+            <label style="font-size:0.8rem; white-space:nowrap;">Gramos:</label>
+            <input type="number" id="esencia-gramos-input" value="50" min="50" step="1" style="flex:1; padding:10px; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:'Jost',sans-serif;">
+            <button class="btn-apply-coupon" style="white-space:nowrap;" onclick="confirmEsenciaAroma()">Agregar</button>
+        </div>
+        <p style="font-size:0.7rem; color:var(--muted); margin-top:6px;">Mínimo 50g por aroma. Selecciona un aroma de la lista.</p>
+    </div>
+
     <button class="cart-fab" id="cart-fab" onclick="openCart()">🛒 Ver Carrito <span class="cart-fab-count" id="cart-fab-count">0</span></button>
-    <div class="action-buttons">
+    <div class="action-buttons" id="action-buttons-concentrado">
         <button class="btn-add" onclick="addToCart()">+ Añadir al carrito</button>
     </div>
 
@@ -713,17 +906,14 @@
         };
 
         const PRODUCT_OPTIONS = [
-            // 2ml precios desde $21
             { volume: '2ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 21 },
             { volume: '2ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 28 },
             { volume: '2ml', concentration: 'Parfum Premium', conc: '42', price: 35 },
             { volume: '2ml', concentration: 'Extrait de Parfum', conc: '50', price: 42 },
-            // 10ml precios desde $42
             { volume: '10ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 45 },
             { volume: '10ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 75 },
             { volume: '10ml', concentration: 'Parfum Premium', conc: '42', price: 92 },
             { volume: '10ml', concentration: 'Extrait de Parfum', conc: '50', price: 108 },
-            // resto igual
             { volume: '30ml', concentration: 'EDT (Eau de Toilette)', conc: 'edt', price: 144 },
             { volume: '30ml', concentration: 'Parfum (Eau de Parfum)', conc: '33', price: 188 },
             { volume: '30ml', concentration: 'Parfum Premium', conc: '42', price: 232 },
@@ -755,6 +945,7 @@
         ];
 
         const EXTRA_PRODUCTS = ['crema', 'deo'];
+        let currentProduct = 'concentrado'; // 'concentrado' o 'esencia'
         let selectedSize = '30ml';
         let selectedConc = '33';
 
@@ -772,6 +963,41 @@
             basePrice: 0, concentration: null, withFeromonas: false,
             selectedAromas: [], isExtra: false
         };
+
+        // Estado de Esencia Pura
+        let esenciaState = {
+            selectedAromas: [], // { aroma, gramos }
+            pendingAroma: null   // aroma seleccionado en el modal, esperando gramos
+        };
+
+        function switchProduct(product) {
+            currentProduct = product;
+            document.querySelectorAll('.product-switch-btn').forEach(b => b.classList.toggle('active', b.dataset.product === product));
+            const concentradoSections = document.getElementById('concentrado-sections');
+            const esenciaSection = document.getElementById('esencia-section');
+            const actionButtons = document.getElementById('action-buttons-concentrado');
+            const productTitle = document.getElementById('product-title');
+            const productSubtitle = document.getElementById('product-subtitle');
+
+            if (product === 'esencia') {
+                concentradoSections.style.display = 'none';
+                esenciaSection.classList.add('visible');
+                actionButtons.style.display = 'none';
+                productTitle.textContent = 'Esencia Pura';
+                productSubtitle.textContent = 'Personaliza tu mezcla · Mín. 50g por aroma';
+                if (promoState.active) cancelPromo();
+                renderEsenciaAromas();
+            } else {
+                concentradoSections.style.display = '';
+                esenciaSection.classList.remove('visible');
+                actionButtons.style.display = 'flex';
+                productTitle.textContent = 'Perfume Concentrado';
+                productSubtitle.textContent = 'Longevidad · Alta Estela';
+                syncOptionFromSelectors();
+                updatePromoPrices();
+            }
+            updateEsenciaTotal();
+        }
 
         function openCart() {
             document.getElementById('cart-overlay').classList.add('open');
@@ -803,7 +1029,7 @@
                         <div class="drawer-item-header"><div class="drawer-item-icon">${isExtra?'🧴':'🌿'}</div><div class="drawer-item-meta"><div class="drawer-item-name">[${item.aroma.code}] ${item.aroma.name}</div><div class="drawer-item-sub">${item.option.volume} · ${item.option.concentration}${fLabel}</div><div class="drawer-item-sub">Cantidad: ${item.quantity}</div>${item.withFeromonas?'<span class="drawer-feromonas-badge">✨ Feromonas incluidas</span>':''}</div></div>
                         <div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><div class="drawer-item-actions"><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>
                     </div>`;
-                } else {
+                } else if (item.type === 'promo') {
                     const fLabel = item.withFeromonas ? ' · + Feromonas' : '';
                     const aromasHtml = item.aromas.map(a => `<div class="drawer-promo-aroma-row"><span><span class="drawer-promo-aroma-code">${a.code}</span><span class="drawer-promo-aroma-name">${a.name}</span></span></div>`).join('');
                     html += `<div class="drawer-cart-item">
@@ -811,6 +1037,14 @@
                         <div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><div class="drawer-item-actions"><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>
                         <button class="drawer-promo-toggle" id="promo-toggle-${i}" onclick="togglePromoDetail(${i})">Ver ${item.aromas.length} aromas <span class="toggle-arrow">▾</span></button>
                         <div class="drawer-promo-details" id="promo-detail-${i}"><div class="drawer-promo-details-inner"><span class="drawer-promo-badge">🎁 llevas ${item.required} · pagas ${item.payFor}</span>${aromasHtml}</div></div>
+                    </div>`;
+                } else if (item.type === 'esencia') {
+                    const aromasHtml = item.aromas.map(a => `<div class="drawer-promo-aroma-row"><span><span class="drawer-promo-aroma-code">${a.aroma.code}</span><span class="drawer-promo-aroma-name">${a.aroma.name} — ${a.gramos}g</span></span></div>`).join('');
+                    html += `<div class="drawer-cart-item">
+                        <div class="drawer-item-header"><div class="drawer-item-icon">🧪</div><div class="drawer-item-meta"><div class="drawer-item-name">Esencia Pura · ${item.totalGramos}g totales</div><div class="drawer-item-sub">Precio por gramo: $${item.precioPorGramo.toFixed(2)}</div></div></div>
+                        <div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><div class="drawer-item-actions"><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>
+                        <button class="drawer-promo-toggle" id="promo-toggle-${i}" onclick="togglePromoDetail(${i})">Ver ${item.aromas.length} aromas <span class="toggle-arrow">▾</span></button>
+                        <div class="drawer-promo-details" id="promo-detail-${i}"><div class="drawer-promo-details-inner"><span class="drawer-promo-badge">🧪 Esencia Pura</span>${aromasHtml}</div></div>
                     </div>`;
                 }
             });
@@ -1096,10 +1330,14 @@
             state.cartItems.forEach((item,i) => {
                 if (item.type==='individual') {
                     msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n   📦 ${item.option.concentration}${item.withFeromonas?' + Feromonas':''} ×${item.quantity}\n   💵 $${item.total.toFixed(2)} MXN\n\n`;
-                } else {
+                } else if (item.type==='promo') {
                     const fLabel = item.withFeromonas?' + Feromonas':'';
                     msg += `*${i+1}. ${item.volume==='2ml'?'🧪 DISCOVERY SET':`🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})`}${fLabel}*\n   Concentración: ${item.concentration}\n`;
                     item.aromas.forEach(a => msg += `   • ${a.code} ${a.name}\n`);
+                    msg += `   💵 Total: $${item.total.toFixed(2)} MXN\n\n`;
+                } else if (item.type==='esencia') {
+                    msg += `*${i+1}. 🧪 ESENCIA PURA — ${item.totalGramos}g totales*\n   Precio/g: $${item.precioPorGramo.toFixed(2)}\n`;
+                    item.aromas.forEach(a => msg += `   • ${a.aroma.code} ${a.aroma.name} — ${a.gramos}g\n`);
                     msg += `   💵 Total: $${item.total.toFixed(2)} MXN\n\n`;
                 }
             });
@@ -1109,6 +1347,129 @@
             msg += `💰 *TOTAL: $${grandTotal.toFixed(2)} MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario._`;
             const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
             showToast('Abriendo WhatsApp...'); setTimeout(() => window.open(url,'_blank'), 600);
+        }
+
+        // Funciones Esencia Pura
+        function getPrecioPorGramo(totalGramos) {
+            if (totalGramos >= 1000) return 5;
+            if (totalGramos >= 500) return 6;
+            if (totalGramos >= 150) return 7;
+            return 9;
+        }
+
+        function renderEsenciaAromas() {
+            const container = document.getElementById('esencia-aromas-container');
+            if (!container) return;
+            container.innerHTML = esenciaState.selectedAromas.map((item, idx) => {
+                const a = item.aroma;
+                return `<div class="esencia-aroma-item">
+                    <div class="info"><strong>${a.code} ${a.name}</strong><small>${a.brand} · ${a.family}</small></div>
+                    <div class="esencia-gramos-input">
+                        <input type="number" value="${item.gramos}" min="50" step="1" onchange="updateEsenciaGramos(${idx}, this.value)">
+                        <span>g</span>
+                    </div>
+                    <button class="esencia-remove-btn" onclick="removeEsenciaAroma(${idx})">✕</button>
+                </div>`;
+            }).join('');
+            updateEsenciaTotal();
+        }
+
+        function updateEsenciaGramos(idx, value) {
+            let g = parseInt(value);
+            if (isNaN(g) || g < 50) g = 50;
+            esenciaState.selectedAromas[idx].gramos = g;
+            renderEsenciaAromas();
+        }
+
+        function removeEsenciaAroma(idx) {
+            esenciaState.selectedAromas.splice(idx, 1);
+            renderEsenciaAromas();
+        }
+
+        function updateEsenciaTotal() {
+            const totalG = esenciaState.selectedAromas.reduce((s, a) => s + a.gramos, 0);
+            const precioPorG = getPrecioPorGramo(totalG);
+            const totalPrecio = totalG * precioPorG;
+            document.getElementById('esencia-total-g').textContent = totalG + 'g';
+            document.getElementById('esencia-precio-label').textContent = `$${totalPrecio.toFixed(2)} MXN ($${precioPorG}/g)`;
+        }
+
+        function openEsenciaSearch() {
+            document.getElementById('esencia-modal-overlay').classList.add('open');
+            document.getElementById('esencia-search-modal').classList.add('open');
+            document.getElementById('esencia-search-input').value = '';
+            document.getElementById('esencia-search-results').innerHTML = '';
+            document.getElementById('esencia-search-results').classList.remove('visible');
+            document.getElementById('esencia-gramos-input').value = 50;
+            esenciaState.pendingAroma = null;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEsenciaSearch() {
+            document.getElementById('esencia-modal-overlay').classList.remove('open');
+            document.getElementById('esencia-search-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        const esenciaSearchInput = document.getElementById('esencia-search-input');
+        const esenciaSearchResults = document.getElementById('esencia-search-results');
+        esenciaSearchInput.addEventListener('input', () => {
+            const q = esenciaSearchInput.value.toLowerCase().trim();
+            if (!q) { esenciaSearchResults.classList.remove('visible'); return; }
+            const matches = AROMAS.filter(a => a.code.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.brand.toLowerCase().includes(q) || a.family.toLowerCase().includes(q));
+            esenciaSearchResults.innerHTML = matches.length===0 ? `<div class="search-result-item"><span class="aroma-name" style="color:var(--muted)">Sin resultados</span></div>` : matches.map(a => {
+                const idx = AROMAS.indexOf(a);
+                return `<div class="search-result-item" onclick="selectEsenciaAroma(${idx})"><span class="aroma-code">${a.code}</span><div class="aroma-info"><div class="aroma-name">${a.name}</div><div class="aroma-meta"><span class="aroma-label">Marca:</span> ${a.brand}</div><div class="aroma-meta"><span class="aroma-label">Familia:</span> ${a.family}</div></div></div>`;
+            }).join('');
+            esenciaSearchResults.classList.add('visible');
+        });
+        document.addEventListener('click', e => { if (!e.target.closest('#esencia-search-modal .search-wrap') && !e.target.closest('#esencia-search-input')) esenciaSearchResults.classList.remove('visible'); });
+
+        function selectEsenciaAroma(idx) {
+            esenciaState.pendingAroma = AROMAS[idx];
+            esenciaSearchInput.value = `[${AROMAS[idx].code}] ${AROMAS[idx].name}`;
+            esenciaSearchResults.classList.remove('visible');
+        }
+
+        function confirmEsenciaAroma() {
+            if (!esenciaState.pendingAroma) {
+                showToast('Selecciona un aroma de la lista primero');
+                return;
+            }
+            let gramos = parseInt(document.getElementById('esencia-gramos-input').value);
+            if (isNaN(gramos) || gramos < 50) gramos = 50;
+            // Verificar si ya existe el aroma
+            const existente = esenciaState.selectedAromas.find(item => item.aroma.code === esenciaState.pendingAroma.code);
+            if (existente) {
+                existente.gramos += gramos;
+            } else {
+                esenciaState.selectedAromas.push({ aroma: esenciaState.pendingAroma, gramos });
+            }
+            renderEsenciaAromas();
+            closeEsenciaSearch();
+            showToast(`Añadido: ${esenciaState.pendingAroma.name} (${gramos}g)`);
+        }
+
+        function addEsenciaToCart() {
+            if (esenciaState.selectedAromas.length === 0) {
+                showToast('Agrega al menos un aroma con sus gramos');
+                return;
+            }
+            const totalGramos = esenciaState.selectedAromas.reduce((s, a) => s + a.gramos, 0);
+            const precioPorGramo = getPrecioPorGramo(totalGramos);
+            const total = totalGramos * precioPorGramo;
+            state.cartItems.push({
+                type: 'esencia',
+                aromas: JSON.parse(JSON.stringify(esenciaState.selectedAromas)),
+                totalGramos,
+                precioPorGramo,
+                total
+            });
+            updateCartDrawer();
+            esenciaState.selectedAromas = [];
+            renderEsenciaAromas();
+            showToast('🧪 Esencia Pura añadida al carrito');
+            setTimeout(() => openCart(), 600);
         }
 
         let toastTimer;
@@ -1166,7 +1527,7 @@
         function closePromoGuide() { document.getElementById('promo-guide-overlay').classList.remove('open'); document.body.style.overflow=''; }
         function openInfoModal(id) { document.getElementById('modal-'+id+'-overlay').classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('info-btn-'+id).classList.remove('unseen'); }
         function closeInfoModal(id) { document.getElementById('modal-'+id+'-overlay').classList.remove('open'); document.body.style.overflow=''; }
-        document.addEventListener('keydown', e => { if(e.key==='Escape') { closeInfoModal('legal'); closeInfoModal('aromas'); closeCart(); } });
+        document.addEventListener('keydown', e => { if(e.key==='Escape') { closeInfoModal('legal'); closeInfoModal('aromas'); closeCart(); closeEsenciaSearch(); } });
     </script>
 </body>
 </html>
