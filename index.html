@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aion Perfumes · Concentrado</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=MXN" data-namespace="paypal_sdk"></script>
     <style>
         :root {
             --bg-main: #ffffff;
@@ -331,13 +333,7 @@
         .drawer-coupon-remove:hover { color: #c00; }
 
         .drawer-actions { display: flex; flex-direction: column; gap: 10px; }
-        .drawer-btn-paypal {
-            background: var(--paypal-blue); color: white; border: none; border-radius: var(--radius-sm); padding: 16px;
-            font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
-            cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: background 0.2s;
-        }
-        .drawer-btn-paypal:hover { background: var(--paypal-dark); }
+        .paypal-container { margin: 10px 0; }
         .drawer-btn-wa {
             background: var(--green-wa); color: white; border: none; border-radius: var(--radius-sm); padding: 16px;
             font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
@@ -449,7 +445,7 @@
             <span>ALTA CONCENTRACIÓN · LARGA DURACIÓN · ALTA ESTELA <span class="marquee-sep">◆</span></span>
             <span>AROMAS INSPIRADOS EN LAS MEJORES CASAS DEL MUNDO <span class="marquee-sep">◆</span></span>
             <span>🧪 NUEVO: DISCOVERY SET 15×12 AROMAS 2ML <span class="marquee-sep">◆</span></span>
-            <span>💳 PAGA CON PAYPAL O WHATSAPP · TU PEDIDO SIEMPRE NOTIFICADO <span class="marquee-sep">◆</span></span>
+            <span>💳 PAGA CON PAYPAL O TARJETA <span class="marquee-sep">◆</span></span>
         </div>
     </div>
 
@@ -489,9 +485,8 @@
         <div class="drawer-footer" id="drawer-footer" style="display:none;">
             <div class="drawer-totals" id="drawer-totals"></div>
             <div class="drawer-actions">
-                <button class="drawer-btn-paypal" id="btn-paypal" onclick="payWithPayPal()">
-                    Pagar con PayPal
-                </button>
+                <!-- PayPal: botón dinámico -->
+                <div class="paypal-container" id="paypal-button-container"></div>
                 <button class="drawer-btn-wa" onclick="sendToWhatsApp()">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     Finalizar por WhatsApp
@@ -655,7 +650,7 @@
                 <div class="promo-guide-step"><div class="promo-guide-step-num">1</div><div><div class="promo-guide-step-title">Baja al Paso 3</div><div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma.</div></div></div>
                 <div class="promo-guide-step"><div class="promo-guide-step-num">2</div><div><div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> aromas diferentes</div><div class="promo-guide-step-desc">Cada elección se añade al paquete automáticamente.</div></div></div>
                 <div class="promo-guide-step"><div class="promo-guide-step-num">3</div><div><div class="promo-guide-step-title">Añade feromonas si deseas</div><div class="promo-guide-step-desc">Opcional <strong>+$60 MXN</strong> por perfume.</div></div></div>
-                <div class="promo-guide-step"><div class="promo-guide-step-num gold">✓</div><div><div class="promo-guide-step-title">Presiona "Añadir paquete al carrito"</div><div class="promo-guide-step-desc">Luego paga con PayPal o envía tu pedido por WhatsApp.</div></div></div>
+                <div class="promo-guide-step"><div class="promo-guide-step-num gold">✓</div><div><div class="promo-guide-step-title">Presiona "Añadir paquete al carrito"</div><div class="promo-guide-step-desc">Luego paga con PayPal o finaliza por WhatsApp.</div></div></div>
             </div>
             <button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido!</button>
         </div>
@@ -722,8 +717,6 @@
 
         // ═══════════════ DATOS ═══════════════
         const WA_NUMBER = "528138917727";
-        const PAYPAL_ME = "https://www.paypal.me/Cronos6x";
-
         const PROMO_CODES = {
             "A10N": { discount: 10, type: "percent", description: "10% de descuento" },
             "RC64": { discount: 10, type: "percent", description: "10% de descuento" },
@@ -809,6 +802,54 @@
             document.body.style.overflow = '';
         }
 
+        let paypalButtonsRendered = false;
+        function renderPayPalButton(total) {
+            const container = document.getElementById('paypal-button-container');
+            if (!container) return;
+            // Limpiar botones anteriores
+            container.innerHTML = '';
+            if (total <= 0) return;
+            // Verifica que el SDK de PayPal esté cargado
+            if (typeof paypal_sdk === 'undefined') {
+                container.innerHTML = '<p style="font-size:0.8rem;color:var(--muted);">PayPal no está disponible en este momento.</p>';
+                return;
+            }
+            paypal_sdk.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color:  'gold',
+                    shape:  'rect',
+                    label:  'paypal'
+                },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: total.toFixed(2),
+                                currency_code: 'MXN'
+                            },
+                            description: 'Pedido Aion Perfumes'
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        showToast('✅ Pago completado. ¡Gracias, ' + details.payer.name.given_name + '!');
+                        clearCart();
+                        closeCart();
+                    });
+                },
+                onCancel: function(data) {
+                    showToast('Pago cancelado. Puedes intentarlo de nuevo.');
+                },
+                onError: function(err) {
+                    console.error('Error en PayPal:', err);
+                    showToast('Ocurrió un error con PayPal. Intenta de nuevo.');
+                }
+            }).render('#paypal-button-container');
+            paypalButtonsRendered = true;
+        }
+
         function updateCartDrawer() {
             const items = state.cartItems, count = items.length;
             const fab = document.getElementById('cart-fab'), fabCount = document.getElementById('cart-fab-count');
@@ -817,7 +858,11 @@
             else { fab.classList.remove('visible'); }
             document.getElementById('drawer-item-count').textContent = count;
             const emptyEl = document.getElementById('drawer-empty'), itemsEl = document.getElementById('drawer-items'), footerEl = document.getElementById('drawer-footer');
-            if (count === 0) { emptyEl.style.display='flex'; itemsEl.style.display='none'; footerEl.style.display='none'; return; }
+            if (count === 0) {
+                emptyEl.style.display='flex'; itemsEl.style.display='none'; footerEl.style.display='none';
+                document.getElementById('paypal-button-container').innerHTML = '';
+                return;
+            }
             emptyEl.style.display='none'; itemsEl.style.display='block'; footerEl.style.display='block';
             let html = '';
             items.forEach((item, i) => {
@@ -856,6 +901,8 @@
             else { const needed = (1200-subtotalAfterDiscount).toFixed(2); totalsHtml += `<div class="drawer-total-row shipping-cost"><span>🚚 Envío</span><div style="text-align:right;"><span>$149.00 MXN</span><span class="shipping-notice">Falta $${needed} para envío gratis</span></div></div>`; }
             totalsHtml += `<div class="drawer-grand-total"><span class="label">Total Estimado</span><span class="amount">$${grandTotal.toFixed(2)}</span></div>`;
             document.getElementById('drawer-totals').innerHTML = totalsHtml;
+            // Renderizar botón PayPal con el nuevo total
+            renderPayPalButton(grandTotal);
         }
 
         function togglePromoDetail(i) {
@@ -1107,8 +1154,8 @@
         function removeCartItem(index) { state.cartItems.splice(index,1); updateCartDrawer(); if (state.cartItems.length===0) closeCart(); }
         function clearCart() { state.cartItems = []; updateCartDrawer(); closeCart(); showToast('Carrito vaciado'); }
 
-        // ═══════════════ MENSAJE WHATSAPP (con estado de pago) ═══════════════
-        function buildOrderMessage(paymentStatus = 'Pendiente') {
+        function sendToWhatsApp() {
+            if (state.cartItems.length===0) { showToast('El carrito está vacío'); return; }
             const subtotal = state.cartItems.reduce((s,i)=>s+i.total,0);
             const discountAmt = calculateDiscount(subtotal);
             const total = subtotal - discountAmt;
@@ -1120,9 +1167,7 @@
             const grandTotal = total + shipCost;
             const fecha = new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric'});
             const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
-            let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n`;
-            msg += `💳 *Estado del pago:* ${paymentStatus}\n`;
-            msg += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+            let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
             state.cartItems.forEach((item,i) => {
                 if (item.type==='individual') {
                     msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n   📦 ${item.option.concentration}${item.withFeromonas?' + Feromonas':''} ×${item.quantity}\n   💵 $${item.total.toFixed(2)} MXN\n\n`;
@@ -1136,30 +1181,9 @@
             msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
             if (state.appliedCoupon && discountAmt>0) msg += `🏷️ *Código: ${state.appliedCoupon.code}* → −$${discountAmt.toFixed(2)} MXN\n`;
             msg += freeShip ? `🚚 Envío: *GRATIS*\n` : `🚚 Envío: *$${shipCost.toFixed(2)} MXN*\n`;
-            msg += `💰 *TOTAL: $${grandTotal.toFixed(2)} MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
-            msg += `📋 _Recibirás un formulario para tus datos y dirección._`;
-            return { msg, grandTotal };
-        }
-
-        function sendToWhatsApp() {
-            if (state.cartItems.length===0) { showToast('El carrito está vacío'); return; }
-            const { msg } = buildOrderMessage('Pendiente (pago por fuera de PayPal)');
+            msg += `💰 *TOTAL: $${grandTotal.toFixed(2)} MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario._`;
             const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-            showToast('Abriendo WhatsApp...');
-            setTimeout(() => window.open(url,'_blank'), 600);
-        }
-
-        function payWithPayPal() {
-            if (state.cartItems.length===0) { showToast('El carrito está vacío'); return; }
-            const { msg, grandTotal } = buildOrderMessage('Pendiente por PayPal');
-            // 1. Enviar mensaje por WhatsApp con estado pendiente
-            const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-            window.open(waUrl, '_blank');
-            // 2. Redirigir a PayPal.me después de un breve retraso
-            setTimeout(() => {
-                window.open(`${PAYPAL_ME}/${grandTotal.toFixed(2)}`, '_blank');
-            }, 800);
-            showToast('Notificando pedido por WhatsApp y abriendo PayPal...');
+            showToast('Abriendo WhatsApp...'); setTimeout(() => window.open(url,'_blank'), 600);
         }
 
         let toastTimer;
@@ -1173,7 +1197,7 @@
             { anchor:'tour-anchor-aroma', title:'Busca tu aroma', body:'Escribe código, marca o familia olfativa. Selecciónalo del listado.', arrow:'arrow-top', position:'below' },
             { anchor:'tour-anchor-extras', title:'Feromonas opcionales', body:'Potencia tu perfume con feromonas por $60 MXN.', arrow:'arrow-top', position:'below' },
             { anchor:'tour-anchor-coupon', title:'Código promocional', body:'Ingresa tu código de descuento aquí.', arrow:'arrow-top', position:'below' },
-            { anchor:'tour-anchor-actions', title:'¡Listo!', body:'Añade al carrito. El pedido se notificará siempre por WhatsApp, pagues con PayPal o no.', arrow:'arrow-bottom', position:'above' }
+            { anchor:'tour-anchor-actions', title:'¡Listo!', body:'Añade al carrito y paga con PayPal o finaliza por WhatsApp.', arrow:'arrow-bottom', position:'above' }
         ];
         let tourStep=0, tourActive=false;
         function tourStart() { if(localStorage.getItem('aion_tour_done')==='1') return; tourActive=true; tourStep=0; tourRender(); }
