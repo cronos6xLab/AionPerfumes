@@ -653,49 +653,9 @@
     </div>
 
     <script>
-        (function initSwipeGestures() {
-            let touchStartX = 0, touchStartY = 0;
-            const SWIPE_THRESHOLD = 60, SWIPE_MAX_Y = 80;
-            document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, {passive: true});
-            document.addEventListener('touchend', e => {
-                const dx = e.changedTouches[0].clientX - touchStartX, dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-                const drawer = document.getElementById('cart-drawer');
-                if (e.target.closest('.cart-drawer') || e.target.closest('.cart-fab')) return;
-                if (dy > SWIPE_MAX_Y) return;
-                if (!drawer.classList.contains('open') && dx < -SWIPE_THRESHOLD && touchStartX > window.innerWidth - 80) openCart();
-            }, {passive: true});
-            const drawer = document.getElementById('cart-drawer');
-            let drawerTouchStartX = 0, drawerTouchStartY = 0;
-            drawer.addEventListener('touchstart', e => { drawerTouchStartX = e.touches[0].clientX; drawerTouchStartY = e.touches[0].clientY; }, {passive: true});
-            drawer.addEventListener('touchmove', e => {
-                const dx = e.touches[0].clientX - drawerTouchStartX, dy = Math.abs(e.touches[0].clientY - drawerTouchStartY);
-                if (dx > 0 && dy < SWIPE_MAX_Y) { drawer.style.transition = 'none'; drawer.style.transform = `translateX(${dx}px)`; }
-            }, {passive: true});
-            drawer.addEventListener('touchend', e => {
-                const dx = e.changedTouches[0].clientX - drawerTouchStartX, dy = Math.abs(e.changedTouches[0].clientY - drawerTouchStartY);
-                drawer.style.transition = ''; drawer.style.transform = '';
-                if (dx > SWIPE_THRESHOLD && dy < SWIPE_MAX_Y) closeCart();
-            }, {passive: true});
-        })();
-
-        (function initDraggableFab() {
-            const fab = document.getElementById('cart-fab');
-            let isDragging = false, wasDragged = false, startX, startY, origLeft, origTop;
-            fab.style.top = '70px'; fab.style.right = '20px';
-            function getPos() { const r = fab.getBoundingClientRect(); return {left: r.left, top: r.top}; }
-            function applyPos(l, t) {
-                const maxX = window.innerWidth - fab.offsetWidth - 8, maxY = window.innerHeight - fab.offsetHeight - 8;
-                l = Math.max(8, Math.min(l, maxX)); t = Math.max(8, Math.min(t, maxY));
-                fab.style.right = 'auto'; fab.style.bottom = 'auto'; fab.style.left = l+'px'; fab.style.top = t+'px';
-            }
-            fab.addEventListener('mousedown', e => { if(e.button!==0)return; isDragging=true; wasDragged=false; const p=getPos(); startX=e.clientX; startY=e.clientY; origLeft=p.left; origTop=p.top; fab.classList.add('dragging'); e.preventDefault(); });
-            document.addEventListener('mousemove', e => { if(!isDragging)return; if(Math.abs(e.clientX-startX)>4||Math.abs(e.clientY-startY)>4) wasDragged=true; applyPos(origLeft+e.clientX-startX, origTop+e.clientY-startY); });
-            document.addEventListener('mouseup', () => { if(!isDragging)return; isDragging=false; fab.classList.remove('dragging'); if(!wasDragged) openCart(); });
-            fab.addEventListener('touchstart', e => { isDragging=true; wasDragged=false; const t=e.touches[0]; const p=getPos(); startX=t.clientX; startY=t.clientY; origLeft=p.left; origTop=p.top; fab.classList.add('dragging'); e.stopPropagation(); }, {passive:true});
-            fab.addEventListener('touchmove', e => { if(!isDragging)return; const t=e.touches[0]; if(Math.abs(t.clientX-startX)>4||Math.abs(t.clientY-startY)>4) wasDragged=true; applyPos(origLeft+t.clientX-startX, origTop+t.clientY-startY); e.preventDefault(); }, {passive:false});
-            fab.addEventListener('touchend', () => { if(!isDragging)return; isDragging=false; fab.classList.remove('dragging'); if(!wasDragged) openCart(); });
-        })();
-
+        // ============================================================
+        // 1. CONFIGURACIÓN Y DATOS
+        // ============================================================
         const WA_NUMBER = "528138917727";
         const PROMO_CODES = {
             "A10N": { discount: 10, type: "percent", description: "10% de descuento" },
@@ -744,6 +704,11 @@
             { volume: 'deo', concentration: 'Desodorante Antitranspirante Roll-on 50ml', conc: 'N/A', price: 129 },
         ];
 
+        const EXTRA_PRODUCTS = ['crema', 'deo'];
+
+        // ============================================================
+        // 2. AROMAS (LISTA COMPLETA)
+        // ============================================================
         const AROMAS = [
   {
     "codigo": "D0302NA",
@@ -11447,12 +11412,14 @@
   }
 ];
 
-        const EXTRA_PRODUCTS = ['crema', 'deo'];
+        // ============================================================
+        // 3. ESTADO DE LA APLICACIÓN
+        // ============================================================
         let selectedSize = '30ml';
         let selectedConc = '33';
 
         let state = {
-            selectedOption: PRODUCT_OPTIONS.find(o => o.volume==='30ml' && o.conc==='33'),
+            selectedOption: PRODUCT_OPTIONS.find(o => o.volume === '30ml' && o.conc === '33'),
             selectedAroma: null,
             withFeromonas: false,
             quantity: 1,
@@ -11466,11 +11433,15 @@
             selectedAromas: [], isExtra: false
         };
 
+        // ============================================================
+        // 4. FUNCIONES DEL CARRITO
+        // ============================================================
         function openCart() {
             document.getElementById('cart-overlay').classList.add('open');
             document.getElementById('cart-drawer').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
+
         function closeCart() {
             document.getElementById('cart-overlay').classList.remove('open');
             document.getElementById('cart-drawer').classList.remove('open');
@@ -11485,22 +11456,22 @@
             else { fab.classList.remove('visible'); }
             document.getElementById('drawer-item-count').textContent = count;
             const emptyEl = document.getElementById('drawer-empty'), itemsEl = document.getElementById('drawer-items'), footerEl = document.getElementById('drawer-footer');
-            if (count === 0) { emptyEl.style.display='flex'; itemsEl.style.display='none'; footerEl.style.display='none'; return; }
-            emptyEl.style.display='none'; itemsEl.style.display='block'; footerEl.style.display='block';
+            if (count === 0) { emptyEl.style.display = 'flex'; itemsEl.style.display = 'none'; footerEl.style.display = 'none'; return; }
+            emptyEl.style.display = 'none'; itemsEl.style.display = 'block'; footerEl.style.display = 'block';
             let html = '';
             items.forEach((item, i) => {
                 if (item.type === 'individual') {
                     const fLabel = item.withFeromonas ? ' · + Feromonas' : '';
                     const isExtra = EXTRA_PRODUCTS.includes(item.option.volume);
                     html += `<div class="drawer-cart-item">
-                        <div class="drawer-item-header"><div class="drawer-item-icon">${isExtra?'🧴':'🌿'}</div><div class="drawer-item-meta"><div class="drawer-item-name">[${item.aroma.code}] ${item.aroma.name}</div><div class="drawer-item-sub">${item.option.volume} · ${item.option.concentration}${fLabel}</div><div class="drawer-item-sub">Cantidad: ${item.quantity}</div>${item.withFeromonas?'<span class="drawer-feromonas-badge">✨ Feromonas incluidas</span>':''}</div></div>
+                        <div class="drawer-item-header"><div class="drawer-item-icon">${isExtra ? '🧴' : '🌿'}</div><div class="drawer-item-meta"><div class="drawer-item-name">[${item.aroma.codigo}] ${item.aroma.nombre}</div><div class="drawer-item-sub">${item.option.volume} · ${item.option.concentration}${fLabel}</div><div class="drawer-item-sub">Cantidad: ${item.quantity}</div>${item.withFeromonas ? '<span class="drawer-feromonas-badge">✨ Feromonas incluidas</span>' : ''}</div></div>
                         <div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><div class="drawer-item-actions"><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>
                     </div>`;
                 } else {
                     const fLabel = item.withFeromonas ? ' · + Feromonas' : '';
-                    const aromasHtml = item.aromas.map(a => `<div class="drawer-promo-aroma-row"><span><span class="drawer-promo-aroma-code">${a.code}</span><span class="drawer-promo-aroma-name">${a.name}</span></span></div>`).join('');
+                    const aromasHtml = item.aromas.map(a => `<div class="drawer-promo-aroma-row"><span><span class="drawer-promo-aroma-code">${a.codigo}</span><span class="drawer-promo-aroma-name">${a.nombre}</span></span></div>`).join('');
                     html += `<div class="drawer-cart-item">
-                        <div class="drawer-item-header"><div class="drawer-item-icon">🎁</div><div class="drawer-item-meta"><div class="drawer-item-name">${item.volume==='2ml'?'🧪 Discovery Set':'Paquete '+item.volume} (${item.required}×${item.payFor})${fLabel}</div><div class="drawer-item-sub">${item.concentration}</div>${item.withFeromonas?'<span class="drawer-feromonas-badge">✨ Feromonas en todos</span>':''}</div></div>
+                        <div class="drawer-item-header"><div class="drawer-item-icon">🎁</div><div class="drawer-item-meta"><div class="drawer-item-name">${item.volume === '2ml' ? '🧪 Discovery Set' : 'Paquete ' + item.volume} (${item.required}×${item.payFor})${fLabel}</div><div class="drawer-item-sub">${item.concentration}</div>${item.withFeromonas ? '<span class="drawer-feromonas-badge">✨ Feromonas en todos</span>' : ''}</div></div>
                         <div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><div class="drawer-item-actions"><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>
                         <button class="drawer-promo-toggle" id="promo-toggle-${i}" onclick="togglePromoDetail(${i})">Ver ${item.aromas.length} aromas <span class="toggle-arrow">▾</span></button>
                         <div class="drawer-promo-details" id="promo-detail-${i}"><div class="drawer-promo-details-inner"><span class="drawer-promo-badge">🎁 llevas ${item.required} · pagas ${item.payFor}</span>${aromasHtml}</div></div>
@@ -11508,20 +11479,20 @@
                 }
             });
             itemsEl.innerHTML = html;
-            const subtotal = items.reduce((s,i)=>s+i.total,0);
+            const subtotal = items.reduce((s, i) => s + i.total, 0);
             const discount = calculateDiscount(subtotal);
-            const hasPromo = items.some(i=>i.type==='promo');
-            const smallPromoVolumes = ['2ml','10ml'];
-            const hasSmallPromo = items.some(i=>i.type==='promo' && smallPromoVolumes.includes(i.volume));
+            const hasPromo = items.some(i => i.type === 'promo');
+            const smallPromoVolumes = ['2ml', '10ml'];
+            const hasSmallPromo = items.some(i => i.type === 'promo' && smallPromoVolumes.includes(i.volume));
             const subtotalAfterDiscount = subtotal - discount;
             const freeShipping = (subtotalAfterDiscount >= 1200) || (hasPromo && !hasSmallPromo);
             const shippingCost = freeShipping ? 0 : 149;
             const grandTotal = subtotalAfterDiscount + shippingCost;
-            let totalsHtml = `<div class="drawer-total-row subtotal"><span>Subtotal (${count} ${count===1?'artículo':'artículos'})</span><span>$${subtotal.toFixed(2)}</span></div>`;
+            let totalsHtml = `<div class="drawer-total-row subtotal"><span>Subtotal (${count} ${count === 1 ? 'artículo' : 'artículos'})</span><span>$${subtotal.toFixed(2)}</span></div>`;
             if (state.appliedCoupon) totalsHtml += `<div class="drawer-coupon-row"><span>🏷️</span><span class="drawer-coupon-code">${state.appliedCoupon.code}</span><span class="drawer-coupon-desc">${state.appliedCoupon.description}</span><button class="drawer-coupon-remove" onclick="removeCoupon()">✕</button></div>`;
-            if (discount>0) totalsHtml += `<div class="drawer-total-row discount"><span>Descuento aplicado</span><span>−$${discount.toFixed(2)}</span></div>`;
+            if (discount > 0) totalsHtml += `<div class="drawer-total-row discount"><span>Descuento aplicado</span><span>−$${discount.toFixed(2)}</span></div>`;
             if (freeShipping) totalsHtml += `<div class="drawer-total-row shipping-free"><span>🚚 Envío</span><span>✓ Gratis</span></div>`;
-            else { const needed = (1200-subtotalAfterDiscount).toFixed(2); totalsHtml += `<div class="drawer-total-row shipping-cost"><span>🚚 Envío</span><div style="text-align:right;"><span>$149.00 MXN</span><span class="shipping-notice">Falta $${needed} para envío gratis</span></div></div>`; }
+            else { const needed = (1200 - subtotalAfterDiscount).toFixed(2); totalsHtml += `<div class="drawer-total-row shipping-cost"><span>🚚 Envío</span><div style="text-align:right;"><span>$149.00 MXN</span><span class="shipping-notice">Falta $${needed} para envío gratis</span></div></div>`; }
             totalsHtml += `<div class="drawer-grand-total"><span class="label">Total Estimado</span><span class="amount">$${grandTotal.toFixed(2)}</span></div>`;
             document.getElementById('drawer-totals').innerHTML = totalsHtml;
         }
@@ -11531,14 +11502,20 @@
             document.getElementById(`promo-detail-${i}`).classList.toggle('expanded');
         }
 
+        function removeCartItem(index) { state.cartItems.splice(index, 1); updateCartDrawer(); if (state.cartItems.length === 0) closeCart(); }
+        function clearCart() { state.cartItems = []; updateCartDrawer(); closeCart(); showToast('Carrito vaciado'); }
+
+        // ============================================================
+        // 5. FUNCIONES DE SELECCIÓN
+        // ============================================================
         function selectSize(size) {
             selectedSize = size;
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size===size));
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size === size));
             const isExtra = EXTRA_PRODUCTS.includes(size);
             document.querySelector('.conc-buttons').classList.toggle('conc-section-hidden', isExtra);
             document.querySelector('.conc-label').classList.toggle('conc-section-hidden', isExtra);
             if (isExtra) {
-                state.selectedOption = PRODUCT_OPTIONS.find(o=>o.volume===size);
+                state.selectedOption = PRODUCT_OPTIONS.find(o => o.volume === size);
                 document.getElementById('selected-price-display').textContent = `$${state.selectedOption.price.toFixed(2)} MXN`;
                 updatePromoPrices();
             } else {
@@ -11549,13 +11526,13 @@
 
         function selectConc(conc) {
             selectedConc = conc;
-            document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc===conc));
+            document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc === conc));
             syncOptionFromSelectors();
             if (promoState.active) { cancelPromo(); showToast('Promoción cancelada al cambiar la concentración'); }
         }
 
         function syncOptionFromSelectors() {
-            const match = PRODUCT_OPTIONS.find(o=>o.volume===selectedSize && o.conc===selectedConc);
+            const match = PRODUCT_OPTIONS.find(o => o.volume === selectedSize && o.conc === selectedConc);
             if (match) {
                 state.selectedOption = match;
                 document.getElementById('selected-price-display').textContent = `$${match.price.toFixed(2)} MXN`;
@@ -11565,101 +11542,7 @@
             updatePromoPrices();
         }
 
-        function applyCoupon() {
-            const input = document.getElementById('coupon-input').value.trim().toUpperCase();
-            if (!input) { showCouponFeedback('error','⚠️','Ingresa un código.'); return; }
-            if (state.appliedCoupon) { showCouponFeedback('error','⚠️','Ya tienes un código aplicado.'); return; }
-            const promo = PROMO_CODES[input];
-            if (!promo) { showCouponFeedback('error','✕',`Código "${input}" no válido.`); return; }
-            state.appliedCoupon = { code: input, ...promo };
-            document.getElementById('coupon-input').value = ''; document.getElementById('coupon-input').disabled = true;
-            showCouponFeedback('success','✓',`Código <strong>${input}</strong> aplicado — ${promo.description}`, true);
-            updateCartDrawer(); showToast(`¡Código ${input} aplicado!`);
-        }
-
-        function removeCoupon() {
-            state.appliedCoupon = null;
-            document.getElementById('coupon-input').disabled = false; document.getElementById('coupon-input').value = '';
-            document.getElementById('coupon-feedback').className = 'coupon-feedback'; document.getElementById('coupon-feedback').style.display = 'none';
-            updateCartDrawer(); showToast('Código eliminado');
-        }
-
-        function showCouponFeedback(type, icon, msg, showRemove=false) {
-            const fb = document.getElementById('coupon-feedback');
-            document.getElementById('coupon-icon').textContent = icon;
-            document.getElementById('coupon-text').innerHTML = msg;
-            document.getElementById('btn-remove-coupon').style.display = showRemove ? 'inline-block' : 'none';
-            fb.className = `coupon-feedback ${type}`;
-        }
-
-        function calculateDiscount(subtotal) {
-            if (!state.appliedCoupon) return 0;
-            const { discount, type } = state.appliedCoupon;
-            if (type === 'percent') return subtotal * (discount/100);
-            if (type === 'fixed') return Math.min(discount, subtotal);
-            return 0;
-        }
-
-        function updatePromoPrices() {
-            const opt = state.selectedOption;
-            if (!opt) return;
-            ['100','60','50','30','10','2','extra'].forEach(k => {
-                const el = document.getElementById(`promo-${k}-price`);
-                if (el) el.textContent = '';
-            });
-            document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active-vol'));
-            if (opt.volume === '100ml') {
-                document.getElementById('promo-100-price').textContent = `$${(opt.price*3).toFixed(0)}`;
-                document.getElementById('promo-100-btn').classList.add('active-vol');
-            } else if (opt.volume === '60ml') {
-                document.getElementById('promo-60-price').textContent = `$${(opt.price*4).toFixed(0)}`;
-                document.getElementById('promo-60-btn').classList.add('active-vol');
-            } else if (opt.volume === '50ml') {
-                document.getElementById('promo-50-price').textContent = `$${(opt.price*4).toFixed(0)}`;
-                document.getElementById('promo-50-btn').classList.add('active-vol');
-            } else if (opt.volume === '30ml') {
-                document.getElementById('promo-30-price').textContent = `$${(opt.price*5).toFixed(0)}`;
-                document.getElementById('promo-30-btn').classList.add('active-vol');
-            } else if (opt.volume === '10ml') {
-                document.getElementById('promo-10-price').textContent = `$${(opt.price*10).toFixed(0)}`;
-                document.getElementById('promo-10-btn').classList.add('active-vol');
-            } else if (opt.volume === '2ml') {
-                document.getElementById('promo-2-price').textContent = `$${(opt.price*12).toFixed(0)}`;
-                document.getElementById('promo-2-btn').classList.add('active-vol');
-            } else if (EXTRA_PRODUCTS.includes(opt.volume)) {
-                document.getElementById('promo-extra-price').textContent = `$${(129*5).toFixed(0)}`;
-                document.getElementById('promo-extra-btn').classList.add('active-vol');
-            }
-        }
-
-        const searchInput = document.getElementById('search-input'), searchResults = document.getElementById('search-results');
-        searchInput.addEventListener('input', () => {
-            const q = searchInput.value.toLowerCase().trim();
-            if (!q) { searchResults.classList.remove('visible'); return; }
-            const matches = AROMAS.filter(a => a.code.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.brand.toLowerCase().includes(q) || a.family.toLowerCase().includes(q) || (a.occasion && a.occasion.toLowerCase().includes(q)));
-            searchResults.innerHTML = matches.length===0 ? `<div class="search-result-item"><span class="aroma-name" style="color:var(--muted)">Sin resultados</span></div>` : matches.map(a => {
-                const idx = AROMAS.indexOf(a);
-                return `<div class="search-result-item" onclick="handleAromaSelection(${idx})"><span class="aroma-code">${a.code}</span><div class="aroma-info"><div class="aroma-name">${a.name}</div><div class="aroma-meta"><span class="aroma-label">Marca:</span> ${a.brand}</div><div class="aroma-meta"><span class="aroma-label">Familia:</span> ${a.family}</div>${a.occasion?`<div class="aroma-meta"><span class="aroma-label">Ocasión:</span> ${a.occasion}</div>`:''}</div></div>`;
-            }).join('');
-            searchResults.classList.add('visible');
-        });
-        document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) searchResults.classList.remove('visible'); });
-
-        function handleAromaSelection(idx) {
-            const aroma = AROMAS[idx];
-            if (promoState.active) { addToPromoSelection(aroma); } else { selectAroma(aroma); }
-            searchResults.classList.remove('visible'); searchInput.value = '';
-        }
-
-        function selectAroma(aroma) {
-            state.selectedAroma = aroma;
-            document.getElementById('tag-name').innerHTML = `[${aroma.code}] ${aroma.name}`;
-            document.getElementById('tag-category').textContent = `Marca: ${aroma.brand} · Familia: ${aroma.family}`;
-            document.getElementById('tag-occasion').textContent = aroma.occasion ? `Ocasión: ${aroma.occasion}` : '';
-            document.getElementById('selected-aroma-tag').classList.add('visible');
-            showToast(`Seleccionado: ${aroma.name}`);
-        }
-        function clearAroma() { state.selectedAroma = null; document.getElementById('selected-aroma-tag').classList.remove('visible'); }
+        function changeQty(delta) { state.quantity = Math.max(1, state.quantity + delta); document.getElementById('qty-display').textContent = state.quantity; }
 
         function toggleAddon() {
             if (promoState.active) { promoState.withFeromonas = !promoState.withFeromonas; updatePromoUI(); }
@@ -11670,24 +11553,125 @@
             }
         }
 
-        function changeQty(delta) { state.quantity = Math.max(1, state.quantity+delta); document.getElementById('qty-display').textContent = state.quantity; }
+        // ============================================================
+        // 6. FUNCIONES DE BÚSQUEDA Y SELECCIÓN DE AROMAS
+        // ============================================================
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const q = this.value.toLowerCase().trim();
+            if (!q) {
+                searchResults.classList.remove('visible');
+                return;
+            }
+
+            const matches = AROMAS.filter(a =>
+                a.codigo.toLowerCase().includes(q) ||
+                a.nombre.toLowerCase().includes(q) ||
+                a.brand.toLowerCase().includes(q) ||
+                a.familia.toLowerCase().includes(q)
+            );
+
+            if (matches.length === 0) {
+                searchResults.innerHTML = `<div class="search-result-item"><span style="color:var(--muted); padding: 8px 0;">Sin resultados para "${q}"</span></div>`;
+            } else {
+                searchResults.innerHTML = matches.map(a => {
+                    const idx = AROMAS.indexOf(a);
+                    return `<div class="search-result-item" onclick="handleAromaSelection(${idx})">
+                        <span class="aroma-code">${a.codigo}</span>
+                        <div class="aroma-info">
+                            <div class="aroma-name">${a.nombre}</div>
+                            <div class="aroma-meta"><span class="aroma-label">Marca:</span> ${a.brand}</div>
+                            <div class="aroma-meta"><span class="aroma-label">Familia:</span> ${a.familia}</div>
+                            ${a.caracter_energetico ? `<div class="aroma-meta"><span class="aroma-label">Carácter:</span> ${a.caracter_energetico}</div>` : ''}
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            searchResults.classList.add('visible');
+        });
+
+        // Cerrar resultados al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-wrap')) {
+                searchResults.classList.remove('visible');
+            }
+        });
+
+        function handleAromaSelection(idx) {
+            const aroma = AROMAS[idx];
+            if (promoState.active) {
+                addToPromoSelection(aroma);
+            } else {
+                selectAroma(aroma);
+            }
+            searchResults.classList.remove('visible');
+            searchInput.value = '';
+        }
+
+        function selectAroma(aroma) {
+            state.selectedAroma = aroma;
+            document.getElementById('tag-name').innerHTML = `[${aroma.codigo}] ${aroma.nombre}`;
+            document.getElementById('tag-category').textContent = `Marca: ${aroma.brand} · Familia: ${aroma.familia}`;
+            document.getElementById('tag-occasion').textContent = aroma.caracter_energetico ? `Carácter: ${aroma.caracter_energetico}` : '';
+            document.getElementById('selected-aroma-tag').classList.add('visible');
+            showToast(`Seleccionado: ${aroma.nombre}`);
+        }
+
+        function clearAroma() {
+            state.selectedAroma = null;
+            document.getElementById('selected-aroma-tag').classList.remove('visible');
+        }
+
+        // ============================================================
+        // 7. FUNCIONES DE PROMOCIONES
+        // ============================================================
+        function updatePromoPrices() {
+            const opt = state.selectedOption;
+            if (!opt) return;
+            ['100', '60', '50', '30', '10', '2', 'extra'].forEach(k => {
+                const el = document.getElementById(`promo-${k}-price`);
+                if (el) el.textContent = '';
+            });
+            document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active-vol'));
+            if (opt.volume === '100ml') {
+                document.getElementById('promo-100-price').textContent = `$${(opt.price * 3).toFixed(0)}`;
+                document.getElementById('promo-100-btn').classList.add('active-vol');
+            } else if (opt.volume === '60ml') {
+                document.getElementById('promo-60-price').textContent = `$${(opt.price * 4).toFixed(0)}`;
+                document.getElementById('promo-60-btn').classList.add('active-vol');
+            } else if (opt.volume === '50ml') {
+                document.getElementById('promo-50-price').textContent = `$${(opt.price * 4).toFixed(0)}`;
+                document.getElementById('promo-50-btn').classList.add('active-vol');
+            } else if (opt.volume === '30ml') {
+                document.getElementById('promo-30-price').textContent = `$${(opt.price * 5).toFixed(0)}`;
+                document.getElementById('promo-30-btn').classList.add('active-vol');
+            } else if (opt.volume === '10ml') {
+                document.getElementById('promo-10-price').textContent = `$${(opt.price * 10).toFixed(0)}`;
+                document.getElementById('promo-10-btn').classList.add('active-vol');
+            } else if (opt.volume === '2ml') {
+                document.getElementById('promo-2-price').textContent = `$${(opt.price * 12).toFixed(0)}`;
+                document.getElementById('promo-2-btn').classList.add('active-vol');
+            } else if (EXTRA_PRODUCTS.includes(opt.volume)) {
+                document.getElementById('promo-extra-price').textContent = `$${(129 * 5).toFixed(0)}`;
+                document.getElementById('promo-extra-btn').classList.add('active-vol');
+            }
+        }
 
         function startPromo(volume) {
             const currentOpt = state.selectedOption;
             const isExtraPromo = volume === 'extra';
-            if (!isExtraPromo && volume!=='2ml' && volume!=='10ml' && (!currentOpt || currentOpt.volume!==volume)) {
-                showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`); return;
+            if (!isExtraPromo && volume !== '2ml' && volume !== '10ml' && (!currentOpt || currentOpt.volume !== volume)) {
+                showToast(`⚠️ Selecciona la presentación de ${volume} arriba primero`);
+                return;
             }
-            if (volume==='2ml' && (!currentOpt || currentOpt.volume!=='2ml')) { showToast('⚠️ Selecciona 2ml primero'); return; }
-            if (volume==='10ml' && (!currentOpt || currentOpt.volume!=='10ml')) { showToast('⚠️ Selecciona 10ml primero'); return; }
+            if (volume === '2ml' && (!currentOpt || currentOpt.volume !== '2ml')) { showToast('⚠️ Selecciona 2ml primero'); return; }
+            if (volume === '10ml' && (!currentOpt || currentOpt.volume !== '10ml')) { showToast('⚠️ Selecciona 10ml primero'); return; }
             if (isExtraPromo && (!currentOpt || !EXTRA_PRODUCTS.includes(currentOpt.volume))) { showToast('⚠️ Selecciona Crema o Desodorante primero'); return; }
             let required, payFor;
-            if (volume==='100ml') { required=4; payFor=3; }
-            else if (volume==='60ml' || volume==='50ml') { required=5; payFor=4; }
-            else if (volume==='30ml') { required=6; payFor=5; }
-            else if (volume==='10ml') { required=12; payFor=10; }
-            else if (volume==='2ml') { required=15; payFor=12; }
-            else { required=6; payFor=5; }
+            if (volume === '100ml') { required = 4; payFor = 3; } else if (volume === '60ml' || volume === '50ml') { required = 5; payFor = 4; } else if (volume === '30ml') { required = 6; payFor = 5; } else if (volume === '10ml') { required = 12; payFor = 10; } else if (volume === '2ml') { required = 15; payFor = 12; } else { required = 6; payFor = 5; }
             promoState = {
                 active: true, volume: isExtraPromo ? currentOpt.volume : volume,
                 required, payFor,
@@ -11696,40 +11680,52 @@
                 withFeromonas: false, selectedAromas: [], isExtra: isExtraPromo
             };
             document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
-            const btnMap = { '100ml':'promo-100-btn','60ml':'promo-60-btn','50ml':'promo-50-btn','30ml':'promo-30-btn','10ml':'promo-10-btn','2ml':'promo-2-btn','extra':'promo-extra-btn' };
-            const btnId = btnMap[isExtraPromo?'extra':volume];
+            const btnMap = { '100ml': 'promo-100-btn', '60ml': 'promo-60-btn', '50ml': 'promo-50-btn', '30ml': 'promo-30-btn', '10ml': 'promo-10-btn', '2ml': 'promo-2-btn', 'extra': 'promo-extra-btn' };
+            const btnId = btnMap[isExtraPromo ? 'extra' : volume];
             if (btnId) document.getElementById(btnId).classList.add('active');
             document.getElementById('promo-status').classList.add('visible');
-            state.selectedAroma = null; document.getElementById('selected-aroma-tag').classList.remove('visible');
+            state.selectedAroma = null;
+            document.getElementById('selected-aroma-tag').classList.remove('visible');
             updatePromoUI();
-            const titles = { '100ml':'Lleva 4, paga 3','60ml':'Lleva 5, paga 4','50ml':'Lleva 5, paga 4','30ml':'Lleva 6, paga 5','10ml':'Lleva 12, paga 10','2ml':'Discovery Set · 15×12','crema':'Lleva 6, paga 5','deo':'Lleva 6, paga 5' };
+            const titles = { '100ml': 'Lleva 4, paga 3', '60ml': 'Lleva 5, paga 4', '50ml': 'Lleva 5, paga 4', '30ml': 'Lleva 6, paga 5', '10ml': 'Lleva 12, paga 10', '2ml': 'Discovery Set · 15×12', 'crema': 'Lleva 6, paga 5', 'deo': 'Lleva 6, paga 5' };
             const guideVolKey = isExtraPromo ? currentOpt.volume : volume;
-            const badge = `${guideVolKey==='2ml'?'Discovery Set · 2ml':guideVolKey} · ${currentOpt?currentOpt.concentration:''}`;
-            openPromoGuide(guideVolKey, titles[guideVolKey]||'Lleva 6, paga 5', badge, required);
+            const badge = `${guideVolKey === '2ml' ? 'Discovery Set · 2ml' : guideVolKey} · ${currentOpt ? currentOpt.concentration : ''}`;
+            openPromoGuide(guideVolKey, titles[guideVolKey] || 'Lleva 6, paga 5', badge, required);
         }
 
         function updatePromoUI() {
             const count = promoState.selectedAromas.length, required = promoState.required;
             document.getElementById('promo-status-text').innerHTML = `<strong>Aromas seleccionados (${count}/${required})</strong><br><small>${promoState.concentration}</small>`;
-            document.getElementById('promo-selected-list').innerHTML = count===0 ? '' : promoState.selectedAromas.map((a,i) => `<span class="promo-selected-item">${a.code} ${a.name} <span onclick="removePromoAroma(${i})">×</span></span>`).join('');
+            document.getElementById('promo-selected-list').innerHTML = count === 0 ? '' : promoState.selectedAromas.map((a, i) => `<span class="promo-selected-item">${a.codigo} ${a.nombre} <span onclick="removePromoAroma(${i})">×</span></span>`).join('');
             document.getElementById('addon-feromonas').classList.toggle('checked', promoState.withFeromonas);
             document.getElementById('checkbox-feromonas').textContent = promoState.withFeromonas ? '✓' : '';
-            document.getElementById('finish-promo-wrapper').classList.toggle('visible', count===required);
-            document.getElementById('promo-hint').classList.toggle('visible', promoState.active && count<required);
-            if (count<required) document.getElementById('promo-hint-text').textContent = `Faltan ${required-count} aroma${required-count>1?'s':''} por seleccionar`;
+            document.getElementById('finish-promo-wrapper').classList.toggle('visible', count === required);
+            document.getElementById('promo-hint').classList.toggle('visible', promoState.active && count < required);
+            if (count < required) document.getElementById('promo-hint-text').textContent = `Faltan ${required - count} aroma${required - count > 1 ? 's' : ''} por seleccionar`;
         }
 
         function addToPromoSelection(aroma) {
-            if (promoState.selectedAromas.length >= promoState.required) { showToast(`Ya has seleccionado ${promoState.required} aromas`); return; }
+            if (promoState.selectedAromas.length >= promoState.required) {
+                showToast(`Ya has seleccionado ${promoState.required} aromas`);
+                return;
+            }
+            // Verificar duplicados
+            if (promoState.selectedAromas.some(a => a.codigo === aroma.codigo)) {
+                showToast(`El aroma ${aroma.nombre} ya está seleccionado`);
+                return;
+            }
             promoState.selectedAromas.push(aroma);
             updatePromoUI();
-            showToast(promoState.selectedAromas.length===promoState.required ? '✓ Paquete completo' : `Añadido (${promoState.selectedAromas.length}/${promoState.required})`);
+            showToast(promoState.selectedAromas.length === promoState.required ? '✓ Paquete completo' : `Añadido (${promoState.selectedAromas.length}/${promoState.required})`);
         }
 
-        function removePromoAroma(index) { promoState.selectedAromas.splice(index,1); updatePromoUI(); }
+        function removePromoAroma(index) { promoState.selectedAromas.splice(index, 1); updatePromoUI(); }
 
         function finishPromo() {
-            if (promoState.selectedAromas.length !== promoState.required) { showToast(`Debes seleccionar ${promoState.required} aromas`); return; }
+            if (promoState.selectedAromas.length !== promoState.required) {
+                showToast(`Debes seleccionar ${promoState.required} aromas`);
+                return;
+            }
             const feromonasCost = promoState.withFeromonas ? 60 * promoState.required : 0;
             const total = (promoState.basePrice * promoState.payFor) + feromonasCost;
             state.cartItems.push({
@@ -11738,8 +11734,9 @@
                 aromas: [...promoState.selectedAromas], withFeromonas: promoState.withFeromonas,
                 total, isExtra: promoState.isExtra
             });
-            updateCartDrawer(); cancelPromo();
-            showToast(promoState.volume==='2ml' ? '🧪 Discovery Set añadido' : '🎁 Paquete añadido');
+            updateCartDrawer();
+            cancelPromo();
+            showToast(promoState.volume === '2ml' ? '🧪 Discovery Set añadido' : '🎁 Paquete añadido');
             setTimeout(() => openCart(), 600);
         }
 
@@ -11753,113 +11750,263 @@
             document.getElementById('checkbox-feromonas').textContent = state.withFeromonas ? '✓' : '';
         }
 
+        // ============================================================
+        // 8. FUNCIONES DE CUPONES
+        // ============================================================
+        function applyCoupon() {
+            const input = document.getElementById('coupon-input').value.trim().toUpperCase();
+            if (!input) { showCouponFeedback('error', '⚠️', 'Ingresa un código.'); return; }
+            if (state.appliedCoupon) { showCouponFeedback('error', '⚠️', 'Ya tienes un código aplicado.'); return; }
+            const promo = PROMO_CODES[input];
+            if (!promo) { showCouponFeedback('error', '✕', `Código "${input}" no válido.`); return; }
+            state.appliedCoupon = { code: input, ...promo };
+            document.getElementById('coupon-input').value = '';
+            document.getElementById('coupon-input').disabled = true;
+            showCouponFeedback('success', '✓', `Código <strong>${input}</strong> aplicado — ${promo.description}`, true);
+            updateCartDrawer();
+            showToast(`¡Código ${input} aplicado!`);
+        }
+
+        function removeCoupon() {
+            state.appliedCoupon = null;
+            document.getElementById('coupon-input').disabled = false;
+            document.getElementById('coupon-input').value = '';
+            document.getElementById('coupon-feedback').className = 'coupon-feedback';
+            document.getElementById('coupon-feedback').style.display = 'none';
+            updateCartDrawer();
+            showToast('Código eliminado');
+        }
+
+        function showCouponFeedback(type, icon, msg, showRemove = false) {
+            const fb = document.getElementById('coupon-feedback');
+            document.getElementById('coupon-icon').textContent = icon;
+            document.getElementById('coupon-text').innerHTML = msg;
+            document.getElementById('btn-remove-coupon').style.display = showRemove ? 'inline-block' : 'none';
+            fb.className = `coupon-feedback ${type}`;
+        }
+
+        function calculateDiscount(subtotal) {
+            if (!state.appliedCoupon) return 0;
+            const { discount, type } = state.appliedCoupon;
+            if (type === 'percent') return subtotal * (discount / 100);
+            if (type === 'fixed') return Math.min(discount, subtotal);
+            return 0;
+        }
+
+        // ============================================================
+        // 9. FUNCIONES DEL CARRITO - AÑADIR
+        // ============================================================
         function addToCart() {
-            if (!state.selectedOption || !state.selectedAroma) { showToast('⚠️ Selecciona presentación, concentración y aroma'); return; }
-            if (promoState.active) { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero'); return; }
+            if (!state.selectedOption || !state.selectedAroma) {
+                showToast('⚠️ Selecciona presentación, concentración y aroma');
+                return;
+            }
+            if (promoState.active) {
+                showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo primero');
+                return;
+            }
             const isExtra = EXTRA_PRODUCTS.includes(state.selectedOption.volume);
             const feromonasCost = state.withFeromonas && !isExtra ? 60 : 0;
             const unitPrice = state.selectedOption.price + feromonasCost;
             const total = unitPrice * state.quantity;
-            state.cartItems.push({ type:'individual', option: state.selectedOption, aroma: state.selectedAroma, withFeromonas: state.withFeromonas && !isExtra, quantity: state.quantity, unitPrice, total });
-            updateCartDrawer(); showToast(`✓ ${state.selectedAroma.name} añadido`);
+            state.cartItems.push({
+                type: 'individual',
+                option: state.selectedOption,
+                aroma: state.selectedAroma,
+                withFeromonas: state.withFeromonas && !isExtra,
+                quantity: state.quantity,
+                unitPrice,
+                total
+            });
+            updateCartDrawer();
+            showToast(`✓ ${state.selectedAroma.nombre} añadido`);
             setTimeout(() => openCart(), 500);
-            clearAroma(); state.withFeromonas = false; state.quantity = 1;
+            clearAroma();
+            state.withFeromonas = false;
+            state.quantity = 1;
             document.getElementById('qty-display').textContent = 1;
             document.getElementById('addon-feromonas').classList.remove('checked');
             document.getElementById('checkbox-feromonas').textContent = '';
         }
 
-        function removeCartItem(index) { state.cartItems.splice(index,1); updateCartDrawer(); if (state.cartItems.length===0) closeCart(); }
-        function clearCart() { state.cartItems = []; updateCartDrawer(); closeCart(); showToast('Carrito vaciado'); }
-
+        // ============================================================
+        // 10. FUNCIONES DE WHATSAPP
+        // ============================================================
         function sendToWhatsApp() {
-            if (state.cartItems.length===0) { showToast('El carrito está vacío'); return; }
-            const subtotal = state.cartItems.reduce((s,i)=>s+i.total,0);
+            if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
+            const subtotal = state.cartItems.reduce((s, i) => s + i.total, 0);
             const discountAmt = calculateDiscount(subtotal);
             const total = subtotal - discountAmt;
-            const hasPromo = state.cartItems.some(i=>i.type==='promo');
-            const smallPromoVolumes = ['2ml','10ml'];
-            const hasSmallPromo = state.cartItems.some(i=>i.type==='promo' && smallPromoVolumes.includes(i.volume));
+            const hasPromo = state.cartItems.some(i => i.type === 'promo');
+            const smallPromoVolumes = ['2ml', '10ml'];
+            const hasSmallPromo = state.cartItems.some(i => i.type === 'promo' && smallPromoVolumes.includes(i.volume));
             const freeShip = (total >= 1200) || (hasPromo && !hasSmallPromo);
             const shipCost = freeShip ? 0 : 149;
             const grandTotal = total + shipCost;
-            const fecha = new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric'});
-            const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+            const fecha = new Date().toLocaleDateString('es-MX', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            const hora = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
             let msg = `✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ${fecha} a las ${hora}\n━━━━━━━━━━━━━━━━━━━━━\n\n`;
-            state.cartItems.forEach((item,i) => {
-                if (item.type==='individual') {
-                    msg += `*${i+1}. [${item.aroma.code}] ${item.aroma.name}*\n   📦 ${item.option.concentration}${item.withFeromonas?' + Feromonas':''} ×${item.quantity}\n   💵 $${item.total.toFixed(2)} MXN\n\n`;
+            state.cartItems.forEach((item, i) => {
+                if (item.type === 'individual') {
+                    msg += `*${i + 1}. [${item.aroma.codigo}] ${item.aroma.nombre}*\n   📦 ${item.option.concentration}${item.withFeromonas ? ' + Feromonas' : ''} ×${item.quantity}\n   💵 $${item.total.toFixed(2)} MXN\n\n`;
                 } else {
-                    const fLabel = item.withFeromonas?' + Feromonas':'';
-                    msg += `*${i+1}. ${item.volume==='2ml'?'🧪 DISCOVERY SET':`🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})`}${fLabel}*\n   Concentración: ${item.concentration}\n`;
-                    item.aromas.forEach(a => msg += `   • ${a.code} ${a.name}\n`);
+                    const fLabel = item.withFeromonas ? ' + Feromonas' : '';
+                    msg += `*${i + 1}. ${item.volume === '2ml' ? '🧪 DISCOVERY SET' : `🎁 PAQUETE ${item.required}×${item.payFor} (${item.volume})`}${fLabel}*\n   Concentración: ${item.concentration}\n`;
+                    item.aromas.forEach(a => msg += `   • ${a.codigo} ${a.nombre}\n`);
                     msg += `   💵 Total: $${item.total.toFixed(2)} MXN\n\n`;
                 }
             });
             msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
-            if (state.appliedCoupon && discountAmt>0) msg += `🏷️ *Código: ${state.appliedCoupon.code}* → −$${discountAmt.toFixed(2)} MXN\n`;
+            if (state.appliedCoupon && discountAmt > 0) msg += `🏷️ *Código: ${state.appliedCoupon.code}* → −$${discountAmt.toFixed(2)} MXN\n`;
             msg += freeShip ? `🚚 Envío: *GRATIS*\n` : `🚚 Envío: *$${shipCost.toFixed(2)} MXN*\n`;
             msg += `💰 *TOTAL: $${grandTotal.toFixed(2)} MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario._`;
             const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-            showToast('Abriendo WhatsApp...'); setTimeout(() => window.open(url,'_blank'), 600);
+            showToast('Abriendo WhatsApp...');
+            setTimeout(() => window.open(url, '_blank'), 600);
         }
 
+        // ============================================================
+        // 11. UTILIDADES
+        // ============================================================
         let toastTimer;
-        function showToast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2500); }
-
-        const TOUR_STEPS = [
-            { anchor:'tour-anchor-size', title:'Elige tu presentación', body:'Desde 2ml para probar, 10ml para viaje, 30ml y 50ml para uso diario, 60ml y 100ml para máxima duración. También Crema y Desodorante.', arrow:'arrow-top', position:'below' },
-            { anchor:'tour-anchor-conc', title:'Selecciona la concentración', body:'🌸 EDT ligera. 💧 Parfum clásica. 💧💧 Parfum Premium. 💧💧💧 Extrait máxima intensidad.', arrow:'arrow-top', position:'below' },
-            { anchor:'tour-anchor-promo', title:'Paquetes especiales', body:'Promociones 4×3, 5×4, 6×5, 12×10 (10ml) y 🧪 Discovery Set 15×12 (2ml). ¡Lleva más pagando menos!', arrow:'arrow-top', position:'below' },
-            { anchor:'tour-anchor-aroma', title:'Busca tu aroma', body:'Escribe código, marca o familia olfativa. Selecciónalo del listado.', arrow:'arrow-top', position:'below' },
-            { anchor:'tour-anchor-extras', title:'Feromonas opcionales', body:'Potencia tu perfume con feromonas por $60 MXN.', arrow:'arrow-top', position:'below' },
-            { anchor:'tour-anchor-coupon', title:'Código promocional', body:'Ingresa tu código de descuento aquí.', arrow:'arrow-top', position:'below' },
-            { anchor:'tour-anchor-actions', title:'¡Listo!', body:'Añade al carrito y finaliza por WhatsApp.', arrow:'arrow-bottom', position:'above' }
-        ];
-        let tourStep=0, tourActive=false;
-        function tourStart() { if(localStorage.getItem('aion_tour_done')==='1') return; tourActive=true; tourStep=0; tourRender(); }
-        function tourRender() {
-            const step=TOUR_STEPS[tourStep], anchor=document.getElementById(step.anchor);
-            const overlay=document.getElementById('tour-overlay'), highlight=document.getElementById('tour-highlight'), tooltip=document.getElementById('tour-tooltip');
-            overlay.classList.add('active'); tooltip.classList.remove('active'); highlight.classList.remove('active');
-            anchor.scrollIntoView({behavior:'smooth',block:'center'});
-            setTimeout(()=>{
-                const r=anchor.getBoundingClientRect(), pad=8;
-                highlight.style.left=(r.left-pad)+'px'; highlight.style.top=(r.top-pad)+'px'; highlight.style.width=(r.width+pad*2)+'px'; highlight.style.height=(r.height+pad*2)+'px';
-                highlight.classList.add('active');
-                tooltip.className='tour-tooltip '+step.arrow;
-                const tw=Math.min(300,window.innerWidth-40); let left=r.left; if(left+tw>window.innerWidth-10) left=window.innerWidth-tw-10; if(left<10) left=10;
-                tooltip.style.left=left+'px'; tooltip.style.width=tw+'px';
-                if(step.position==='below') { tooltip.style.top=(r.bottom+pad+14)+'px'; tooltip.style.bottom='auto'; }
-                else { tooltip.style.bottom=(window.innerHeight-r.top+pad+14)+'px'; tooltip.style.top='auto'; }
-                document.getElementById('tour-step-label').textContent=`Paso ${tourStep+1} de ${TOUR_STEPS.length}`;
-                document.getElementById('tour-title').textContent=step.title;
-                document.getElementById('tour-body').textContent=step.body;
-                document.getElementById('tour-dots').innerHTML=TOUR_STEPS.map((_,i)=>`<div class="tour-dot ${i===tourStep?'active':''}"></div>`).join('');
-                document.getElementById('tour-btn-next').textContent=tourStep===TOUR_STEPS.length-1?'¡Entendido! ✓':'Siguiente →';
-                tooltip.classList.add('active');
-            },350);
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
         }
-        function tourNext() { tourStep++; if(tourStep>=TOUR_STEPS.length) tourEnd(); else tourRender(); }
+
+        // ============================================================
+        // 12. FUNCIONES DEL TOUR
+        // ============================================================
+        const TOUR_STEPS = [
+            { anchor: 'tour-anchor-size', title: 'Elige tu presentación', body: 'Desde 2ml para probar, 10ml para viaje, 30ml y 50ml para uso diario, 60ml y 100ml para máxima duración. También Crema y Desodorante.', arrow: 'arrow-top', position: 'below' },
+            { anchor: 'tour-anchor-conc', title: 'Selecciona la concentración', body: '🌸 EDT ligera. 💧 Parfum clásica. 💧💧 Parfum Premium. 💧💧💧 Extrait máxima intensidad.', arrow: 'arrow-top', position: 'below' },
+            { anchor: 'tour-anchor-promo', title: 'Paquetes especiales', body: 'Promociones 4×3, 5×4, 6×5, 12×10 (10ml) y 🧪 Discovery Set 15×12 (2ml). ¡Lleva más pagando menos!', arrow: 'arrow-top', position: 'below' },
+            { anchor: 'tour-anchor-aroma', title: 'Busca tu aroma', body: 'Escribe código, marca o familia olfativa. Selecciónalo del listado.', arrow: 'arrow-top', position: 'below' },
+            { anchor: 'tour-anchor-extras', title: 'Feromonas opcionales', body: 'Potencia tu perfume con feromonas por $60 MXN.', arrow: 'arrow-top', position: 'below' },
+            { anchor: 'tour-anchor-coupon', title: 'Código promocional', body: 'Ingresa tu código de descuento aquí.', arrow: 'arrow-top', position: 'below' }
+        ];
+        let tourStep = 0, tourActive = false;
+
+        function tourStart() {
+            if (localStorage.getItem('aion_tour_done') === '1') return;
+            tourActive = true;
+            tourStep = 0;
+            tourRender();
+        }
+
+        function tourRender() {
+            const step = TOUR_STEPS[tourStep], anchor = document.getElementById(step.anchor);
+            const overlay = document.getElementById('tour-overlay'), highlight = document.getElementById('tour-highlight'), tooltip = document.getElementById('tour-tooltip');
+            overlay.classList.add('active');
+            tooltip.classList.remove('active');
+            highlight.classList.remove('active');
+            anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                const r = anchor.getBoundingClientRect(), pad = 8;
+                highlight.style.left = (r.left - pad) + 'px';
+                highlight.style.top = (r.top - pad) + 'px';
+                highlight.style.width = (r.width + pad * 2) + 'px';
+                highlight.style.height = (r.height + pad * 2) + 'px';
+                highlight.classList.add('active');
+                tooltip.className = 'tour-tooltip ' + step.arrow;
+                const tw = Math.min(300, window.innerWidth - 40);
+                let left = r.left;
+                if (left + tw > window.innerWidth - 10) left = window.innerWidth - tw - 10;
+                if (left < 10) left = 10;
+                tooltip.style.left = left + 'px';
+                tooltip.style.width = tw + 'px';
+                if (step.position === 'below') { tooltip.style.top = (r.bottom + pad + 14) + 'px'; tooltip.style.bottom = 'auto'; } else { tooltip.style.bottom = (window.innerHeight - r.top + pad + 14) + 'px'; tooltip.style.top = 'auto'; }
+                document.getElementById('tour-step-label').textContent = `Paso ${tourStep + 1} de ${TOUR_STEPS.length}`;
+                document.getElementById('tour-title').textContent = step.title;
+                document.getElementById('tour-body').textContent = step.body;
+                document.getElementById('tour-dots').innerHTML = TOUR_STEPS.map((_, i) => `<div class="tour-dot ${i === tourStep ? 'active' : ''}"></div>`).join('');
+                document.getElementById('tour-btn-next').textContent = tourStep === TOUR_STEPS.length - 1 ? '¡Entendido! ✓' : 'Siguiente →';
+                tooltip.classList.add('active');
+            }, 350);
+        }
+
+        function tourNext() { tourStep++; if (tourStep >= TOUR_STEPS.length) tourEnd(); else tourRender(); }
         function tourSkip() { tourEnd(); }
         function tourEnd() {
-            tourActive=false; document.getElementById('tour-tooltip').classList.remove('active'); document.getElementById('tour-highlight').classList.remove('active');
-            setTimeout(()=>{ document.getElementById('tour-overlay').classList.remove('active'); document.getElementById('tour-highlight').style.cssText='width:0;height:0;left:-9999px;top:-9999px;'; },320);
-            try{localStorage.setItem('aion_tour_done','1');}catch(e){}
+            tourActive = false;
+            document.getElementById('tour-tooltip').classList.remove('active');
+            document.getElementById('tour-highlight').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('tour-overlay').classList.remove('active');
+                document.getElementById('tour-highlight').style.cssText = 'width:0;height:0;left:-9999px;top:-9999px;';
+            }, 320);
+            try { localStorage.setItem('aion_tour_done', '1'); } catch (e) {}
         }
-        window.onload = function() { syncOptionFromSelectors(); setTimeout(tourStart,700); };
-        (function(){ const bar=document.querySelector('.announcement-bar'); if(!bar)return; const update=()=>document.documentElement.style.setProperty('--banner-h',bar.offsetHeight+'px'); update(); new ResizeObserver(update).observe(bar); })();
+
+        // ============================================================
+        // 13. FUNCIONES DE MODALES
+        // ============================================================
         function openPromoGuide(volume, title, badge, qty) {
-            document.getElementById('promo-guide-title').textContent=title;
-            document.getElementById('promo-guide-badge').textContent=badge;
-            document.getElementById('promo-guide-qty').textContent=qty;
+            document.getElementById('promo-guide-title').textContent = title;
+            document.getElementById('promo-guide-badge').textContent = badge;
+            document.getElementById('promo-guide-qty').textContent = qty;
             document.getElementById('promo-guide-overlay').classList.add('open');
-            document.body.style.overflow='hidden';
+            document.body.style.overflow = 'hidden';
         }
-        function closePromoGuide() { document.getElementById('promo-guide-overlay').classList.remove('open'); document.body.style.overflow=''; }
-        function openInfoModal(id) { document.getElementById('modal-'+id+'-overlay').classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('info-btn-'+id).classList.remove('unseen'); }
-        function closeInfoModal(id) { document.getElementById('modal-'+id+'-overlay').classList.remove('open'); document.body.style.overflow=''; }
-        document.addEventListener('keydown', e => { if(e.key==='Escape') { closeInfoModal('legal'); closeInfoModal('aromas'); closeCart(); } });
+
+        function closePromoGuide() {
+            document.getElementById('promo-guide-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function openInfoModal(id) {
+            document.getElementById('modal-' + id + '-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('info-btn-' + id).classList.remove('unseen');
+        }
+
+        function closeInfoModal(id) {
+            document.getElementById('modal-' + id + '-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ============================================================
+        // 14. INICIALIZACIÓN
+        // ============================================================
+        window.onload = function() {
+            syncOptionFromSelectors();
+            setTimeout(tourStart, 700);
+        };
+
+        // Cerrar modales con Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeInfoModal('legal');
+                closeInfoModal('aromas');
+                closeCart();
+            }
+        });
+
+        // Cerrar carrito con swipe (gestos táctiles)
+        (function initSwipeGestures() {
+            let touchStartX = 0, touchStartY = 0;
+            const SWIPE_THRESHOLD = 60, SWIPE_MAX_Y = 80;
+            document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }, { passive: true });
+            document.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - touchStartX, dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+                const drawer = document.getElementById('cart-drawer');
+                if (e.target.closest('.cart-drawer') || e.target.closest('.cart-fab')) return;
+                if (dy > SWIPE_MAX_Y) return;
+                if (!drawer.classList.contains('open') && dx < -SWIPE_THRESHOLD && touchStartX > window.innerWidth - 80) openCart();
+            }, { passive: true });
+        })();
+
+        // Banner height fix
+        (function() {
+            const bar = document.querySelector('.announcement-bar');
+            if (!bar) return;
+            const update = () => document.documentElement.style.setProperty('--banner-h', bar.offsetHeight + 'px');
+            update();
+            new ResizeObserver(update).observe(bar);
+        })();
     </script>
 </body>
 </html>
