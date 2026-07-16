@@ -13,7 +13,6 @@
             --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
             --dark: #111111;
             --muted: #666666;
-            --border: #e6e6e6;
             --gold: #b8975a;
             --gold-light: #d4b483;
             --green-wa: #25d366;
@@ -24,22 +23,16 @@
             --drawer-w: 420px;
             --glass-bg: rgba(252, 250, 247, 0.85);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: var(--bg-warm);
-            font-family: 'Jost', sans-serif;
-            color: var(--dark);
-            min-height: 100vh;
-            -webkit-tap-highlight-color: transparent;
+            background: var(--bg-warm); font-family: 'Jost', sans-serif; color: var(--dark);
+            min-height: 100vh; -webkit-tap-highlight-color: transparent;
         }
-
-        /* ─── ANNOUNCEMENT BAR ─── */
         .announcement-bar {
             background: var(--dark); color: #fff; padding: 9px 0; overflow: hidden;
             position: sticky; top: 0; z-index: 102; font-size: 0.68rem;
             letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400;
-            border-bottom: 1px solid rgba(184, 151, 90, 0.35);
+            border-bottom: 1px solid rgba(184,151,90,0.35);
         }
         .marquee-track { display: flex; width: max-content; animation: marquee-smooth 28s linear infinite; }
         .announcement-bar:hover .marquee-track { animation-play-state: paused; }
@@ -47,8 +40,6 @@
         .marquee-sep { color: rgba(184,151,90,0.8); font-size: 0.5rem; }
         @keyframes marquee-smooth { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
-
-        /* ─── HEADER ─── */
         .header {
             background: var(--bg-warm); padding: 14px 24px; display: flex;
             align-items: center; justify-content: center; position: relative; z-index: 100;
@@ -57,57 +48,31 @@
             font-family: 'Cormorant Garamond', serif; color: var(--dark);
             font-size: 1.45rem; font-weight: 400; letter-spacing: 4px; text-transform: uppercase;
         }
-
-        /* ─── STEPPER CON ETIQUETAS ─── */
         .stepper-grid {
             display: flex; justify-content: center; align-items: flex-start; gap: 0;
             padding: 14px 8px 6px; background: var(--bg-warm);
             position: sticky; top: 38px; z-index: 99;
         }
-        .stepper-col {
-            display: flex; flex-direction: column; align-items: center; gap: 5px;
-            width: 58px; transition: all 0.3s ease;
-        }
+        .stepper-col { display: flex; flex-direction: column; align-items: center; gap: 5px; width: 58px; transition: all 0.3s ease; }
         .stepper-dot {
-            width: 32px; height: 32px; border-radius: 50%; background: #e8e4dc;
-            color: #999; display: flex; align-items: center; justify-content: center;
-            font-size: 0.7rem; font-weight: 600; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            flex-shrink: 0;
+            width: 32px; height: 32px; border-radius: 50%; background: #e8e4dc; color: #999;
+            display: flex; align-items: center; justify-content: center; font-size: 0.7rem;
+            font-weight: 600; transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); flex-shrink: 0;
         }
         .stepper-dot.completed { background: var(--dark); color: #fff; animation: dotPop 0.4s ease; }
-        .stepper-dot.active {
-            background: var(--dark); color: #fff;
-            box-shadow: 0 0 0 6px rgba(17, 17, 17, 0.08); transform: scale(1.12);
-        }
-        .stepper-col span {
-            font-size: 0.52rem; letter-spacing: 0.4px; text-transform: uppercase;
-            color: #aaa; text-align: center; line-height: 1.2; font-weight: 500;
-            transition: color 0.3s;
-        }
+        .stepper-dot.active { background: var(--dark); color: #fff; box-shadow: 0 0 0 6px rgba(17,17,17,0.08); transform: scale(1.12); }
+        .stepper-col span { font-size: 0.52rem; letter-spacing: 0.4px; text-transform: uppercase; color: #aaa; text-align: center; line-height: 1.2; font-weight: 500; transition: color 0.3s; }
         .stepper-col.completed span { color: var(--dark); font-weight: 600; }
-        .stepper-line {
-            width: 20px; height: 1.5px; background: #e0dcd4; margin-top: 15px;
-            flex-shrink: 0; transition: background 0.35s;
-        }
+        .stepper-line { width: 20px; height: 1.5px; background: #e0dcd4; margin-top: 15px; flex-shrink: 0; transition: background 0.35s; }
         .stepper-line.done { background: var(--dark); }
-        @keyframes dotPop {
-            0% { transform: scale(1); } 40% { transform: scale(1.35); } 100% { transform: scale(1); }
-        }
-
-        /* ─── CONTAINER ─── */
+        @keyframes dotPop { 0% { transform: scale(1); } 40% { transform: scale(1.35); } 100% { transform: scale(1); } }
         .container { max-width: 500px; margin: 0 auto; padding: 0 14px 160px; }
-
-        /* ─── CARD ─── */
         .card {
             background: var(--card-bg); border: 1px solid var(--card-border);
             border-radius: var(--radius-card); box-shadow: var(--card-shadow);
             padding: 20px 18px; margin-bottom: 16px; transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
-        .product-image-wrap {
-            position: relative; width: 100%; height: 320px; overflow: hidden;
-            border-radius: var(--radius-card); margin-bottom: 8px;
-        }
+        .product-image-wrap { position: relative; width: 100%; height: 320px; overflow: hidden; border-radius: var(--radius-card); margin-bottom: 8px; }
         .product-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
         .rating-badge {
             position: absolute; bottom: 14px; left: 14px; background: rgba(255,255,255,0.95);
@@ -116,24 +81,11 @@
             display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .product-info { padding: 8px 4px 4px; text-align: center; }
-        .product-info h2 {
-            font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
-            letter-spacing: 2px; color: var(--dark); margin-bottom: 4px;
-        }
+        .product-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; letter-spacing: 2px; color: var(--dark); margin-bottom: 4px; }
         .product-subtitle { font-size: 0.7rem; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; }
-
-        .section-label {
-            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2.5px;
-            color: var(--muted); margin-bottom: 12px; font-weight: 500;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .step-badge {
-            background: var(--dark); color: #fff; width: 20px; height: 20px;
-            display: flex; align-items: center; justify-content: center; border-radius: 50%;
-            font-size: 0.6rem; font-weight: 600; flex-shrink: 0;
-        }
+        .section-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2.5px; color: var(--muted); margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+        .step-badge { background: var(--dark); color: #fff; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.6rem; font-weight: 600; flex-shrink: 0; }
         .step-badge.done { background: #2e7d32; }
-
         .size-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .size-btn {
             padding: 12px 6px; border: 1px solid var(--card-border); border-radius: var(--radius-sm);
@@ -142,16 +94,9 @@
             text-align: center; line-height: 1.3; position: relative;
         }
         .size-btn:hover { border-color: var(--dark); color: var(--dark); }
-        .size-btn.active {
-            background: var(--dark); color: #fff; border-color: var(--dark);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.18); transform: translateY(-2px);
-        }
-        .size-btn.extra-product {
-            border-style: dashed; border-color: #d5cfc5; font-size: 0.68rem;
-            line-height: 1.35; padding: 10px 4px; grid-column: span 1;
-        }
+        .size-btn.active { background: var(--dark); color: #fff; border-color: var(--dark); box-shadow: 0 6px 20px rgba(0,0,0,0.18); transform: translateY(-2px); }
+        .size-btn.extra-product { border-style: dashed; border-color: #d5cfc5; font-size: 0.68rem; line-height: 1.35; padding: 10px 4px; grid-column: span 1; }
         .size-btn.extra-product.active { border-style: solid; background: var(--dark); color: #fff; border-color: var(--dark); }
-
         .price-shimmer {
             text-align: center; font-size: 1.2rem; font-weight: 600; letter-spacing: 1px;
             color: var(--dark); margin-top: 10px;
@@ -160,7 +105,6 @@
             background-clip: text; animation: shimmer 2.5s ease-in-out infinite;
         }
         @keyframes shimmer { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
-
         .conc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
         .conc-btn {
             padding: 14px 10px; border: 1px solid var(--card-border); border-radius: var(--radius-sm);
@@ -174,7 +118,6 @@
         .conc-dots span { width: 7px; height: 7px; border-radius: 50%; background: #c5bfb5; transition: background 0.2s; }
         .conc-btn.active .conc-dots span { background: #fff; }
         .conc-btn small { display: block; font-size: 0.6rem; opacity: 0.7; font-weight: 400; }
-
         .promo-bento { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .promo-btn {
             padding: 12px 8px; background: var(--bg-warm); border: 1px solid var(--card-border);
@@ -185,150 +128,76 @@
         .promo-btn.active-vol { opacity: 1; border-color: #c5bfb5; color: var(--dark); }
         .promo-btn.active { background: var(--dark); color: #fff; border-color: var(--dark); opacity: 1; box-shadow: 0 6px 18px rgba(0,0,0,0.14); transform: translateY(-1px); }
         .promo-btn small { display: block; font-size: 0.68rem; opacity: 0.75; margin-top: 2px; font-weight: 400; }
-        .promo-badge-bestseller {
-            position: absolute; top: -8px; right: -4px; background: var(--gold); color: #fff;
-            font-size: 0.55rem; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px;
-            border-radius: 3px; font-weight: 600;
-        }
-        .promo-instruction {
-            font-size: 0.72rem; color: var(--dark); background: #fffdf5; border: 1px solid #e8dfc3;
-            border-left: 3px solid var(--gold); padding: 10px 12px; border-radius: var(--radius-sm);
-            margin-bottom: 12px; line-height: 1.4;
-        }
+        .promo-badge-bestseller { position: absolute; top: -8px; right: -4px; background: var(--gold); color: #fff; font-size: 0.55rem; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; font-weight: 600; }
+        .promo-instruction { font-size: 0.72rem; color: var(--dark); background: #fffdf5; border: 1px solid #e8dfc3; border-left: 3px solid var(--gold); padding: 10px 12px; border-radius: var(--radius-sm); margin-bottom: 12px; line-height: 1.4; }
         .promo-status { margin-top: 12px; background: var(--bg-warm); border: 1px solid var(--card-border); padding: 14px; border-radius: var(--radius-sm); font-size: 0.82rem; display: none; }
         .promo-status.visible { display: block; }
         .promo-selected-list { margin: 10px 0 4px; display: flex; flex-wrap: wrap; gap: 6px; }
-        .promo-chip {
-            display: inline-flex; align-items: center; background: #fff; padding: 5px 8px;
-            border: 1px solid var(--card-border); font-size: 0.72rem; border-radius: var(--radius-pill);
-            gap: 5px; white-space: nowrap;
-        }
+        .promo-chip { display: inline-flex; align-items: center; background: #fff; padding: 5px 8px; border: 1px solid var(--card-border); font-size: 0.72rem; border-radius: var(--radius-pill); gap: 5px; white-space: nowrap; }
         .promo-chip-code { font-weight: 600; font-size: 0.68rem; color: var(--dark); letter-spacing: 0.5px; }
         .promo-chip-name { color: var(--muted); max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .promo-chip-qty-btn {
-            width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--card-border);
-            background: #fff; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center;
-            justify-content: center; color: var(--dark); transition: all 0.15s; flex-shrink: 0;
-            font-family: 'Jost', sans-serif; line-height: 1; padding: 0;
-        }
+        .promo-chip-qty-btn { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--card-border); background: #fff; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--dark); transition: all 0.15s; flex-shrink: 0; font-family: 'Jost', sans-serif; line-height: 1; padding: 0; }
         .promo-chip-qty-btn:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
         .promo-chip-qty-btn:active { transform: scale(0.9); }
         .promo-chip-remove { cursor: pointer; color: #999; font-size: 0.9rem; margin-left: 2px; transition: color 0.15s; line-height: 1; flex-shrink: 0; }
         .promo-chip-remove:hover { color: #c00; }
-        .btn-cancel-promo-inline {
-            background: transparent; color: var(--dark); border: 1px solid var(--card-border);
-            border-radius: var(--radius-sm); padding: 9px 14px; font-family: 'Jost', sans-serif;
-            font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-            cursor: pointer; width: 100%; margin-top: 8px; transition: all 0.2s;
-        }
+        .btn-cancel-promo-inline { background: transparent; color: var(--dark); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 9px 14px; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; width: 100%; margin-top: 8px; transition: all 0.2s; }
         .btn-cancel-promo-inline:hover { background: #f0ede7; }
         .finish-promo-wrapper { display: none; margin-top: 12px; }
         .finish-promo-wrapper.visible { display: block; }
-        .btn-finish-promo {
-            background: var(--dark); color: #fff; border: none; border-radius: var(--radius-sm);
-            padding: 14px; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500;
-            letter-spacing: 2px; text-transform: uppercase; cursor: pointer; width: 100%;
-            transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
+        .btn-finish-promo { background: var(--dark); color: #fff; border: none; border-radius: var(--radius-sm); padding: 14px; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; width: 100%; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-finish-promo:hover { background: #333; }
         .btn-finish-promo:active { transform: scale(0.97); }
         .promo-hint { display: none; margin-top: 10px; }
         .promo-hint.visible { display: block; }
         .promo-hint-inner { border: 1px dashed var(--card-border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 0.75rem; color: var(--muted); text-align: center; letter-spacing: 0.5px; }
-
         .search-wrap { position: relative; }
-        .search-wrap input {
-            width: 100%; padding: 15px 18px 15px 44px; border: 1px solid var(--card-border);
-            border-radius: var(--radius-pill); background: var(--bg-warm); font-family: 'Jost', sans-serif;
-            font-size: 0.9rem; color: var(--dark); outline: none; transition: all 0.25s;
-        }
+        .search-wrap input { width: 100%; padding: 15px 18px 15px 44px; border: 1px solid var(--card-border); border-radius: var(--radius-pill); background: var(--bg-warm); font-family: 'Jost', sans-serif; font-size: 0.9rem; color: var(--dark); outline: none; transition: all 0.25s; }
         .search-wrap input:focus { border-color: var(--dark); background: #fff; box-shadow: 0 0 0 4px rgba(0,0,0,0.03); }
         .search-icon { position: absolute; left: 17px; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--muted); pointer-events: none; }
-        .search-results {
-            background: #fff; border: 1px solid var(--card-border); border-top: none;
-            border-radius: 0 0 16px 16px; position: absolute; top: 100%; left: 0; right: 0;
-            overflow: hidden; display: none; box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-            z-index: 50; max-height: 320px; overflow-y: auto;
-        }
+        .search-results { background: #fff; border: 1px solid var(--card-border); border-top: none; border-radius: 0 0 16px 16px; position: absolute; top: 100%; left: 0; right: 0; overflow: hidden; display: none; box-shadow: 0 12px 30px rgba(0,0,0,0.08); z-index: 50; max-height: 320px; overflow-y: auto; }
         .search-results.visible { display: block; }
-        .search-result-item {
-            padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #f0ede7;
-            font-size: 0.82rem; display: flex; align-items: center; gap: 10px; transition: background 0.15s;
-        }
+        .search-result-item { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #f0ede7; font-size: 0.82rem; display: flex; align-items: center; gap: 10px; transition: background 0.15s; }
         .search-result-item:last-child { border-bottom: none; }
         .search-result-item:hover { background: #faf8f5; }
         .search-result-item .aroma-code { font-weight: 600; font-size: 0.68rem; background: #f0ede7; padding: 3px 7px; border-radius: var(--radius-pill); letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; }
         .search-result-item .aroma-info { flex: 1; min-width: 0; }
         .search-result-item .aroma-name { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1rem; letter-spacing: 0.5px; margin-bottom: 2px; }
         .search-result-item .aroma-meta { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.3px; }
-
-        .selected-aroma-card {
-            display: none; margin-top: 12px; background: var(--dark); color: #fff;
-            border-radius: var(--radius-sm); padding: 14px 16px; align-items: center; gap: 10px;
-        }
+        .selected-aroma-card { display: none; margin-top: 12px; background: var(--dark); color: #fff; border-radius: var(--radius-sm); padding: 14px 16px; align-items: center; gap: 10px; }
         .selected-aroma-card.visible { display: flex; }
         .selected-aroma-card .aroma-text { flex: 1; }
         .selected-aroma-card .aroma-text strong { display: block; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px; }
         .selected-aroma-card .aroma-text small { color: rgba(255,255,255,0.7); font-size: 0.7rem; display: block; line-height: 1.5; }
-        .remove-aroma {
-            background: rgba(255,255,255,0.15); border: none; color: #fff; cursor: pointer;
-            font-size: 1rem; width: 30px; height: 30px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0;
-        }
+        .remove-aroma { background: rgba(255,255,255,0.15); border: none; color: #fff; cursor: pointer; font-size: 1rem; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0; }
         .remove-aroma:hover { background: rgba(255,255,255,0.3); }
-
         .addon-switch-wrap { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 4px 0; }
         .addon-switch-info { flex: 1; }
         .addon-switch-label { font-size: 0.88rem; font-weight: 500; display: block; }
         .addon-switch-desc { font-size: 0.72rem; color: var(--muted); margin-top: 2px; display: block; }
         .addon-switch-price { font-weight: 500; font-size: 0.85rem; margin-right: 10px; color: var(--dark); }
-        .ios-switch {
-            width: 50px; height: 30px; background: #d1cdc5; border-radius: 30px; position: relative;
-            cursor: pointer; transition: background 0.25s; flex-shrink: 0;
-        }
+        .ios-switch { width: 50px; height: 30px; background: #d1cdc5; border-radius: 30px; position: relative; cursor: pointer; transition: background 0.25s; flex-shrink: 0; }
         .ios-switch.on { background: var(--dark); }
-        .ios-switch::after {
-            content: ''; width: 26px; height: 26px; background: #fff; border-radius: 50%;
-            position: absolute; top: 2px; left: 2px; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
+        .ios-switch::after { content: ''; width: 26px; height: 26px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
         .ios-switch.on::after { transform: translateX(20px); }
-
         .qty-control { display: flex; align-items: center; border: 1px solid var(--card-border); border-radius: var(--radius-pill); overflow: hidden; }
-        .qty-btn {
-            width: 38px; height: 38px; background: none; border: none; font-size: 1.1rem;
-            color: var(--dark); cursor: pointer; transition: background 0.15s; font-family: 'Jost', sans-serif;
-        }
+        .qty-btn { width: 38px; height: 38px; background: none; border: none; font-size: 1.1rem; color: var(--dark); cursor: pointer; transition: background 0.15s; font-family: 'Jost', sans-serif; }
         .qty-btn:hover { background: #f0ede7; }
         .qty-btn:active { transform: scale(0.9); }
         .qty-display { width: 36px; text-align: center; font-weight: 500; font-size: 0.9rem; user-select: none; }
-
         .coupon-wrap { display: flex; gap: 8px; align-items: stretch; }
-        .coupon-wrap input {
-            flex: 1; padding: 13px 16px; border: 1px solid var(--card-border); border-radius: var(--radius-pill);
-            background: var(--bg-warm); font-family: 'Jost', sans-serif; font-size: 0.85rem; color: var(--dark);
-            outline: none; text-transform: uppercase; letter-spacing: 2px; transition: all 0.2s;
-        }
+        .coupon-wrap input { flex: 1; padding: 13px 16px; border: 1px solid var(--card-border); border-radius: var(--radius-pill); background: var(--bg-warm); font-family: 'Jost', sans-serif; font-size: 0.85rem; color: var(--dark); outline: none; text-transform: uppercase; letter-spacing: 2px; transition: all 0.2s; }
         .coupon-wrap input:focus { border-color: var(--dark); background: #fff; }
         .coupon-wrap input::placeholder { text-transform: none; letter-spacing: 0.5px; color: #aaa; }
-        .btn-apply-coupon {
-            padding: 13px 16px; background: var(--dark); color: #fff; border: none; border-radius: var(--radius-pill);
-            font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.5px;
-            text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap;
-        }
+        .btn-apply-coupon { padding: 13px 16px; background: var(--dark); color: #fff; border: none; border-radius: var(--radius-pill); font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
         .btn-apply-coupon:hover { background: #333; }
         .btn-apply-coupon:active { transform: scale(0.97); }
-        .coupon-feedback {
-            margin-top: 10px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.78rem;
-            display: none; align-items: center; gap: 10px; line-height: 1.4;
-        }
+        .coupon-feedback { margin-top: 10px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.78rem; display: none; align-items: center; gap: 10px; line-height: 1.4; }
         .coupon-feedback.success { display: flex; background: #f0faf4; border: 1px solid #a8dfc0; color: #1a6638; }
         .coupon-feedback.error { display: flex; background: #fff5f5; border: 1px solid #f5c0c0; color: #a33; }
         .coupon-feedback-icon { font-size: 1rem; }
         .coupon-feedback-text { flex: 1; }
         .btn-remove-coupon { background: none; border: none; color: #1a6638; cursor: pointer; font-size: 1rem; padding: 0 4px; line-height: 1; }
-
-        /* ─── BOTTOM BAR ─── */
         .bottom-bar {
             position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
             width: 100%; max-width: 500px; padding: 12px 16px 20px;
@@ -348,8 +217,6 @@
         }
         .btn-add:hover { background: #333; }
         .btn-add:active { transform: scale(0.97); }
-
-        /* ─── INFO BUTTONS ─── */
         .info-btn {
             background: none; border: 1.5px solid rgba(184,151,90,0.5); border-radius: 50%;
             width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center;
@@ -359,20 +226,10 @@
         }
         .info-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
         .info-btn.unseen { border-color: #00aaff; color: #00aaff; animation: infoBtnPulse 1.4s ease-in-out infinite; }
-        .info-btn.unseen::after {
-            content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #00aaff;
-            opacity: 0; animation: infoBtnRing 1.4s ease-in-out infinite; pointer-events: none;
-        }
-        @keyframes infoBtnPulse {
-            0%,100% { box-shadow: 0 0 0 0 rgba(0,170,255,0.0); border-color: #00aaff; color: #00aaff; }
-            50% { box-shadow: 0 0 8px 2px rgba(0,170,255,0.55); border-color: #55ccff; color: #55ccff; }
-        }
-        @keyframes infoBtnRing {
-            0% { transform: scale(0.85); opacity: 0.7; } 70% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(1.5); opacity: 0; }
-        }
+        .info-btn.unseen::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #00aaff; opacity: 0; animation: infoBtnRing 1.4s ease-in-out infinite; pointer-events: none; }
+        @keyframes infoBtnPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(0,170,255,0.0); border-color: #00aaff; color: #00aaff; } 50% { box-shadow: 0 0 8px 2px rgba(0,170,255,0.55); border-color: #55ccff; color: #55ccff; } }
+        @keyframes infoBtnRing { 0% { transform: scale(0.85); opacity: 0.7; } 70% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(1.5); opacity: 0; } }
         @media (prefers-reduced-motion: reduce) { .info-btn.unseen, .info-btn.unseen::after { animation: none; } }
-
-        /* ─── CART FAB ─── */
         .cart-fab {
             position: fixed; top: 110px; right: 16px; z-index: 190; background: var(--dark);
             color: #fff; border: none; border-radius: 50px; padding: 12px 18px;
@@ -389,8 +246,6 @@
         .cart-fab.pulse { animation: fabPulse 0.4s ease; }
         @keyframes fabPulse { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
         .cart-fab.dragging { opacity: 0.8; transition: none; }
-
-        /* ─── CART DRAWER ─── */
         .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0); z-index: 200; pointer-events: none; transition: background 0.35s ease; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
         .cart-overlay.open { background: rgba(0,0,0,0.4); pointer-events: auto; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
         .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: var(--drawer-w); max-width: 100vw; background: #fff; z-index: 201; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: -12px 0 48px rgba(0,0,0,0.12); border-radius: 20px 0 0 20px; }
@@ -451,12 +306,8 @@
         .drawer-btn-clear:hover { background: #f5f2ed; color: var(--dark); border-color: var(--dark); }
         .shipping-progress { background: #f0ede7; border-radius: var(--radius-pill); height: 6px; margin-top: 4px; overflow: hidden; }
         .shipping-progress-fill { height: 100%; background: var(--gold); border-radius: var(--radius-pill); transition: width 0.4s ease; }
-
-        /* ─── TOAST ─── */
         .toast { position: fixed; top: 120px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--dark); color: #fff; padding: 14px 24px; border-radius: var(--radius-pill); font-size: 0.78rem; letter-spacing: 1px; opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1200; box-shadow: 0 8px 28px rgba(0,0,0,0.2); white-space: nowrap; }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-        /* ─── TOUR ─── */
         .tour-overlay { position: fixed; inset: 0; background: transparent; z-index: 1000; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
         .tour-overlay.active { background: rgba(0,0,0,0.65); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: auto; opacity: 1; }
         .tour-highlight { position: fixed; border-radius: 12px; z-index: 1001; pointer-events: none; transition: all 0.35s cubic-bezier(.4,0,.2,1); }
@@ -478,8 +329,6 @@
         .tour-btn-next { background: var(--dark); border: none; border-radius: var(--radius-sm); padding: 8px 18px; font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 500; color: #fff; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: background 0.2s; }
         .tour-btn-next:hover { background: #333; }
         .tour-btn-next:active, .tour-btn-skip:active { transform: scale(0.97); }
-
-        /* ─── MODALS ─── */
         .promo-guide-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2100; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
         .promo-guide-overlay.open { opacity: 1; pointer-events: auto; }
         .promo-guide-modal { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(30px); width: 100%; max-width: 500px; background: #fff; border-radius: 20px 20px 0 0; padding: 0 0 32px; z-index: 2101; box-shadow: 0 -12px 40px rgba(0,0,0,0.18); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s; opacity: 0; }
@@ -510,7 +359,6 @@
         .info-modal-close:hover { color: var(--dark); }
         .info-modal-body { font-size: 0.8rem; color: var(--muted); line-height: 1.7; border-top: 1px solid #f0ede7; padding-top: 12px; }
         .info-modal-badge { display: inline-block; font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,151,90,0.4); border-radius: 3px; padding: 2px 7px; margin-bottom: 10px; }
-
         .conc-section-hidden { display: none !important; }
         .divider { height: 1px; background: transparent; margin: 8px 0; }
 
@@ -530,8 +378,6 @@
     </div>
 
     <div class="toast" id="toast"></div>
-
-    <!-- TOUR -->
     <div class="tour-overlay" id="tour-overlay" onclick="tourSkip()"></div>
     <div class="tour-highlight" id="tour-highlight"></div>
     <div class="tour-tooltip" id="tour-tooltip">
@@ -547,7 +393,6 @@
         </div>
     </div>
 
-    <!-- CART DRAWER -->
     <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
     <aside class="cart-drawer" id="cart-drawer">
         <div class="drawer-header">
@@ -579,7 +424,6 @@
         <button class="info-btn unseen" id="info-btn-legal" onclick="openInfoModal('legal')" style="position:absolute; right:20px;">i</button>
     </div>
 
-    <!-- STEPPER CON ETIQUETAS -->
     <div class="stepper-grid" id="stepper">
         <div class="stepper-col"><div class="stepper-dot" data-step="size">1</div><span>Presentación</span></div>
         <div class="stepper-line" data-line="0"></div>
@@ -627,7 +471,7 @@
         </div>
 
         <div class="card" id="card-promo">
-            <div class="section-label"><span class="step-badge" id="step-badge-promo">3</span> Paquetes Especiales</div>
+            <div class="section-label"><span class="step-badge" id="step-badge-promo">3</span> Paquetes Especiales (Opcional)</div>
             <p class="promo-instruction">⚠️ <strong>Importante:</strong> Todos los aromas del paquete tendrán la misma presentación y concentración.</p>
             <div class="promo-bento">
                 <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3<br>100ml <small id="promo-100-price"></small></button>
@@ -661,7 +505,7 @@
         </div>
 
         <div class="card" id="card-extras">
-            <div class="section-label"><span class="step-badge" id="step-badge-extras">5</span> Extras</div>
+            <div class="section-label"><span class="step-badge" id="step-badge-extras">5</span> Extras (Opcional)</div>
             <div class="addon-switch-wrap" id="addon-feromonas" onclick="toggleAddon()">
                 <div class="addon-switch-info"><span class="addon-switch-label">Adición de Feromonas</span><span class="addon-switch-desc">Mejora la atracción e impacto</span></div>
                 <span class="addon-switch-price">+$60.00</span>
@@ -691,11 +535,13 @@
     </div>
 
     <div class="bottom-bar" id="bottom-bar">
-        <div class="bottom-bar-preview"><div class="bottom-bar-label">Total estimado</div><div class="bottom-bar-price" id="bottom-bar-price">$188.00</div></div>
-        <button class="btn-add" onclick="addToCart()">Añadir al carrito</button>
+        <div class="bottom-bar-preview">
+            <div class="bottom-bar-label" id="bottom-bar-label">Total estimado</div>
+            <div class="bottom-bar-price" id="bottom-bar-price">$188.00</div>
+        </div>
+        <button class="btn-add" id="btn-add-bottom" onclick="addToCart()">Añadir al carrito</button>
     </div>
 
-    <!-- PROMO GUIDE MODAL -->
     <div class="promo-guide-overlay" id="promo-guide-overlay" onclick="closePromoGuide()">
         <div class="promo-guide-modal" onclick="event.stopPropagation()">
             <div class="promo-guide-handle"></div>
@@ -851,7 +697,41 @@
         function removeCartItem(i) { state.cartItems.splice(i,1); updateCartDrawer(); showToast('Producto eliminado'); }
         function clearCart() { state.cartItems=[]; state.appliedCoupon=null; document.getElementById('coupon-input').disabled=false; document.getElementById('coupon-input').value=''; document.getElementById('coupon-feedback').className='coupon-feedback'; document.getElementById('coupon-feedback').style.display='none'; updateCartDrawer(); closeCart(); showToast('Carrito vaciado'); }
 
-        function updateBottomBar() { const opt=state.selectedOption; const isExtra=opt&&EXTRA_PRODUCTS.includes(opt.volume); const feromonasCost=(state.withFeromonas&&!isExtra)?60:0; const unitPrice=opt?opt.price+feromonasCost:0; const total=unitPrice*state.quantity; document.getElementById('bottom-bar-price').textContent=opt?'$'+total.toFixed(2)+' MXN':'—'; }
+        function updateBottomBar() {
+            const labelEl = document.getElementById('bottom-bar-label');
+            const priceEl = document.getElementById('bottom-bar-price');
+            const btnEl = document.getElementById('btn-add-bottom');
+            
+            if (promoState.active) {
+                const totalUnits = getTotalPromoUnits();
+                const isComplete = totalUnits === promoState.required;
+                const feromonasCost = promoState.withFeromonas ? 60 * promoState.required : 0;
+                const total = (promoState.basePrice * promoState.payFor) + feromonasCost;
+                
+                labelEl.textContent = isComplete ? 'Total paquete' : 'Precio del paquete';
+                priceEl.textContent = '$' + total.toFixed(2) + ' MXN';
+                
+                if (isComplete) {
+                    btnEl.textContent = 'Añadir paquete';
+                    btnEl.onclick = finishPromo;
+                } else {
+                    btnEl.textContent = `Completar (${totalUnits}/${promoState.required})`;
+                    btnEl.onclick = () => scrollToStep('aroma');
+                }
+                return;
+            }
+            
+            const opt = state.selectedOption;
+            const isExtra = opt && EXTRA_PRODUCTS.includes(opt.volume);
+            const feromonasCost = (state.withFeromonas && !isExtra) ? 60 : 0;
+            const unitPrice = opt ? opt.price + feromonasCost : 0;
+            const total = unitPrice * state.quantity;
+            
+            labelEl.textContent = 'Total estimado';
+            priceEl.textContent = opt ? '$' + total.toFixed(2) + ' MXN' : '—';
+            btnEl.textContent = 'Añadir al carrito';
+            btnEl.onclick = addToCart;
+        }
 
         function selectSize(size) {
             selectedSize=size; document.querySelectorAll('.size-btn').forEach(b=>b.classList.toggle('active',b.dataset.size===size));
